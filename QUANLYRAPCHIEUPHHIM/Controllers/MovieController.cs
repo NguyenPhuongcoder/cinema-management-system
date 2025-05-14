@@ -22,10 +22,16 @@ namespace QUANLYRAPCHIEUPHHIM.Controllers
         public async Task<IActionResult> Details(int id)
         {
             var movie = await _context.Movies.FindAsync(id);
-            if (movie == null)
-                return NotFound();
+            if (movie == null) return NotFound();
+
+            // Convert YouTube link nếu chưa phải embed
+            if (!string.IsNullOrEmpty(movie.TrailerUrl) && movie.TrailerUrl.Contains("watch?v="))
+            {
+                movie.TrailerUrl = movie.TrailerUrl.Replace("watch?v=", "embed/");
+            }
 
             return View(movie);
         }
+
     }
 }

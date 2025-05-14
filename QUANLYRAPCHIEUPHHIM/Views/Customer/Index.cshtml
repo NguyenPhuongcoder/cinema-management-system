@@ -1,6 +1,24 @@
-﻿@{
-	ViewData["Title"] = "Trang Khách Hàng";
-}
+﻿@model IEnumerable<QUANLYRAPCHIEUPHHIM.Models.Movie>
 
-<h1>Xin chào!</h1>
-<p>Đây là trang dành cho khách hàng.</p>
+<div class="container mt-5">
+    <h2 class="mb-4">Phim Đang Chiếu</h2>
+    <div class="row">
+        @foreach (var movie in Model)
+        {
+            <div class="col-md-3 mb-4">
+                <div class="card h-100 shadow">
+                    <img src="@movie.PosterUrl" class="card-img-top" alt="@movie.Title" style="height:350px;object-fit:cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">@movie.Title</h5>
+                        <p class="card-text">
+                            @(movie.Description != null && movie.Description.Length > 60
+                                ? movie.Description.Substring(0, 60) + "..."
+                                : movie.Description)
+                        </p>
+                        <a href="/Movie/Details/@movie.MovieId" class="btn btn-outline-primary">Xem chi tiết</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
