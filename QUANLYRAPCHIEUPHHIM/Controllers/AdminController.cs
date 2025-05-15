@@ -36,5 +36,22 @@ namespace QUANLYRAPCHIEUPHHIM.Controllers
             var movies = _context.Movies.ToList();
             return View(movies);
         }
+        public IActionResult Shows()
+        {
+            var shows = _context.Showtimes.ToList();
+            return View(shows);
+        }
+
+        public IActionResult Bookings()
+        {
+            var bookings = _context.Bookings.ToList();
+            return View(bookings);
+        }
+
+        public IActionResult Users()
+        {
+            var users = _context.Users.ToList();
+            return View(users);
+        }
     }
 } 
