@@ -36,12 +36,24 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[E:/QuanLyRapChieuPhim/QUANLYRAPCHIEUPHHIM/Views/Admin/Bookings.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQm9va2luZ3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [E:/QuanLyRapChieuPhim/QUANLYRAPCHIEUPHHIM/Views/Admin/Dashboard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRGFzaGJvYXJkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [E:/QuanLyRapChieuPhim/QUANLYRAPCHIEUPHHIM/Views/Admin/Movies.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cTW92aWVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/QuanLyRapChieuPhim/QUANLYRAPCHIEUPHHIM/Views/Admin/Shows.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cU2hvd3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/QuanLyRapChieuPhim/QUANLYRAPCHIEUPHHIM/Views/Admin/Users.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVXNlcnMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [E:/QuanLyRapChieuPhim/QUANLYRAPCHIEUPHHIM/Views/Home/Index.cshtml]
