@@ -1,22 +1,26 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "E:\\IT\\C#\\QUANLYRAPCHIEUPHHIM\\",
+  "WorkspaceRootPath": "E:\\LaptrinhC#\\Cuoi_ky\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|e:\\it\\c#\\quanlyrapchieuphhim\\quanlyrapchieuphhim\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|solutionrelative:quanlyrapchieuphhim\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|e:\\it\\c#\\quanlyrapchieuphhim\\quanlyrapchieuphhim\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|solutionrelative:quanlyrapchieuphhim\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|e:\\it\\c#\\quanlyrapchieuphhim\\quanlyrapchieuphhim\\data\\cinemadbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|e:\\laptrinhc#\\cuoi_ky\\quanlyrapchieuphhim\\data\\cinemadbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|solutionrelative:quanlyrapchieuphhim\\data\\cinemadbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\IT\\C#\\QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM\\Models\\CinemaDbContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:QUANLYRAPCHIEUPHHIM\\Models\\CinemaDbContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|e:\\laptrinhc#\\cuoi_ky\\quanlyrapchieuphhim\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|solutionrelative:quanlyrapchieuphhim\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|e:\\laptrinhc#\\cuoi_ky\\quanlyrapchieuphhim\\models\\address.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|solutionrelative:quanlyrapchieuphhim\\models\\address.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|e:\\laptrinhc#\\cuoi_ky\\quanlyrapchieuphhim\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|solutionrelative:quanlyrapchieuphhim\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|e:\\laptrinhc#\\cuoi_ky\\quanlyrapchieuphhim\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|solutionrelative:quanlyrapchieuphhim\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,59 +30,84 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 7,
           "Children": [
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3fd5e0cc-709a-4f8c-94c3-7f0f8dff5bb2}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "E:\\IT\\C#\\QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM\\Program.cs",
-              "RelativeDocumentMoniker": "QUANLYRAPCHIEUPHHIM\\Program.cs",
-              "ToolTip": "E:\\IT\\C#\\QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM\\Program.cs",
-              "RelativeToolTip": "QUANLYRAPCHIEUPHHIM\\Program.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABIAAAA5AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-10T01:23:42.063Z",
-              "EditorCaption": ""
+              "DocumentIndex": 3,
+              "Title": "Dockerfile",
+              "DocumentMoniker": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\Dockerfile",
+              "RelativeDocumentMoniker": "QUANLYRAPCHIEUPHHIM\\Dockerfile",
+              "ToolTip": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\Dockerfile",
+              "RelativeToolTip": "QUANLYRAPCHIEUPHHIM\\Dockerfile",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-05-11T07:31:59.177Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "Address.cs",
+              "DocumentMoniker": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\Models\\Address.cs",
+              "RelativeDocumentMoniker": "QUANLYRAPCHIEUPHHIM\\Models\\Address.cs",
+              "ToolTip": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\Models\\Address.cs",
+              "RelativeToolTip": "QUANLYRAPCHIEUPHHIM\\Models\\Address.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-11T07:20:52.37Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\Program.cs",
+              "RelativeDocumentMoniker": "QUANLYRAPCHIEUPHHIM\\Program.cs",
+              "ToolTip": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\Program.cs",
+              "RelativeToolTip": "QUANLYRAPCHIEUPHHIM\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-10T01:23:42.063Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "CinemaDbContext.cs",
-              "DocumentMoniker": "E:\\IT\\C#\\QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM\\Data\\CinemaDbContext.cs",
+              "DocumentMoniker": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\Data\\CinemaDbContext.cs",
               "RelativeDocumentMoniker": "QUANLYRAPCHIEUPHHIM\\Data\\CinemaDbContext.cs",
-              "ToolTip": "E:\\IT\\C#\\QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM\\Data\\CinemaDbContext.cs",
+              "ToolTip": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\Data\\CinemaDbContext.cs",
               "RelativeToolTip": "QUANLYRAPCHIEUPHHIM\\Data\\CinemaDbContext.cs",
-              "ViewState": "AgIAAKQAAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAKQAAACALTMzMzMDwLMAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-10T01:21:40.89Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "CinemaDbContext.cs",
-              "DocumentMoniker": "E:\\IT\\C#\\QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM\\Models\\CinemaDbContext.cs",
-              "RelativeDocumentMoniker": "QUANLYRAPCHIEUPHHIM\\Models\\CinemaDbContext.cs",
-              "ToolTip": "E:\\IT\\C#\\QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM\\Models\\CinemaDbContext.cs",
-              "RelativeToolTip": "QUANLYRAPCHIEUPHHIM\\Models\\CinemaDbContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-10T01:18:49.786Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "appsettings.json",
-              "DocumentMoniker": "E:\\IT\\C#\\QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM\\appsettings.json",
+              "DocumentMoniker": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\appsettings.json",
               "RelativeDocumentMoniker": "QUANLYRAPCHIEUPHHIM\\appsettings.json",
-              "ToolTip": "E:\\IT\\C#\\QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM\\appsettings.json",
+              "ToolTip": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\appsettings.json",
               "RelativeToolTip": "QUANLYRAPCHIEUPHHIM\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-05-10T01:10:41.57Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-10T01:10:41.57Z"
             }
           ]
         }
