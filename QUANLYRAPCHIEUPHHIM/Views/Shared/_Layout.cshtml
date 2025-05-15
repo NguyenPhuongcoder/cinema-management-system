@@ -1,47 +1,86 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - QUANLYRAPCHIEUPHHIM</title>
-    <script type="importmap"></script>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/QUANLYRAPCHIEUPHHIM.styles.css" asp-append-version="true" />
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>@ViewData["Title"] - Galaxy</title>
+	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+	<link rel="stylesheet" href="~/QUANLYRAPCHIEUPHHIM.styles.css" asp-append-version="true" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+	<link rel="icon" type="image/png" href="~/images/logo.png" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">QUANLYRAPCHIEUPHHIM</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
+<header>
+	<!-- Header/Navbar -->
+	<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+		<div class="container">
+			<a class="navbar-brand fw-bold" href="/">
+				<img src="~/images/logo.png" alt="Logo" style="height:40px; margin-right:10px;">
+				Rạp Chiếu Phim
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="mainNavbar">
+				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+					<li class="nav-item">
+						<a class="nav-link" href="/">Trang chủ</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/Movie">Phim</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/Showtime">Lịch chiếu</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/Booking">Đặt vé</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/Account/Profile">Tài khoản</a>
+					</li>
+				</ul>
+				<a href="/Account/Login" class="btn btn-warning ms-3">Đăng nhập</a>
+			</div>
+		</div>
+	</nav>
+</header>
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2025 - QUANLYRAPCHIEUPHHIM - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
+<footer class="bg-dark text-white mt-5">
+	<div class="container py-4">
+		<div class="row">
+			<div class="col-md-4 mb-3">
+				<h5>Rạp Chiếu Phim</h5>
+				<p>
+					Hệ thống rạp chiếu phim hiện đại, chất lượng phục vụ hàng đầu, cập nhật phim bom tấn nhanh nhất!
+				</p>
+			</div>
+			<div class="col-md-4 mb-3">
+				<h5>Liên hệ</h5>
+				<ul class="list-unstyled">
+					<li>Địa chỉ: 123 Đường ABC, Quận 1, TP.HCM</li>
+					<li>Điện thoại: 0123 456 789</li>
+					<li>Email: support@rapchieuphim.vn</li>
+				</ul>
+			</div>
+			<div class="col-md-4 mb-3">
+				<h5>Kết nối</h5>
+				<a href="#" class="text-white me-2"><i class="fab fa-facebook fa-lg"></i></a>
+				<a href="#" class="text-white me-2"><i class="fab fa-youtube fa-lg"></i></a>
+				<a href="#" class="text-white me-2"><i class="fab fa-instagram fa-lg"></i></a>
+			</div>
+		</div>
+		<div class="text-center mt-3">
+			&copy; @DateTime.Now.Year Rạp Chiếu Phim. All rights reserved.
+		</div>
+	</div>
+</footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

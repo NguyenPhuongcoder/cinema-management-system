@@ -9,8 +9,36 @@
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
-      "Id": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\wwwroot\\favicon.ico",
-      "PackagePath": "staticwebassets\\favicon.ico"
+      "Id": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\wwwroot\\images\\2048x682_1746503337124.jpg",
+      "PackagePath": "staticwebassets\\images\\2048x682_1746503337124.jpg"
+    },
+    {
+      "Id": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\wwwroot\\images\\New Volume (E) - Shortcut.lnk",
+      "PackagePath": "staticwebassets\\images\\New Volume (E) - Shortcut.lnk"
+    },
+    {
+      "Id": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\wwwroot\\images\\chong-gai-1_1744949649177.jpg",
+      "PackagePath": "staticwebassets\\images\\chong-gai-1_1744949649177.jpg"
+    },
+    {
+      "Id": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\wwwroot\\images\\doraemon-the-movie-nobitas-art-world-tales-3_1746800280056.jpg",
+      "PackagePath": "staticwebassets\\images\\doraemon-the-movie-nobitas-art-world-tales-3_1746800280056.jpg"
+    },
+    {
+      "Id": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\wwwroot\\images\\gravity-1_1747208790653.jpg",
+      "PackagePath": "staticwebassets\\images\\gravity-1_1747208790653.jpg"
+    },
+    {
+      "Id": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\wwwroot\\images\\logo.png",
+      "PackagePath": "staticwebassets\\images\\logo.png"
+    },
+    {
+      "Id": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\wwwroot\\images\\tham-tu-kien-1_1745832794637.jpg",
+      "PackagePath": "staticwebassets\\images\\tham-tu-kien-1_1745832794637.jpg"
+    },
+    {
+      "Id": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\wwwroot\\images\\thunderbolts-2048_1745395976662.jpg",
+      "PackagePath": "staticwebassets\\images\\thunderbolts-2048_1745395976662.jpg"
     },
     {
       "Id": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\wwwroot\\js\\site.js",

@@ -29,7 +29,6 @@ namespace QUANLYRAPCHIEUPHHIM.Controllers
             {
                 movie.TrailerUrl = movie.TrailerUrl.Replace("watch?v=", "embed/");
             }
-
             return View(movie);
         }
 

@@ -12,29 +12,155 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>b9sayid5wm</Fingerprint>
-      <Integrity>j6fhJSuuyLpOSLuPJU0TsDV0iNjor5S3rDnvxJrt4bg=</Integrity>
+      <Fingerprint>qbdmpsdlkk</Fingerprint>
+      <Integrity>9qXtQLG/zqM+yePRKUBnfOzk3m1y2w6PgtTbebC06r0=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\site.css'))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\favicon.ico'))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\2048x682_1746503337124.jpg'))">
       <SourceType>Package</SourceType>
       <SourceId>QUANLYRAPCHIEUPHHIM</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/QUANLYRAPCHIEUPHHIM</BasePath>
-      <RelativePath>favicon.ico</RelativePath>
+      <RelativePath>images/2048x682_1746503337124.jpg</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>61n19gt1b8</Fingerprint>
-      <Integrity>Jtxf9L+5ITKRc1gIRl4VbUpGkRNfOBXjYTdhJD4facM=</Integrity>
+      <Fingerprint>gc84vkod2h</Fingerprint>
+      <Integrity>wO10Lu601hSwr6eTxVTzvOc/WO2dRzVo2xj5/TCwuOc=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\favicon.ico'))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\2048x682_1746503337124.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\chong-gai-1_1744949649177.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>QUANLYRAPCHIEUPHHIM</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/QUANLYRAPCHIEUPHHIM</BasePath>
+      <RelativePath>images/chong-gai-1_1744949649177.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>vq247hfo4t</Fingerprint>
+      <Integrity>Gd70cYXSOnuB6Q8qJryghMk6YzwrA5ZCzJn70wc0sUQ=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\chong-gai-1_1744949649177.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\doraemon-the-movie-nobitas-art-world-tales-3_1746800280056.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>QUANLYRAPCHIEUPHHIM</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/QUANLYRAPCHIEUPHHIM</BasePath>
+      <RelativePath>images/doraemon-the-movie-nobitas-art-world-tales-3_1746800280056.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>d3nurw247n</Fingerprint>
+      <Integrity>l5SH0uX5RqWhu+9BzOTxj0CgZX4zYLB5C9uDFKI/qgE=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\doraemon-the-movie-nobitas-art-world-tales-3_1746800280056.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\gravity-1_1747208790653.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>QUANLYRAPCHIEUPHHIM</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/QUANLYRAPCHIEUPHHIM</BasePath>
+      <RelativePath>images/gravity-1_1747208790653.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>u6i2lvvgqq</Fingerprint>
+      <Integrity>ajbBMqZnhA+vgO+6qHxgJmeqYfA8aX2eyEAtcQRdk5s=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\gravity-1_1747208790653.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\logo.png'))">
+      <SourceType>Package</SourceType>
+      <SourceId>QUANLYRAPCHIEUPHHIM</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/QUANLYRAPCHIEUPHHIM</BasePath>
+      <RelativePath>images/logo.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>k0t19sq18q</Fingerprint>
+      <Integrity>3D24R6ph+xDbgnZhskhNAdEnQRP+aLj5KXWg6BQwfRs=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\logo.png'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\New Volume (E) - Shortcut.lnk'))">
+      <SourceType>Package</SourceType>
+      <SourceId>QUANLYRAPCHIEUPHHIM</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/QUANLYRAPCHIEUPHHIM</BasePath>
+      <RelativePath>images/New Volume (E) - Shortcut.lnk</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>8lfq804ree</Fingerprint>
+      <Integrity>bNmS/OjF/R0vzFxSKBaL/DCgz347gjOxsn8IZLfqiMI=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\New Volume (E) - Shortcut.lnk'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\tham-tu-kien-1_1745832794637.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>QUANLYRAPCHIEUPHHIM</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/QUANLYRAPCHIEUPHHIM</BasePath>
+      <RelativePath>images/tham-tu-kien-1_1745832794637.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>9smweq6o3z</Fingerprint>
+      <Integrity>WRHCXONqyiIdS9b/K2zpSJLbWqYzoH9zNUor89fFIEw=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\tham-tu-kien-1_1745832794637.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\thunderbolts-2048_1745395976662.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>QUANLYRAPCHIEUPHHIM</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/QUANLYRAPCHIEUPHHIM</BasePath>
+      <RelativePath>images/thunderbolts-2048_1745395976662.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>e1h6viknfm</Fingerprint>
+      <Integrity>wqIqK5e75dZqs2LaUE8NUdzIk+/SL3isHr4HgZ7c/yQ=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\thunderbolts-2048_1745395976662.jpg'))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\site.js'))">
       <SourceType>Package</SourceType>

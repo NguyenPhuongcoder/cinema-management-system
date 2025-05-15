@@ -1,24 +1,135 @@
-﻿@model IEnumerable<QUANLYRAPCHIEUPHHIM.Models.Movie>
-
-<div class="container mt-5">
-    <h2 class="mb-4">Phim Đang Chiếu</h2>
+﻿@model QUANLYRAPCHIEUPHHIM.ViewModels.HomePageViewModel
+   <div class="container my-4">
+       <div id="bannerCarousel" class="carousel slide" data-bs-ride="carousel">
+           <div class="carousel-inner rounded-3 shadow">
+               @for (int i = 0; i < Model.Banners.Count; i++)
+               {
+                   <div class="carousel-item @(i == 0 ? "active" : "")">
+                       <img src="@Model.Banners[i]" class="d-block w-100" style="height:400px;object-fit:cover;" alt="Banner @(i+1)" />
+                   </div>
+               }
+           </div>
+           <button class="carousel-control-prev" type="button" data-bs-target="#bannerCarousel" data-bs-slide="prev">
+               <span class="carousel-control-prev-icon"></span>
+               <span class="visually-hidden">Previous</span>
+           </button>
+           <button class="carousel-control-next" type="button" data-bs-target="#bannerCarousel" data-bs-slide="next">
+               <span class="carousel-control-next-icon"></span>
+               <span class="visually-hidden">Next</span>
+           </button>
+           <div class="carousel-indicators">
+               @for (int i = 0; i < Model.Banners.Count; i++)
+               {
+                   <button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="@i" class="@(i == 0 ? "active" : "")" aria-current="@(i == 0 ? "true" : "false")" aria-label="Slide @(i+1)"></button>
+               }
+           </div>
+       </div>
+   </div>
+    <div class="container mt-4">
+       <div class="d-flex align-items-center mb-3">
+           <h3 class="me-4 fw-bold" style="letter-spacing:1px;">PHIM</h3>
+           <ul class="nav nav-tabs border-0">
+               <li class="nav-item">
+                   <a class="nav-link active fw-bold" href="#">Đang chiếu</a>
+               </li>
+               <li class="nav-item">
+                   <a class="nav-link fw-bold" href="#">Sắp chiếu</a>
+               </li>
+               <li class="nav-item">
+                   <a class="nav-link fw-bold" href="#">Phim IMAX</a>
+               </li>
+           </ul>
+           <span class="ms-auto text-primary fw-bold" style="cursor:pointer;">
+               <i class="fa-solid fa-location-dot"></i> TP Hồ Chí Minh
+           </span>
+       </div>
     <div class="row">
-        @foreach (var movie in Model)
+        @foreach (var movie in Model.Movies)
         {
-            <div class="col-md-3 mb-4">
-                <div class="card h-100 shadow">
-                    <img src="@movie.PosterUrl" class="card-img-top" alt="@movie.Title" style="height:350px;object-fit:cover;">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+                <div class="movie-card card h-100 shadow-sm border-0 position-relative overflow-hidden">
+                    <img src="@movie.PosterUrl" class="card-img-top" style="height:340px;object-fit:cover;" alt="@movie.Title" />
                     <div class="card-body">
-                        <h5 class="card-title">@movie.Title</h5>
-                        <p class="card-text">
-                            @(movie.Description != null && movie.Description.Length > 60
-                                ? movie.Description.Substring(0, 60) + "..."
-                                : movie.Description)
-                        </p>
-                        <a href="/Movie/Details/@movie.MovieId" class="btn btn-outline-primary">Xem chi tiết</a>
+                        <h6 class="card-title fw-bold mb-1" style="min-height:40px;">@movie.Title</h6>
+                        <div class="d-flex align-items-center mb-2">
+                            <span class="badge bg-warning text-dark me-2"><i class="fa-solid fa-star"></i> @movie.Rating</span>
+                            <span class="badge bg-orange text-white">@movie.AgeLimit</span>
+                        </div>
+                    </div>
+                    <!-- Overlay nút khi hover -->
+                    <div class="movie-overlay d-flex flex-column justify-content-center align-items-center">
+                        <a href="/Booking/Quick?movieId=@movie.MovieId" class="btn btn-danger btn-sm mb-2 w-75">
+                            <i class="fa-solid fa-ticket"></i> Mua vé
+                        </a>
+                        @if (!string.IsNullOrEmpty(movie.TrailerUrl))
+                        {
+                            <button class="btn btn-outline-light btn-sm w-75" onclick="showTrailer('@movie.TrailerUrl')">
+                                <i class="fa-solid fa-play"></i> Trailer
+                            </button>
+                        }
                     </div>
                 </div>
             </div>
         }
     </div>
+        
+   </div>
+
+   <style>
+   .movie-card {
+       position: relative;
+       overflow: hidden;
+   }
+   .movie-overlay {
+       position: absolute;
+       top: 0; left: 0; right: 0; bottom: 0;
+       background: rgba(0,0,0,0.7);
+       opacity: 0;
+       transition: opacity 0.3s;
+       z-index: 2;
+   }
+   .movie-card:hover .movie-overlay {
+       opacity: 1;
+   }
+   .bg-orange {
+       background: #ff9800 !important;
+   }
+   .card-title {
+       font-size: 1rem;
+   }
+   </style>
+
+<!-- Modal Trailer -->
+<div class="modal fade" id="trailerModal" tabindex="-1" aria-labelledby="trailerModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content bg-dark">
+      <div class="modal-header border-0">
+        <h5 class="modal-title text-white" id="trailerModalLabel">Trailer</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close" onclick="closeTrailer()"></button>
+      </div>
+      <div class="modal-body p-0" id="trailerModalBody" style="height:400px;">
+        <!-- Video sẽ được nhúng ở đây -->
+      </div>
+    </div>
+  </div>
 </div>
+
+<script>
+function showTrailer(url) {
+    let embedUrl = url;
+    // Nếu là link YouTube, chuyển sang embed
+    if (url.includes("youtube.com") || url.includes("youtu.be")) {
+        const videoId = url.includes("youtu.be")
+            ? url.split("youtu.be/")[1]
+            : url.split("v=")[1].split("&")[0];
+        embedUrl = "https://www.youtube.com/embed/" + videoId + "?autoplay=1";
+    }
+    document.getElementById('trailerModalBody').innerHTML =
+        `<iframe width="100%" height="400" src="${embedUrl}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+    var myModal = new bootstrap.Modal(document.getElementById('trailerModal'));
+    myModal.show();
+}
+function closeTrailer() {
+    document.getElementById('trailerModalBody').innerHTML = "";
+}
+</script>
