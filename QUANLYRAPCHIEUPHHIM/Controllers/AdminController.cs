@@ -30,5 +30,11 @@ namespace QUANLYRAPCHIEUPHHIM.Controllers
 
             return View();
         }
+
+        public IActionResult Movies()
+        {
+            var movies = _context.Movies.ToList();
+            return View(movies);
+        }
     }
 } 
