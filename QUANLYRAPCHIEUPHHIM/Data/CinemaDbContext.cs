@@ -83,7 +83,12 @@ public partial class CinemaDbContext : DbContext
     public virtual DbSet<UserRole> UserRoles { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer("Name=ConnectionStrings:DefaultConnection");
+    {
+        if (!optionsBuilder.IsConfigured)
+        {
+            optionsBuilder.UseSqlServer("Data Source=192.168.0.101;Database=CinemaDB;User ID=sa;Password=12345;Encrypt=False;");
+        }
+    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
