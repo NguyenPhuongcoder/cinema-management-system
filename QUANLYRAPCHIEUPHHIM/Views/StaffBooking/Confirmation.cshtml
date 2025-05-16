@@ -1,0 +1,120 @@
+@{
+    ViewData["Title"] = "Xác nhận đặt vé - Đặt vé";
+    Layout = "_Layout";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-header bg-success text-white">
+            <h4 class="mb-0 text-center"><i class="fas fa-check-circle mr-2"></i> Đặt vé thành công</h4>
+        </div>
+        <div class="card-body">
+            <div class="text-center mb-4">
+                <i class="fas fa-ticket-alt fa-5x text-success mb-3"></i>
+                <h5>Mã đặt vé: <strong>CGVB12345</strong></h5>
+                <p class="text-muted">Vé đã được đặt thành công và sẵn sàng để in</p>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card mb-4">
+                        <div class="card-header bg-light">
+                            <h5 class="mb-0">Thông tin đặt vé</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p><strong>Tên khách hàng:</strong> Nguyễn Văn A</p>
+                                    <p><strong>Số điện thoại:</strong> 0987654321</p>
+                                    <p><strong>Email:</strong> nguyenvana@example.com</p>
+                                    <p><strong>Ngày đặt:</strong> 26/11/2023 15:30</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p><strong>Mã đặt vé:</strong> CGVB12345</p>
+                                    <p><strong>Trạng thái:</strong> <span class="badge badge-success">Đã thanh toán</span></p>
+                                    <p><strong>Phương thức thanh toán:</strong> Tiền mặt</p>
+                                    <p><strong>Tổng tiền:</strong> 375.000 VND</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mb-4">
+                        <div class="card-header bg-light">
+                            <h5 class="mb-0">Thông tin vé</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p><strong>Phim:</strong> Avengers: Endgame</p>
+                                    <p><strong>Định dạng:</strong> 2D</p>
+                                    <p><strong>Rạp:</strong> CGV Vincom Center Bà Triệu</p>
+                                    <p><strong>Phòng chiếu:</strong> Screen 1</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p><strong>Ngày chiếu:</strong> 26/11/2023</p>
+                                    <p><strong>Giờ chiếu:</strong> 20:15</p>
+                                    <p><strong>Ghế:</strong> D5, D6, D7</p>
+                                    <p><strong>Loại ghế:</strong> VIP</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mb-4">
+                        <div class="card-header bg-light">
+                            <h5 class="mb-0">Tóm tắt thanh toán</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span>3 vé VIP (120.000 VND/vé):</span>
+                                        <span>360.000 VND</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span>Phí dịch vụ:</span>
+                                        <span>15.000 VND</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span>Giảm giá:</span>
+                                        <span>0 VND</span>
+                                    </div>
+                                    <hr>
+                                    <div class="d-flex justify-content-between">
+                                        <strong>Tổng cộng:</strong>
+                                        <strong>375.000 VND</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center mb-4">
+                        <p class="text-muted">Vui lòng cung cấp mã đặt vé khi đến quầy để nhận vé</p>
+                    </div>
+
+                    <div class="d-flex justify-content-center">
+                        <a href="#" class="btn btn-outline-primary mr-2">
+                            <i class="fas fa-print mr-1"></i> In vé
+                        </a>
+                        <a href="#" class="btn btn-outline-success mr-2">
+                            <i class="fas fa-envelope mr-1"></i> Gửi email
+                        </a>
+                        <a asp-controller="StaffBooking" asp-action="Index" class="btn btn-primary">
+                            <i class="fas fa-home mr-1"></i> Quay về trang chủ
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            // JavaScript cho trang xác nhận
+        });
+    </script>
+} 

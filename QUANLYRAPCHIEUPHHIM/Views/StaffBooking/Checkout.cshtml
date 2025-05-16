@@ -1,0 +1,177 @@
+@{
+    ViewData["Title"] = "Thanh toán - Đặt vé";
+    Layout = "_Layout";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <div class="d-flex justify-content-between align-items-center">
+                <h4 class="mb-0">Thanh toán</h4>
+                <a asp-controller="StaffBooking" asp-action="SelectSeats" asp-route-showtimeId="1" class="btn btn-sm btn-light">
+                    <i class="fas fa-arrow-left"></i> Quay lại
+                </a>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-8">
+                    <!-- Form thanh toán -->
+                    <form id="checkoutForm">
+                        <!-- Thông tin khách hàng -->
+                        <div class="card mb-4">
+                            <div class="card-header bg-light">
+                                <h5 class="mb-0">Thông tin khách hàng</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="customerName">Họ và tên <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="customerName" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="customerPhone">Số điện thoại <span class="text-danger">*</span></label>
+                                        <input type="tel" class="form-control" id="customerPhone" required>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="customerEmail">Email</label>
+                                        <input type="email" class="form-control" id="customerEmail">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="membershipId">Mã thành viên</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="membershipId">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-secondary" type="button">Kiểm tra</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Phương thức thanh toán -->
+                        <div class="card mb-4">
+                            <div class="card-header bg-light">
+                                <h5 class="mb-0">Phương thức thanh toán</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="radio" name="paymentMethod" id="cashPayment" value="cash" checked>
+                                    <label class="form-check-label" for="cashPayment">
+                                        <i class="fas fa-money-bill-wave mr-2"></i> Tiền mặt
+                                    </label>
+                                </div>
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="radio" name="paymentMethod" id="cardPayment" value="card">
+                                    <label class="form-check-label" for="cardPayment">
+                                        <i class="fas fa-credit-card mr-2"></i> Thẻ ngân hàng
+                                    </label>
+                                </div>
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="radio" name="paymentMethod" id="momoPayment" value="momo">
+                                    <label class="form-check-label" for="momoPayment">
+                                        <i class="fas fa-mobile-alt mr-2"></i> Ví Momo
+                                    </label>
+                                </div>
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="radio" name="paymentMethod" id="zalopayPayment" value="zalopay">
+                                    <label class="form-check-label" for="zalopayPayment">
+                                        <i class="fas fa-wallet mr-2"></i> ZaloPay
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Mã giảm giá -->
+                        <div class="card mb-4">
+                            <div class="card-header bg-light">
+                                <h5 class="mb-0">Mã giảm giá</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="discountCode" placeholder="Nhập mã giảm giá">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-primary" type="button">Áp dụng</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Ghi chú -->
+                        <div class="card mb-4">
+                            <div class="card-header bg-light">
+                                <h5 class="mb-0">Ghi chú</h5>
+                            </div>
+                            <div class="card-body">
+                                <textarea class="form-control" id="orderNotes" rows="3" placeholder="Nhập ghi chú về đơn hàng nếu cần"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary btn-lg">Hoàn tất đặt vé</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col-md-4">
+                    <!-- Tóm tắt đơn hàng -->
+                    <div class="card">
+                        <div class="card-header bg-light">
+                            <h5 class="mb-0">Tóm tắt đơn hàng</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <h6>Avengers: Endgame</h6>
+                                <p class="mb-1 text-muted">CGV Vincom Center Bà Triệu - Screen 1</p>
+                                <p class="mb-1 text-muted">26/11/2023 - 20:15</p>
+                                <p class="mb-1 text-muted">Định dạng: 2D</p>
+                            </div>
+                            <hr>
+                            <div class="mb-3">
+                                <h6>Ghế đã chọn</h6>
+                                <p class="mb-1">D5, D6, D7 (Ghế VIP)</p>
+                            </div>
+                            <hr>
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between">
+                                    <span>Tổng tiền vé:</span>
+                                    <span>360.000 VND</span>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <span>Phí dịch vụ:</span>
+                                    <span>15.000 VND</span>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <span>Giảm giá:</span>
+                                    <span>0 VND</span>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="d-flex justify-content-between">
+                                <h5>Tổng thanh toán:</h5>
+                                <h5 class="text-primary">375.000 VND</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            // Xử lý form thanh toán
+            $('#checkoutForm').submit(function(e) {
+                e.preventDefault();
+                
+                // Xử lý hoàn tất đặt vé và chuyển hướng đến trang xác nhận
+                window.location.href = '/StaffBooking/Confirmation?bookingId=12345';
+            });
+        });
+    </script>
+} 

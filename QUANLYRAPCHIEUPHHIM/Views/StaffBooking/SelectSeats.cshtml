@@ -1,0 +1,325 @@
+@{
+    ViewData["Title"] = "Chọn ghế - Đặt vé";
+    Layout = "_Layout";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <div class="d-flex justify-content-between align-items-center">
+                <h4 class="mb-0">Chọn ghế</h4>
+                <a asp-controller="StaffBooking" asp-action="SelectShowtime" asp-route-movieId="1" class="btn btn-sm btn-light">
+                    <i class="fas fa-arrow-left"></i> Quay lại
+                </a>
+            </div>
+        </div>
+        <div class="card-body">
+            <!-- Thông tin suất chiếu -->
+            <div class="row mb-4">
+                <div class="col-md-12">
+                    <div class="alert alert-info">
+                        <h5>Thông tin suất chiếu</h5>
+                        <p class="mb-1"><strong>Phim:</strong> Avengers: Endgame</p>
+                        <p class="mb-1"><strong>Rạp:</strong> CGV Vincom Center Bà Triệu - Screen 1</p>
+                        <p class="mb-1"><strong>Suất chiếu:</strong> 26/11/2023 - 20:15</p>
+                        <p class="mb-0"><strong>Định dạng:</strong> 2D</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Màn hình -->
+            <div class="text-center mb-4">
+                <div class="screen">MÀN HÌNH</div>
+                <p class="text-muted small mt-2">Hàng ghế đầu tiên cách màn hình 4 mét</p>
+            </div>
+
+            <!-- Sơ đồ ghế -->
+            <div class="seat-map text-center mb-4">
+                <!-- Ký hiệu ghế -->
+                <div class="seat-legend mb-3">
+                    <span class="seat-type"><i class="fas fa-square text-success"></i> Ghế trống</span>
+                    <span class="seat-type"><i class="fas fa-square text-danger"></i> Ghế đã đặt</span>
+                    <span class="seat-type"><i class="fas fa-square text-warning"></i> Ghế đang chọn</span>
+                    <span class="seat-type"><i class="fas fa-square text-primary"></i> Ghế VIP</span>
+                    <span class="seat-type"><i class="fas fa-square text-info"></i> Ghế đôi</span>
+                </div>
+
+                <!-- Các hàng ghế -->
+                <div class="seat-container">
+                    <!-- Hàng A -->
+                    <div class="seat-row">
+                        <div class="row-label">A</div>
+                        <div class="seats">
+                            <div class="seat available" data-seat="A1">A1</div>
+                            <div class="seat available" data-seat="A2">A2</div>
+                            <div class="seat available" data-seat="A3">A3</div>
+                            <div class="seat available" data-seat="A4">A4</div>
+                            <div class="seat available" data-seat="A5">A5</div>
+                            <div class="seat available" data-seat="A6">A6</div>
+                            <div class="seat available" data-seat="A7">A7</div>
+                            <div class="seat available" data-seat="A8">A8</div>
+                            <div class="seat available" data-seat="A9">A9</div>
+                            <div class="seat available" data-seat="A10">A10</div>
+                            <div class="seat available" data-seat="A11">A11</div>
+                            <div class="seat available" data-seat="A12">A12</div>
+                        </div>
+                    </div>
+
+                    <!-- Hàng B -->
+                    <div class="seat-row">
+                        <div class="row-label">B</div>
+                        <div class="seats">
+                            <div class="seat available" data-seat="B1">B1</div>
+                            <div class="seat available" data-seat="B2">B2</div>
+                            <div class="seat available" data-seat="B3">B3</div>
+                            <div class="seat available" data-seat="B4">B4</div>
+                            <div class="seat available" data-seat="B5">B5</div>
+                            <div class="seat booked" data-seat="B6">B6</div>
+                            <div class="seat booked" data-seat="B7">B7</div>
+                            <div class="seat available" data-seat="B8">B8</div>
+                            <div class="seat available" data-seat="B9">B9</div>
+                            <div class="seat available" data-seat="B10">B10</div>
+                            <div class="seat available" data-seat="B11">B11</div>
+                            <div class="seat available" data-seat="B12">B12</div>
+                        </div>
+                    </div>
+
+                    <!-- Hàng C - Ghế VIP -->
+                    <div class="seat-row">
+                        <div class="row-label">C</div>
+                        <div class="seats">
+                            <div class="seat available vip" data-seat="C1">C1</div>
+                            <div class="seat available vip" data-seat="C2">C2</div>
+                            <div class="seat available vip" data-seat="C3">C3</div>
+                            <div class="seat available vip" data-seat="C4">C4</div>
+                            <div class="seat available vip" data-seat="C5">C5</div>
+                            <div class="seat available vip" data-seat="C6">C6</div>
+                            <div class="seat available vip" data-seat="C7">C7</div>
+                            <div class="seat available vip" data-seat="C8">C8</div>
+                            <div class="seat available vip" data-seat="C9">C9</div>
+                            <div class="seat available vip" data-seat="C10">C10</div>
+                            <div class="seat available vip" data-seat="C11">C11</div>
+                            <div class="seat available vip" data-seat="C12">C12</div>
+                        </div>
+                    </div>
+
+                    <!-- Hàng D - Ghế VIP -->
+                    <div class="seat-row">
+                        <div class="row-label">D</div>
+                        <div class="seats">
+                            <div class="seat available vip" data-seat="D1">D1</div>
+                            <div class="seat available vip" data-seat="D2">D2</div>
+                            <div class="seat booked vip" data-seat="D3">D3</div>
+                            <div class="seat booked vip" data-seat="D4">D4</div>
+                            <div class="seat available vip" data-seat="D5">D5</div>
+                            <div class="seat available vip" data-seat="D6">D6</div>
+                            <div class="seat available vip" data-seat="D7">D7</div>
+                            <div class="seat available vip" data-seat="D8">D8</div>
+                            <div class="seat available vip" data-seat="D9">D9</div>
+                            <div class="seat available vip" data-seat="D10">D10</div>
+                            <div class="seat available vip" data-seat="D11">D11</div>
+                            <div class="seat available vip" data-seat="D12">D12</div>
+                        </div>
+                    </div>
+
+                    <!-- Hàng E - Ghế đôi -->
+                    <div class="seat-row">
+                        <div class="row-label">E</div>
+                        <div class="seats">
+                            <div class="seat available" data-seat="E1">E1</div>
+                            <div class="seat available" data-seat="E2">E2</div>
+                            <div class="seat available couple" data-seat="E3-E4">E3-E4</div>
+                            <div class="seat available couple" data-seat="E5-E6">E5-E6</div>
+                            <div class="seat available couple" data-seat="E7-E8">E7-E8</div>
+                            <div class="seat available couple" data-seat="E9-E10">E9-E10</div>
+                            <div class="seat available" data-seat="E11">E11</div>
+                            <div class="seat available" data-seat="E12">E12</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Thông tin đặt chỗ -->
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header bg-light">
+                            <h5 class="mb-0">Thông tin đặt ghế</h5>
+                        </div>
+                        <div class="card-body">
+                            <p><strong>Ghế đã chọn:</strong> <span id="selectedSeats">Chưa chọn ghế</span></p>
+                            <p><strong>Số lượng:</strong> <span id="seatCount">0</span></p>
+                            <p><strong>Tổng tiền:</strong> <span id="totalPrice">0</span> VND</p>
+                            <button id="btnContinue" class="btn btn-primary" disabled>Tiếp tục</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header bg-light">
+                            <h5 class="mb-0">Bảng giá</h5>
+                        </div>
+                        <div class="card-body">
+                            <p><strong>Ghế thường:</strong> 90.000 VND</p>
+                            <p><strong>Ghế VIP:</strong> 120.000 VND</p>
+                            <p><strong>Ghế đôi:</strong> 200.000 VND</p>
+                            <p class="text-muted small">Giá vé có thể thay đổi theo từng suất chiếu</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    <style>
+        .screen {
+            background: #ccc;
+            height: 30px;
+            border-radius: 5px;
+            margin: 0 30px;
+            color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+        
+        .seat-legend {
+            margin-top: 20px;
+        }
+        
+        .seat-type {
+            margin-right: 15px;
+        }
+        
+        .seat-container {
+            margin-top: 20px;
+        }
+        
+        .seat-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .row-label {
+            width: 30px;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .seats {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .seat {
+            width: 35px;
+            height: 35px;
+            margin: 3px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .seat.available {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        .seat.booked {
+            background-color: #F44336;
+            color: white;
+            cursor: not-allowed;
+        }
+        
+        .seat.selected {
+            background-color: #FFC107;
+            color: black;
+        }
+        
+        .seat.vip {
+            background-color: #2196F3;
+            color: white;
+        }
+        
+        .seat.couple {
+            width: 75px;
+            background-color: #00BCD4;
+            color: white;
+        }
+        
+        .seat:hover:not(.booked) {
+            transform: scale(1.1);
+        }
+    </style>
+}
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            const regularPrice = 90000;
+            const vipPrice = 120000;
+            const couplePrice = 200000;
+            let selectedSeats = [];
+            
+            // Xử lý chọn ghế
+            $('.seat.available').click(function() {
+                let seatId = $(this).data('seat');
+                
+                if ($(this).hasClass('selected')) {
+                    // Bỏ chọn ghế
+                    $(this).removeClass('selected');
+                    selectedSeats = selectedSeats.filter(seat => seat !== seatId);
+                } else {
+                    // Chọn ghế
+                    $(this).addClass('selected');
+                    selectedSeats.push(seatId);
+                }
+                
+                updateBookingInfo();
+            });
+            
+            // Cập nhật thông tin đặt ghế
+            function updateBookingInfo() {
+                let totalPrice = 0;
+                
+                // Tính tổng tiền
+                selectedSeats.forEach(seatId => {
+                    if ($(`[data-seat="${seatId}"]`).hasClass('vip')) {
+                        totalPrice += vipPrice;
+                    } else if ($(`[data-seat="${seatId}"]`).hasClass('couple')) {
+                        totalPrice += couplePrice;
+                    } else {
+                        totalPrice += regularPrice;
+                    }
+                });
+                
+                // Hiển thị thông tin
+                if (selectedSeats.length > 0) {
+                    $('#selectedSeats').text(selectedSeats.join(', '));
+                    $('#btnContinue').prop('disabled', false);
+                } else {
+                    $('#selectedSeats').text('Chưa chọn ghế');
+                    $('#btnContinue').prop('disabled', true);
+                }
+                
+                $('#seatCount').text(selectedSeats.length);
+                $('#totalPrice').text(totalPrice.toLocaleString('vi-VN'));
+            }
+            
+            // Xử lý nút tiếp tục
+            $('#btnContinue').click(function() {
+                let seatParams = selectedSeats.join(',');
+                window.location.href = `/StaffBooking/Checkout?seatIds=${seatParams}&showtimeId=1`;
+            });
+        });
+    </script>
+} 

@@ -1,0 +1,122 @@
+@model IEnumerable<QUANLYRAPCHIEUPHHIM.Models.Movie>
+@{
+    ViewData["Title"] = "Chọn phim - Đặt vé";
+    Layout = "_Layout";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <div class="d-flex justify-content-between align-items-center">
+                <h4 class="mb-0">Chọn phim</h4>
+                <a asp-controller="StaffBooking" asp-action="Index" class="btn btn-sm btn-light">
+                    <i class="fas fa-arrow-left"></i> Quay lại
+                </a>
+            </div>
+        </div>
+        <div class="card-body">
+            <!-- Bộ lọc phim -->
+            <div class="row mb-4">
+                <div class="col-md-12">
+                    <div class="input-group">
+                        <input type="text" id="movieSearch" class="form-control" placeholder="Tìm kiếm tên phim...">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button">
+                                <i class="fas fa-search"></i> Tìm kiếm
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Danh sách phim -->
+            <div class="row movie-list">
+                <!-- Giả sử chúng ta đã có dữ liệu từ Model -->
+                <!-- Trong trường hợp thực tế, bạn sẽ dùng vòng lặp để hiển thị phim từ Model -->
+                
+                <!-- Phim mẫu 1 -->
+                <div class="col-md-3 mb-4">
+                    <div class="card movie-card h-100">
+                        <img src="https://via.placeholder.com/150x225" class="card-img-top" alt="Tên phim">
+                        <div class="card-body">
+                            <h5 class="card-title">Avengers: Endgame</h5>
+                            <p class="card-text small text-muted">Hành động, Viễn tưởng</p>
+                            <p class="card-text small">Thời lượng: 181 phút</p>
+                            <a asp-controller="StaffBooking" asp-action="SelectShowtime" asp-route-movieId="1" class="btn btn-primary btn-block">Chọn</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Phim mẫu 2 -->
+                <div class="col-md-3 mb-4">
+                    <div class="card movie-card h-100">
+                        <img src="https://via.placeholder.com/150x225" class="card-img-top" alt="Tên phim">
+                        <div class="card-body">
+                            <h5 class="card-title">Joker</h5>
+                            <p class="card-text small text-muted">Tâm lý, Tội phạm</p>
+                            <p class="card-text small">Thời lượng: 122 phút</p>
+                            <a asp-controller="StaffBooking" asp-action="SelectShowtime" asp-route-movieId="2" class="btn btn-primary btn-block">Chọn</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Phim mẫu 3 -->
+                <div class="col-md-3 mb-4">
+                    <div class="card movie-card h-100">
+                        <img src="https://via.placeholder.com/150x225" class="card-img-top" alt="Tên phim">
+                        <div class="card-body">
+                            <h5 class="card-title">The Batman</h5>
+                            <p class="card-text small text-muted">Hành động, Phiêu lưu</p>
+                            <p class="card-text small">Thời lượng: 176 phút</p>
+                            <a asp-controller="StaffBooking" asp-action="SelectShowtime" asp-route-movieId="3" class="btn btn-primary btn-block">Chọn</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Phim mẫu 4 -->
+                <div class="col-md-3 mb-4">
+                    <div class="card movie-card h-100">
+                        <img src="https://via.placeholder.com/150x225" class="card-img-top" alt="Tên phim">
+                        <div class="card-body">
+                            <h5 class="card-title">Parasite</h5>
+                            <p class="card-text small text-muted">Tâm lý, Kinh dị</p>
+                            <p class="card-text small">Thời lượng: 132 phút</p>
+                            <a asp-controller="StaffBooking" asp-action="SelectShowtime" asp-route-movieId="4" class="btn btn-primary btn-block">Chọn</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    <style>
+        .movie-card img {
+            height: 225px;
+            object-fit: cover;
+        }
+        
+        .movie-card {
+            transition: transform 0.3s;
+        }
+        
+        .movie-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        }
+    </style>
+}
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            $("#movieSearch").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $(".movie-card").filter(function() {
+                    $(this).closest('.col-md-3').toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+} 

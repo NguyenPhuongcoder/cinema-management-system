@@ -476,10 +476,10 @@ E:\LaptrinhC#\Cuoi_ky\QUANLYRAPCHIEUPHHIM\obj\Debug\net9.0\staticwebassets\msbui
 E:\LaptrinhC#\Cuoi_ky\QUANLYRAPCHIEUPHHIM\obj\Debug\net9.0\staticwebassets\msbuild.buildMultiTargeting.QUANLYRAPCHIEUPHHIM.props
 E:\LaptrinhC#\Cuoi_ky\QUANLYRAPCHIEUPHHIM\obj\Debug\net9.0\staticwebassets\msbuild.buildTransitive.QUANLYRAPCHIEUPHHIM.props
 E:\LaptrinhC#\Cuoi_ky\QUANLYRAPCHIEUPHHIM\obj\Debug\net9.0\staticwebassets.pack.json
-E:\LaptrinhC#\Cuoi_ky\QUANLYRAPCHIEUPHHIM\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
 E:\LaptrinhC#\Cuoi_ky\QUANLYRAPCHIEUPHHIM\obj\Debug\net9.0\QUANLYRA.EB71930B.Up2Date
 E:\LaptrinhC#\Cuoi_ky\QUANLYRAPCHIEUPHHIM\obj\Debug\net9.0\QUANLYRAPCHIEUPHHIM.dll
 E:\LaptrinhC#\Cuoi_ky\QUANLYRAPCHIEUPHHIM\obj\Debug\net9.0\refint\QUANLYRAPCHIEUPHHIM.dll
 E:\LaptrinhC#\Cuoi_ky\QUANLYRAPCHIEUPHHIM\obj\Debug\net9.0\QUANLYRAPCHIEUPHHIM.pdb
 E:\LaptrinhC#\Cuoi_ky\QUANLYRAPCHIEUPHHIM\obj\Debug\net9.0\QUANLYRAPCHIEUPHHIM.genruntimeconfig.cache
 E:\LaptrinhC#\Cuoi_ky\QUANLYRAPCHIEUPHHIM\obj\Debug\net9.0\ref\QUANLYRAPCHIEUPHHIM.dll
+E:\LaptrinhC#\Cuoi_ky\QUANLYRAPCHIEUPHHIM\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
