@@ -75,6 +75,10 @@ namespace QUANLYRAPCHIEUPHHIM.Controllers
             {
                 return Redirect(returnUrl);
             }
+            if (userRoles.Contains("Admin"))
+            {
+                return RedirectToAction("dashboard", "Admin");
+            }
 
             return RedirectToAction("Index", "Home");
         }
@@ -125,7 +129,7 @@ namespace QUANLYRAPCHIEUPHHIM.Controllers
             return View(model);
         }
 
-        [HttpPost]
+        [HttpGet]
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
