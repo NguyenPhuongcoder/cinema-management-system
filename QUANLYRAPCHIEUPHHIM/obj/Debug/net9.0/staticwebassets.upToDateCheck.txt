@@ -12,6 +12,7 @@ E:\IT\C#\QuanLyRapChieuPhim\QUANLYRAPCHIEUPHHIM\wwwroot\lib\bootstrap\dist\css\b
 E:\IT\C#\QuanLyRapChieuPhim\QUANLYRAPCHIEUPHHIM\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css.map
 E:\IT\C#\QuanLyRapChieuPhim\QUANLYRAPCHIEUPHHIM\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js
 E:\IT\C#\QuanLyRapChieuPhim\QUANLYRAPCHIEUPHHIM\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map
+E:\IT\C#\QuanLyRapChieuPhim\QUANLYRAPCHIEUPHHIM\wwwroot\css\header.css
 E:\IT\C#\QuanLyRapChieuPhim\QUANLYRAPCHIEUPHHIM\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css
 E:\IT\C#\QuanLyRapChieuPhim\QUANLYRAPCHIEUPHHIM\wwwroot\lib\bootstrap\dist\js\bootstrap.js.map
 E:\IT\C#\QuanLyRapChieuPhim\QUANLYRAPCHIEUPHHIM\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css.map
@@ -54,18 +55,16 @@ E:\IT\C#\QuanLyRapChieuPhim\QUANLYRAPCHIEUPHHIM\wwwroot\lib\bootstrap\dist\css\b
 E:\IT\C#\QuanLyRapChieuPhim\QUANLYRAPCHIEUPHHIM\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css.map
 E:\IT\C#\QuanLyRapChieuPhim\QUANLYRAPCHIEUPHHIM\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css
 E:\IT\C#\QuanLyRapChieuPhim\QUANLYRAPCHIEUPHHIM\wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt
-E:\IT\C#\QuanLyRapChieuPhim\QUANLYRAPCHIEUPHHIM\wwwroot\css\site.css
 E:\IT\C#\QuanLyRapChieuPhim\QUANLYRAPCHIEUPHHIM\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css
 E:\IT\C#\QuanLyRapChieuPhim\QUANLYRAPCHIEUPHHIM\wwwroot\lib\jquery\dist\jquery.slim.min.js
 E:\IT\C#\QuanLyRapChieuPhim\QUANLYRAPCHIEUPHHIM\wwwroot\lib\bootstrap\dist\js\bootstrap.js
 E:\IT\C#\QuanLyRapChieuPhim\QUANLYRAPCHIEUPHHIM\wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.js
-wwwroot\css\site.css
+wwwroot\css\header.css
 wwwroot\images\2048x682_1746503337124.jpg
 wwwroot\images\chong-gai-1_1744949649177.jpg
 wwwroot\images\doraemon-the-movie-nobitas-art-world-tales-3_1746800280056.jpg
 wwwroot\images\gravity-1_1747208790653.jpg
-wwwroot\images\logo.png
-wwwroot\images\New Volume (E) - Shortcut.lnk
+wwwroot\images\logo.jpg
 wwwroot\images\tham-tu-kien-1_1745832794637.jpg
 wwwroot\images\thunderbolts-2048_1745395976662.jpg
 wwwroot\js\site.js

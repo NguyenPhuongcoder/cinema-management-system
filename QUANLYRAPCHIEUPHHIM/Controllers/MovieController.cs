@@ -6,9 +6,9 @@ namespace QUANLYRAPCHIEUPHHIM.Controllers
 {
     public class MovieController : Controller
     {
-        private readonly CinemaDbContext _context;
+        private readonly CinemaDbcontext _context;
 
-        public MovieController(CinemaDbContext context)
+        public MovieController(CinemaDbcontext context)
         {
             _context = context;
         }

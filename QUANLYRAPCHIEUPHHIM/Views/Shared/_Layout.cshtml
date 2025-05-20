@@ -3,87 +3,139 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>@ViewData["Title"] - Galaxy</title>
+	<title>@ViewData["Title"] Galaxy- </title>
 	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 	<link rel="stylesheet" href="~/QUANLYRAPCHIEUPHHIM.styles.css" asp-append-version="true" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-	<link rel="icon" type="image/png" href="~/images/logo.png" />
+	<link rel="icon" type="image/jpeg" href="~/images/logo.jpg" />
+	<link rel="stylesheet" href="~/css/header.css" />
 </head>
-<body>
-<header>
-	<!-- Header/Navbar -->
-	<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
-		<div class="container">
-			<a class="navbar-brand fw-bold" href="/">
-				<img src="~/images/logo.png" alt="Logo" style="height:40px; margin-right:10px;">
-				Rạp Chiếu Phim
-			</a>
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="mainNavbar">
-				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-					<li class="nav-item">
-						<a class="nav-link" href="/">Trang chủ</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="/Movie">Phim</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="/Showtime">Lịch chiếu</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="/Booking">Đặt vé</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="/Account/Profile">Tài khoản</a>
-					</li>
-				</ul>
-				<a href="/Account/Login" class="btn btn-warning ms-3">Đăng nhập</a>
-			</div>
-		</div>
-	</nav>
-</header>
-
+<body>	    
+@if (ViewData["Title"]?.ToString() != "Login")
+{
+        @await Component.InvokeAsync("Header")
+}
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
-
-<footer class="bg-dark text-white mt-5">
-	<div class="container py-4">
-		<div class="row">
-			<div class="col-md-4 mb-3">
-				<h5>Rạp Chiếu Phim</h5>
-				<p>
-					Hệ thống rạp chiếu phim hiện đại, chất lượng phục vụ hàng đầu, cập nhật phim bom tấn nhanh nhất!
-				</p>
-			</div>
-			<div class="col-md-4 mb-3">
-				<h5>Liên hệ</h5>
-				<ul class="list-unstyled">
-					<li>Địa chỉ: 123 Đường ABC, Quận 1, TP.HCM</li>
-					<li>Điện thoại: 0123 456 789</li>
-					<li>Email: support@rapchieuphim.vn</li>
-				</ul>
-			</div>
-			<div class="col-md-4 mb-3">
-				<h5>Kết nối</h5>
-				<a href="#" class="text-white me-2"><i class="fab fa-facebook fa-lg"></i></a>
-				<a href="#" class="text-white me-2"><i class="fab fa-youtube fa-lg"></i></a>
-				<a href="#" class="text-white me-2"><i class="fab fa-instagram fa-lg"></i></a>
-			</div>
-		</div>
-		<div class="text-center mt-3">
-			&copy; @DateTime.Now.Year Rạp Chiếu Phim. All rights reserved.
-		</div>
-	</div>
+    @if (ViewData["Title"]?.ToString() != "Login")
+    {
+<footer class="bg-dark text-light pt-5 pb-3 mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <h5 class="fw-bold mb-3">Liên hệ</h5>
+                <p><i class="fa fa-phone me-2"></i> 0123 456 789</p>
+                <p><i class="fa fa-envelope me-2"></i> support@rapchieuphim.com</p>
+                <p><i class="fa fa-map-marker-alt me-2"></i> 123 Đường ABC, TP Đà Nẵng</p>
+            </div>
+            <div class="col-md-2 mb-3">
+                <h5 class="fw-bold mb-3">Rạp phim</h5>
+                <ul class="list-unstyled">
+                    <li><a href="/about" class="text-light text-decoration-none">Giới thiệu</a></li>
+                    <li><a href="/contact" class="text-light text-decoration-none">Liên hệ</a></li>
+                    <li><a href="/careers" class="text-light text-decoration-none">Tuyển dụng</a></li>
+                </ul>
+            </div>
+            <div class="col-md-2 mb-3">
+                <h5 class="fw-bold mb-3">Hỗ trợ</h5>
+                <ul class="list-unstyled">
+                    <li><a href="/faq" class="text-light text-decoration-none">Câu hỏi thường gặp</a></li>
+                    <li><a href="/policy" class="text-light text-decoration-none">Chính sách</a></li>
+                    <li><a href="/guide" class="text-light text-decoration-none">Hướng dẫn đặt vé</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4 mb-3">
+                <h5 class="fw-bold mb-3">Kết nối với chúng tôi</h5>
+                <a href="#" class="text-light me-3"><i class="fab fa-facebook fa-2x"></i></a>
+                <a href="#" class="text-light me-3"><i class="fab fa-instagram fa-2x"></i></a>
+                <a href="#" class="text-light me-3"><i class="fab fa-youtube fa-2x"></i></a>
+            </div>
+        </div>
+        <hr class="bg-secondary" />
+        <div class="text-center">
+            &copy; @DateTime.Now.Year Rạp Chiếu Phim. All rights reserved.
+        </div>
+    </div>
 </footer>
+    }
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+    <style>
+        .navbar .btn {
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+            font-weight: 500;
+            box-shadow: none;
+        }
+        .navbar .btn-warning {
+            background: linear-gradient(90deg, #ff9800 60%, #ffc107 100%);
+            color: #fff;
+            border: none;
+        }
+        .navbar .btn-warning:hover {
+            background: linear-gradient(90deg, #ffc107 60%, #ff9800 100%);
+            color: #fff;
+            box-shadow: 0 2px 8px rgba(255,152,0,0.15);
+        }
+        .navbar .btn-outline-danger {
+            border: 1.5px solid #dc3545;
+            color: #dc3545;
+            background: #fff;
+        }
+        .navbar .btn-outline-danger:hover {
+            background: #dc3545;
+            color: #fff;
+            box-shadow: 0 2px 8px rgba(220,53,69,0.15);
+        }
+        .navbar .btn i {
+            font-size: 1rem;
+        }
+        .navbar .btn {
+            min-width: 120px;
+        }
+		footer a:hover {
+    	color: #ff9800 !important;
+		}
+        .navbar .dropdown-menu {
+            border-radius: 10px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.10);
+        }
+        .navbar .dropdown-menu .dropdown-item:hover {
+            background: #ff9800;
+            color: #fff;
+        }
+        .movie-dropdown-card {
+            cursor: pointer;
+            overflow: hidden;
+            background: #fff;
+            border-radius: 12px;
+            transition: box-shadow 0.2s;
+        }
+        .movie-dropdown-card:hover {
+            box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+        }
+        .movie-dropdown-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5);
+            opacity: 0;
+            transition: opacity 0.2s;
+            z-index: 2;
+            border-radius: 12px;
+        }
+        .movie-dropdown-card:hover .movie-dropdown-overlay {
+            opacity: 1;
+        }
+        .navbar .nav-link {
+            font-size: 1.08rem;
+            padding-left: 18px !important;
+            padding-right: 18px !important;
+        }
+    </style>
 </body>
 </html>

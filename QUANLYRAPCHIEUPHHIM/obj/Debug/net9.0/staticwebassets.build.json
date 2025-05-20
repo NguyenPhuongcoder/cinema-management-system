@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Q/rmkUJFD3nn/2nLWER5Iajfomz8zZH+yaU1SY14lFg=",
+  "Hash": "cQ6a0F/kCfy8jDqECfXOur7e1O+ugb1bWcYVJjdvNc8=",
   "Source": "QUANLYRAPCHIEUPHHIM",
   "BasePath": "_content/QUANLYRAPCHIEUPHHIM",
   "Mode": "Default",
@@ -311,6 +311,27 @@
       "OriginalItemSpec": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
     },
     {
+      "Identity": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\obj\\Debug\\net9.0\\compressed\\5jb53anhhk-8rwstu1uxp.gz",
+      "SourceId": "QUANLYRAPCHIEUPHHIM",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\obj\\Debug\\net9.0\\compressed\\",
+      "BasePath": "_content/QUANLYRAPCHIEUPHHIM",
+      "RelativePath": "css/header#[.{fingerprint=8rwstu1uxp}]?.css.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\wwwroot\\css\\header.css",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "v9xa2uv060",
+      "Integrity": "8zAD25t/yKdduPDRsZbAO6ChhcGvDh/pyQ1Mr8HgvwA=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\wwwroot\\css\\header.css"
+    },
+    {
       "Identity": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\obj\\Debug\\net9.0\\compressed\\62bz29uqqr-rxsg74s51o.gz",
       "SourceId": "QUANLYRAPCHIEUPHHIM",
       "SourceType": "Discovered",
@@ -498,27 +519,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js"
-    },
-    {
-      "Identity": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\obj\\Debug\\net9.0\\compressed\\e2z5ft5w0a-1sz28kwa4a.gz",
-      "SourceId": "QUANLYRAPCHIEUPHHIM",
-      "SourceType": "Computed",
-      "ContentRoot": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\obj\\Debug\\net9.0\\compressed\\",
-      "BasePath": "_content/QUANLYRAPCHIEUPHHIM",
-      "RelativePath": "QUANLYRAPCHIEUPHHIM#[.{fingerprint=1sz28kwa4a}]!.bundle.scp.css.gz",
-      "AssetKind": "All",
-      "AssetMode": "Reference",
-      "AssetRole": "Alternative",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\QUANLYRAPCHIEUPHHIM.bundle.scp.css",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "gzip",
-      "Fingerprint": "h9339xxi1k",
-      "Integrity": "RZCaZ363XrFc5Ljv9yJ45xmYyPuhCSzlbIzqEP95ndg=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\QUANLYRAPCHIEUPHHIM.bundle.scp.css"
     },
     {
       "Identity": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\obj\\Debug\\net9.0\\compressed\\efgt4scism-mrlpezrjn3.gz",
@@ -1214,48 +1214,6 @@
       "OriginalItemSpec": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
     },
     {
-      "Identity": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\obj\\Debug\\net9.0\\compressed\\wd29avs6lb-qbdmpsdlkk.gz",
-      "SourceId": "QUANLYRAPCHIEUPHHIM",
-      "SourceType": "Discovered",
-      "ContentRoot": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\obj\\Debug\\net9.0\\compressed\\",
-      "BasePath": "_content/QUANLYRAPCHIEUPHHIM",
-      "RelativePath": "css/site#[.{fingerprint=qbdmpsdlkk}]?.css.gz",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Alternative",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\wwwroot\\css\\site.css",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "gzip",
-      "Fingerprint": "21o3mg8upc",
-      "Integrity": "ZrINWBx41asrS5UgCYlyLhhoAadDhT4iT0ZI7RiHHTc=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\wwwroot\\css\\site.css"
-    },
-    {
-      "Identity": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\obj\\Debug\\net9.0\\compressed\\wx1w0o5cq5-1sz28kwa4a.gz",
-      "SourceId": "QUANLYRAPCHIEUPHHIM",
-      "SourceType": "Computed",
-      "ContentRoot": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\obj\\Debug\\net9.0\\compressed\\",
-      "BasePath": "_content/QUANLYRAPCHIEUPHHIM",
-      "RelativePath": "QUANLYRAPCHIEUPHHIM#[.{fingerprint=1sz28kwa4a}]?.styles.css.gz",
-      "AssetKind": "All",
-      "AssetMode": "CurrentProject",
-      "AssetRole": "Alternative",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\obj\\Debug\\net9.0\\scopedcss\\bundle\\QUANLYRAPCHIEUPHHIM.styles.css",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "gzip",
-      "Fingerprint": "h9339xxi1k",
-      "Integrity": "RZCaZ363XrFc5Ljv9yJ45xmYyPuhCSzlbIzqEP95ndg=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\obj\\Debug\\net9.0\\scopedcss\\bundle\\QUANLYRAPCHIEUPHHIM.styles.css"
-    },
-    {
       "Identity": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\obj\\Debug\\net9.0\\compressed\\yb2wfrjkj0-keugtjm085.gz",
       "SourceId": "QUANLYRAPCHIEUPHHIM",
       "SourceType": "Discovered",
@@ -1340,54 +1298,12 @@
       "OriginalItemSpec": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\wwwroot\\lib\\jquery-validation-unobtrusive\\dist\\jquery.validate.unobtrusive.js"
     },
     {
-      "Identity": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\obj\\Debug\\net9.0\\scopedcss\\bundle\\QUANLYRAPCHIEUPHHIM.styles.css",
-      "SourceId": "QUANLYRAPCHIEUPHHIM",
-      "SourceType": "Computed",
-      "ContentRoot": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\obj\\Debug\\net9.0\\scopedcss\\bundle\\",
-      "BasePath": "_content/QUANLYRAPCHIEUPHHIM",
-      "RelativePath": "QUANLYRAPCHIEUPHHIM#[.{fingerprint}]?.styles.css",
-      "AssetKind": "All",
-      "AssetMode": "CurrentProject",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "ScopedCss",
-      "AssetTraitValue": "ApplicationBundle",
-      "Fingerprint": "1sz28kwa4a",
-      "Integrity": "oXlgjK6ApbQAxxzGKsDNO7SHCnrSBMOw7tDmfuknx2U=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\obj\\Debug\\net9.0\\scopedcss\\bundle\\QUANLYRAPCHIEUPHHIM.styles.css"
-    },
-    {
-      "Identity": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\QUANLYRAPCHIEUPHHIM.bundle.scp.css",
-      "SourceId": "QUANLYRAPCHIEUPHHIM",
-      "SourceType": "Computed",
-      "ContentRoot": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\",
-      "BasePath": "_content/QUANLYRAPCHIEUPHHIM",
-      "RelativePath": "QUANLYRAPCHIEUPHHIM#[.{fingerprint}]!.bundle.scp.css",
-      "AssetKind": "All",
-      "AssetMode": "Reference",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "ScopedCss",
-      "AssetTraitValue": "ProjectBundle",
-      "Fingerprint": "1sz28kwa4a",
-      "Integrity": "oXlgjK6ApbQAxxzGKsDNO7SHCnrSBMOw7tDmfuknx2U=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\QUANLYRAPCHIEUPHHIM.bundle.scp.css"
-    },
-    {
-      "Identity": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\wwwroot\\css\\site.css",
+      "Identity": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\wwwroot\\css\\header.css",
       "SourceId": "QUANLYRAPCHIEUPHHIM",
       "SourceType": "Discovered",
       "ContentRoot": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\wwwroot\\",
       "BasePath": "_content/QUANLYRAPCHIEUPHHIM",
-      "RelativePath": "css/site#[.{fingerprint}]?.css",
+      "RelativePath": "css/header#[.{fingerprint}]?.css",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1396,11 +1312,11 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "qbdmpsdlkk",
-      "Integrity": "9qXtQLG/zqM+yePRKUBnfOzk3m1y2w6PgtTbebC06r0=",
+      "Fingerprint": "8rwstu1uxp",
+      "Integrity": "LGbVYP8oQeOdPEYFdSRsAOwvrV9iTPY0bj1auTcrpvc=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\site.css"
+      "OriginalItemSpec": "wwwroot\\css\\header.css"
     },
     {
       "Identity": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\wwwroot\\images\\2048x682_1746503337124.jpg",
@@ -1487,12 +1403,12 @@
       "OriginalItemSpec": "wwwroot\\images\\gravity-1_1747208790653.jpg"
     },
     {
-      "Identity": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\wwwroot\\images\\logo.png",
+      "Identity": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\wwwroot\\images\\logo.jpg",
       "SourceId": "QUANLYRAPCHIEUPHHIM",
       "SourceType": "Discovered",
       "ContentRoot": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\wwwroot\\",
       "BasePath": "_content/QUANLYRAPCHIEUPHHIM",
-      "RelativePath": "images/logo#[.{fingerprint}]?.png",
+      "RelativePath": "images/logo#[.{fingerprint}]?.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1501,32 +1417,11 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "k0t19sq18q",
-      "Integrity": "3D24R6ph+xDbgnZhskhNAdEnQRP+aLj5KXWg6BQwfRs=",
+      "Fingerprint": "fer34at0wb",
+      "Integrity": "iZZLczkam27HWUNAcegTJZ9fnTmjseDnFvCHMqE4C1w=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\logo.png"
-    },
-    {
-      "Identity": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\wwwroot\\images\\New Volume (E) - Shortcut.lnk",
-      "SourceId": "QUANLYRAPCHIEUPHHIM",
-      "SourceType": "Discovered",
-      "ContentRoot": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\wwwroot\\",
-      "BasePath": "_content/QUANLYRAPCHIEUPHHIM",
-      "RelativePath": "images/New Volume (E) - Shortcut#[.{fingerprint}]?.lnk",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "Fingerprint": "8lfq804ree",
-      "Integrity": "bNmS/OjF/R0vzFxSKBaL/DCgz347gjOxsn8IZLfqiMI=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\New Volume (E) - Shortcut.lnk"
+      "OriginalItemSpec": "wwwroot\\images\\logo.jpg"
     },
     {
       "Identity": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\wwwroot\\images\\tham-tu-kien-1_1745832794637.jpg",
@@ -2854,13 +2749,13 @@
   ],
   "Endpoints": [
     {
-      "Route": "css/site.css",
-      "AssetFile": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\obj\\Debug\\net9.0\\compressed\\wd29avs6lb-qbdmpsdlkk.gz",
+      "Route": "css/header.8rwstu1uxp.css",
+      "AssetFile": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\obj\\Debug\\net9.0\\compressed\\5jb53anhhk-8rwstu1uxp.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.002932551320"
+          "Quality": "0.001038421599"
         }
       ],
       "ResponseHeaders": [
@@ -2870,19 +2765,19 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "340"
+          "Value": "962"
         },
         {
           "Name": "ETag",
-          "Value": "\"ZrINWBx41asrS5UgCYlyLhhoAadDhT4iT0ZI7RiHHTc=\""
+          "Value": "\"8zAD25t/yKdduPDRsZbAO6ChhcGvDh/pyQ1Mr8HgvwA=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 15 May 2025 03:38:42 GMT"
+          "Value": "Tue, 20 May 2025 07:11:09 GMT"
         },
         {
           "Name": "Cache-Control",
-          "Value": "no-cache"
+          "Value": "max-age=31536000, immutable"
         },
         {
           "Name": "Content-Encoding",
@@ -2898,19 +2793,27 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"9qXtQLG/zqM+yePRKUBnfOzk3m1y2w6PgtTbebC06r0=\""
+          "Value": "W/\"LGbVYP8oQeOdPEYFdSRsAOwvrV9iTPY0bj1auTcrpvc=\""
         }
       ],
       "EndpointProperties": [
         {
+          "Name": "fingerprint",
+          "Value": "8rwstu1uxp"
+        },
+        {
+          "Name": "label",
+          "Value": "css/header.css"
+        },
+        {
           "Name": "integrity",
-          "Value": "sha256-9qXtQLG/zqM+yePRKUBnfOzk3m1y2w6PgtTbebC06r0="
+          "Value": "sha256-LGbVYP8oQeOdPEYFdSRsAOwvrV9iTPY0bj1auTcrpvc="
         }
       ]
     },
     {
-      "Route": "css/site.css",
-      "AssetFile": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\wwwroot\\css\\site.css",
+      "Route": "css/header.8rwstu1uxp.css",
+      "AssetFile": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\wwwroot\\css\\header.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2919,7 +2822,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "770"
+          "Value": "3594"
         },
         {
           "Name": "Content-Type",
@@ -2927,27 +2830,35 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"9qXtQLG/zqM+yePRKUBnfOzk3m1y2w6PgtTbebC06r0=\""
+          "Value": "\"LGbVYP8oQeOdPEYFdSRsAOwvrV9iTPY0bj1auTcrpvc=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 15 May 2025 03:38:42 GMT"
+          "Value": "Tue, 20 May 2025 07:11:09 GMT"
         },
         {
           "Name": "Cache-Control",
-          "Value": "no-cache"
+          "Value": "max-age=31536000, immutable"
         }
       ],
       "EndpointProperties": [
         {
+          "Name": "fingerprint",
+          "Value": "8rwstu1uxp"
+        },
+        {
+          "Name": "label",
+          "Value": "css/header.css"
+        },
+        {
           "Name": "integrity",
-          "Value": "sha256-9qXtQLG/zqM+yePRKUBnfOzk3m1y2w6PgtTbebC06r0="
+          "Value": "sha256-LGbVYP8oQeOdPEYFdSRsAOwvrV9iTPY0bj1auTcrpvc="
         }
       ]
     },
     {
-      "Route": "css/site.css.gz",
-      "AssetFile": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\obj\\Debug\\net9.0\\compressed\\wd29avs6lb-qbdmpsdlkk.gz",
+      "Route": "css/header.8rwstu1uxp.css.gz",
+      "AssetFile": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\obj\\Debug\\net9.0\\compressed\\5jb53anhhk-8rwstu1uxp.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2956,7 +2867,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "340"
+          "Value": "962"
         },
         {
           "Name": "Content-Type",
@@ -2964,15 +2875,15 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"ZrINWBx41asrS5UgCYlyLhhoAadDhT4iT0ZI7RiHHTc=\""
+          "Value": "\"8zAD25t/yKdduPDRsZbAO6ChhcGvDh/pyQ1Mr8HgvwA=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 15 May 2025 03:38:42 GMT"
+          "Value": "Tue, 20 May 2025 07:11:09 GMT"
         },
         {
           "Name": "Cache-Control",
-          "Value": "no-cache"
+          "Value": "max-age=31536000, immutable"
         },
         {
           "Name": "Content-Encoding",
@@ -2985,19 +2896,27 @@
       ],
       "EndpointProperties": [
         {
+          "Name": "fingerprint",
+          "Value": "8rwstu1uxp"
+        },
+        {
+          "Name": "label",
+          "Value": "css/header.css.gz"
+        },
+        {
           "Name": "integrity",
-          "Value": "sha256-ZrINWBx41asrS5UgCYlyLhhoAadDhT4iT0ZI7RiHHTc="
+          "Value": "sha256-8zAD25t/yKdduPDRsZbAO6ChhcGvDh/pyQ1Mr8HgvwA="
         }
       ]
     },
     {
-      "Route": "css/site.qbdmpsdlkk.css",
-      "AssetFile": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\obj\\Debug\\net9.0\\compressed\\wd29avs6lb-qbdmpsdlkk.gz",
+      "Route": "css/header.css",
+      "AssetFile": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\obj\\Debug\\net9.0\\compressed\\5jb53anhhk-8rwstu1uxp.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.002932551320"
+          "Quality": "0.001038421599"
         }
       ],
       "ResponseHeaders": [
@@ -3007,19 +2926,19 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "340"
+          "Value": "962"
         },
         {
           "Name": "ETag",
-          "Value": "\"ZrINWBx41asrS5UgCYlyLhhoAadDhT4iT0ZI7RiHHTc=\""
+          "Value": "\"8zAD25t/yKdduPDRsZbAO6ChhcGvDh/pyQ1Mr8HgvwA=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 15 May 2025 03:38:42 GMT"
+          "Value": "Tue, 20 May 2025 07:11:09 GMT"
         },
         {
           "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
+          "Value": "no-cache"
         },
         {
           "Name": "Content-Encoding",
@@ -3035,27 +2954,19 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"9qXtQLG/zqM+yePRKUBnfOzk3m1y2w6PgtTbebC06r0=\""
+          "Value": "W/\"LGbVYP8oQeOdPEYFdSRsAOwvrV9iTPY0bj1auTcrpvc=\""
         }
       ],
       "EndpointProperties": [
         {
-          "Name": "fingerprint",
-          "Value": "qbdmpsdlkk"
-        },
-        {
-          "Name": "label",
-          "Value": "css/site.css"
-        },
-        {
           "Name": "integrity",
-          "Value": "sha256-9qXtQLG/zqM+yePRKUBnfOzk3m1y2w6PgtTbebC06r0="
+          "Value": "sha256-LGbVYP8oQeOdPEYFdSRsAOwvrV9iTPY0bj1auTcrpvc="
         }
       ]
     },
     {
-      "Route": "css/site.qbdmpsdlkk.css",
-      "AssetFile": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\wwwroot\\css\\site.css",
+      "Route": "css/header.css",
+      "AssetFile": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\wwwroot\\css\\header.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3064,7 +2975,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "770"
+          "Value": "3594"
         },
         {
           "Name": "Content-Type",
@@ -3072,35 +2983,27 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"9qXtQLG/zqM+yePRKUBnfOzk3m1y2w6PgtTbebC06r0=\""
+          "Value": "\"LGbVYP8oQeOdPEYFdSRsAOwvrV9iTPY0bj1auTcrpvc=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 15 May 2025 03:38:42 GMT"
+          "Value": "Tue, 20 May 2025 07:11:09 GMT"
         },
         {
           "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
+          "Value": "no-cache"
         }
       ],
       "EndpointProperties": [
         {
-          "Name": "fingerprint",
-          "Value": "qbdmpsdlkk"
-        },
-        {
-          "Name": "label",
-          "Value": "css/site.css"
-        },
-        {
           "Name": "integrity",
-          "Value": "sha256-9qXtQLG/zqM+yePRKUBnfOzk3m1y2w6PgtTbebC06r0="
+          "Value": "sha256-LGbVYP8oQeOdPEYFdSRsAOwvrV9iTPY0bj1auTcrpvc="
         }
       ]
     },
     {
-      "Route": "css/site.qbdmpsdlkk.css.gz",
-      "AssetFile": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\obj\\Debug\\net9.0\\compressed\\wd29avs6lb-qbdmpsdlkk.gz",
+      "Route": "css/header.css.gz",
+      "AssetFile": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\obj\\Debug\\net9.0\\compressed\\5jb53anhhk-8rwstu1uxp.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3109,7 +3012,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "340"
+          "Value": "962"
         },
         {
           "Name": "Content-Type",
@@ -3117,15 +3020,15 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"ZrINWBx41asrS5UgCYlyLhhoAadDhT4iT0ZI7RiHHTc=\""
+          "Value": "\"8zAD25t/yKdduPDRsZbAO6ChhcGvDh/pyQ1Mr8HgvwA=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 15 May 2025 03:38:42 GMT"
+          "Value": "Tue, 20 May 2025 07:11:09 GMT"
         },
         {
           "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
+          "Value": "no-cache"
         },
         {
           "Name": "Content-Encoding",
@@ -3138,16 +3041,8 @@
       ],
       "EndpointProperties": [
         {
-          "Name": "fingerprint",
-          "Value": "qbdmpsdlkk"
-        },
-        {
-          "Name": "label",
-          "Value": "css/site.css.gz"
-        },
-        {
           "Name": "integrity",
-          "Value": "sha256-ZrINWBx41asrS5UgCYlyLhhoAadDhT4iT0ZI7RiHHTc="
+          "Value": "sha256-8zAD25t/yKdduPDRsZbAO6ChhcGvDh/pyQ1Mr8HgvwA="
         }
       ]
     },
@@ -3174,7 +3069,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 15 May 2025 04:12:57 GMT"
+          "Value": "Thu, 15 May 2025 09:50:08 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3219,7 +3114,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 15 May 2025 04:12:57 GMT"
+          "Value": "Thu, 15 May 2025 09:50:08 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3256,7 +3151,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 15 May 2025 04:13:08 GMT"
+          "Value": "Thu, 15 May 2025 09:50:08 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3293,7 +3188,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 15 May 2025 04:13:08 GMT"
+          "Value": "Thu, 15 May 2025 09:50:08 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3338,7 +3233,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 15 May 2025 04:12:36 GMT"
+          "Value": "Thu, 15 May 2025 09:50:08 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3383,7 +3278,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 15 May 2025 04:12:36 GMT"
+          "Value": "Thu, 15 May 2025 09:50:08 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3420,7 +3315,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 15 May 2025 04:12:51 GMT"
+          "Value": "Thu, 15 May 2025 09:50:08 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3457,7 +3352,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 15 May 2025 04:12:51 GMT"
+          "Value": "Thu, 15 May 2025 09:50:08 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3480,8 +3375,8 @@
       ]
     },
     {
-      "Route": "images/logo.k0t19sq18q.png",
-      "AssetFile": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\wwwroot\\images\\logo.png",
+      "Route": "images/logo.fer34at0wb.jpg",
+      "AssetFile": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\wwwroot\\images\\logo.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3490,19 +3385,19 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "36512"
+          "Value": "88735"
         },
         {
           "Name": "Content-Type",
-          "Value": "image/png"
+          "Value": "image/jpeg"
         },
         {
           "Name": "ETag",
-          "Value": "\"3D24R6ph+xDbgnZhskhNAdEnQRP+aLj5KXWg6BQwfRs=\""
+          "Value": "\"iZZLczkam27HWUNAcegTJZ9fnTmjseDnFvCHMqE4C1w=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 15 May 2025 03:42:44 GMT"
+          "Value": "Fri, 16 May 2025 08:45:34 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3512,21 +3407,21 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "k0t19sq18q"
+          "Value": "fer34at0wb"
         },
         {
           "Name": "label",
-          "Value": "images/logo.png"
+          "Value": "images/logo.jpg"
         },
         {
           "Name": "integrity",
-          "Value": "sha256-3D24R6ph+xDbgnZhskhNAdEnQRP+aLj5KXWg6BQwfRs="
+          "Value": "sha256-iZZLczkam27HWUNAcegTJZ9fnTmjseDnFvCHMqE4C1w="
         }
       ]
     },
     {
-      "Route": "images/logo.png",
-      "AssetFile": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\wwwroot\\images\\logo.png",
+      "Route": "images/logo.jpg",
+      "AssetFile": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\wwwroot\\images\\logo.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3535,19 +3430,19 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "36512"
+          "Value": "88735"
         },
         {
           "Name": "Content-Type",
-          "Value": "image/png"
+          "Value": "image/jpeg"
         },
         {
           "Name": "ETag",
-          "Value": "\"3D24R6ph+xDbgnZhskhNAdEnQRP+aLj5KXWg6BQwfRs=\""
+          "Value": "\"iZZLczkam27HWUNAcegTJZ9fnTmjseDnFvCHMqE4C1w=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 15 May 2025 03:42:44 GMT"
+          "Value": "Fri, 16 May 2025 08:45:34 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3557,89 +3452,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-3D24R6ph+xDbgnZhskhNAdEnQRP+aLj5KXWg6BQwfRs="
-        }
-      ]
-    },
-    {
-      "Route": "images/New Volume (E) - Shortcut.8lfq804ree.lnk",
-      "AssetFile": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\wwwroot\\images\\New Volume (E) - Shortcut.lnk",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "561"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/octet-stream"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"bNmS/OjF/R0vzFxSKBaL/DCgz347gjOxsn8IZLfqiMI=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 15 May 2025 05:33:39 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "8lfq804ree"
-        },
-        {
-          "Name": "label",
-          "Value": "images/New Volume (E) - Shortcut.lnk"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-bNmS/OjF/R0vzFxSKBaL/DCgz347gjOxsn8IZLfqiMI="
-        }
-      ]
-    },
-    {
-      "Route": "images/New Volume (E) - Shortcut.lnk",
-      "AssetFile": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\wwwroot\\images\\New Volume (E) - Shortcut.lnk",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "561"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/octet-stream"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"bNmS/OjF/R0vzFxSKBaL/DCgz347gjOxsn8IZLfqiMI=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 15 May 2025 05:33:39 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-bNmS/OjF/R0vzFxSKBaL/DCgz347gjOxsn8IZLfqiMI="
+          "Value": "sha256-iZZLczkam27HWUNAcegTJZ9fnTmjseDnFvCHMqE4C1w="
         }
       ]
     },
@@ -3666,7 +3479,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 15 May 2025 04:12:30 GMT"
+          "Value": "Thu, 15 May 2025 09:50:08 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3711,7 +3524,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 15 May 2025 04:12:30 GMT"
+          "Value": "Thu, 15 May 2025 09:50:08 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3748,7 +3561,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 15 May 2025 04:12:44 GMT"
+          "Value": "Thu, 15 May 2025 09:50:08 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3793,7 +3606,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 15 May 2025 04:12:44 GMT"
+          "Value": "Thu, 15 May 2025 09:50:08 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -21766,602 +21579,6 @@
         {
           "Name": "integrity",
           "Value": "sha256-1HkjQSVuV0/ji/X/lGeDTHeagBS0BwopMrHDQuwqgtU="
-        }
-      ]
-    },
-    {
-      "Route": "QUANLYRAPCHIEUPHHIM.1sz28kwa4a.bundle.scp.css",
-      "AssetFile": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\obj\\Debug\\net9.0\\compressed\\e2z5ft5w0a-1sz28kwa4a.gz",
-      "Selectors": [
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip",
-          "Quality": "0.001785714286"
-        }
-      ],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "559"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"RZCaZ363XrFc5Ljv9yJ45xmYyPuhCSzlbIzqEP95ndg=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Wed, 14 May 2025 14:39:26 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "W/\"oXlgjK6ApbQAxxzGKsDNO7SHCnrSBMOw7tDmfuknx2U=\""
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "1sz28kwa4a"
-        },
-        {
-          "Name": "label",
-          "Value": "QUANLYRAPCHIEUPHHIM.bundle.scp.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-oXlgjK6ApbQAxxzGKsDNO7SHCnrSBMOw7tDmfuknx2U="
-        }
-      ]
-    },
-    {
-      "Route": "QUANLYRAPCHIEUPHHIM.1sz28kwa4a.bundle.scp.css",
-      "AssetFile": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\QUANLYRAPCHIEUPHHIM.bundle.scp.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1137"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"oXlgjK6ApbQAxxzGKsDNO7SHCnrSBMOw7tDmfuknx2U=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Wed, 14 May 2025 14:39:26 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "1sz28kwa4a"
-        },
-        {
-          "Name": "label",
-          "Value": "QUANLYRAPCHIEUPHHIM.bundle.scp.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-oXlgjK6ApbQAxxzGKsDNO7SHCnrSBMOw7tDmfuknx2U="
-        }
-      ]
-    },
-    {
-      "Route": "QUANLYRAPCHIEUPHHIM.1sz28kwa4a.bundle.scp.css.gz",
-      "AssetFile": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\obj\\Debug\\net9.0\\compressed\\e2z5ft5w0a-1sz28kwa4a.gz",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "559"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"RZCaZ363XrFc5Ljv9yJ45xmYyPuhCSzlbIzqEP95ndg=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Wed, 14 May 2025 14:39:26 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "1sz28kwa4a"
-        },
-        {
-          "Name": "label",
-          "Value": "QUANLYRAPCHIEUPHHIM.bundle.scp.css.gz"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-RZCaZ363XrFc5Ljv9yJ45xmYyPuhCSzlbIzqEP95ndg="
-        }
-      ]
-    },
-    {
-      "Route": "QUANLYRAPCHIEUPHHIM.1sz28kwa4a.styles.css",
-      "AssetFile": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\obj\\Debug\\net9.0\\compressed\\wx1w0o5cq5-1sz28kwa4a.gz",
-      "Selectors": [
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip",
-          "Quality": "0.001785714286"
-        }
-      ],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "559"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"RZCaZ363XrFc5Ljv9yJ45xmYyPuhCSzlbIzqEP95ndg=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Wed, 14 May 2025 14:39:26 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "W/\"oXlgjK6ApbQAxxzGKsDNO7SHCnrSBMOw7tDmfuknx2U=\""
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "1sz28kwa4a"
-        },
-        {
-          "Name": "label",
-          "Value": "QUANLYRAPCHIEUPHHIM.styles.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-oXlgjK6ApbQAxxzGKsDNO7SHCnrSBMOw7tDmfuknx2U="
-        }
-      ]
-    },
-    {
-      "Route": "QUANLYRAPCHIEUPHHIM.1sz28kwa4a.styles.css",
-      "AssetFile": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\obj\\Debug\\net9.0\\scopedcss\\bundle\\QUANLYRAPCHIEUPHHIM.styles.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1137"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"oXlgjK6ApbQAxxzGKsDNO7SHCnrSBMOw7tDmfuknx2U=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Wed, 14 May 2025 14:39:26 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "1sz28kwa4a"
-        },
-        {
-          "Name": "label",
-          "Value": "QUANLYRAPCHIEUPHHIM.styles.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-oXlgjK6ApbQAxxzGKsDNO7SHCnrSBMOw7tDmfuknx2U="
-        }
-      ]
-    },
-    {
-      "Route": "QUANLYRAPCHIEUPHHIM.1sz28kwa4a.styles.css.gz",
-      "AssetFile": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\obj\\Debug\\net9.0\\compressed\\wx1w0o5cq5-1sz28kwa4a.gz",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "559"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"RZCaZ363XrFc5Ljv9yJ45xmYyPuhCSzlbIzqEP95ndg=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Wed, 14 May 2025 14:39:26 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "1sz28kwa4a"
-        },
-        {
-          "Name": "label",
-          "Value": "QUANLYRAPCHIEUPHHIM.styles.css.gz"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-RZCaZ363XrFc5Ljv9yJ45xmYyPuhCSzlbIzqEP95ndg="
-        }
-      ]
-    },
-    {
-      "Route": "QUANLYRAPCHIEUPHHIM.bundle.scp.css",
-      "AssetFile": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\obj\\Debug\\net9.0\\compressed\\e2z5ft5w0a-1sz28kwa4a.gz",
-      "Selectors": [
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip",
-          "Quality": "0.001785714286"
-        }
-      ],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "559"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"RZCaZ363XrFc5Ljv9yJ45xmYyPuhCSzlbIzqEP95ndg=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Wed, 14 May 2025 14:39:26 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "W/\"oXlgjK6ApbQAxxzGKsDNO7SHCnrSBMOw7tDmfuknx2U=\""
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-oXlgjK6ApbQAxxzGKsDNO7SHCnrSBMOw7tDmfuknx2U="
-        }
-      ]
-    },
-    {
-      "Route": "QUANLYRAPCHIEUPHHIM.bundle.scp.css",
-      "AssetFile": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\QUANLYRAPCHIEUPHHIM.bundle.scp.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1137"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"oXlgjK6ApbQAxxzGKsDNO7SHCnrSBMOw7tDmfuknx2U=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Wed, 14 May 2025 14:39:26 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-oXlgjK6ApbQAxxzGKsDNO7SHCnrSBMOw7tDmfuknx2U="
-        }
-      ]
-    },
-    {
-      "Route": "QUANLYRAPCHIEUPHHIM.bundle.scp.css.gz",
-      "AssetFile": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\obj\\Debug\\net9.0\\compressed\\e2z5ft5w0a-1sz28kwa4a.gz",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "559"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"RZCaZ363XrFc5Ljv9yJ45xmYyPuhCSzlbIzqEP95ndg=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Wed, 14 May 2025 14:39:26 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-RZCaZ363XrFc5Ljv9yJ45xmYyPuhCSzlbIzqEP95ndg="
-        }
-      ]
-    },
-    {
-      "Route": "QUANLYRAPCHIEUPHHIM.styles.css",
-      "AssetFile": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\obj\\Debug\\net9.0\\compressed\\wx1w0o5cq5-1sz28kwa4a.gz",
-      "Selectors": [
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip",
-          "Quality": "0.001785714286"
-        }
-      ],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "559"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"RZCaZ363XrFc5Ljv9yJ45xmYyPuhCSzlbIzqEP95ndg=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Wed, 14 May 2025 14:39:26 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "W/\"oXlgjK6ApbQAxxzGKsDNO7SHCnrSBMOw7tDmfuknx2U=\""
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-oXlgjK6ApbQAxxzGKsDNO7SHCnrSBMOw7tDmfuknx2U="
-        }
-      ]
-    },
-    {
-      "Route": "QUANLYRAPCHIEUPHHIM.styles.css",
-      "AssetFile": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\obj\\Debug\\net9.0\\scopedcss\\bundle\\QUANLYRAPCHIEUPHHIM.styles.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1137"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"oXlgjK6ApbQAxxzGKsDNO7SHCnrSBMOw7tDmfuknx2U=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Wed, 14 May 2025 14:39:26 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-oXlgjK6ApbQAxxzGKsDNO7SHCnrSBMOw7tDmfuknx2U="
-        }
-      ]
-    },
-    {
-      "Route": "QUANLYRAPCHIEUPHHIM.styles.css.gz",
-      "AssetFile": "E:\\IT\\C#\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\obj\\Debug\\net9.0\\compressed\\wx1w0o5cq5-1sz28kwa4a.gz",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "559"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"RZCaZ363XrFc5Ljv9yJ45xmYyPuhCSzlbIzqEP95ndg=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Wed, 14 May 2025 14:39:26 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-RZCaZ363XrFc5Ljv9yJ45xmYyPuhCSzlbIzqEP95ndg="
         }
       ]
     }

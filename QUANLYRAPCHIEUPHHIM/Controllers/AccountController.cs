@@ -11,9 +11,9 @@ namespace QUANLYRAPCHIEUPHHIM.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly CinemaDbContext _context;
+        private readonly CinemaDbcontext _context;
 
-        public AccountController(CinemaDbContext context)
+        public AccountController(CinemaDbcontext context)
         {
             _context = context;
         }
@@ -141,4 +141,4 @@ namespace QUANLYRAPCHIEUPHHIM.Controllers
             }
         }
     }
-} 
+}

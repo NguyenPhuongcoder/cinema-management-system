@@ -1,4 +1,9 @@
 ﻿@model QUANLYRAPCHIEUPHHIM.ViewModels.HomePageViewModel
+@{
+	ViewData["Title"] = "Trang chủ";
+	Layout = "_Layout";
+}
+
    <div class="container my-4">
        <div id="bannerCarousel" class="carousel slide" data-bs-ride="carousel">
            <div class="carousel-inner rounded-3 shadow">
@@ -28,52 +33,133 @@
     <div class="container mt-4">
        <div class="d-flex align-items-center mb-3">
            <h3 class="me-4 fw-bold" style="letter-spacing:1px;">PHIM</h3>
-           <ul class="nav nav-tabs border-0">
+           <ul class="nav nav-tabs border-0" id="movieTab">
                <li class="nav-item">
-                   <a class="nav-link active fw-bold" href="#">Đang chiếu</a>
+                   <a class="nav-link active fw-bold" data-bs-toggle="tab" href="#nowShowingTab">Đang chiếu</a>
                </li>
                <li class="nav-item">
-                   <a class="nav-link fw-bold" href="#">Sắp chiếu</a>
+                   <a class="nav-link fw-bold" data-bs-toggle="tab" href="#comingSoonTab">Sắp chiếu</a>
                </li>
                <li class="nav-item">
-                   <a class="nav-link fw-bold" href="#">Phim IMAX</a>
+                   <a class="nav-link fw-bold" data-bs-toggle="tab" href="#imaxTab">Phim IMAX</a>
                </li>
            </ul>
            <span class="ms-auto text-primary fw-bold" style="cursor:pointer;">
-               <i class="fa-solid fa-location-dot"></i> TP Hồ Chí Minh
+               <i class="fa-solid fa-location-dot"></i> TP Đà nẵng
            </span>
        </div>
-    <div class="row">
-        @foreach (var movie in Model.Movies)
-        {
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-                <div class="movie-card card h-100 shadow-sm border-0 position-relative overflow-hidden">
-                    <img src="@movie.PosterUrl" class="card-img-top" style="height:340px;object-fit:cover;" alt="@movie.Title" />
-                    <div class="card-body">
-                        <h6 class="card-title fw-bold mb-1" style="min-height:40px;">@movie.Title</h6>
-                        <div class="d-flex align-items-center mb-2">
-                            <span class="badge bg-warning text-dark me-2"><i class="fa-solid fa-star"></i> @movie.Rating</span>
-                            <span class="badge bg-orange text-white">@movie.AgeLimit</span>
+    <div class="tab-content">
+        <div class="tab-pane fade show active" id="nowShowingTab">
+            <div class="row">
+                @foreach (var movie in Model.NowShowing.Take(8))
+                {
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+                        <div class="movie-card card h-100 shadow-sm border-0 position-relative overflow-hidden">
+                            <img src="@movie.PosterUrl" class="card-img-top" style="height:510px;width:100%;object-fit:cover;aspect-ratio:2/3;" alt="@movie.Title" />
+                            <div class="card-body">
+                                <h6 class="card-title fw-bold mb-1" style="min-height:40px;">@movie.Title</h6>
+                                <div class="d-flex align-items-center mb-2">
+                                    <span class="badge bg-warning text-dark me-2"><i class="fa-solid fa-star"></i> @movie.Rating</span>
+                                    <span class="badge bg-orange text-white">@movie.AgeLimit</span>
+                                </div>
+                            </div>
+                            <div class="movie-overlay d-flex flex-column justify-content-center align-items-center">
+                                <a href="/Booking/Quick?movieId=@movie.MovieId" class="btn btn-danger btn-sm mb-2 w-75">
+                                    <i class="fa-solid fa-ticket"></i> Mua vé
+                                </a>
+                                @if (!string.IsNullOrEmpty(movie.TrailerUrl))
+                                {
+                                    <button class="btn btn-outline-light btn-sm w-75" onclick="showTrailer('@movie.TrailerUrl')">
+                                        <i class="fa-solid fa-play"></i> Trailer
+                                    </button>
+                                }
+                            </div>
                         </div>
                     </div>
-                    <!-- Overlay nút khi hover -->
-                    <div class="movie-overlay d-flex flex-column justify-content-center align-items-center">
-                        <a href="/Booking/Quick?movieId=@movie.MovieId" class="btn btn-danger btn-sm mb-2 w-75">
-                            <i class="fa-solid fa-ticket"></i> Mua vé
-                        </a>
-                        @if (!string.IsNullOrEmpty(movie.TrailerUrl))
-                        {
-                            <button class="btn btn-outline-light btn-sm w-75" onclick="showTrailer('@movie.TrailerUrl')">
-                                <i class="fa-solid fa-play"></i> Trailer
-                            </button>
-                        }
-                    </div>
-                </div>
+                }
             </div>
-        }
+            @if (Model.NowShowing.Count > 8)
+            {
+                <div class="text-center">
+                    <a href="/Movies?type=nowshowing" class="btn btn-outline-primary">Xem thêm</a>
+                </div>
+            }
+        </div>
+        <div class="tab-pane fade" id="comingSoonTab">
+	        <div class="row">
+		        @foreach (var movie in Model.ComingSoon.Take(8))
+		        {
+			        <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+				        <div class="movie-card card h-100 shadow-sm border-0 position-relative overflow-hidden">
+					        <img src="@movie.PosterUrl" class="card-img-top" style="height:510px;width:100%;object-fit:cover;aspect-ratio:2/3;" alt="@movie.Title" />
+					        <div class="card-body">
+						        <h6 class="card-title fw-bold mb-1" style="min-height:40px;">@movie.Title</h6>
+						        <div class="d-flex align-items-center mb-2">
+							        <span class="badge bg-warning text-dark me-2"><i class="fa-solid fa-star"></i> @movie.Rating</span>
+							        <span class="badge bg-orange text-white">@movie.AgeLimit</span>
+						        </div>
+					        </div>
+					        <div class="movie-overlay d-flex flex-column justify-content-center align-items-center">
+						        <a href="/Booking/Quick?movieId=@movie.MovieId" class="btn btn-danger btn-sm mb-2 w-75">
+							        <i class="fa-solid fa-ticket"></i> Mua vé
+						        </a>
+						        @if (!string.IsNullOrEmpty(movie.TrailerUrl))
+						        {
+							        <button class="btn btn-outline-light btn-sm w-75" onclick="showTrailer('@movie.TrailerUrl')">
+								        <i class="fa-solid fa-play"></i> Trailer
+							        </button>
+						        }
+					        </div>
+				        </div>
+			        </div>
+		        }
+	        </div>
+            @if (Model.ComingSoon.Count > 8)
+            {
+                <div class="text-center">
+                    <a href="/Movies?type=comingsoon" class="btn btn-outline-primary">Xem thêm</a>
+                </div>
+            }
+        </div>
+        <div class="tab-pane fade" id="imaxTab">
+            <div class="row">
+                @foreach (var movie in Model.ImaxMovies.Take(8))
+                {
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+                        <div class="movie-card card h-100 shadow-sm border-0 position-relative overflow-hidden">
+                            <img src="@movie.PosterUrl" class="card-img-top" style="height:510px;width:100%;object-fit:cover;aspect-ratio:2/3;" alt="@movie.Title" />
+                            <div class="card-body">
+                                <h6 class="card-title fw-bold mb-1" style="min-height:40px;">@movie.Title</h6>
+                                <div class="d-flex align-items-center mb-2">
+                                    <span class="badge bg-warning text-dark me-2"><i class="fa-solid fa-star"></i> @movie.Rating</span>
+                                    <span class="badge bg-orange text-white">@movie.AgeLimit</span>
+                                </div>
+                            </div>
+                            <div class="movie-overlay d-flex flex-column justify-content-center align-items-center">
+                                <a href="/Booking/Quick?movieId=@movie.MovieId" class="btn btn-danger btn-sm mb-2 w-75">
+                                    <i class="fa-solid fa-ticket"></i> Mua vé
+                                </a>
+                                @if (!string.IsNullOrEmpty(movie.TrailerUrl))
+                                {
+                                    <button class="btn btn-outline-light btn-sm w-75" onclick="showTrailer('@movie.TrailerUrl')">
+                                        <i class="fa-solid fa-play"></i> Trailer
+                                    </button>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            @if (Model.ImaxMovies.Count > 8)
+            {
+                <div class="text-center">
+                    <a href="/Movies?type=imax" class="btn btn-outline-primary">Xem thêm</a>
+                </div>
+            }
+        </div>
     </div>
-        
-   </div>
+</div>
+
 
    <style>
    .movie-card {

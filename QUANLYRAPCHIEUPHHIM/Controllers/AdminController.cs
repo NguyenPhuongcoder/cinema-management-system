@@ -8,9 +8,9 @@ namespace QUANLYRAPCHIEUPHHIM.Controllers
     [Authorize(Roles = "admin")]
     public class AdminController : Controller
     {
-        private readonly CinemaDbContext _context;
+        private readonly CinemaDbcontext _context;
 
-        public AdminController(CinemaDbContext context)
+        public AdminController(CinemaDbcontext context)
         {
             _context = context;
         }
