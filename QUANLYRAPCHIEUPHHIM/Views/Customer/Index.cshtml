@@ -54,25 +54,28 @@
                 @foreach (var movie in Model.NowShowing.Take(8))
                 {
                     <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-                        <div class="movie-card card h-100 shadow-sm border-0 position-relative overflow-hidden">
-                            <img src="@movie.PosterUrl" class="card-img-top" style="height:510px;width:100%;object-fit:cover;aspect-ratio:2/3;" alt="@movie.Title" />
-                            <div class="card-body">
-                                <h6 class="card-title fw-bold mb-1" style="min-height:40px;">@movie.Title</h6>
-                                <div class="d-flex align-items-center mb-2">
-                                    <span class="badge bg-warning text-dark me-2"><i class="fa-solid fa-star"></i> @movie.Rating</span>
-                                    <span class="badge bg-orange text-white">@movie.AgeLimit</span>
+                        <div class="movie-card-custom card h-100 shadow-sm border-0 position-relative overflow-hidden">
+                            <div class="poster-wrapper position-relative">
+                                <img src="@movie.PosterUrl" class="card-img-top" style="height:510px;width:100%;object-fit:cover;aspect-ratio:2/3;border-radius:18px;" alt="@movie.Title" />
+                                <div class="movie-overlay-custom d-flex flex-column justify-content-center align-items-center gap-2">
+                                    <a href="/Booking/Quick?movieId=@movie.MovieId" class="btn btn-danger btn-md w-75 rounded-pill fw-bold">
+                                        <i class="fa-solid fa-ticket"></i> Mua vé
+                                    </a>
+                                    @if (!string.IsNullOrEmpty(movie.TrailerUrl))
+                                    {
+                                        <button class="btn btn-outline-light btn-md w-75 rounded-pill fw-bold" onclick="showTrailer('@movie.TrailerUrl')">
+                                            <i class="fa-solid fa-play"></i> Trailer
+                                        </button>
+                                    }
+                                </div>
+                                <div class="badge-group position-absolute end-0 bottom-0 m-3 d-flex flex-column align-items-end gap-2">
+                                    <span class="badge bg-warning text-dark fs-6 shadow"><i class="fa-solid fa-star"></i> @movie.Rating</span>
+                                    <span class="badge bg-orange text-white fs-6 shadow">@movie.AgeLimit</span>
                                 </div>
                             </div>
-                            <div class="movie-overlay d-flex flex-column justify-content-center align-items-center">
-                                <a href="/Booking/Quick?movieId=@movie.MovieId" class="btn btn-danger btn-sm mb-2 w-75">
-                                    <i class="fa-solid fa-ticket"></i> Mua vé
-                                </a>
-                                @if (!string.IsNullOrEmpty(movie.TrailerUrl))
-                                {
-                                    <button class="btn btn-outline-light btn-sm w-75" onclick="showTrailer('@movie.TrailerUrl')">
-                                        <i class="fa-solid fa-play"></i> Trailer
-                                    </button>
-                                }
+                            <div class="card-body text-center p-2">
+                                <h6 class="card-title fw-bold mb-1" style="min-height:40px;font-size:1.1rem;">@movie.Title</h6>
+                                <!-- Subtitle or extra info can go here if needed -->
                             </div>
                         </div>
                     </div>
@@ -162,26 +165,54 @@
 
 
    <style>
-   .movie-card {
+   .movie-card-custom {
+       border-radius: 20px;
+       box-shadow: 0 4px 24px rgba(0,0,0,0.13);
+       background: #181818;
+   }
+   .poster-wrapper {
        position: relative;
-       overflow: hidden;
    }
-   .movie-overlay {
+   .movie-overlay-custom {
        position: absolute;
-       top: 0; left: 0; right: 0; bottom: 0;
-       background: rgba(0,0,0,0.7);
-       opacity: 0;
-       transition: opacity 0.3s;
+       top: 50%;
+       left: 50%;
+       transform: translate(-50%, -50%);
+       width: 100%;
        z-index: 2;
+       background: rgba(0,0,0,0.18);
+       padding: 30px 0 20px 0;
+       opacity: 0;
+       transition: opacity 0.25s;
+       pointer-events: none;
    }
-   .movie-card:hover .movie-overlay {
+   .poster-wrapper:hover .movie-overlay-custom {
        opacity: 1;
+       pointer-events: auto;
+   }
+   .badge-group {
+       z-index: 3;
    }
    .bg-orange {
        background: #ff9800 !important;
    }
    .card-title {
-       font-size: 1rem;
+       font-size: 1.1rem;
+       color: #fff;
+   }
+   .movie-card-custom .card-body {
+       background: transparent;
+   }
+   .movie-card-custom .btn-danger {
+       background: #c62828;
+       border: none;
+   }
+   .movie-card-custom .btn-outline-light {
+       border: 2px solid #fff;
+   }
+   .movie-card-custom .btn {
+       font-size: 1.08rem;
+       font-weight: 600;
    }
    </style>
 
