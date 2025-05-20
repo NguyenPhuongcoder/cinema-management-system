@@ -2,11 +2,19 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using QUANLYRAPCHIEUPHHIM.Models;
 using QUANLYRAPCHIEUPHHIM.Data;
+using QUANLYRAPCHIEUPHHIM.Services;
 using System.Linq;
 using System.Security.Cryptography;
 using Microsoft.EntityFrameworkCore;
 using System.Text;
-
+using X.PagedList;
+using X.PagedList.Extensions;
+using System;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
+using Microsoft.AspNetCore.Http;
+using System.Threading.Tasks;
+using System.Linq.Expressions;
 
 namespace QUANLYRAPCHIEUPHHIM.Controllers
 {
@@ -14,10 +22,13 @@ namespace QUANLYRAPCHIEUPHHIM.Controllers
     public class AdminController : Controller
     {
         private readonly CinemaDbContext _context;
+        private readonly ICloudinaryService _cloudinaryService;
+        private const int PageSize = 2; // Number of items per page
 
-        public AdminController(CinemaDbContext context)
+        public AdminController(CinemaDbContext context, ICloudinaryService cloudinaryService)
         {
             _context = context;
+            _cloudinaryService = cloudinaryService;
         }
 
         public IActionResult Dashboard()
@@ -36,9 +47,10 @@ namespace QUANLYRAPCHIEUPHHIM.Controllers
             return View();
         }
 
-        public IActionResult Movies()
+        public IActionResult Movies(int? page)
         {
-            var movies = _context.Movies.ToList();
+            var pageNumber = page ?? 1;
+            var movies = _context.Movies.ToPagedList(pageNumber, PageSize);
             return View(movies);
         }
 
@@ -49,10 +61,39 @@ namespace QUANLYRAPCHIEUPHHIM.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateMovie(Movie movie)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateMovie(Movie movie, IFormFile posterFile)
         {
             if (ModelState.IsValid)
             {
+                // Validate base price
+                if (movie.BasePrice < 0)
+                {
+                    ModelState.AddModelError("BasePrice", "Base price cannot be negative");
+                    return View(movie);
+                }
+
+                // Validate duration
+                if (movie.Duration <= 0)
+                {
+                    ModelState.AddModelError("Duration", "Duration must be greater than 0");
+                    return View(movie);
+                }
+
+                // Validate release date
+                if (movie.ReleaseDate < DateOnly.FromDateTime(DateTime.Now))
+                {
+                    ModelState.AddModelError("ReleaseDate", "Release date cannot be in the past");
+                    return View(movie);
+                }
+
+                // Upload poster image if provided
+                if (posterFile != null && posterFile.Length > 0)
+                {
+                    movie.PosterUrl = await _cloudinaryService.UploadImageAsync(posterFile);
+                }
+
+                movie.CreatedAt = DateTime.Now;
                 _context.Movies.Add(movie);
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Movies));
@@ -72,11 +113,59 @@ namespace QUANLYRAPCHIEUPHHIM.Controllers
         }
 
         [HttpPost]
-        public IActionResult EditMovie(Movie movie)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditMovie(Movie movie, IFormFile posterFile)
         {
             if (ModelState.IsValid)
             {
-                _context.Update(movie);
+                var existingMovie = _context.Movies.Find(movie.MovieId);
+                if (existingMovie == null)
+                {
+                    return NotFound();
+                }
+
+                // Validate base price
+                if (movie.BasePrice < 0)
+                {
+                    ModelState.AddModelError("BasePrice", "Base price cannot be negative");
+                    return View(movie);
+                }
+
+                // Validate duration
+                if (movie.Duration <= 0)
+                {
+                    ModelState.AddModelError("Duration", "Duration must be greater than 0");
+                    return View(movie);
+                }
+
+                // Validate release date
+                if (movie.ReleaseDate < DateOnly.FromDateTime(DateTime.Now))
+                {
+                    ModelState.AddModelError("ReleaseDate", "Release date cannot be in the past");
+                    return View(movie);
+                }
+
+                // Upload new poster image if provided
+                if (posterFile != null && posterFile.Length > 0)
+                {
+                    // Delete old poster from Cloudinary if exists
+                    if (!string.IsNullOrEmpty(existingMovie.PosterUrl))
+                    {
+                        var publicId = existingMovie.PosterUrl.Split('/').Last().Split('.')[0];
+                        await _cloudinaryService.DeleteImageAsync(publicId);
+                    }
+
+                    // Upload new poster
+                    movie.PosterUrl = await _cloudinaryService.UploadImageAsync(posterFile);
+                }
+                else
+                {
+                    // Keep existing poster URL
+                    movie.PosterUrl = existingMovie.PosterUrl;
+                }
+
+                movie.UpdatedAt = DateTime.Now;
+                _context.Entry(existingMovie).CurrentValues.SetValues(movie);
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Movies));
             }
@@ -95,20 +184,42 @@ namespace QUANLYRAPCHIEUPHHIM.Controllers
         }
 
         [HttpPost, ActionName("DeleteMovie")]
-        public IActionResult DeleteMovieConfirmed(int id)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteMovieConfirmed(int id)
         {
             var movie = _context.Movies.Find(id);
+            if (movie == null)
+            {
+                return NotFound();
+            }
+
+            // Check if movie has any associated showtimes
+            var hasShowtimes = _context.Showtimes.Any(s => s.MovieId == id);
+            if (hasShowtimes)
+            {
+                TempData["Error"] = "Cannot delete movie because it has associated showtimes.";
+                return RedirectToAction(nameof(Movies));
+            }
+
+            // Delete poster from Cloudinary if exists
+            if (!string.IsNullOrEmpty(movie.PosterUrl))
+            {
+                var publicId = movie.PosterUrl.Split('/').Last().Split('.')[0];
+                await _cloudinaryService.DeleteImageAsync(publicId);
+            }
+
             _context.Movies.Remove(movie);
             _context.SaveChanges();
             return RedirectToAction(nameof(Movies));
         }
 
-        public IActionResult Shows()
+        public IActionResult Shows(int? page)
         {
+            var pageNumber = page ?? 1;
             var shows = _context.Showtimes
                 .Include(s => s.Movie)
                 .Include(s => s.Room)
-                .ToList();
+                .ToPagedList(pageNumber, PageSize);
             return View(shows);
         }
 
@@ -245,9 +356,10 @@ namespace QUANLYRAPCHIEUPHHIM.Controllers
             return RedirectToAction(nameof(Shows));
         }
 
-        public IActionResult Bookings()
+        public IActionResult Bookings(int? page)
         {
-            var bookings = _context.Bookings.ToList();
+            var pageNumber = page ?? 1;
+            var bookings = _context.Bookings.ToPagedList(pageNumber, PageSize);
             var usernames = _context.Bookings
               .Join(_context.Users,
               booking => booking.UserId,
@@ -256,7 +368,7 @@ namespace QUANLYRAPCHIEUPHHIM.Controllers
                .ToDictionary(bu => bu.UserId, bu => bu.Username);
             var bookingStatuses = _context.BookingBookingStatuses
                 .Include(b => b.BookingStatus)
-                .ToList() // Thực thi query tại đây
+                .ToList()
                 .GroupBy(b => b.BookingId)
                 .Select(g => g
                 .OrderByDescending(e => e.BookingBookingStatusId)
@@ -331,12 +443,13 @@ namespace QUANLYRAPCHIEUPHHIM.Controllers
             return RedirectToAction(nameof(Bookings));
         }
 
-        public IActionResult Users()
+        public IActionResult Users(int? page)
         {
+            var pageNumber = page ?? 1;
             var users = _context.Users
                 .Include(u => u.UserRoles)
                 .ThenInclude(ur => ur.Role)
-                .ToList();
+                .ToPagedList(pageNumber, PageSize);
             return View(users);
         }
 
@@ -500,27 +613,51 @@ namespace QUANLYRAPCHIEUPHHIM.Controllers
             return RedirectToAction(nameof(Users));
         }
 
-        public IActionResult Rooms()
+        public IActionResult Rooms(int? page)
         {
-            var rooms = _context.Rooms.ToList();
+            var pageNumber = page ?? 1;
+            var rooms = _context.Rooms
+                .Include(r => r.Format)
+                .Include(r => r.Cinema)
+                .ToPagedList(pageNumber, PageSize);
             return View(rooms);
         }
 
         // Create Room
         public IActionResult CreateRoom()
         {
+            ViewBag.RoomFormats = _context.RoomFormats.ToList();
+            ViewBag.Cinema = _context.Cinemas.ToList();
             return View();
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult CreateRoom(Room room)
         {
             if (ModelState.IsValid)
             {
+                // Validate capacity
+                if (room.Capacity <= 0)
+                {
+                    ModelState.AddModelError("Capacity", "Capacity must be greater than 0");
+                    ViewBag.RoomFormats = _context.RoomFormats.ToList();
+                    return View(room);
+                }
+
+                // Validate room name uniqueness
+                if (_context.Rooms.Any(r => r.RoomName == room.RoomName))
+                {
+                    ModelState.AddModelError("RoomName", "Room name already exists");
+                    ViewBag.RoomFormats = _context.RoomFormats.ToList();
+                    return View(room);
+                }
+
                 _context.Rooms.Add(room);
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Rooms));
             }
+            ViewBag.RoomFormats = _context.RoomFormats.ToList();
             return View(room);
         }
 
@@ -528,22 +665,45 @@ namespace QUANLYRAPCHIEUPHHIM.Controllers
         public IActionResult EditRoom(int id)
         {
             var room = _context.Rooms.Find(id);
+          
             if (room == null)
             {
                 return NotFound();
             }
+            ViewBag.RoomFormats = _context.RoomFormats.ToList();
+            ViewBag.Cinema = _context.Cinemas.ToList();
             return View(room);
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult EditRoom(Room room)
         {
+
             if (ModelState.IsValid)
             {
+                // Validate capacity
+                if (room.Capacity <= 0)
+                {
+                    ModelState.AddModelError("Capacity", "Capacity must be greater than 0");
+                    ViewBag.RoomFormats = _context.RoomFormats.ToList();
+                    return View(room);
+                }
+
+                // Validate room name uniqueness (excluding current room)
+                if (_context.Rooms.Any(r => r.RoomName == room.RoomName && r.RoomId != room.RoomId))
+                {
+                    ModelState.AddModelError("RoomName", "Room name already exists");
+                    ViewBag.RoomFormats = _context.RoomFormats.ToList();
+                    return View(room);
+                }
+
                 _context.Update(room);
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Rooms));
             }
+            ViewBag.RoomFormats = _context.RoomFormats.ToList();
+            ViewBag.Cinema = _context.Cinemas.ToList();
             return View(room);
         }
 
@@ -559,13 +719,191 @@ namespace QUANLYRAPCHIEUPHHIM.Controllers
         }
 
         [HttpPost, ActionName("DeleteRoom")]
+        [ValidateAntiForgeryToken]
         public IActionResult DeleteRoomConfirmed(int id)
         {
             var room = _context.Rooms.Find(id);
+            if (room == null)
+            {
+                return NotFound();
+            }
+
+            // Check if room has any associated showtimes
+            var hasShowtimes = _context.Showtimes.Any(s => s.RoomId == id);
+            if (hasShowtimes)
+            {
+                TempData["Error"] = "Cannot delete room because it has associated showtimes.";
+                return RedirectToAction(nameof(Rooms));
+            }
+
             _context.Rooms.Remove(room);
             _context.SaveChanges();
             return RedirectToAction(nameof(Rooms));
         }
+
+        // Room Details
+        public IActionResult RoomDetails(int id)
+        {
+            var room = _context.Rooms.Find(id);
+            if (room == null)
+            {
+                return NotFound();
+            }
+            return View(room);
+        }
+
+        // Movie Details
+        public IActionResult MovieDetails(int id)
+        {
+            var movie = _context.Movies.Find(id);
+            if (movie == null)
+            {
+                return NotFound();
+            }
+            return View(movie);
+        }
+
+        public IActionResult Tickets(int? page)
+        {
+            var pageNumber = page ?? 1;
+            var tickets = _context.Tickets
+                .Include(t => t.Booking)
+                .Include(t => t.Showtime)
+                    .ThenInclude(s => s.Movie)
+                .Include(t => t.Seat)
+                .ToPagedList(pageNumber, PageSize);
+
+            return View(tickets);
+        }
+
+        // Edit Ticket
+        public IActionResult EditTicket(int id)
+        {
+            var ticket = _context.Tickets
+                .FirstOrDefault(t => t.TicketId == id);
+
+            if (ticket == null)
+            {
+                return NotFound();
+            }
+
+            ViewBag.Bookings = _context.Bookings.ToList();
+            ViewBag.Showtimes = _context.Showtimes
+                .Include(s => s.Movie)
+                .Include(s => s.Room)
+                .ToList();
+            ViewBag.Seats = _context.Seats.ToList();
+            ViewBag.TicketStatuses = new List<string> { "Active", "Used", "Cancelled", "Expired" };
+
+            return View(ticket);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult EditTicket(Ticket ticket)
+        {
+            if (ModelState.IsValid)
+            {
+                var existingTicket = _context.Tickets
+                    .FirstOrDefault(t => t.TicketId == ticket.TicketId);
+
+                if (existingTicket == null)
+                {
+                    return NotFound();
+                }
+
+                // Check if seat is already booked for this showtime (excluding current ticket)
+                var seatBooked = _context.Tickets
+                    .Any(t => t.ShowtimeId == ticket.ShowtimeId && 
+                             t.SeatId == ticket.SeatId && 
+                             t.TicketId != ticket.TicketId);
+                
+                if (seatBooked)
+                {
+                    ModelState.AddModelError("", "This seat is already booked for this showtime");
+                    ViewBag.Bookings = _context.Bookings.ToList();
+                    ViewBag.Showtimes = _context.Showtimes
+                        .Include(s => s.Movie)
+                        .Include(s => s.Room)
+                        .ToList();
+                    ViewBag.Seats = _context.Seats.ToList();
+                    ViewBag.TicketStatuses = new List<string> { "Active", "Used", "Cancelled", "Expired" };
+                    return View(ticket);
+                }
+
+                // Update ticket properties
+                existingTicket.BookingId = ticket.BookingId;
+                existingTicket.ShowtimeId = ticket.ShowtimeId;
+                existingTicket.SeatId = ticket.SeatId;
+                existingTicket.Price = ticket.Price;
+                existingTicket.TicketStatus = ticket.TicketStatus;
+                existingTicket.ScanDatetime = ticket.ScanDatetime;
+                existingTicket.UpdatedAt = DateTime.Now;
+
+                _context.Update(existingTicket);
+                _context.SaveChanges();
+                return RedirectToAction(nameof(Tickets));
+            }
+            ViewBag.Bookings = _context.Bookings.ToList();
+            ViewBag.Showtimes = _context.Showtimes
+                .Include(s => s.Movie)
+                .Include(s => s.Room)
+                .ToList();
+            ViewBag.Seats = _context.Seats.ToList();
+            ViewBag.TicketStatuses = new List<string> { "Active", "Used", "Cancelled", "Expired" };
+            return View(ticket);
+        }
+
+        // Delete Ticket
+        public IActionResult DeleteTicket(int id)
+        {
+            var ticket = _context.Tickets
+                .Include(t => t.Booking)
+                .Include(t => t.Showtime)
+                    .ThenInclude(s => s.Movie)
+                .Include(t => t.Seat)
+                .FirstOrDefault(t => t.TicketId == id);
+
+            if (ticket == null)
+            {
+                return NotFound();
+            }
+
+            return View(ticket);
+        }
+
+        [HttpPost, ActionName("DeleteTicket")]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteTicketConfirmed(int id)
+        {
+            var ticket = _context.Tickets.Find(id);
+            if (ticket == null)
+            {
+                return NotFound();
+            }
+
+            _context.Tickets.Remove(ticket);
+            _context.SaveChanges();
+            return RedirectToAction(nameof(Tickets));
+        }
+
+        private string GenerateTicketCode()
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            var random = new Random();
+            var code = new string(Enumerable.Repeat(chars, 8)
+                .Select(s => s[random.Next(s.Length)]).ToArray());
+
+            // Ensure uniqueness
+            while (_context.Tickets.Any(t => t.TicketCode == code))
+            {
+                code = new string(Enumerable.Repeat(chars, 8)
+                    .Select(s => s[random.Next(s.Length)]).ToArray());
+            }
+
+            return code;
+        }
+
         private string HashPassword(string password)
         {
             using (var sha256 = SHA256.Create())

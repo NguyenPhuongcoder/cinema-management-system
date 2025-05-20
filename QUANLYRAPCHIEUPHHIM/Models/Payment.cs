@@ -14,7 +14,7 @@ public partial class Payment
     public decimal Amount { get; set; }
 
     public DateTime? PaymentDate { get; set; }
-
+    public string PaymentStatus { get; set; } = null!;
     public string? TransactionId { get; set; }
 
     public DateTime? CreatedAt { get; set; }
@@ -25,5 +25,5 @@ public partial class Payment
 
     public virtual PaymentMethod PaymentMethod { get; set; } = null!;
 
-    public virtual ICollection<PaymentPaymentStatus> PaymentPaymentStatuses { get; set; } = new List<PaymentPaymentStatus>();
+
 }

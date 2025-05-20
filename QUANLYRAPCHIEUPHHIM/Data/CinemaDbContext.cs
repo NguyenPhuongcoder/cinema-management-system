@@ -50,12 +50,6 @@ public partial class CinemaDbContext : DbContext
 
     public virtual DbSet<Payment> Payments { get; set; }
 
-    public virtual DbSet<PaymentMethod> PaymentMethods { get; set; }
-
-    public virtual DbSet<PaymentPaymentStatus> PaymentPaymentStatuses { get; set; }
-
-    public virtual DbSet<PaymentStatus> PaymentStatuses { get; set; }
-
     public virtual DbSet<Province> Provinces { get; set; }
 
     public virtual DbSet<Role> Roles { get; set; }
@@ -73,11 +67,6 @@ public partial class CinemaDbContext : DbContext
     public virtual DbSet<Showtime> Showtimes { get; set; }
 
     public virtual DbSet<Ticket> Tickets { get; set; }
-
-    public virtual DbSet<TicketStatus> TicketStatuses { get; set; }
-
-    public virtual DbSet<TicketTicketStatus> TicketTicketStatuses { get; set; }
-
     public virtual DbSet<User> Users { get; set; }
 
     public virtual DbSet<UserRole> UserRoles { get; set; }
@@ -499,7 +488,9 @@ public partial class CinemaDbContext : DbContext
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")
                 .HasColumnName("updated_at");
-
+            entity.Property(e => e.PaymentStatus)
+             .HasMaxLength(20)
+             .HasColumnName("payment_status");
             entity.HasOne(d => d.Booking).WithMany(p => p.Payments)
                 .HasForeignKey(d => d.BookingId)
                 .HasConstraintName("FK__Payment__booking__395884C4");
@@ -510,62 +501,7 @@ public partial class CinemaDbContext : DbContext
                 .HasConstraintName("FK__Payment__payment__3A4CA8FD");
         });
 
-        modelBuilder.Entity<PaymentMethod>(entity =>
-        {
-            entity.HasKey(e => e.PaymentMethodId).HasName("PK__PaymentM__8A3EA9EB13936CA6");
-
-            entity.ToTable("PaymentMethod");
-
-            entity.HasIndex(e => e.MethodName, "UQ__PaymentM__2DA2FAEEFBA5B1F2").IsUnique();
-
-            entity.Property(e => e.PaymentMethodId).HasColumnName("payment_method_id");
-            entity.Property(e => e.CreatedAt)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime")
-                .HasColumnName("created_at");
-            entity.Property(e => e.MethodName)
-                .HasMaxLength(50)
-                .HasColumnName("method_name");
-            entity.Property(e => e.UpdatedAt)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime")
-                .HasColumnName("updated_at");
-        });
-
-        modelBuilder.Entity<PaymentPaymentStatus>(entity =>
-        {
-            entity.HasKey(e => e.PaymentPaymentStatusId).HasName("PK__PaymentP__D2C8DF9D0305C39A");
-
-            entity.ToTable("PaymentPaymentStatus");
-
-            entity.HasIndex(e => new { e.PaymentId, e.PaymentStatusId }, "UC_PaymentPaymentStatus").IsUnique();
-
-            entity.Property(e => e.PaymentPaymentStatusId).HasColumnName("payment_payment_status_id");
-            entity.Property(e => e.PaymentId).HasColumnName("payment_id");
-            entity.Property(e => e.PaymentStatusId).HasColumnName("payment_status_id");
-
-            entity.HasOne(d => d.Payment).WithMany(p => p.PaymentPaymentStatuses)
-                .HasForeignKey(d => d.PaymentId)
-                .HasConstraintName("FK__PaymentPa__payme__40058253");
-
-            entity.HasOne(d => d.PaymentStatus).WithMany(p => p.PaymentPaymentStatuses)
-                .HasForeignKey(d => d.PaymentStatusId)
-                .HasConstraintName("FK__PaymentPa__payme__40F9A68C");
-        });
-
-        modelBuilder.Entity<PaymentStatus>(entity =>
-        {
-            entity.HasKey(e => e.PaymentStatusId).HasName("PK__PaymentS__E6BF5015439E3022");
-
-            entity.ToTable("PaymentStatus");
-
-            entity.HasIndex(e => e.PaymentStatusName, "UQ__PaymentS__C28365FAEE211E22").IsUnique();
-
-            entity.Property(e => e.PaymentStatusId).HasColumnName("payment_status_id");
-            entity.Property(e => e.PaymentStatusName)
-                .HasMaxLength(50)
-                .HasColumnName("payment_status_name");
-        });
+   
 
         modelBuilder.Entity<Province>(entity =>
         {
@@ -805,6 +741,9 @@ public partial class CinemaDbContext : DbContext
             entity.Property(e => e.TicketCode)
                 .HasMaxLength(20)
                 .HasColumnName("ticket_code");
+            entity.Property(e => e.TicketStatus)
+             .HasMaxLength(20)
+             .HasColumnName("ticket_status");
             entity.Property(e => e.UpdatedAt)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")
@@ -825,40 +764,7 @@ public partial class CinemaDbContext : DbContext
                 .HasConstraintName("FK__Ticket__showtime__498EEC8D");
         });
 
-        modelBuilder.Entity<TicketStatus>(entity =>
-        {
-            entity.HasKey(e => e.TicketStatusId).HasName("PK__TicketSt__FB188BC17AC7325E");
 
-            entity.ToTable("TicketStatus");
-
-            entity.HasIndex(e => e.TicketStatusName, "UQ__TicketSt__9A757176A254553F").IsUnique();
-
-            entity.Property(e => e.TicketStatusId).HasColumnName("ticket_status_id");
-            entity.Property(e => e.TicketStatusName)
-                .HasMaxLength(50)
-                .HasColumnName("ticket_status_name");
-        });
-
-        modelBuilder.Entity<TicketTicketStatus>(entity =>
-        {
-            entity.HasKey(e => e.TicketTicketStatusId).HasName("PK__TicketTi__8341A40D5A1C1C38");
-
-            entity.ToTable("TicketTicketStatus");
-
-            entity.HasIndex(e => new { e.TicketId, e.TicketStatusId }, "UC_TicketTicketStatus").IsUnique();
-
-            entity.Property(e => e.TicketTicketStatusId).HasColumnName("ticket_ticket_status_id");
-            entity.Property(e => e.TicketId).HasColumnName("ticket_id");
-            entity.Property(e => e.TicketStatusId).HasColumnName("ticket_status_id");
-
-            entity.HasOne(d => d.Ticket).WithMany(p => p.TicketTicketStatuses)
-                .HasForeignKey(d => d.TicketId)
-                .HasConstraintName("FK__TicketTic__ticke__503BEA1C");
-
-            entity.HasOne(d => d.TicketStatus).WithMany(p => p.TicketTicketStatuses)
-                .HasForeignKey(d => d.TicketStatusId)
-                .HasConstraintName("FK__TicketTic__ticke__51300E55");
-        });
 
         modelBuilder.Entity<User>(entity =>
         {

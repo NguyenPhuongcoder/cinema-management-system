@@ -1,0 +1,91 @@
+@model QUANLYRAPCHIEUPHHIM.Models.Ticket
+@{
+    ViewData["Title"] = "Create Ticket";
+    Layout = "_AdminLayout";
+}
+
+<div class="container-fluid">
+    <h1 class="h3 mb-4 text-gray-800">Create New Ticket</h1>
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Ticket Information</h6>
+        </div>
+        <div class="card-body">
+            <form asp-action="CreateTicket" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group">
+                    <label asp-for="BookingId" class="control-label">Booking</label>
+                    <select asp-for="BookingId" class="form-control" required>
+                        <option value="">Select Booking</option>
+                        @foreach (var booking in ViewBag.Bookings)
+                        {
+                            <option value="@booking.BookingId">Booking #@booking.BookingId - @booking.BookingDate.ToString("dd/MM/yyyy HH:mm")</option>
+                        }
+                    </select>
+                    <span asp-validation-for="BookingId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="ShowtimeId" class="control-label">Showtime</label>
+                    <select asp-for="ShowtimeId" class="form-control" required>
+                        <option value="">Select Showtime</option>
+                        @foreach (var showtime in ViewBag.Showtimes)
+                        {
+                            <option value="@showtime.ShowtimeId">
+                                @showtime.Movie?.Title - @showtime.StartTime.ToString("dd/MM/yyyy HH:mm") - Room: @showtime.Room?.RoomName
+                            </option>
+                        }
+                    </select>
+                    <span asp-validation-for="ShowtimeId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="SeatId" class="control-label">Seat</label>
+                    <select asp-for="SeatId" class="form-control" required>
+                        <option value="">Select Seat</option>
+                        @foreach (var seat in ViewBag.Seats)
+                        {
+                            <option value="@seat.SeatId">@seat.SeatNumber</option>
+                        }
+                    </select>
+                    <span asp-validation-for="SeatId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Price" class="control-label">Price</label>
+                    <input asp-for="Price" class="form-control" type="number" step="0.01" required />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="TicketStatus" class="control-label">Ticket Status</label>
+                    <select asp-for="TicketStatus" class="form-control" required>
+                        <option value="">Select Status</option>
+                        @foreach (var status in ViewBag.TicketStatuses)
+                        {
+                            <option value="@status">@status</option>
+                        }
+                    </select>
+                    <span asp-validation-for="TicketStatus" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="ScanDatetime" class="control-label">Scan Date/Time</label>
+                    <input asp-for="ScanDatetime" class="form-control" type="datetime-local" />
+                    <span asp-validation-for="ScanDatetime" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mt-4">
+                    <button type="submit" class="btn btn-primary">Create</button>
+                    <a asp-action="Tickets" class="btn btn-secondary">Back to List</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+} 

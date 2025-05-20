@@ -5,6 +5,7 @@ namespace QUANLYRAPCHIEUPHHIM.Models;
 
 public partial class BookingStatus
 {
+
     public int BookingStatusId { get; set; }
 
     public string BookingStatusName { get; set; } = null!;

@@ -112,14 +112,16 @@ namespace QUANLYRAPCHIEUPHHIM.Controllers
                 model.Password = HashPassword(model.Password);
                 model.CreatedAt = DateTime.Now;
 
+                _context.Users.Add(model);
+                await _context.SaveChangesAsync();
+
                 // Add user role
                 var userRole = new UserRole
                 {
-                    User = model,
-                    RoleId = 1 // Assuming 3 is the ID for "User" role
+                    UserId = model.UserId,
+                    RoleId = 1 // Assuming 1 is the ID for "User" role
                 };
 
-                _context.Users.Add(model);
                 _context.UserRoles.Add(userRole);
                 await _context.SaveChangesAsync();
 
