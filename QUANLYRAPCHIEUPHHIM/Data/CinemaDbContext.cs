@@ -757,7 +757,7 @@ public partial class CinemaDbcontext : DbContext
                 .HasColumnType("datetime")
                 .HasColumnName("created_at");
             entity.Property(e => e.Price)
-                .HasColumnType("decimal(8, 2)")
+                .HasColumnType("decimal(18, 2)")
                 .HasColumnName("price");
             entity.Property(e => e.ScanDatetime)
                 .HasColumnType("datetime")
@@ -767,7 +767,7 @@ public partial class CinemaDbcontext : DbContext
             entity.Property(e => e.TicketCode)
                 .HasMaxLength(20)
                 .HasColumnName("ticket_code");
-            entity.Property(e => e.TicketStatus).HasMaxLength(40);
+            entity.Property(e => e.TicketStatus).HasMaxLength(40).HasColumnName("ticket_status");
             entity.Property(e => e.UpdatedAt)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")
