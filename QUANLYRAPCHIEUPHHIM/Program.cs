@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using QUANLYRAPCHIEUPHHIM.Data;
+using QUANLYRAPCHIEUPHHIM.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,11 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddApplicationInsightsTelemetry();
 builder.Services.AddDbContext<CinemaDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// Register services
+builder.Services.AddScoped<IMovieService, MovieService>();
+builder.Services.AddScoped<ITicketService, TicketService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

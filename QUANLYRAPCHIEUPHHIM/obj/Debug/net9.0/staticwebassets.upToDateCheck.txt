@@ -62,6 +62,9 @@ E:\LaptrinhC#\Cuoi_ky\QUANLYRAPCHIEUPHHIM\wwwroot\lib\bootstrap\dist\js\bootstra
 E:\LaptrinhC#\Cuoi_ky\QUANLYRAPCHIEUPHHIM\wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.js
 wwwroot\css\site.css
 wwwroot\favicon.ico
+wwwroot\Images\avatar.jpg
+wwwroot\Images\inception.jpg
+wwwroot\Images\titanic.jpg
 wwwroot\js\site.js
 wwwroot\lib\bootstrap\dist\css\bootstrap.css
 wwwroot\lib\bootstrap\dist\css\bootstrap.css.map

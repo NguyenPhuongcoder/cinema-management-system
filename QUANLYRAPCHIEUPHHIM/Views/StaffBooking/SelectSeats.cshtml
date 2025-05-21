@@ -8,7 +8,7 @@
         <div class="card-header bg-primary text-white">
             <div class="d-flex justify-content-between align-items-center">
                 <h4 class="mb-0">Chọn ghế</h4>
-                <a asp-controller="StaffBooking" asp-action="SelectShowtime" asp-route-movieId="1" class="btn btn-sm btn-light">
+                <a asp-controller="StaffBooking" asp-action="SelectShowtime" asp-route-movieId="@ViewBag.Showtime?.Movie?.MovieId" class="btn btn-sm btn-light">
                     <i class="fas fa-arrow-left"></i> Quay lại
                 </a>
             </div>
@@ -19,10 +19,17 @@
                 <div class="col-md-12">
                     <div class="alert alert-info">
                         <h5>Thông tin suất chiếu</h5>
-                        <p class="mb-1"><strong>Phim:</strong> Avengers: Endgame</p>
-                        <p class="mb-1"><strong>Rạp:</strong> CGV Vincom Center Bà Triệu - Screen 1</p>
-                        <p class="mb-1"><strong>Suất chiếu:</strong> 26/11/2023 - 20:15</p>
-                        <p class="mb-0"><strong>Định dạng:</strong> 2D</p>
+                        @if (ViewBag.Showtime != null)
+                        {
+                            <p class="mb-1"><strong>Phim:</strong> @ViewBag.Showtime.Movie?.Title</p>
+                            <p class="mb-1"><strong>Rạp:</strong> @ViewBag.Showtime.Room?.Cinema?.Name - @ViewBag.Showtime.Room?.Name</p>
+                            <p class="mb-1"><strong>Suất chiếu:</strong> @ViewBag.Showtime.StartTime.ToString("dd/MM/yyyy - HH:mm")</p>
+                            <p class="mb-0"><strong>Định dạng:</strong> @ViewBag.Showtime.Room?.Format?.Name</p>
+                        }
+                        else
+                        {
+                            <p class="text-danger">Không có thông tin suất chiếu. Vui lòng quay lại và chọn lại suất chiếu.</p>
+                        }
                     </div>
                 </div>
             </div>
@@ -46,96 +53,34 @@
 
                 <!-- Các hàng ghế -->
                 <div class="seat-container">
-                    <!-- Hàng A -->
-                    <div class="seat-row">
-                        <div class="row-label">A</div>
-                        <div class="seats">
-                            <div class="seat available" data-seat="A1">A1</div>
-                            <div class="seat available" data-seat="A2">A2</div>
-                            <div class="seat available" data-seat="A3">A3</div>
-                            <div class="seat available" data-seat="A4">A4</div>
-                            <div class="seat available" data-seat="A5">A5</div>
-                            <div class="seat available" data-seat="A6">A6</div>
-                            <div class="seat available" data-seat="A7">A7</div>
-                            <div class="seat available" data-seat="A8">A8</div>
-                            <div class="seat available" data-seat="A9">A9</div>
-                            <div class="seat available" data-seat="A10">A10</div>
-                            <div class="seat available" data-seat="A11">A11</div>
-                            <div class="seat available" data-seat="A12">A12</div>
-                        </div>
-                    </div>
-
-                    <!-- Hàng B -->
-                    <div class="seat-row">
-                        <div class="row-label">B</div>
-                        <div class="seats">
-                            <div class="seat available" data-seat="B1">B1</div>
-                            <div class="seat available" data-seat="B2">B2</div>
-                            <div class="seat available" data-seat="B3">B3</div>
-                            <div class="seat available" data-seat="B4">B4</div>
-                            <div class="seat available" data-seat="B5">B5</div>
-                            <div class="seat booked" data-seat="B6">B6</div>
-                            <div class="seat booked" data-seat="B7">B7</div>
-                            <div class="seat available" data-seat="B8">B8</div>
-                            <div class="seat available" data-seat="B9">B9</div>
-                            <div class="seat available" data-seat="B10">B10</div>
-                            <div class="seat available" data-seat="B11">B11</div>
-                            <div class="seat available" data-seat="B12">B12</div>
-                        </div>
-                    </div>
-
-                    <!-- Hàng C - Ghế VIP -->
-                    <div class="seat-row">
-                        <div class="row-label">C</div>
-                        <div class="seats">
-                            <div class="seat available vip" data-seat="C1">C1</div>
-                            <div class="seat available vip" data-seat="C2">C2</div>
-                            <div class="seat available vip" data-seat="C3">C3</div>
-                            <div class="seat available vip" data-seat="C4">C4</div>
-                            <div class="seat available vip" data-seat="C5">C5</div>
-                            <div class="seat available vip" data-seat="C6">C6</div>
-                            <div class="seat available vip" data-seat="C7">C7</div>
-                            <div class="seat available vip" data-seat="C8">C8</div>
-                            <div class="seat available vip" data-seat="C9">C9</div>
-                            <div class="seat available vip" data-seat="C10">C10</div>
-                            <div class="seat available vip" data-seat="C11">C11</div>
-                            <div class="seat available vip" data-seat="C12">C12</div>
-                        </div>
-                    </div>
-
-                    <!-- Hàng D - Ghế VIP -->
-                    <div class="seat-row">
-                        <div class="row-label">D</div>
-                        <div class="seats">
-                            <div class="seat available vip" data-seat="D1">D1</div>
-                            <div class="seat available vip" data-seat="D2">D2</div>
-                            <div class="seat booked vip" data-seat="D3">D3</div>
-                            <div class="seat booked vip" data-seat="D4">D4</div>
-                            <div class="seat available vip" data-seat="D5">D5</div>
-                            <div class="seat available vip" data-seat="D6">D6</div>
-                            <div class="seat available vip" data-seat="D7">D7</div>
-                            <div class="seat available vip" data-seat="D8">D8</div>
-                            <div class="seat available vip" data-seat="D9">D9</div>
-                            <div class="seat available vip" data-seat="D10">D10</div>
-                            <div class="seat available vip" data-seat="D11">D11</div>
-                            <div class="seat available vip" data-seat="D12">D12</div>
-                        </div>
-                    </div>
-
-                    <!-- Hàng E - Ghế đôi -->
-                    <div class="seat-row">
-                        <div class="row-label">E</div>
-                        <div class="seats">
-                            <div class="seat available" data-seat="E1">E1</div>
-                            <div class="seat available" data-seat="E2">E2</div>
-                            <div class="seat available couple" data-seat="E3-E4">E3-E4</div>
-                            <div class="seat available couple" data-seat="E5-E6">E5-E6</div>
-                            <div class="seat available couple" data-seat="E7-E8">E7-E8</div>
-                            <div class="seat available couple" data-seat="E9-E10">E9-E10</div>
-                            <div class="seat available" data-seat="E11">E11</div>
-                            <div class="seat available" data-seat="E12">E12</div>
-                        </div>
-                    </div>
+                    @{
+                        var seats = ViewBag.RoomSeats as List<Seat>;
+                        var bookedSeats = ViewBag.BookedSeats as List<int>;
+                        var grouped = seats?.OrderBy(s => s.RowLetter).ThenBy(s => s.SeatNumber)
+                            .GroupBy(s => s.RowLetter);
+                    }
+                    @if (grouped != null)
+                    {
+                        foreach (var row in grouped)
+                        {
+                            <div class="seat-row">
+                                <div class="row-label">@row.Key</div>
+                                <div class="seats">
+                                    @foreach (var seat in row)
+                                    {
+                                        var isBooked = bookedSeats?.Contains(seat.SeatId) ?? false;
+                                        var seatClass = "seat available";
+                                        if (isBooked) seatClass = "seat booked";
+                                        if (seat.SeatType?.TypeName.Contains("VIP") == true) seatClass += " vip";
+                                        if (seat.SeatType?.TypeName.Contains("Đôi") == true) seatClass += " couple";
+                                        <div class="@seatClass" data-seat-id="@seat.SeatId" data-seat-position="@(seat.RowLetter + seat.SeatNumber)">
+                                            @(seat.RowLetter + seat.SeatNumber)
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        }
+                    }
                 </div>
             </div>
 
@@ -147,7 +92,11 @@
                             <h5 class="mb-0">Thông tin đặt ghế</h5>
                         </div>
                         <div class="card-body">
-                            <p><strong>Ghế đã chọn:</strong> <span id="selectedSeats">Chưa chọn ghế</span></p>
+                            <p><strong>Ghế đã chọn:</strong>
+                                <span id="selectedSeats">Chưa chọn ghế</span>
+                                <button id="clearSeats" class="btn btn-sm btn-outline-danger ms-2" style="display:none;">Xóa tất cả</button>
+                            </p>
+                            <ul id="selectedSeatList" class="list-inline"></ul>
                             <p><strong>Số lượng:</strong> <span id="seatCount">0</span></p>
                             <p><strong>Tổng tiền:</strong> <span id="totalPrice">0</span> VND</p>
                             <button id="btnContinue" class="btn btn-primary" disabled>Tiếp tục</button>
@@ -160,9 +109,9 @@
                             <h5 class="mb-0">Bảng giá</h5>
                         </div>
                         <div class="card-body">
-                            <p><strong>Ghế thường:</strong> 90.000 VND</p>
-                            <p><strong>Ghế VIP:</strong> 120.000 VND</p>
-                            <p><strong>Ghế đôi:</strong> 200.000 VND</p>
+                            <p><strong>Ghế thường:</strong> @ViewBag.BasePrice.ToString("N0") VND</p>
+                            <p><strong>Ghế VIP:</strong> @((ViewBag.BasePrice + 30000).ToString("N0")) VND</p>
+                            <p><strong>Ghế đôi:</strong> @((ViewBag.BasePrice * 2).ToString("N0")) VND</p>
                             <p class="text-muted small">Giá vé có thể thay đổi theo từng suất chiếu</p>
                         </div>
                     </div>
@@ -265,61 +214,96 @@
 @section Scripts {
     <script>
         $(document).ready(function() {
-            const regularPrice = 90000;
-            const vipPrice = 120000;
-            const couplePrice = 200000;
+            const regularPrice = @(ViewBag.BasePrice ?? 0);
+            const vipPrice = @((ViewBag.BasePrice ?? 0) + 30000);
+            const couplePrice = @((ViewBag.BasePrice ?? 0) * 2);
             let selectedSeats = [];
             
             // Xử lý chọn ghế
             $('.seat.available').click(function() {
-                let seatId = $(this).data('seat');
+                let seatId = $(this).data('seat-id');
+                let seatPosition = $(this).data('seat-position');
                 
                 if ($(this).hasClass('selected')) {
                     // Bỏ chọn ghế
                     $(this).removeClass('selected');
-                    selectedSeats = selectedSeats.filter(seat => seat !== seatId);
+                    selectedSeats = selectedSeats.filter(seat => seat.id !== seatId);
                 } else {
                     // Chọn ghế
                     $(this).addClass('selected');
-                    selectedSeats.push(seatId);
+                    selectedSeats.push({ id: seatId, position: seatPosition });
                 }
                 
                 updateBookingInfo();
             });
             
-            // Cập nhật thông tin đặt ghế
-            function updateBookingInfo() {
-                let totalPrice = 0;
-                
-                // Tính tổng tiền
-                selectedSeats.forEach(seatId => {
-                    if ($(`[data-seat="${seatId}"]`).hasClass('vip')) {
-                        totalPrice += vipPrice;
-                    } else if ($(`[data-seat="${seatId}"]`).hasClass('couple')) {
-                        totalPrice += couplePrice;
-                    } else {
-                        totalPrice += regularPrice;
-                    }
+            // Xóa tất cả ghế đã chọn
+            $('#clearSeats').click(function() {
+                selectedSeats.forEach(seat => {
+                    $(`.seat[data-seat-id="${seat.id}"]`).removeClass('selected');
                 });
-                
-                // Hiển thị thông tin
+                selectedSeats = [];
+                updateBookingInfo();
+            });
+            
+            // Xóa từng ghế đã chọn
+            $('#selectedSeatList').on('click', '.remove-seat', function() {
+                let seatId = $(this).data('seat-id');
+                $(`.seat[data-seat-id="${seatId}"]`).removeClass('selected');
+                selectedSeats = selectedSeats.filter(seat => seat.id !== seatId);
+                updateBookingInfo();
+            });
+            
+            // Cập nhật thông tin đặt chỗ
+            function updateBookingInfo() {
                 if (selectedSeats.length > 0) {
-                    $('#selectedSeats').text(selectedSeats.join(', '));
-                    $('#btnContinue').prop('disabled', false);
+                    $('#selectedSeats').text(selectedSeats.length + ' ghế');
+                    $('#clearSeats').show();
+                    
+                    let html = '';
+                    selectedSeats.forEach(seat => {
+                        html += `<li class="list-inline-item">
+                            <span class="badge bg-warning text-dark">
+                                ${seat.position}
+                                <button type="button" class="btn-close btn-close-white ms-1 remove-seat" 
+                                        data-seat-id="${seat.id}" aria-label="Close"></button>
+                            </span>
+                        </li>`;
+                    });
+                    $('#selectedSeatList').html(html);
                 } else {
                     $('#selectedSeats').text('Chưa chọn ghế');
-                    $('#btnContinue').prop('disabled', true);
+                    $('#clearSeats').hide();
+                    $('#selectedSeatList').empty();
                 }
                 
                 $('#seatCount').text(selectedSeats.length);
-                $('#totalPrice').text(totalPrice.toLocaleString('vi-VN'));
+                
+                // Tính tổng tiền
+                let total = 0;
+                selectedSeats.forEach(seat => {
+                    let seatElement = $(`.seat[data-seat-id="${seat.id}"]`);
+                    if (seatElement.hasClass('vip')) {
+                        total += vipPrice;
+                    } else if (seatElement.hasClass('couple')) {
+                        total += couplePrice;
+                    } else {
+                        total += regularPrice;
+                    }
+                });
+                $('#totalPrice').text(total.toLocaleString());
+                
+                // Kích hoạt/vô hiệu hóa nút tiếp tục
+                $('#btnContinue').prop('disabled', selectedSeats.length === 0);
             }
             
             // Xử lý nút tiếp tục
             $('#btnContinue').click(function() {
-                let seatParams = selectedSeats.join(',');
-                window.location.href = `/StaffBooking/Checkout?seatIds=${seatParams}&showtimeId=1`;
+                if (selectedSeats.length > 0) {
+                    let seatIds = selectedSeats.map(seat => seat.id);
+                    window.location.href = '@Url.Action("Checkout", "StaffBooking")?showtimeId=@ViewBag.Showtime?.ShowtimeId&seatIds=' + seatIds.join(',');
+                }
             });
         });
     </script>
-} 
+}

@@ -1,13 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace QUANLYRAPCHIEUPHHIM.Models;
 
-public partial class Role
+public class Role
 {
+    [Key]
     public int RoleId { get; set; }
 
-    public string RoleName { get; set; } = null!;
+    [Required]
+    [StringLength(50)]
+    public string RoleName { get; set; }
 
-    public virtual ICollection<UserRole> UserRoles { get; set; } = new List<UserRole>();
+    // Navigation properties
+    public ICollection<UserRole> UserRoles { get; set; } = new List<UserRole>();
 }

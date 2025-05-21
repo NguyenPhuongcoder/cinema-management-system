@@ -1,0 +1,238 @@
+@{
+    ViewData["Title"] = "Quản lý vé";
+    Layout = "_Layout";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <div class="d-flex justify-content-between align-items-center">
+                <h4 class="mb-0">Quản lý vé</h4>
+                <a asp-controller="StaffBooking" asp-action="Index" class="btn btn-sm btn-light">
+                    <i class="fas fa-home"></i> Trang chủ
+                </a>
+            </div>
+        </div>
+        <div class="card-body">
+            <!-- Tìm kiếm -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <form id="searchForm" method="get" class="row g-3">
+                        <div class="col-md-3">
+                            <label for="movieTitle" class="form-label">Tên phim</label>
+                            <input type="text" class="form-control" id="movieTitle" name="movieTitle" value="@ViewBag.MovieTitle">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="cinemaName" class="form-label">Rạp chiếu</label>
+                            <input type="text" class="form-control" id="cinemaName" name="cinemaName" value="@ViewBag.CinemaName">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="status" class="form-label">Trạng thái</label>
+                            <select class="form-select" id="status" name="status">
+                                <option value="">Tất cả</option>
+                                <option value="confirmed" selected="@(ViewBag.Status == "confirmed")">Đã xác nhận</option>
+                                <option value="cancelled" selected="@(ViewBag.Status == "cancelled")">Đã hủy</option>
+                                <option value="completed" selected="@(ViewBag.Status == "completed")">Đã hoàn thành</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="paymentMethod" class="form-label">Phương thức thanh toán</label>
+                            <select class="form-select" id="paymentMethod" name="paymentMethod">
+                                <option value="">Tất cả</option>
+                                <option value="cash" selected="@(ViewBag.PaymentMethod == "cash")">Tiền mặt</option>
+                                <option value="card" selected="@(ViewBag.PaymentMethod == "card")">Thẻ</option>
+                                <option value="transfer" selected="@(ViewBag.PaymentMethod == "transfer")">Chuyển khoản</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="startDate" class="form-label">Từ ngày</label>
+                            <input type="date" class="form-control" id="startDate" name="startDate" value="@ViewBag.StartDate">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="endDate" class="form-label">Đến ngày</label>
+                            <input type="date" class="form-control" id="endDate" name="endDate" value="@ViewBag.EndDate">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="minAmount" class="form-label">Giá từ</label>
+                            <input type="number" class="form-control" id="minAmount" name="minAmount" value="@ViewBag.MinAmount">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="maxAmount" class="form-label">Giá đến</label>
+                            <input type="number" class="form-control" id="maxAmount" name="maxAmount" value="@ViewBag.MaxAmount">
+                        </div>
+                        <div class="col-md-12 d-flex align-items-end">
+                            <button type="submit" class="btn btn-primary me-2">
+                                <i class="fas fa-search"></i> Tìm kiếm
+                            </button>
+                            <button type="button" class="btn btn-secondary" onclick="resetSearch()">
+                                <i class="fas fa-redo"></i> Đặt lại
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Danh sách vé -->
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Mã vé</th>
+                            <th>Phim</th>
+                            <th>Rạp chiếu</th>
+                            <th>Suất chiếu</th>
+                            <th>Ghế</th>
+                            <th>Khách hàng</th>
+                            <th>Tổng tiền</th>
+                            <th>Trạng thái</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (ViewBag.Tickets != null)
+                        {
+                            foreach (var ticket in ViewBag.Tickets)
+                            {
+                                <tr>
+                                    <td>@ticket.TicketId</td>
+                                    <td>@ticket.Showtime?.Movie?.Title</td>
+                                    <td>@ticket.Showtime?.Room?.Cinema?.Name</td>
+                                    <td>@(ticket.Showtime?.StartTime.ToString("dd/MM/yyyy HH:mm") ?? "N/A")</td>
+                                    <td>
+                                        @{
+                                            var seatList = new List<string>();
+                                            if (ticket.TicketSeats != null)
+                                            {
+                                                foreach (var ts in ticket.TicketSeats)
+                                                {
+                                                    if (ts.Seat != null)
+                                                    {
+                                                        seatList.Add(ts.Seat.RowLetter + ts.Seat.SeatNumber);
+                                                    }
+                                                }
+                                            }
+                                            @string.Join(", ", seatList)
+                                        }
+                                    </td>
+                                    <td>
+                                        @ticket.Booking?.User?.FullName<br>
+                                        <small class="text-muted">@ticket.Booking?.User?.Phone</small>
+                                    </td>
+                                    <td>@ticket.Payment?.Amount.ToString("N0") VND</td>
+                                    <td>
+                                        @{
+                                            var currentStatus = ticket.TicketTicketStatuses?.OrderByDescending(tts => tts.CreatedAt).FirstOrDefault()?.TicketStatus?.Name;
+                                            switch (currentStatus)
+                                            {
+                                                case "confirmed":
+                                                    <span class="badge bg-success">Đã xác nhận</span>
+                                                    break;
+                                                case "cancelled":
+                                                    <span class="badge bg-danger">Đã hủy</span>
+                                                    break;
+                                                case "completed":
+                                                    <span class="badge bg-primary">Đã hoàn thành</span>
+                                                    break;
+                                                default:
+                                                    <span class="badge bg-secondary">Không xác định</span>
+                                                    break;
+                                            }
+                                        }
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-sm btn-info" onclick="viewTicketDetails('@ticket.TicketId')">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        @if (currentStatus == "confirmed")
+                                        {
+                                            <button type="button" class="btn btn-sm btn-danger" onclick="cancelTicket('@ticket.TicketId')">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Phân trang -->
+            @if (ViewBag.TotalPages > 0)
+            {
+                <div class="d-flex justify-content-between align-items-center mt-4">
+                    <div>
+                        Hiển thị @ViewBag.StartRecord - @ViewBag.EndRecord của @ViewBag.TotalRecords vé
+                    </div>
+                    <nav>
+                        <ul class="pagination mb-0">
+                            @for (int i = 1; i <= ViewBag.TotalPages; i++)
+                            {
+                                <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                                    <a class="page-link" href="?page=@i&@ViewBag.QueryString">@i</a>
+                                </li>
+                            }
+                        </ul>
+                    </nav>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<!-- Modal chi tiết vé -->
+<div class="modal fade" id="ticketDetailsModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Chi tiết vé</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" id="ticketDetailsContent">
+                <!-- Nội dung sẽ được load động -->
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function resetSearch() {
+            document.getElementById('movieTitle').value = '';
+            document.getElementById('cinemaName').value = '';
+            document.getElementById('status').value = '';
+            document.getElementById('paymentMethod').value = '';
+            document.getElementById('startDate').value = '';
+            document.getElementById('endDate').value = '';
+            document.getElementById('minAmount').value = '';
+            document.getElementById('maxAmount').value = '';
+            document.getElementById('searchForm').submit();
+        }
+
+        function viewTicketDetails(ticketId) {
+            $.get('/StaffBooking/GetTicketDetails', { ticketId: ticketId }, function(response) {
+                $('#ticketDetailsContent').html(response);
+                $('#ticketDetailsModal').modal('show');
+            }).fail(function(error) {
+                alert('Có lỗi xảy ra khi tải thông tin vé');
+                console.error(error);
+            });
+        }
+
+        function cancelTicket(ticketId) {
+            if (confirm('Bạn có chắc chắn muốn hủy vé này?')) {
+                $.post('/StaffBooking/CancelTicket', { ticketId: ticketId }, function(response) {
+                    if (response.success) {
+                        alert('Hủy vé thành công');
+                        location.reload();
+                    } else {
+                        alert(response.message || 'Có lỗi xảy ra khi hủy vé');
+                    }
+                }).fail(function(error) {
+                    alert('Có lỗi xảy ra khi hủy vé');
+                    console.error(error);
+                });
+            }
+        }
+    </script>
+} 

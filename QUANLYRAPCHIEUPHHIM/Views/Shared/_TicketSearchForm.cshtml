@@ -1,0 +1,54 @@
+@model QUANLYRAPCHIEUPHHIM.Models.ViewModels.TicketSearchViewModel
+
+<div class="card mb-4">
+    <div class="card-body">
+        <form id="searchForm" method="get" class="row g-3">
+            <div class="col-md-3">
+                <label for="ticketCode" class="form-label">Mã vé</label>
+                <input type="text" class="form-control" id="ticketCode" name="ticketCode" value="@Model.TicketCode">
+            </div>
+            <div class="col-md-3">
+                <label for="customerPhone" class="form-label">Số điện thoại</label>
+                <input type="text" class="form-control" id="customerPhone" name="customerPhone" value="@Model.CustomerPhone">
+            </div>
+            <div class="col-md-3">
+                <label for="movieId" class="form-label">Phim</label>
+                <select class="form-select" id="movieId" name="movieId">
+                    <option value="">Tất cả phim</option>
+                    @if (ViewBag.Movies != null)
+                    {
+                        foreach (var movie in ViewBag.Movies)
+                        {
+                            <option value="@movie.MovieId" selected="@(Model.MovieId == movie.MovieId)">@movie.Title</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label for="status" class="form-label">Trạng thái</label>
+                <select class="form-select" id="status" name="status">
+                    <option value="">Tất cả</option>
+                    <option value="confirmed" selected="@(Model.Status == "confirmed")">Đã xác nhận</option>
+                    <option value="cancelled" selected="@(Model.Status == "cancelled")">Đã hủy</option>
+                    <option value="completed" selected="@(Model.Status == "completed")">Đã hoàn thành</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label for="fromDate" class="form-label">Từ ngày</label>
+                <input type="date" class="form-control" id="fromDate" name="fromDate" value="@(Model.FromDate?.ToString("yyyy-MM-dd"))">
+            </div>
+            <div class="col-md-3">
+                <label for="toDate" class="form-label">Đến ngày</label>
+                <input type="date" class="form-control" id="toDate" name="toDate" value="@(Model.ToDate?.ToString("yyyy-MM-dd"))">
+            </div>
+            <div class="col-md-6 d-flex align-items-end">
+                <button type="submit" class="btn btn-primary me-2">
+                    <i class="fas fa-search"></i> Tìm kiếm
+                </button>
+                <button type="button" class="btn btn-secondary" onclick="resetSearch()">
+                    <i class="fas fa-redo"></i> Đặt lại
+                </button>
+            </div>
+        </form>
+    </div>
+</div> 

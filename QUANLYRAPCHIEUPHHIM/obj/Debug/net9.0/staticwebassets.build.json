@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "DROmFaXedojqvbEVD2xMaCdv3jQbaI1MlRT4w4P57Mc=",
+  "Hash": "d0xq7aYGmTZmkKDwBzro+IHVJLFCv8AlM7StQNX18eE=",
   "Source": "QUANLYRAPCHIEUPHHIM",
   "BasePath": "_content/QUANLYRAPCHIEUPHHIM",
   "Mode": "Default",
@@ -1235,12 +1235,12 @@
       "OriginalItemSpec": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
     },
     {
-      "Identity": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\obj\\Debug\\net9.0\\compressed\\wd29avs6lb-b9sayid5wm.gz",
+      "Identity": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\obj\\Debug\\net9.0\\compressed\\wd29avs6lb-rm9ixw3p2k.gz",
       "SourceId": "QUANLYRAPCHIEUPHHIM",
       "SourceType": "Discovered",
       "ContentRoot": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "_content/QUANLYRAPCHIEUPHHIM",
-      "RelativePath": "css/site#[.{fingerprint=b9sayid5wm}]?.css.gz",
+      "RelativePath": "css/site#[.{fingerprint=rm9ixw3p2k}]?.css.gz",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Alternative",
@@ -1249,8 +1249,8 @@
       "RelatedAsset": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\wwwroot\\css\\site.css",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "wf4wcyqcqt",
-      "Integrity": "fNKkLSNFLZMVTc2zVrpMXQqOwPU3sU4GWcfEbCR2V1I=",
+      "Fingerprint": "pmnze0uhuo",
+      "Integrity": "n6/L1Tq0wQKhRJL+9UFWPoRNS0d0GHipJTzJfERclNQ=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\wwwroot\\css\\site.css"
@@ -1417,8 +1417,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "b9sayid5wm",
-      "Integrity": "j6fhJSuuyLpOSLuPJU0TsDV0iNjor5S3rDnvxJrt4bg=",
+      "Fingerprint": "rm9ixw3p2k",
+      "Integrity": "Q7IyV3TKdFMr0QBmCgzDQ0Twu2C2Pg7RXOnnf3i4tzM=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
@@ -1443,6 +1443,69 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\wwwroot\\Images\\avatar.jpg",
+      "SourceId": "QUANLYRAPCHIEUPHHIM",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\wwwroot\\",
+      "BasePath": "_content/QUANLYRAPCHIEUPHHIM",
+      "RelativePath": "Images/avatar#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "oyjxcg3a93",
+      "Integrity": "sKBpkMXgBheXhs9oV6zp5CuHiOO8ZAGGifZjMtkNaRc=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\avatar.jpg"
+    },
+    {
+      "Identity": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\wwwroot\\Images\\inception.jpg",
+      "SourceId": "QUANLYRAPCHIEUPHHIM",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\wwwroot\\",
+      "BasePath": "_content/QUANLYRAPCHIEUPHHIM",
+      "RelativePath": "Images/inception#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "af4n62hc5o",
+      "Integrity": "JpQPt5olo2E8812SEWxPqLQfhs55KwATe87xxi8mMmQ=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\inception.jpg"
+    },
+    {
+      "Identity": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\wwwroot\\Images\\titanic.jpg",
+      "SourceId": "QUANLYRAPCHIEUPHHIM",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\wwwroot\\",
+      "BasePath": "_content/QUANLYRAPCHIEUPHHIM",
+      "RelativePath": "Images/titanic#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "89xbliz5lk",
+      "Integrity": "HKrNDbvvp6piEzDjJNT38yeys24TECc4R6Ej1zPPI58=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\titanic.jpg"
     },
     {
       "Identity": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\wwwroot\\js\\site.js",
@@ -2728,13 +2791,13 @@
   ],
   "Endpoints": [
     {
-      "Route": "css/site.b9sayid5wm.css",
-      "AssetFile": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\obj\\Debug\\net9.0\\compressed\\wd29avs6lb-b9sayid5wm.gz",
+      "Route": "css/site.css",
+      "AssetFile": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\obj\\Debug\\net9.0\\compressed\\wd29avs6lb-rm9ixw3p2k.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.003125000000"
+          "Quality": "0.001506024096"
         }
       ],
       "ResponseHeaders": [
@@ -2744,19 +2807,19 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "319"
+          "Value": "663"
         },
         {
           "Name": "ETag",
-          "Value": "\"fNKkLSNFLZMVTc2zVrpMXQqOwPU3sU4GWcfEbCR2V1I=\""
+          "Value": "\"n6/L1Tq0wQKhRJL+9UFWPoRNS0d0GHipJTzJfERclNQ=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 11 May 2025 07:10:18 GMT"
+          "Value": "Sun, 18 May 2025 15:40:45 GMT"
         },
         {
           "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
+          "Value": "no-cache"
         },
         {
           "Name": "Content-Encoding",
@@ -2772,26 +2835,18 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"j6fhJSuuyLpOSLuPJU0TsDV0iNjor5S3rDnvxJrt4bg=\""
+          "Value": "W/\"Q7IyV3TKdFMr0QBmCgzDQ0Twu2C2Pg7RXOnnf3i4tzM=\""
         }
       ],
       "EndpointProperties": [
         {
-          "Name": "fingerprint",
-          "Value": "b9sayid5wm"
-        },
-        {
-          "Name": "label",
-          "Value": "css/site.css"
-        },
-        {
           "Name": "integrity",
-          "Value": "sha256-j6fhJSuuyLpOSLuPJU0TsDV0iNjor5S3rDnvxJrt4bg="
+          "Value": "sha256-Q7IyV3TKdFMr0QBmCgzDQ0Twu2C2Pg7RXOnnf3i4tzM="
         }
       ]
     },
     {
-      "Route": "css/site.b9sayid5wm.css",
+      "Route": "css/site.css",
       "AssetFile": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\wwwroot\\css\\site.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -2801,7 +2856,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "667"
+          "Value": "1601"
         },
         {
           "Name": "Content-Type",
@@ -2809,11 +2864,156 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"j6fhJSuuyLpOSLuPJU0TsDV0iNjor5S3rDnvxJrt4bg=\""
+          "Value": "\"Q7IyV3TKdFMr0QBmCgzDQ0Twu2C2Pg7RXOnnf3i4tzM=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 11 May 2025 07:10:18 GMT"
+          "Value": "Sun, 18 May 2025 15:40:45 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Q7IyV3TKdFMr0QBmCgzDQ0Twu2C2Pg7RXOnnf3i4tzM="
+        }
+      ]
+    },
+    {
+      "Route": "css/site.css.gz",
+      "AssetFile": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\obj\\Debug\\net9.0\\compressed\\wd29avs6lb-rm9ixw3p2k.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "663"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"n6/L1Tq0wQKhRJL+9UFWPoRNS0d0GHipJTzJfERclNQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 18 May 2025 15:40:45 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-n6/L1Tq0wQKhRJL+9UFWPoRNS0d0GHipJTzJfERclNQ="
+        }
+      ]
+    },
+    {
+      "Route": "css/site.rm9ixw3p2k.css",
+      "AssetFile": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\obj\\Debug\\net9.0\\compressed\\wd29avs6lb-rm9ixw3p2k.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001506024096"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "663"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"n6/L1Tq0wQKhRJL+9UFWPoRNS0d0GHipJTzJfERclNQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 18 May 2025 15:40:45 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"Q7IyV3TKdFMr0QBmCgzDQ0Twu2C2Pg7RXOnnf3i4tzM=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "rm9ixw3p2k"
+        },
+        {
+          "Name": "label",
+          "Value": "css/site.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Q7IyV3TKdFMr0QBmCgzDQ0Twu2C2Pg7RXOnnf3i4tzM="
+        }
+      ]
+    },
+    {
+      "Route": "css/site.rm9ixw3p2k.css",
+      "AssetFile": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\wwwroot\\css\\site.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1601"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Q7IyV3TKdFMr0QBmCgzDQ0Twu2C2Pg7RXOnnf3i4tzM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 18 May 2025 15:40:45 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2823,7 +3023,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "b9sayid5wm"
+          "Value": "rm9ixw3p2k"
         },
         {
           "Name": "label",
@@ -2831,13 +3031,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-j6fhJSuuyLpOSLuPJU0TsDV0iNjor5S3rDnvxJrt4bg="
+          "Value": "sha256-Q7IyV3TKdFMr0QBmCgzDQ0Twu2C2Pg7RXOnnf3i4tzM="
         }
       ]
     },
     {
-      "Route": "css/site.b9sayid5wm.css.gz",
-      "AssetFile": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\obj\\Debug\\net9.0\\compressed\\wd29avs6lb-b9sayid5wm.gz",
+      "Route": "css/site.rm9ixw3p2k.css.gz",
+      "AssetFile": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\obj\\Debug\\net9.0\\compressed\\wd29avs6lb-rm9ixw3p2k.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2846,7 +3046,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "319"
+          "Value": "663"
         },
         {
           "Name": "Content-Type",
@@ -2854,11 +3054,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"fNKkLSNFLZMVTc2zVrpMXQqOwPU3sU4GWcfEbCR2V1I=\""
+          "Value": "\"n6/L1Tq0wQKhRJL+9UFWPoRNS0d0GHipJTzJfERclNQ=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 11 May 2025 07:10:18 GMT"
+          "Value": "Sun, 18 May 2025 15:40:45 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2876,7 +3076,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "b9sayid5wm"
+          "Value": "rm9ixw3p2k"
         },
         {
           "Name": "label",
@@ -2884,144 +3084,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-fNKkLSNFLZMVTc2zVrpMXQqOwPU3sU4GWcfEbCR2V1I="
-        }
-      ]
-    },
-    {
-      "Route": "css/site.css",
-      "AssetFile": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\obj\\Debug\\net9.0\\compressed\\wd29avs6lb-b9sayid5wm.gz",
-      "Selectors": [
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip",
-          "Quality": "0.003125000000"
-        }
-      ],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "319"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"fNKkLSNFLZMVTc2zVrpMXQqOwPU3sU4GWcfEbCR2V1I=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sun, 11 May 2025 07:10:18 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "W/\"j6fhJSuuyLpOSLuPJU0TsDV0iNjor5S3rDnvxJrt4bg=\""
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-j6fhJSuuyLpOSLuPJU0TsDV0iNjor5S3rDnvxJrt4bg="
-        }
-      ]
-    },
-    {
-      "Route": "css/site.css",
-      "AssetFile": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\wwwroot\\css\\site.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "667"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"j6fhJSuuyLpOSLuPJU0TsDV0iNjor5S3rDnvxJrt4bg=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sun, 11 May 2025 07:10:18 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-j6fhJSuuyLpOSLuPJU0TsDV0iNjor5S3rDnvxJrt4bg="
-        }
-      ]
-    },
-    {
-      "Route": "css/site.css.gz",
-      "AssetFile": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\obj\\Debug\\net9.0\\compressed\\wd29avs6lb-b9sayid5wm.gz",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "319"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"fNKkLSNFLZMVTc2zVrpMXQqOwPU3sU4GWcfEbCR2V1I=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sun, 11 May 2025 07:10:18 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-fNKkLSNFLZMVTc2zVrpMXQqOwPU3sU4GWcfEbCR2V1I="
+          "Value": "sha256-n6/L1Tq0wQKhRJL+9UFWPoRNS0d0GHipJTzJfERclNQ="
         }
       ]
     },
@@ -3320,6 +3383,252 @@
         {
           "Name": "integrity",
           "Value": "sha256-jcY0RXFOlcp4VNTCcYQtWVZZBlr+ZY+AOv6/0S5dnF8="
+        }
+      ]
+    },
+    {
+      "Route": "Images/avatar.jpg",
+      "AssetFile": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\wwwroot\\Images\\avatar.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "92517"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"sKBpkMXgBheXhs9oV6zp5CuHiOO8ZAGGifZjMtkNaRc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 18 May 2025 15:45:40 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-sKBpkMXgBheXhs9oV6zp5CuHiOO8ZAGGifZjMtkNaRc="
+        }
+      ]
+    },
+    {
+      "Route": "Images/avatar.oyjxcg3a93.jpg",
+      "AssetFile": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\wwwroot\\Images\\avatar.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "92517"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"sKBpkMXgBheXhs9oV6zp5CuHiOO8ZAGGifZjMtkNaRc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 18 May 2025 15:45:40 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "oyjxcg3a93"
+        },
+        {
+          "Name": "label",
+          "Value": "Images/avatar.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-sKBpkMXgBheXhs9oV6zp5CuHiOO8ZAGGifZjMtkNaRc="
+        }
+      ]
+    },
+    {
+      "Route": "Images/inception.af4n62hc5o.jpg",
+      "AssetFile": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\wwwroot\\Images\\inception.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "260734"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"JpQPt5olo2E8812SEWxPqLQfhs55KwATe87xxi8mMmQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 18 May 2025 15:46:43 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "af4n62hc5o"
+        },
+        {
+          "Name": "label",
+          "Value": "Images/inception.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-JpQPt5olo2E8812SEWxPqLQfhs55KwATe87xxi8mMmQ="
+        }
+      ]
+    },
+    {
+      "Route": "Images/inception.jpg",
+      "AssetFile": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\wwwroot\\Images\\inception.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "260734"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"JpQPt5olo2E8812SEWxPqLQfhs55KwATe87xxi8mMmQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 18 May 2025 15:46:43 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-JpQPt5olo2E8812SEWxPqLQfhs55KwATe87xxi8mMmQ="
+        }
+      ]
+    },
+    {
+      "Route": "Images/titanic.89xbliz5lk.jpg",
+      "AssetFile": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\wwwroot\\Images\\titanic.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "12069"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"HKrNDbvvp6piEzDjJNT38yeys24TECc4R6Ej1zPPI58=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 18 May 2025 15:44:23 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "89xbliz5lk"
+        },
+        {
+          "Name": "label",
+          "Value": "Images/titanic.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-HKrNDbvvp6piEzDjJNT38yeys24TECc4R6Ej1zPPI58="
+        }
+      ]
+    },
+    {
+      "Route": "Images/titanic.jpg",
+      "AssetFile": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\wwwroot\\Images\\titanic.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "12069"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"HKrNDbvvp6piEzDjJNT38yeys24TECc4R6Ej1zPPI58=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 18 May 2025 15:44:23 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-HKrNDbvvp6piEzDjJNT38yeys24TECc4R6Ej1zPPI58="
         }
       ]
     },

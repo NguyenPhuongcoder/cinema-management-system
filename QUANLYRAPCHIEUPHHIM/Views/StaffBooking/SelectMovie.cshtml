@@ -44,7 +44,7 @@
                                     <p class="card-text small text-muted">
                                         @if (movie.MovieGenres?.Any() == true)
                                         {
-                                            @string.Join(", ", movie.MovieGenres.Select(mg => mg.Genre.GenreName))
+                                            @string.Join(", ", movie.MovieGenres.Select(mg => mg.Genre?.GenreName))
                                         }
                                         else
                                         {

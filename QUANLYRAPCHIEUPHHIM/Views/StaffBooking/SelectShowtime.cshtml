@@ -3,7 +3,7 @@
     ViewData["Title"] = "Chọn suất chiếu - Đặt vé";
     Layout = "_Layout";
     var movie = ViewBag.Movie as QUANLYRAPCHIEUPHHIM.Models.Movie;
-    var groupedShowtimes = Model.GroupBy(s => s.Room.Cinema).ToList();
+    var groupedShowtimes = Model.GroupBy(s => s.Room?.Cinema).ToList();
     var today = DateTime.Today;
     var dates = Enumerable.Range(0, 7).Select(i => today.AddDays(i)).ToList();
 }
@@ -54,7 +54,10 @@
                         <option value="all">Tất cả các rạp</option>
                         @foreach (var group in groupedShowtimes)
                         {
-                            <option value="@group.Key.CinemaId">@group.Key.CinemaName</option>
+                            if (group.Key != null)
+                            {
+                                <option value="@group.Key.CinemaId">@group.Key.CinemaName</option>
+                            }
                         }
                     </select>
                 </div>
@@ -68,28 +71,31 @@
                     {
                         foreach (var group in groupedShowtimes)
                         {
-                            <div class="card mb-3 cinema-card" data-cinema-id="@group.Key.CinemaId">
-                                <div class="card-header bg-light">
-                                    <strong>@group.Key.CinemaName</strong>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        @foreach (var showtime in group.OrderBy(s => s.StartTime))
-                                        {
-                                            <div class="col-md-3 mb-2 showtime-item" data-date="@showtime.StartTime.ToString("yyyy-MM-dd")">
-                                                <a asp-controller="StaffBooking" asp-action="SelectSeats" asp-route-showtimeId="@showtime.ShowtimeId" 
-                                                   class="btn btn-outline-primary showtime-btn">
-                                                    @showtime.StartTime.ToString("HH:mm") - @showtime.Room.RoomName
-                                                    @if (showtime.Room.Format != null)
-                                                    {
-                                                        <span> - @showtime.Room.Format.FormatName</span>
-                                                    }
-                                                </a>
-                                            </div>
-                                        }
+                            if (group.Key != null)
+                            {
+                                <div class="card mb-3 cinema-card" data-cinema-id="@group.Key.CinemaId">
+                                    <div class="card-header bg-light">
+                                        <strong>@group.Key.CinemaName</strong>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            @foreach (var showtime in group.OrderBy(s => s.StartTime))
+                                            {
+                                                <div class="col-md-3 mb-2 showtime-item" data-date="@showtime.StartTime.ToString("yyyy-MM-dd")">
+                                                    <a asp-controller="StaffBooking" asp-action="SelectSeats" asp-route-showtimeId="@showtime.ShowtimeId" 
+                                                       class="btn btn-outline-primary showtime-btn">
+                                                        @showtime.StartTime.ToString("HH:mm") - @showtime.Room?.RoomName
+                                                        @if (showtime.Room?.Format != null)
+                                                        {
+                                                            <span> - @showtime.Room.Format.FormatName</span>
+                                                        }
+                                                    </a>
+                                                </div>
+                                            }
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            }
                         }
                     }
                     else

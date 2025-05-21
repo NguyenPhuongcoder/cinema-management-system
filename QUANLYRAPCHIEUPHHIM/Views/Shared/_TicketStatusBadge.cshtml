@@ -1,0 +1,17 @@
+@model string
+
+@switch (Model?.ToLower())
+{
+    case "confirmed":
+        <span class="badge bg-success">Đã xác nhận</span>
+        break;
+    case "cancelled":
+        <span class="badge bg-danger">Đã hủy</span>
+        break;
+    case "completed":
+        <span class="badge bg-primary">Đã hoàn thành</span>
+        break;
+    default:
+        <span class="badge bg-secondary">Không xác định</span>
+        break;
+} 

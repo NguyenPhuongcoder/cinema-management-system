@@ -1,23 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace QUANLYRAPCHIEUPHHIM.Models;
 
-public partial class RoomFormat
+public class RoomFormat
 {
+    [Key]
     public int FormatId { get; set; }
 
-    public string FormatName { get; set; } = null!;
+    [Required]
+    [StringLength(50)]
+    public string FormatName { get; set; }
 
+    [StringLength(200)]
     public string? Description { get; set; }
 
-    public decimal? AdditionalCharge { get; set; }
+    [Column(TypeName = "decimal(8,2)")]
+    public decimal AdditionalCharge { get; set; }
 
-    public DateTime? CreatedAt { get; set; }
+    [Required]
+    [Column(TypeName = "decimal(8,2)")]
+    public decimal BasePrice { get; set; }
 
+    public DateTime CreatedAt { get; set; }
     public DateTime? UpdatedAt { get; set; }
 
-    public virtual ICollection<MovieFormat> MovieFormats { get; set; } = new List<MovieFormat>();
-
+    // Navigation properties
     public virtual ICollection<Room> Rooms { get; set; } = new List<Room>();
+    public virtual ICollection<MovieFormat> MovieFormats { get; set; } = new List<MovieFormat>();
 }

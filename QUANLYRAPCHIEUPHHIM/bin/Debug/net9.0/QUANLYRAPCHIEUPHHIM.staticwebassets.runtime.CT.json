@@ -20,7 +20,7 @@
             "Children": null,
             "Asset": {
               "ContentRootIndex": 2,
-              "SubPath": "wd29avs6lb-b9sayid5wm.gz"
+              "SubPath": "wd29avs6lb-rm9ixw3p2k.gz"
             },
             "Patterns": null
           }
@@ -34,6 +34,36 @@
           "ContentRootIndex": 0,
           "SubPath": "favicon.ico"
         },
+        "Patterns": null
+      },
+      "Images": {
+        "Children": {
+          "avatar.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/avatar.jpg"
+            },
+            "Patterns": null
+          },
+          "inception.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/inception.jpg"
+            },
+            "Patterns": null
+          },
+          "titanic.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/titanic.jpg"
+            },
+            "Patterns": null
+          }
+        },
+        "Asset": null,
         "Patterns": null
       },
       "js": {

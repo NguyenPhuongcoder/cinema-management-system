@@ -5,6 +5,18 @@
       "PackagePath": "staticwebassets\\QUANLYRAPCHIEUPHHIM.1sz28kwa4a.bundle.scp.css"
     },
     {
+      "Id": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\wwwroot\\Images\\avatar.jpg",
+      "PackagePath": "staticwebassets\\Images\\avatar.jpg"
+    },
+    {
+      "Id": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\wwwroot\\Images\\inception.jpg",
+      "PackagePath": "staticwebassets\\Images\\inception.jpg"
+    },
+    {
+      "Id": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\wwwroot\\Images\\titanic.jpg",
+      "PackagePath": "staticwebassets\\Images\\titanic.jpg"
+    },
+    {
       "Id": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },

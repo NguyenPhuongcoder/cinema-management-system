@@ -1,0 +1,29 @@
+@model QUANLYRAPCHIEUPHHIM.Models.ViewModels.TicketSearchViewModel
+
+@if (Model.TotalPages > 1)
+{
+    <div class="d-flex justify-content-between align-items-center mt-4">
+        <div>
+            Hiển thị @Model.StartRecord - @Model.EndRecord của @Model.TotalRecords vé
+        </div>
+        <nav>
+            <ul class="pagination mb-0">
+                @for (int i = 1; i <= Model.TotalPages; i++)
+                {
+                    <li class="page-item @(i == Model.Page ? "active" : "")">
+                        <a class="page-link" href="@Url.Action("ManageTickets", new { 
+                            page = i, 
+                            pageSize = Model.PageSize, 
+                            ticketCode = Model.TicketCode, 
+                            customerPhone = Model.CustomerPhone, 
+                            movieId = Model.MovieId, 
+                            status = Model.Status, 
+                            fromDate = Model.FromDate?.ToString("yyyy-MM-dd"), 
+                            toDate = Model.ToDate?.ToString("yyyy-MM-dd") 
+                        })">@i</a>
+                    </li>
+                }
+            </ul>
+        </nav>
+    </div>
+} 

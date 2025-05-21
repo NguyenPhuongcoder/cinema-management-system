@@ -1,23 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace QUANLYRAPCHIEUPHHIM.Models;
 
-public partial class MoviePerson
+public class MoviePerson
 {
+    [Key]
     public int PersonId { get; set; }
 
-    public string FullName { get; set; } = null!;
+    [Required]
+    [StringLength(100)]
+    public string FullName { get; set; }
 
-    public DateOnly? BirthDate { get; set; }
+    public DateTime? BirthDate { get; set; }
 
-    public string? Nationality { get; set; }
+    [Required]
+    [StringLength(50)]
+    public string Nationality { get; set; }
 
-    public string? Biography { get; set; }
+    [Required]
+    [StringLength(1000)]
+    public string Biography { get; set; }
 
-    public DateTime? CreatedAt { get; set; }
+    public string? PhotoUrl { get; set; }
 
-    public DateTime? UpdatedAt { get; set; }
+    [Required]
+    public DateTime CreatedAt { get; set; }
 
+    [Required]
+    public DateTime UpdatedAt { get; set; }
+
+    // Navigation properties
     public virtual ICollection<MovieCast> MovieCasts { get; set; } = new List<MovieCast>();
 }

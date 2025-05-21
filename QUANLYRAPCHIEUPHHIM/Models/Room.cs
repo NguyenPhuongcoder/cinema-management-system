@@ -1,29 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace QUANLYRAPCHIEUPHHIM.Models;
 
-public partial class Room
+public class Room
 {
+    [Key]
     public int RoomId { get; set; }
 
+    [Required]
     public int CinemaId { get; set; }
 
-    public int FormatId { get; set; }
+    [Required]
+    [StringLength(50)]
+    public string RoomName { get; set; }
 
-    public string RoomName { get; set; } = null!;
+    [Required]
+    public int FormatId { get; set; }
 
     public int Capacity { get; set; }
 
-    public DateTime? CreatedAt { get; set; }
-
+    public DateTime CreatedAt { get; set; }
     public DateTime? UpdatedAt { get; set; }
 
-    public virtual Cinema Cinema { get; set; } = null!;
+    // Navigation properties
+    [ForeignKey("CinemaId")]
+    public virtual Cinema Cinema { get; set; }
 
-    public virtual RoomFormat Format { get; set; } = null!;
+    [ForeignKey("FormatId")]
+    public virtual RoomFormat Format { get; set; }
 
     public virtual ICollection<Seat> Seats { get; set; } = new List<Seat>();
-
     public virtual ICollection<Showtime> Showtimes { get; set; } = new List<Showtime>();
 }

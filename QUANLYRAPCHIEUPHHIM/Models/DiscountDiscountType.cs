@@ -1,17 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace QUANLYRAPCHIEUPHHIM.Models;
 
-public partial class DiscountDiscountType
+public class DiscountDiscountType
 {
+    [Key]
     public int DiscountDiscountTypeId { get; set; }
 
+    [Required]
+    [ForeignKey("Discount")]
     public int DiscountId { get; set; }
 
+    [Required]
+    [ForeignKey("DiscountType")]
     public int DiscountTypeId { get; set; }
 
-    public virtual Discount Discount { get; set; } = null!;
-
-    public virtual DiscountType DiscountType { get; set; } = null!;
+    // Navigation properties
+    public Discount Discount { get; set; }
+    public DiscountType DiscountType { get; set; }
 }

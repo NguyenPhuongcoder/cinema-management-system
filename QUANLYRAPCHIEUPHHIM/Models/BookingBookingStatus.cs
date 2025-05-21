@@ -1,17 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace QUANLYRAPCHIEUPHHIM.Models;
 
-public partial class BookingBookingStatus
+public class BookingBookingStatus
 {
+    [Key]
     public int BookingBookingStatusId { get; set; }
 
+    [Required]
     public int BookingId { get; set; }
 
+    [Required]
     public int BookingStatusId { get; set; }
 
-    public virtual Booking Booking { get; set; } = null!;
+    [Required]
+    public DateTime StatusDate { get; set; }
 
-    public virtual BookingStatus BookingStatus { get; set; } = null!;
+    // Navigation properties
+    [ForeignKey("BookingId")]
+    public virtual Booking Booking { get; set; }
+
+    [ForeignKey("BookingStatusId")]
+    public virtual BookingStatus BookingStatus { get; set; }
 }

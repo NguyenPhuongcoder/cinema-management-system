@@ -1,17 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace QUANLYRAPCHIEUPHHIM.Models;
 
-public partial class MovieCastRoleType
+public class MovieCastRoleType
 {
+    [Key]
     public int MovieCastRoleTypeId { get; set; }
 
+    [Required]
     public int MovieCastId { get; set; }
 
+    [Required]
     public int RoleTypeId { get; set; }
 
-    public virtual MovieCast MovieCast { get; set; } = null!;
+    // Navigation properties
+    [ForeignKey("MovieCastId")]
+    public virtual MovieCast MovieCast { get; set; }
 
-    public virtual RoleType RoleType { get; set; } = null!;
+    [ForeignKey("RoleTypeId")]
+    public virtual RoleType RoleType { get; set; }
 }

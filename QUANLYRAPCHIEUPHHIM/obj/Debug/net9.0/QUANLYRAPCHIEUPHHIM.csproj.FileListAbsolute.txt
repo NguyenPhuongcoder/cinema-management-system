@@ -403,7 +403,6 @@ E:\LaptrinhC#\Cuoi_ky\QUANLYRAPCHIEUPHHIM\obj\Debug\net9.0\QUANLYRAPCHIEUPHHIM.s
 E:\LaptrinhC#\Cuoi_ky\QUANLYRAPCHIEUPHHIM\obj\Debug\net9.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 E:\LaptrinhC#\Cuoi_ky\QUANLYRAPCHIEUPHHIM\obj\Debug\net9.0\scopedcss\bundle\QUANLYRAPCHIEUPHHIM.styles.css
 E:\LaptrinhC#\Cuoi_ky\QUANLYRAPCHIEUPHHIM\obj\Debug\net9.0\scopedcss\projectbundle\QUANLYRAPCHIEUPHHIM.bundle.scp.css
-E:\LaptrinhC#\Cuoi_ky\QUANLYRAPCHIEUPHHIM\obj\Debug\net9.0\compressed\wd29avs6lb-b9sayid5wm.gz
 E:\LaptrinhC#\Cuoi_ky\QUANLYRAPCHIEUPHHIM\obj\Debug\net9.0\compressed\47cd8p1uk7-61n19gt1b8.gz
 E:\LaptrinhC#\Cuoi_ky\QUANLYRAPCHIEUPHHIM\obj\Debug\net9.0\compressed\r5e1lbqj4x-xtxxf3hu2r.gz
 E:\LaptrinhC#\Cuoi_ky\QUANLYRAPCHIEUPHHIM\obj\Debug\net9.0\compressed\ik6nxgkmad-t1cqhe9u97.gz
@@ -482,4 +481,5 @@ E:\LaptrinhC#\Cuoi_ky\QUANLYRAPCHIEUPHHIM\obj\Debug\net9.0\refint\QUANLYRAPCHIEU
 E:\LaptrinhC#\Cuoi_ky\QUANLYRAPCHIEUPHHIM\obj\Debug\net9.0\QUANLYRAPCHIEUPHHIM.pdb
 E:\LaptrinhC#\Cuoi_ky\QUANLYRAPCHIEUPHHIM\obj\Debug\net9.0\QUANLYRAPCHIEUPHHIM.genruntimeconfig.cache
 E:\LaptrinhC#\Cuoi_ky\QUANLYRAPCHIEUPHHIM\obj\Debug\net9.0\ref\QUANLYRAPCHIEUPHHIM.dll
+E:\LaptrinhC#\Cuoi_ky\QUANLYRAPCHIEUPHHIM\obj\Debug\net9.0\compressed\wd29avs6lb-rm9ixw3p2k.gz
 E:\LaptrinhC#\Cuoi_ky\QUANLYRAPCHIEUPHHIM\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
