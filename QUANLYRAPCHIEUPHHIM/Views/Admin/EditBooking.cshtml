@@ -1,0 +1,23 @@
+@model QUANLYRAPCHIEUPHHIM.Models.Booking
+
+<h2>Edit Booking Status</h2>
+
+<form asp-action="EditBooking">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="BookingId" />
+    <div class="form-group">
+        <label>Booking Status</label>
+        <select name="BookingStatusId" class="form-control">
+            @foreach (var status in ViewBag.BookingStatuses)
+            {
+                <option value="@status.BookingStatusId">@status.BookingStatusName</option>
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Update Status</button>
+    <a asp-action="Bookings" class="btn btn-secondary">Back to List</a>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+} 

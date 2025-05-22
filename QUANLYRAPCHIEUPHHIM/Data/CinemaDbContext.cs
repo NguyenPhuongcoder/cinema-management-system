@@ -719,7 +719,7 @@ public partial class CinemaDbcontext : DbContext
             entity.Property(e => e.MovieId).HasColumnName("movie_id");
             entity.Property(e => e.PriceModifier)
                 .HasDefaultValue(0.00m)
-                .HasColumnType("decimal(8, 2)")
+                .HasColumnType("decimal(18, 2)")
                 .HasColumnName("price_modifier");
             entity.Property(e => e.RoomId).HasColumnName("room_id");
             entity.Property(e => e.StartTime)
