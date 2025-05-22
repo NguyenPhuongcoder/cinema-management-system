@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using QUANLYRAPCHIEUPHHIM.Data;
 using QUANLYRAPCHIEUPHHIM.ViewModels;
 using System.Linq;
+using QUANLYRAPCHIEUPHHIM.Data;
 
 namespace QUANLYRAPCHIEUPHHIM.ViewComponents
 {

@@ -1,6 +1,8 @@
 using QUANLYRAPCHIEUPHHIM.Models;
 namespace QUANLYRAPCHIEUPHHIM.ViewModels;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+
 public class HomePageViewModel
 {
     public List<Movie> NowShowing { get; set; }

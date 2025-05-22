@@ -6,11 +6,11 @@ using QUANLYRAPCHIEUPHHIM.ViewModels;
 
 namespace QUANLYRAPCHIEUPHHIM.Controllers
 {
-    public class CustomerController : Controller
+    public class HomeController : Controller
     {
         private readonly CinemaDbcontext _context;
 
-        public CustomerController(CinemaDbcontext context)
+        public HomeController(CinemaDbcontext context)
         {
             _context = context;
         }
@@ -77,6 +77,7 @@ namespace QUANLYRAPCHIEUPHHIM.Controllers
 
             return View(vm);
         }
+
 
     }
 }

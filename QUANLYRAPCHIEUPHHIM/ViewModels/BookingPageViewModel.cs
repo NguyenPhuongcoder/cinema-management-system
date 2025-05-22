@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using QUANLYRAPCHIEUPHHIM.Models;
 
 namespace QUANLYRAPCHIEUPHHIM.ViewModels
@@ -11,7 +12,6 @@ namespace QUANLYRAPCHIEUPHHIM.ViewModels
         public List<Movie> Movies { get; set; }
         public int? SelectedMovieId { get; set; }
         public List<ShowtimeGroupViewModel> ShowtimeGroups { get; set; }
-
         public List<DateTime> AvailableDates { get; set; }
         public DateTime? SelectedDate { get; set; }
         public List<Cinema> Cinemas { get; set; }
@@ -20,6 +20,7 @@ namespace QUANLYRAPCHIEUPHHIM.ViewModels
     }
     public class ShowtimeGroupViewModel
     {
+        [Required(ErrorMessage = "Tên rạp không được để trống")]
         public string CinemaName { get; set; }
         public List<Showtime> Showtimes { get; set; }
     }

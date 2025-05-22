@@ -117,6 +117,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    pointer-events: none;
+}
+.movie-hover-overlay .btn,
+.movie-hover-overlay button {
+    pointer-events: auto;
 }
 .movie-poster-hover:hover .movie-hover-overlay {
     opacity: 1;
@@ -141,4 +146,20 @@
     overflow: visible;
     text-overflow: unset;
     min-height: 2.5em;
+}
+.movie-poster-hover > a {
+    position: relative;
+    z-index: 4;
+}
+/* Hiệu ứng trắng-cam cho dropdown Góc Điện Ảnh */
+.dropdown-menu .dropdown-item {
+    background: #fff;
+    color: #ff9800;
+    transition: background 0.2s, color 0.2s;
+    font-weight: 500;
+}
+.dropdown-menu .dropdown-item:hover,
+.dropdown-menu .dropdown-item.active {
+    background: #ff9800;
+    color: #fff;
 }

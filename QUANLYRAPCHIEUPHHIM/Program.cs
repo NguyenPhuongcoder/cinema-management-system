@@ -1,17 +1,22 @@
 ﻿using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using QUANLYRAPCHIEUPHHIM.Data;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddControllersWithViews();
-builder.Services.AddApplicationInsightsTelemetry();
+
+// Add services to the container.
+builder.Services.AddControllersWithViews()
+    .AddRazorRuntimeCompilation(); // Thêm runtime compilation để hot reload
+
+// Add DbContext
 builder.Services.AddDbContext<CinemaDbcontext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"), sqlOptions =>
     {
-        sqlOptions.CommandTimeout(150); // timeout 60 giây
+        sqlOptions.CommandTimeout(150);
     })
 );
+
+// Add Authentication
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
@@ -26,22 +31,30 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 
 var app = builder.Build();
 
+// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
     app.UseHsts();
 }
+
+// Thứ tự middleware rất quan trọng
 app.UseHttpsRedirection();
-app.UseRouting();
+app.UseStaticFiles(); // Phục vụ các file tĩnh (css, js, images)
+app.UseRouting(); // Bật routing
+
+// Authentication & Authorization
 app.UseAuthentication();
 app.UseAuthorization();
+
+// Endpoints
+app.MapControllerRoute(
+    name: "areas",
+    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Customer}/{action=Index}/{id?}");
-app.MapStaticAssets();
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}")
-    .WithStaticAssets();
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+
 app.Run();
 

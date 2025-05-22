@@ -4,19 +4,19 @@
 	<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-2">
 		<div class="container align-items-center">
 			<!-- Logo -->
-			<a class="navbar-brand fw-bold me-4" href="/" style="margin-right: 48px !important;">
+			<a class="navbar-brand fw-bold me-4" href="@Url.Action("Index", "Home")" style="margin-right: 48px !important;">
 				<img src="~/images/logo.jpg" alt="Logo" style="height:44px;" />
 			</a>
 			<!-- Mua vé -->
-			<a href="/Booking" class="btn p-0 me-4" style="background:none;border:none;">
+			<a href="@Url.Action("Index", "Booking")" class="btn p-0 me-4" style="background:none;border:none;">
 				<img src="https://res.cloudinary.com/dp5aazlvh/image/upload/v1747704966/btn-ticket.42d72c96_kg0fsi.webp" alt="Mua vé" style="height:44px;" />
 			</a>
 			<!-- Menu -->
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-1">
 				<!-- Phim -->
 				<li class="nav-item dropdown position-static">
-					<a class="nav-link dropdown-toggle fw-semibold px-2" href="#" id="phimDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-						Phim
+					<a class="nav-link fw-semibold px-2" href="#" id="phimDropdown">
+						Phim <i class="fa fa-caret-down ms-1 dropdown-caret"></i>
 					</a>
 					<div class="dropdown-menu p-3" aria-labelledby="phimDropdown" style="min-width:900px;">
 						<!-- Đang chiếu -->
@@ -27,7 +27,9 @@
 								{
 									<div class="movie-dropdown-card position-relative">
 										<div class="movie-poster-hover">
-											<img src="@movie.PosterUrl" alt="@movie.Title" class="w-100 rounded-3 shadow-sm" style="height:240px;width:170px;object-fit:cover;" />
+											<a href="@Url.Action("Details", "Movie", new { id = movie.MovieId })" style="display:block;">
+												<img src="@movie.PosterUrl" alt="@movie.Title" class="w-100 rounded-3 shadow-sm" style="height:240px;width:170px;object-fit:cover;" />
+											</a>
 											<div class="movie-rating-age-vertical">
 												<span class="badge bg-dark text-warning mb-1" style="font-size:1.05rem;">
 													<i class="fa fa-star"></i> @movie.Rating
@@ -38,7 +40,7 @@
 												}
 											</div>
 											<div class="movie-hover-overlay">
-												<a href="/Booking/Quick?movieId=@movie.MovieId" class="btn btn-muave">
+												<a href="@Url.Action("Quick", "Booking", new { movieId = movie.MovieId })" class="btn btn-muave">
 													<i class="fa fa-ticket-alt me-2"></i> Mua vé
 												</a>
 											</div>
@@ -56,7 +58,9 @@
 								{
 									<div class="movie-dropdown-card position-relative">
 										<div class="movie-poster-hover">
-											<img src="@movie.PosterUrl" alt="@movie.Title" class="w-100 rounded-3 shadow-sm" style="height:240px;width:170px;object-fit:cover;" />
+											<a href="@Url.Action("Details", "Movie", new { id = movie.MovieId })" style="display:block;">
+												<img src="@movie.PosterUrl" alt="@movie.Title" class="w-100 rounded-3 shadow-sm" style="height:240px;width:170px;object-fit:cover;" />
+											</a>
 											<div class="movie-rating-age-vertical">
 												<span class="badge bg-dark text-warning mb-1" style="font-size:1.05rem;">
 													<i class="fa fa-star"></i> @movie.Rating
@@ -67,7 +71,7 @@
 												}
 											</div>
 											<div class="movie-hover-overlay">
-												<a href="/Booking/Quick?movieId=@movie.MovieId" class="btn btn-muave">
+												<a href="@Url.Action("Quick", "Booking", new { movieId = movie.MovieId })" class="btn btn-muave">
 													<i class="fa fa-ticket-alt me-2"></i> Mua vé
 												</a>
 											</div>
@@ -85,7 +89,9 @@
 								{
 									<div class="movie-dropdown-card position-relative">
 										<div class="movie-poster-hover">
-											<img src="@movie.PosterUrl" alt="@movie.Title" class="w-100 rounded-3 shadow-sm" style="height:240px;width:170px;object-fit:cover;" />
+											<a href="@Url.Action("Details", "Movie", new { id = movie.MovieId })" style="display:block;">
+												<img src="@movie.PosterUrl" alt="@movie.Title" class="w-100 rounded-3 shadow-sm" style="height:240px;width:170px;object-fit:cover;" />
+											</a>
 											<div class="movie-rating-age-vertical">
 												<span class="badge bg-dark text-warning mb-1" style="font-size:1.05rem;">
 													<i class="fa fa-star"></i> @movie.Rating
@@ -96,7 +102,7 @@
 												}
 											</div>
 											<div class="movie-hover-overlay">
-												<a href="/Booking/Quick?movieId=@movie.MovieId" class="btn btn-muave">
+												<a href="@Url.Action("Quick", "Booking", new { movieId = movie.MovieId })" class="btn btn-muave">
 													<i class="fa fa-ticket-alt me-2"></i> Mua vé
 												</a>
 											</div>
@@ -110,26 +116,14 @@
 				</li>
 				<!-- Góc điện ảnh -->
 				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle fw-semibold px-2" href="#" id="gocdienanhDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-						Góc Điện Ảnh
+					<a class="nav-link fw-semibold px-2" href="#" id="gocdienanhDropdown">
+						Góc Điện Ảnh <i class="fa fa-caret-down ms-1 dropdown-caret"></i>
 					</a>
 					<ul class="dropdown-menu" aria-labelledby="gocdienanhDropdown">
-						<li><a class="dropdown-item" href="/Genres">Thể loại phim</a></li>
-						<li><a class="dropdown-item" href="/Actors">Diễn viên</a></li>
-						<li><a class="dropdown-item" href="/Directors">Đạo diễn</a></li>
-						<li><a class="dropdown-item" href="/Reviews">Bình luận phim</a></li>
-					</ul>
-				</li>
-				<!-- Rạp/Giá Vé -->
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle fw-semibold px-2" href="#" id="rapDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-						Rạp/Giá Vé
-					</a>
-					<ul class="dropdown-menu" aria-labelledby="rapDropdown" style="max-height:300px;overflow-y:auto;">
-						@foreach (var cinema in Model.Cinemas)
-						{
-							<li><a class="dropdown-item" href="/Cinema/Details/@cinema.Id">@cinema.Name</a></li>
-						}
+						<li><a class="dropdown-item" href="@Url.Action("Library", "Movie")">Thể loại phim</a></li>
+						<li><a class="dropdown-item" href="@Url.Action("Index", "MoviePerson")">Diễn viên</a></li>
+						<li><a class="dropdown-item" href="@Url.Action("Index", "Directors")">Đạo diễn</a></li>
+						<li><a class="dropdown-item" href="@Url.Action("Index", "Reviews")">Bình luận phim</a></li>
 					</ul>
 				</li>
 			</ul>
@@ -143,16 +137,16 @@
 							<span class="ms-2 fw-semibold">@Model.UserName</span>
 						</a>
 						<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-							<li><a class="dropdown-item" href="/Account/Profile"><i class="fa fa-user me-2"></i>Tài khoản</a></li>
-							<li><a class="dropdown-item" href="/Account/History"><i class="fa fa-list me-2"></i>Lịch sử</a></li>
+							<li><a class="dropdown-item" href="@Url.Action("Profile", "Account")"><i class="fa fa-user me-2"></i>Tài khoản</a></li>
+							<li><a class="dropdown-item" href="@Url.Action("History", "Account")"><i class="fa fa-list me-2"></i>Lịch sử</a></li>
 							<li><hr class="dropdown-divider" /></li>
-							<li><a class="dropdown-item text-danger" href="/Account/Logout"><i class="fa fa-sign-out-alt me-2"></i>Đăng xuất</a></li>
+							<li><a class="dropdown-item text-danger" href="@Url.Action("Logout", "Account")"><i class="fa fa-sign-out-alt me-2"></i>Đăng xuất</a></li>
 						</ul>
 					</div>
 				}
 				else
 				{
-					<a href="/Account/Login" class="btn btn-login ms-3 rounded-pill px-4 d-flex align-items-center">
+					<a href="@Url.Action("Login", "Account")" class="btn btn-login ms-3 rounded-pill px-4 d-flex align-items-center">
 						<i class="fa fa-user-circle me-2" style="font-size:1.3rem"></i> 
 						<span style="font-weight:600;font-size:1.05rem;">Đăng nhập</span>
 					</a>
@@ -161,4 +155,25 @@
 		</div>
 	</nav>
 </header>
+
+<style>
+.dropdown:hover > .dropdown-menu {
+    display: block !important;
+    margin-top: 0;
+}
+.dropdown-menu {
+    margin-top: 0;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+    border: none;
+}
+.dropdown-caret {
+    transition: transform 0.3s cubic-bezier(.4,2,.6,1);
+    display: inline-block;
+    transform: rotate(180deg);
+}
+.nav-item.dropdown:hover .dropdown-caret {
+    transform: rotate(0deg);
+}
+</style>
 

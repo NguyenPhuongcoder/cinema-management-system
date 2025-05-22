@@ -1,0 +1,91 @@
+@model List<QUANLYRAPCHIEUPHHIM.Models.Movie>
+@{
+    bool showPagination = ViewBag.ShowPagination ?? false;
+}
+
+@if (Model == null || !Model.Any())
+{
+    <div class="text-center text-muted py-5">
+        <i class="fa fa-film fa-3x mb-3"></i>
+        <p class="mb-0">Không có phim nào phù hợp.</p>
+    </div>
+}
+else
+{
+    <div class="movie-list-view">
+        @foreach (var movie in Model)
+        {
+            <div class="movie-list-item d-flex mb-4 p-3 align-items-start shadow-sm" style="border-radius:16px;background:#fff;gap:24px;">
+                <div class="movie-list-poster" style="flex-shrink:0;">
+                    <a href="@Url.Action("Details", "Movie", new { id = movie.MovieId })">
+                        <img src="@(string.IsNullOrEmpty(movie.PanelUrl) ? movie.PosterUrl : movie.PanelUrl)" alt="@movie.Title" style="width:180px;height:120px;object-fit:cover;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.10);" />
+                    </a>
+                </div>
+                <div class="movie-list-info flex-grow-1">
+                    <div class="d-flex align-items-center mb-2">
+                        <h5 class="fw-bold mb-0 me-2" style="font-size:1.25rem;">
+                            <a href="@Url.Action("Details", "Movie", new { id = movie.MovieId })" class="text-decoration-none text-dark">
+                                @movie.Title
+                            </a>
+                        </h5>
+                        @if (!string.IsNullOrEmpty(movie.AgeLimit))
+                        {
+                            <span class="badge-age-limit">@movie.AgeLimit</span>
+                        }
+                    </div>
+                    <div class="mb-2">
+                        @if (movie.Rating.HasValue)
+                        {
+                            <span class="text-warning fw-bold"><i class="fa fa-star"></i> @movie.Rating.Value.ToString("0.0")</span>
+                        }
+                    </div>
+                    <div class="movie-list-desc text-secondary mb-2" style="font-size:1rem;max-width:600px;white-space:pre-line;overflow:hidden;text-overflow:ellipsis;">
+                        @movie.Description?.Substring(0, Math.Min(180, movie.Description?.Length ?? 0))@(movie.Description != null && movie.Description.Length > 180 ? "..." : "")
+                    </div>
+                    <div class="d-flex gap-2">
+                        <a href="@Url.Action("Details", "Movie", new { id = movie.MovieId })" class="btn btn-orange btn-sm">
+                            <i class="fa fa-info-circle"></i> Chi tiết
+                        </a>
+                        <a href="/Booking/Quick?movieId=@movie.MovieId" class="btn btn-orange btn-sm">
+                            <i class="fa fa-ticket"></i> Mua vé
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+@if (showPagination)
+{
+    <div id="pagination-container">
+        @Html.Partial("_Pagination", new { 
+            CurrentPage = ViewBag.CurrentPage, 
+            TotalPages = ViewBag.TotalPages,
+            PageSize = ViewBag.PageSize,
+            TotalItems = ViewBag.TotalItems
+        })
+    </div>
+}
+
+<style>
+.btn-orange {
+    background: #ff9800 !important;
+    color: #fff !important;
+    font-weight: 600;
+    border-radius: 8px;
+    border: none;
+    font-size: 1.08rem;
+    padding: 6px 18px;
+    transition: background 0.2s, color 0.2s;
+    box-shadow: 0 2px 8px rgba(255,152,0,0.10);
+    letter-spacing: 0.5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+.btn-orange:hover, .btn-orange:focus {
+    background: #ffb347 !important;
+    color: #fff !important;
+}
+</style> 
