@@ -14,8 +14,10 @@ public partial class Payment
     public decimal Amount { get; set; }
 
     public DateTime? PaymentDate { get; set; }
-    public string PaymentStatus { get; set; } = null!;
+
     public string? TransactionId { get; set; }
+
+    public string? PaymentStatus { get; set; }
 
     public DateTime? CreatedAt { get; set; }
 
@@ -24,6 +26,4 @@ public partial class Payment
     public virtual Booking Booking { get; set; } = null!;
 
     public virtual PaymentMethod PaymentMethod { get; set; } = null!;
-
-
 }

@@ -11,9 +11,9 @@ namespace QUANLYRAPCHIEUPHHIM.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly CinemaDbContext _context;
+        private readonly CinemaDbcontext _context;
 
-        public AccountController(CinemaDbContext context)
+        public AccountController(CinemaDbcontext context)
         {
             _context = context;
         }
@@ -48,6 +48,7 @@ namespace QUANLYRAPCHIEUPHHIM.Controllers
             {
                 new Claim(ClaimTypes.Name, user.Username),
                 new Claim(ClaimTypes.Email, user.Email),
+                new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
                 new Claim("FullName", user.FullName)
             };
 
@@ -147,4 +148,4 @@ namespace QUANLYRAPCHIEUPHHIM.Controllers
             }
         }
     }
-} 
+}

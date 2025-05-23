@@ -19,6 +19,8 @@ public partial class Ticket
     public string TicketStatus { get; set; } = null!;
     public DateTime? ScanDatetime { get; set; }
 
+    public string? TicketStatus { get; set; }
+
     public DateTime? CreatedAt { get; set; }
 
     public DateTime? UpdatedAt { get; set; }

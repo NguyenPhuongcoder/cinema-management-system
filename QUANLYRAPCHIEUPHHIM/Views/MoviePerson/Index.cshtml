@@ -1,0 +1,104 @@
+@model QUANLYRAPCHIEUPHHIM.ViewModels.MoviePersonViewModel
+@{
+    ViewData["Title"] = "Diễn viên";
+    Layout = "_Layout";
+}
+
+<div class="container my-4">
+    <h3 class="fw-bold mb-3" style="letter-spacing:1px;">DIỄN VIÊN</h3>
+
+    <div class="person-filter-bar d-flex gap-2 align-items-center pb-2 mb-3" style="border-bottom:3px solid #1976d2;">
+        <select class="form-select" name="nationality" style="width:160px">
+            <option value="">Quốc Gia</option>
+            @foreach (var nationality in Model.Nationalities)
+            {
+                <option value="@nationality" @(nationality == Model.SelectedNationality ? "selected" : "")>@nationality</option>
+            }
+        </select>
+        <select class="form-select" name="sort" style="width:220px">
+            <option value="popular" @(Model.SelectedSort=="popular"?"selected":"")>Xem Nhiều Nhất</option>
+            <option value="name" @(Model.SelectedSort=="name"?"selected":"")>Theo Tên A-Z</option>
+        </select>
+    </div>
+
+    <div id="person-list-container">
+        @await Html.PartialAsync("_PersonList", Model.People)
+    </div>
+    <div id="pagination-container">
+        @await Html.PartialAsync("_Pagination", new { CurrentPage = Model.CurrentPage, TotalPages = Model.TotalPages, PageSize = Model.PageSize, TotalItems = Model.TotalItems })
+    </div>
+</div>
+
+<div class="loading-overlay" style="display: none;">
+    <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(function() {
+            var isLoading = false;
+            function showLoading() {
+                isLoading = true;
+                $('.loading-overlay').show();
+                $('#person-list-container').addClass('loading');
+            }
+            function hideLoading() {
+                isLoading = false;
+                $('.loading-overlay').hide();
+                $('#person-list-container').removeClass('loading');
+            }
+            function loadPeople(page = 1) {
+                if (isLoading) return;
+                showLoading();
+                var data = {
+                    nationality: $('select[name="nationality"]').val(),
+                    sort: $('select[name="sort"]').val(),
+                    page: page,
+                    pageSize: 12
+                };
+                var queryString = $.param(data);
+                window.history.replaceState({}, '', `${window.location.pathname}?${queryString}`);
+                $.ajax({
+                    url: '/MoviePerson/IndexAjax',
+                    data: data,
+                    method: 'GET',
+                    success: function(html) {
+                        $('#person-list-container').html(html);
+                        $.ajax({
+                            url: '/MoviePerson/IndexAjax',
+                            data: { ...data, partial: 'pagination' },
+                            method: 'GET',
+                            success: function(paginationHtml) {
+                                $('#pagination-container').html(paginationHtml);
+                            },
+                            error: function() {
+                                toastr.error('Có lỗi xảy ra khi tải phân trang');
+                            }
+                        });
+                    },
+                    error: function() {
+                        toastr.error('Có lỗi xảy ra khi tải danh sách diễn viên');
+                    },
+                    complete: function() {
+                        hideLoading();
+                    }
+                });
+            }
+            $('.person-filter-bar select').on('change', function() { loadPeople(1); });
+            $(document).on('click', '#pagination-container .page-link', function(e) {
+                e.preventDefault();
+                var page = $(this).data('page');
+                loadPeople(page);
+                $('html, body').animate({ scrollTop: $('#person-list-container').offset().top - 100 }, 500);
+            });
+            var urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.toString()) {
+                $('select[name="nationality"]').val(urlParams.get('nationality'));
+                $('select[name="sort"]').val(urlParams.get('sort') || 'popular');
+                loadPeople(urlParams.get('page') || 1);
+            }
+        });
+    </script>
+} 
