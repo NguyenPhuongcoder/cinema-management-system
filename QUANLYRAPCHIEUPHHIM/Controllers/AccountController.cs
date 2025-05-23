@@ -48,6 +48,7 @@ namespace QUANLYRAPCHIEUPHHIM.Controllers
             {
                 new Claim(ClaimTypes.Name, user.Username),
                 new Claim(ClaimTypes.Email, user.Email),
+                new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
                 new Claim("FullName", user.FullName)
             };
 

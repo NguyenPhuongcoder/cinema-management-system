@@ -17,6 +17,7 @@ namespace QUANLYRAPCHIEUPHHIM.ViewModels
         public List<Cinema> Cinemas { get; set; }
         public int? SelectedCinemaId { get; set; }
         public List<Showtime> Showtimes { get; set; }
+        public int? SelectedShowtimeId { get; set; }
     }
     public class ShowtimeGroupViewModel
     {
