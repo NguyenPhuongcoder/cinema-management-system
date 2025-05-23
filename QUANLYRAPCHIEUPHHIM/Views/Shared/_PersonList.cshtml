@@ -1,0 +1,22 @@
+@model List<QUANLYRAPCHIEUPHHIM.Models.MoviePerson>
+
+<div class="row g-4">
+    @foreach (var person in Model)
+    {
+        <div class="col-md-3">
+            <div class="person-card" onclick="window.location.href='/MoviePerson/Details/@person.PersonId'">
+                <img src="@person.ImageUrl" alt="@person.FullName" class="person-image w-100">
+                <div class="person-name">@person.FullName</div>
+                <div class="person-nationality">@person.Nationality</div>
+                <div class="text-muted small">@person.MovieCasts.Count phim</div>
+            </div>
+        </div>
+    }
+</div>
+
+@if (!Model.Any())
+{
+    <div class="text-center py-5">
+        <h5 class="text-muted">Không tìm thấy diễn viên nào</h5>
+    </div>
+} 
