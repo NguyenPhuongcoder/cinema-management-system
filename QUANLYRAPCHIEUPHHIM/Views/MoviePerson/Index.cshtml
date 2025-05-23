@@ -12,12 +12,14 @@
             <option value="">Quốc Gia</option>
             @foreach (var nationality in Model.Nationalities)
             {
-                <option value="@nationality" @(nationality == Model.SelectedNationality ? "selected" : "")>@nationality</option>
+                <option value="@nationality" selected="@(nationality == Model.SelectedNationality)">
+                    @nationality
+                </option>
             }
         </select>
         <select class="form-select" name="sort" style="width:220px">
-            <option value="popular" @(Model.SelectedSort=="popular"?"selected":"")>Xem Nhiều Nhất</option>
-            <option value="name" @(Model.SelectedSort=="name"?"selected":"")>Theo Tên A-Z</option>
+            <option value="popular" selected="@(Model.SelectedSort == "popular")">Xem Nhiều Nhất</option>
+            <option value="name" selected="@(Model.SelectedSort == "name")">Theo Tên A-Z</option>
         </select>
     </div>
 

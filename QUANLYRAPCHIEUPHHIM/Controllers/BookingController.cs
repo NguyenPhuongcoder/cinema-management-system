@@ -103,7 +103,7 @@ namespace QUANLYRAPCHIEUPHHIM.Controllers
                 Showtimes = showtimes,
                 SelectedShowtimeId = selectedShowtimeId
             };
-            return View(vm);
+            return View("Booking", vm);
         }
 
         [HttpPost]

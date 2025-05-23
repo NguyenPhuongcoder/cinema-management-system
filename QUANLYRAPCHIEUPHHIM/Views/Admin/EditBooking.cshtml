@@ -1,23 +1,354 @@
-@model QUANLYRAPCHIEUPHHIM.Models.Booking
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chỉnh Sửa Trạng Thái Booking</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: #f8f9fa;
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-<h2>Edit Booking Status</h2>
+        .main-container {
+            padding: 2rem 0;
+        }
 
-<form asp-action="EditBooking">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <input type="hidden" asp-for="BookingId" />
-    <div class="form-group">
-        <label>Booking Status</label>
-        <select name="BookingStatusId" class="form-control">
-            @foreach (var status in ViewBag.BookingStatuses)
-            {
-                <option value="@status.BookingStatusId">@status.BookingStatusName</option>
+        .form-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e9ecef;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+            .form-card:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
             }
-        </select>
-    </div>
-    <button type="submit" class="btn btn-primary">Update Status</button>
-    <a asp-action="Bookings" class="btn btn-secondary">Back to List</a>
-</form>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-} 
+        .card-header {
+            background: #495057;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            border: none;
+        }
+
+            .card-header h2 {
+                margin: 0;
+                font-weight: 600;
+                font-size: 1.8rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.5rem;
+            }
+
+        .card-body {
+            padding: 2.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .form-control {
+            border-radius: 8px;
+            border: 2px solid #e9ecef;
+            padding: 0.875rem 1.25rem;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+            .form-control:focus {
+                border-color: #495057;
+                box-shadow: 0 0 0 0.2rem rgba(73, 80, 87, 0.25);
+                background: white;
+                transform: translateY(-1px);
+            }
+
+        .form-select {
+            background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%23495057' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 16px 12px;
+            padding-right: 3rem;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 0.875rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+            .btn-primary:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+                background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+            }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(108, 117, 125, 0.3);
+        }
+
+            .btn-secondary:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 8px 25px rgba(108, 117, 125, 0.4);
+                background: linear-gradient(135deg, #5a6268 0%, #383d41 100%);
+                color: white;
+            }
+
+        .validation-summary {
+            background: rgba(220, 53, 69, 0.1);
+            border: 1px solid rgba(220, 53, 69, 0.3);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .breadcrumb-container {
+            margin-bottom: 2rem;
+        }
+
+        .breadcrumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .breadcrumb-item a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .breadcrumb-item.active {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        @@media (max-width: 768px) {
+            .main-container
+
+        {
+            padding: 1rem;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        .btn-group {
+            flex-direction: column;
+        }
+
+        .btn {
+            justify-content: center;
+        }
+
+        }
+
+        .booking-info {
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid #667eea;
+        }
+
+            .booking-info h5 {
+                color: #667eea;
+                font-weight: 600;
+                margin-bottom: 0.5rem;
+            }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-pending {
+            background: rgba(255, 193, 7, 0.2);
+            color: #856404;
+            border: 1px solid rgba(255, 193, 7, 0.3);
+        }
+
+        .status-confirmed {
+            background: rgba(25, 135, 84, 0.2);
+            color: #0f5132;
+            border: 1px solid rgba(25, 135, 84, 0.3);
+        }
+
+        .status-cancelled {
+            background: rgba(220, 53, 69, 0.2);
+            color: #842029;
+            border: 1px solid rgba(220, 53, 69, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container main-container">
+        <!-- Breadcrumb -->
+        <div class="breadcrumb-container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="#"><i class="fas fa-home"></i> Trang chủ</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="#">Quản lý Booking</a>
+                    </li>
+                    <li class="breadcrumb-item active">Chỉnh sửa trạng thái</li>
+                </ol>
+            </nav>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8">
+
+                <div class="form-card">
+                    <!-- Header -->
+
+                    <div class="card-header">
+                        <h2>
+                            <i class="fas fa-edit"></i>
+                            Chỉnh Sửa Trạng Thái Booking
+                        </h2>
+                    </div>
+
+                    <!-- Body -->
+                    <div class="card-body">
+                        <!-- Booking Info -->
+                        <div class="booking-info">
+                            <h5><i class="fas fa-info-circle"></i> Thông tin Booking</h5>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <strong>Mã Booking:</strong> #12345
+                                </div>
+                                <div class="col-sm-6">
+                                    <strong>Trạng thái hiện tại:</strong>
+                                    <span class="status-badge status-pending">Đang chờ</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Validation Summary -->
+                        <div class="validation-summary text-danger" style="display: none;">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <strong>Vui lòng kiểm tra lại thông tin:</strong>
+                            <ul class="mb-0 mt-2">
+                                <li>Vui lòng chọn trạng thái booking</li>
+                            </ul>
+                        </div>
+
+                        <!-- Form -->
+                        <form asp-action="EditBooking" method="post">
+                            <input type="hidden" value="12345" />
+
+                            <div class="form-group">
+                                <label class="form-label">
+                                    <i class="fas fa-tasks"></i>
+                                    Trạng thái Booking
+                                </label>
+                                <select name="BookingStatusId" class="form-control form-select" required>
+                                    <option value="">-- Chọn trạng thái --</option>
+                                    <option value="3">Đang chờ xác nhận</option>
+                                    <option value="1">Đã xác nhận</option>
+               
+                                    <option value="2">Đã hủy</option>
+             
+                                </select>
+                            </div>
+
+                            <!-- Buttons -->
+                            <div class="btn-group">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save"></i>
+                                    Cập nhật trạng thái
+                                </button>
+                                <a href="#" class="btn btn-secondary">
+                                    <i class="fas fa-arrow-left"></i>
+                                    Quay lại danh sách
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Form validation
+        document.querySelector('form').addEventListener('submit', function(e) {
+            const select = document.querySelector('select[name="BookingStatusId"]');
+            const validationSummary = document.querySelector('.validation-summary');
+
+            if (!select.value) {
+                e.preventDefault();
+                validationSummary.style.display = 'block';
+                select.focus();
+                select.style.borderColor = '#dc3545';
+            } else {
+                validationSummary.style.display = 'none';
+                select.style.borderColor = '#28a745';
+            }
+        });
+
+        // Real-time validation
+        document.querySelector('select[name="BookingStatusId"]').addEventListener('change', function() {
+            const validationSummary = document.querySelector('.validation-summary');
+            if (this.value) {
+                validationSummary.style.display = 'none';
+                this.style.borderColor = '#28a745';
+            }
+        });
+    </script>
+</body>
+</html>

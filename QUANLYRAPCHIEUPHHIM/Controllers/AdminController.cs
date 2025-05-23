@@ -21,11 +21,11 @@ namespace QUANLYRAPCHIEUPHHIM.Controllers
     [Authorize(Roles = "admin")]
     public class AdminController : Controller
     {
-        private readonly CinemaDbContext _context;
+        private readonly CinemaDbcontext _context;
         private readonly ICloudinaryService _cloudinaryService;
         private const int PageSize = 2; // Number of items per page
 
-        public AdminController(CinemaDbContext context, ICloudinaryService cloudinaryService)
+        public AdminController(CinemaDbcontext context, ICloudinaryService cloudinaryService)
         {
             _context = context;
             _cloudinaryService = cloudinaryService;
@@ -361,11 +361,12 @@ namespace QUANLYRAPCHIEUPHHIM.Controllers
             var pageNumber = page ?? 1;
             var bookings = _context.Bookings.ToPagedList(pageNumber, PageSize);
             var usernames = _context.Bookings
-              .Join(_context.Users,
-              booking => booking.UserId,
-              user => user.UserId,
-              (booking, user) => new { booking.UserId, user.Username })
-               .ToDictionary(bu => bu.UserId, bu => bu.Username);
+        .Join(_context.Users,
+        booking => booking.UserId,
+        user => user.UserId,
+        (booking, user) => new { booking.UserId, user.Username })
+        .Distinct() // Thêm dòng này để loại bỏ trùng lặp
+        .ToDictionary(bu => bu.UserId, bu => bu.Username);
             var bookingStatuses = _context.BookingBookingStatuses
                 .Include(b => b.BookingStatus)
                 .ToList()
@@ -402,18 +403,25 @@ namespace QUANLYRAPCHIEUPHHIM.Controllers
                 return NotFound();
             }
 
-            // Create new booking status entry
+            // Xoá hết các dòng trạng thái cũ của booking này
+            var oldStatuses = _context.BookingBookingStatuses
+                                      .Where(b => b.BookingId == id)
+                                      .ToList();
+            _context.BookingBookingStatuses.RemoveRange(oldStatuses);
+
+            // Thêm dòng trạng thái mới
             var bookingStatus = new BookingBookingStatus
             {
                 BookingId = id,
                 BookingStatusId = BookingStatusId
             };
-
             _context.BookingBookingStatuses.Add(bookingStatus);
             _context.SaveChanges();
-            
+
             return RedirectToAction(nameof(Bookings));
         }
+
+
 
         // Delete Booking
         public IActionResult DeleteBooking(int id)
@@ -519,7 +527,7 @@ namespace QUANLYRAPCHIEUPHHIM.Controllers
         }
 
         [HttpPost]
-        public IActionResult EditUser(User user, int RoleId, string NewPassword)
+        public IActionResult EditUser(User user, int RoleId, string? NewPassword)
         {
             if (ModelState.IsValid)
             {
