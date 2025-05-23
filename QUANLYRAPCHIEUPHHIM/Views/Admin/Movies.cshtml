@@ -1,0 +1,119 @@
+@model IEnumerable<QUANLYRAPCHIEUPHHIM.Models.Movie>
+@{
+    ViewData["Title"] = "Movies Management";
+    Layout = "_AdminLayout";
+}
+
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Movies Management</h2>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addMovieModal">
+            <i class="bi bi-plus-circle"></i> Add New Movie
+        </button>
+    </div>
+
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="moviesTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Duration</th>
+                            <th>Release Date</th>
+                            <th>Genre</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var movie in Model)
+                        {
+                            <tr>
+                                <td>@movie.Title</td>
+                                <td>@movie.Duration minutes</td>
+                                <td>@movie.ReleaseDate</td>
+                                <td>@movie.MovieGenres.ToArray()</td>
+                                <td>
+                                    @* <span class="badge bg-@(movie. ? "success" : "danger")"> *@
+                                    @*     @(movie.IsActive ? "Active" : "Inactive") *@
+                                    @* </span> *@
+                                </td>
+                                <td>
+                                    <button class="btn btn-sm btn-info" onclick="editMovie(@movie.MovieId)">
+                                        <i class="bi bi-pencil"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-danger" onclick="deleteMovie(@movie.MovieId)">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Movie Modal -->
+<div class="modal fade" id="addMovieModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add New Movie</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form asp-action="AddMovie" method="post">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Title</label>
+                        <input type="text" class="form-control" name="Title" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Duration (minutes)</label>
+                        <input type="number" class="form-control" name="Duration" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Release Date</label>
+                        <input type="date" class="form-control" name="ReleaseDate" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Genre</label>
+                        <input type="text" class="form-control" name="Genre" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Description</label>
+                        <textarea class="form-control" name="Description" rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Poster URL</label>
+                        <input type="url" class="form-control" name="PosterUrl">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save Movie</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function editMovie(id) {
+            // Implement edit functionality
+        }
+
+        function deleteMovie(id) {
+            if (confirm('Are you sure you want to delete this movie?')) {
+                // Implement delete functionality
+            }
+        }
+
+        $(document).ready(function() {
+            $('#moviesTable').DataTable();
+        });
+    </script>
+} 

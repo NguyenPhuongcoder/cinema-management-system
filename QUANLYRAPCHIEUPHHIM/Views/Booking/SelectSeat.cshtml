@@ -1,0 +1,93 @@
+@model QUANLYRAPCHIEUPHHIM.ViewModels.BookingSeatViewModel
+@{
+    ViewData["Title"] = "Chọn ghế";
+    Layout = "_Layout";
+    var seatsByRow = Model.Seats.GroupBy(s => s.Row).OrderByDescending(g => g.Key);
+}
+@using (Html.BeginForm("Payment", "Booking", FormMethod.Post, new { id = "seatForm" }))
+{
+    <input type="hidden" name="selectedShowtimeId" value="@Model.Showtime.ShowtimeId" />
+    <div class="container my-4">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="bg-white rounded shadow-sm p-4 mb-4">
+                    <h5 class="fw-bold mb-3">Đổi suất chiếu</h5>
+                    <div class="mb-4">
+                        <div class="d-flex flex-wrap gap-2 mb-3">
+                            <span class="btn btn-outline-secondary disabled">@Model.Showtime.StartTime.ToString("HH:mm")</span>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <div class="seat-map bg-light rounded p-3 mb-2" style="overflow-x:auto;">
+                            <table class="table table-borderless text-center align-middle mb-0">
+                                <tbody>
+                                @foreach (var row in seatsByRow)
+                                {
+                                    <tr>
+                                        <td class="fw-bold">@row.Key</td>
+                                        @foreach (var seat in row.OrderByDescending(s => s.Number))
+                                        {
+                                            <td>
+                                                @if (seat.IsSold)
+                                                {
+                                                    <button class="btn btn-sm seat-btn seat-sold" disabled>@seat.Number</button>
+                                                }
+                                                else
+                                                {
+                                                    <label class="seat-checkbox-label">
+                                                        <input type="checkbox" name="selectedSeatIds" value="@seat.SeatId" class="seat-checkbox d-none" autocomplete="off"
+                                                            @(Model.SelectedSeatIds != null && Model.SelectedSeatIds.Contains(seat.SeatId) ? "checked" : "") />
+                                                        <span class="btn btn-sm seat-btn seat-selectable">@seat.Number</span>
+                                                    </label>
+                                                }
+                                            </td>
+                                        }
+                                        <td class="fw-bold">@row.Key</td>
+                                    </tr>
+                                }
+                                </tbody>
+                            </table>
+                            <div class="text-center text-muted mt-2">Màn hình</div>
+                        </div>
+                        <div class="d-flex gap-3 flex-wrap mt-2">
+                            <span><span class="seat-btn seat-sold"></span> Ghế đã bán</span>
+                            <span><span class="seat-btn seat-selectable" style="background:#ff9800;color:#fff;border-color:#ff9800;"></span> Ghế đang chọn</span>
+                            <span><span class="seat-btn seat-vip"></span> Ghế VIP</span>
+                            <span><span class="seat-btn seat-single"></span> Ghế đơn</span>
+                            <span><span class="seat-btn seat-double"></span> Ghế đôi</span>
+                            <span><span class="seat-btn seat-triple"></span> Ghế ba</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="bg-white rounded shadow-sm p-4 mb-4">
+                    <h5 class="fw-bold mb-3">Thông tin vé</h5>
+                    <div class="d-flex align-items-center mb-3">
+                        <img src="@Model.Movie.PosterUrl" alt="@Model.Movie.Title" class="rounded-3 shadow-sm me-3" style="width:90px;height:130px;object-fit:cover;" />
+                        <div>
+                            <div class="fw-bold" style="font-size:1.08rem;">@Model.Movie.Title</div>
+                        </div>
+                    </div>
+                    <div class="mb-2">@Model.Cinema.CinemaName - @Model.Room.RoomName</div>
+                    <div class="mb-2">Suất: <b>@Model.Showtime.StartTime.ToString("HH:mm")</b> - @Model.Showtime.StartTime.ToString("dddd, dd/MM/yyyy")</div>
+                    <hr />
+                    <div class="d-flex justify-content-end mt-4">
+                        <button type="submit" class="btn btn-warning px-5 py-2 text-white fw-bold">Tiếp tục</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<style>
+.seat-checkbox-label { cursor: pointer; }
+.seat-checkbox:checked + .seat-btn { background: #ff9800 !important; color: #fff !important; border-color: #ff9800 !important; }
+.seat-btn { min-width: 32px; min-height: 32px; border-radius: 6px; margin: 2px; background: #fff; border: 1.5px solid #bbb; font-weight: 500; }
+.seat-sold { background: #ddd !important; color: #aaa !important; border-color: #ccc !important; }
+.seat-selectable { transition: background 0.2s, color 0.2s, border 0.2s; }
+.seat-vip { background: #fffbe6 !important; border-color: #ffe082 !important; }
+.seat-single { border-color: #bbb !important; }
+.seat-double { border-color: #2196f3 !important; }
+.seat-triple { border-color: #ff9800 !important; }
+</style> 

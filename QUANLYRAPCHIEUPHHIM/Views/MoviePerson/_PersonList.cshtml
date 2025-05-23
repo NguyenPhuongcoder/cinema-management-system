@@ -1,0 +1,96 @@
+@model List<QUANLYRAPCHIEUPHHIM.Models.MoviePerson>
+
+@if (Model != null && Model.Any())
+{
+    <div class="row g-4">
+        @foreach (var person in Model)
+        {
+            <div class="col-md-3">
+                <div class="person-card p-3 shadow-sm h-100 d-flex flex-column">
+                    <img src="@person.ImageUrl" alt="@person.FullName" class="person-image w-100 mb-2">
+                    <div class="person-name">@person.FullName</div>
+                    @if (!string.IsNullOrEmpty(person.Nationality))
+                    {
+                        <div class="person-nationality"><b>Quốc tịch:</b> @person.Nationality</div>
+                    }
+                    @if (person.BirthDate != null)
+                    {
+                        <div class="person-dob"><b>Ngày sinh:</b> @person.BirthDate.Value.ToString("dd/MM/yyyy")</div>
+                    }
+                    @if (!string.IsNullOrEmpty(person.Biography))
+                    {
+                        <div class="person-bio mb-2" style="max-height: 70px; overflow: hidden; position: relative;">
+                            @person.Biography
+                            @if (person.Biography.Length > 120)
+                            {
+                                <span class="see-more" style="position: absolute; bottom: 0; right: 0; background: linear-gradient(to right, transparent, #fff 80%); padding-left: 20px; cursor: pointer; color: #1976d2;">... Xem thêm</span>
+                            }
+                        </div>
+                    }
+                    <div class="text-muted small mt-auto">@person.MovieCasts.Count phim</div>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div class="text-center py-5">
+        <h5 class="text-muted">Không tìm thấy diễn viên nào</h5>
+    </div>
+}
+
+@section Scripts {
+<script>
+$(function() {
+    $(document).on('click', '.see-more', function() {
+        var bioDiv = $(this).closest('.person-bio');
+        bioDiv.css({'max-height': 'none', 'overflow': 'visible'});
+        $(this).remove();
+    });
+});
+</script>
+}
+
+@section Styles {
+<style>
+.person-card {
+    border-radius: 12px;
+    background: #fff;
+    transition: box-shadow 0.2s, transform 0.2s;
+    min-height: 420px;
+    display: flex;
+    flex-direction: column;
+}
+.person-card:hover {
+    box-shadow: 0 4px 16px rgba(25,118,210,0.10);
+    transform: translateY(-4px);
+}
+.person-image {
+    height: 220px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+.person-name {
+    font-weight: 600;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-size: 1.1rem;
+}
+.person-nationality, .person-dob {
+    color: #666;
+    font-size: 0.95rem;
+}
+.person-bio {
+    font-size: 0.97rem;
+    color: #444;
+    margin-bottom: 0.5rem;
+}
+.see-more {
+    font-size: 0.97rem;
+    color: #1976d2;
+    font-weight: 500;
+    cursor: pointer;
+}
+</style>
+} 

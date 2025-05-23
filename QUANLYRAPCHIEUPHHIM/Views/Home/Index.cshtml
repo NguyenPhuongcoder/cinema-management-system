@@ -1,8 +1,263 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model QUANLYRAPCHIEUPHHIM.ViewModels.HomePageViewModel
+@{
+	ViewData["Title"] = "Trang chủ";
+	Layout = "_Layout";
+}
+<link rel="stylesheet" href="~/css/home-index.css" />
+   <div class="container my-4">
+       <div id="bannerCarousel" class="carousel slide" data-bs-ride="carousel">
+           <div class="carousel-inner rounded-3 shadow">
+               @for (int i = 0; i < Model.Banners.Count; i++)
+               {
+                   <div class="carousel-item @(i == 0 ? "active" : "")">
+                       <img src="@Model.Banners[i]" class="d-block w-100" style="height:400px;object-fit:cover;" alt="Banner @(i+1)" />
+                   </div>
+               }
+           </div>
+           <button class="carousel-control-prev" type="button" data-bs-target="#bannerCarousel" data-bs-slide="prev">
+               <span class="carousel-control-prev-icon"></span>
+               <span class="visually-hidden">Previous</span>
+           </button>
+           <button class="carousel-control-next" type="button" data-bs-target="#bannerCarousel" data-bs-slide="next">
+               <span class="carousel-control-next-icon"></span>
+               <span class="visually-hidden">Next</span>
+           </button>
+           <div class="carousel-indicators">
+               @for (int i = 0; i < Model.Banners.Count; i++)
+               {
+                   <button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="@i" class="@(i == 0 ? "active" : "")" aria-current="@(i == 0 ? "true" : "false")" aria-label="Slide @(i+1)"></button>
+               }
+           </div>
+       </div>
+   </div>
+    <div class="container mt-4">
+       <div class="d-flex align-items-center mb-3">
+           <h3 class="me-4 fw-bold" style="letter-spacing:1px;">PHIM</h3>
+           <ul class="nav nav-tabs border-0" id="movieTab">
+               <li class="nav-item">
+                   <a class="nav-link active fw-bold menu-link" href="#nowShowingTab">Đang chiếu</a>
+               </li>
+               <li class="nav-item">
+                   <a class="nav-link fw-bold menu-link" href="#comingSoonTab">Sắp chiếu</a>
+               </li>
+               <li class="nav-item">
+                   <a class="nav-link fw-bold menu-link" href="#imaxTab">Phim IMAX</a>
+               </li>
+           </ul>
+           <span class="ms-auto text-primary fw-bold" style="cursor:pointer;">
+               <i class="fa-solid fa-location-dot"></i> TP Đà nẵng
+           </span>
+       </div>
+    <div class="tab-content">
+        <div class="tab-pane fade show active" id="nowShowingTab">
+            <div class="row">
+                @foreach (var movie in Model.NowShowing.Take(8))
+                {
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+                        <div class="movie-card-galaxy card h-100 border-0 position-relative overflow-hidden">
+                            <div class="poster-wrapper-galaxy position-relative">
+                                <a href="@Url.Action("Details", "Movie", new { id = movie.MovieId })" style="display:block;">
+                                    <img src="@movie.PosterUrl" class="card-img-top movie-poster-galaxy" alt="@movie.Title" />
+                                </a>
+                                <div class="movie-overlay-galaxy">
+                                    <div class="w-100 d-flex flex-column align-items-center gap-2 px-3">
+                                        <a href="/Booking/Quick?movieId=@movie.MovieId" class="btn btn-galaxy-book w-100 mb-2">
+                                            <i class="fa-solid fa-ticket"></i> Mua vé
+                                        </a>
+                                        @if (!string.IsNullOrEmpty(movie.TrailerUrl))
+                                        {
+                                            <button class="btn btn-galaxy-trailer w-100" onclick="showTrailer('@movie.TrailerUrl')">
+                                                <i class="fa-solid fa-play"></i> Trailer
+                                            </button>
+                                        }
+                                    </div>
+                                </div>
+                                <div class="badge-group-galaxy position-absolute end-0 bottom-0 m-2 d-flex flex-column align-items-end gap-2">
+                                    <span class="badge bg-warning text-dark fs-6 shadow px-2 py-1" style="font-size:1rem;"><i class="fa-solid fa-star"></i> @movie.Rating</span>
+                                    <span class="badge bg-orange-galaxy text-white fs-6 shadow px-2 py-1" style="font-size:1rem;">@movie.AgeLimit</span>
+                                </div>
+                            </div>
+                            <div class="card-body text-center p-2">
+	                            <a asp-controller="Movie" asp-action="Details" asp-route-id="@movie.MovieId" style="display:block;">
+                                    <h6 class="card-title fw-bold mb-1" style="min-height:40px;font-size:1.08rem;">@movie.Title</h6>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            @if (Model.NowShowing.Count > 8)
+            {
+                <div class="text-center">
+                    <a href="/Movie/Movies?type=nowshowing" class="btn btn-outline-primary">Xem thêm</a>
+                </div>
+            }
+        </div>
+        <div class="tab-pane fade" id="comingSoonTab">
+	        <div class="row">
+		        @foreach (var movie in Model.ComingSoon.Take(8))
+		        {
+			        <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+				        <div class="movie-card-galaxy card h-100 border-0 position-relative overflow-hidden">
+					        <div class="poster-wrapper-galaxy position-relative">
+						        <a href="@Url.Action("Details", "Movie", new { id = movie.MovieId })" style="display:block;">
+							        <img src="@movie.PosterUrl" class="card-img-top movie-poster-galaxy" alt="@movie.Title" />
+						        </a>
+						        <div class="movie-overlay-galaxy">
+							        <div class="w-100 d-flex flex-column align-items-center gap-2 px-3">
+								        <a href="/Booking/Quick?movieId=@movie.MovieId" class="btn btn-galaxy-book w-100 mb-2">
+									        <i class="fa-solid fa-ticket"></i> Mua vé
+								        </a>
+								        @if (!string.IsNullOrEmpty(movie.TrailerUrl))
+								        {
+									        <button class="btn btn-galaxy-trailer w-100" onclick="showTrailer('@movie.TrailerUrl')">
+										        <i class="fa-solid fa-play"></i> Trailer
+									        </button>
+								        }
+							        </div>
+						        </div>
+						        <div class="badge-group-galaxy position-absolute end-0 bottom-0 m-2 d-flex flex-column align-items-end gap-2">
+								        <span class="badge bg-warning text-dark fs-6 shadow px-2 py-1" style="font-size:1rem;"><i class="fa-solid fa-star"></i> @movie.Rating</span>
+								        <span class="badge bg-orange-galaxy text-white fs-6 shadow px-2 py-1" style="font-size:1rem;">@movie.AgeLimit</span>
+							        </div>
+					        </div>
+				        </div>
+			        </div>
+		        }
+	        </div>
+            @if (Model.ComingSoon.Count > 8)
+            {
+                <div class="text-center">
+                    <a href="/Movie/Movies?type=comingsoon" class="btn btn-outline-primary">Xem thêm</a>
+                </div>
+            }
+        </div>
+        <div class="tab-pane fade" id="imaxTab">
+            <div class="row">
+                @foreach (var movie in Model.ImaxMovies.Take(8))
+                {
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+                        <div class="movie-card-galaxy card h-100 border-0 position-relative overflow-hidden">
+                            <div class="poster-wrapper-galaxy position-relative">
+                                <a href="@Url.Action("Details", "Movie", new { id = movie.MovieId })" style="display:block;">
+                                    <img src="@movie.PosterUrl" class="card-img-top movie-poster-galaxy" alt="@movie.Title" />
+                                </a>
+                                <div class="movie-overlay-galaxy">
+                                    <div class="w-100 d-flex flex-column align-items-center gap-2 px-3">
+                                        <a href="/Booking/Quick?movieId=@movie.MovieId" class="btn btn-galaxy-book w-100 mb-2">
+                                            <i class="fa-solid fa-ticket"></i> Mua vé
+                                        </a>
+                                        @if (!string.IsNullOrEmpty(movie.TrailerUrl))
+                                        {
+                                            <button class="btn btn-galaxy-trailer w-100" onclick="showTrailer('@movie.TrailerUrl')">
+                                                <i class="fa-solid fa-play"></i> Trailer
+                                            </button>
+                                        }
+                                    </div>
+                                </div>
+                                <div class="badge-group-galaxy position-absolute end-0 bottom-0 m-2 d-flex flex-column align-items-end gap-2">
+                                    <span class="badge bg-warning text-dark fs-6 shadow px-2 py-1" style="font-size:1rem;"><i class="fa-solid fa-star"></i> @movie.Rating</span>
+                                    <span class="badge bg-orange-galaxy text-white fs-6 shadow px-2 py-1" style="font-size:1rem;">@movie.AgeLimit</span>
+                                </div>
+                            </div>
+                            <div class="card-body text-center p-2">
+	                            <a asp-controller="Movie" asp-action="Details" asp-route-id="@movie.MovieId" style="display:block;">
+                                    <h6 class="card-title fw-bold mb-1" style="min-height:40px;font-size:1.08rem;">@movie.Title</h6>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            @if (Model.ImaxMovies.Count > 8)
+            {
+                <div class="text-center">
+                    <a href="/Movie/Movies?type=imax" class="btn btn-outline-primary">Xem thêm</a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<hr class="stellarcine-divider my-5" />
+<section class="about-stellarcine mt-5 mb-5">
+    <h2 class="fw-bold text-primary mb-3" style="letter-spacing:1px;">Về StellarCine</h2>
+    <p><b>StellarCine</b> là một trong những hệ thống rạp chiếu phim hiện đại hàng đầu tại Việt Nam, được thành lập vào năm 2025. Với mục tiêu mang đến trải nghiệm điện ảnh đỉnh cao, <b>StellarCine</b> đã nhanh chóng trở thành điểm đến yêu thích của hàng triệu khán giả trên khắp cả nước. Không chỉ nổi bật với công nghệ trình chiếu tiên tiến, <b>StellarCine</b> còn được biết đến bởi không gian sang trọng, dịch vụ chuyên nghiệp và phong cách phục vụ thân thiện.</p>
+    <p>Tại website chính thức <a href="/" class="text-primary fw-bold"  onclick="event.preventDefault();">stellarcine.vn</a>, khán giả dễ dàng theo dõi các <b>phim đang chiếu</b>, <b>phim sắp chiếu</b>, cùng <b>lịch chiếu</b> chi tiết tại từng cụm rạp trên toàn quốc. Mỗi ngày, lịch chiếu phim tại hệ thống rạp của <b>StellarCine</b> đều được cập nhật liên tục, mang lại sự tiện lợi và chính xác cho người dùng.</p>
+    <p>Khách hàng có thể <b>đặt vé trực tuyến</b> nhanh chóng qua website hoặc ứng dụng di động. Bạn chỉ cần chọn phim yêu thích, rạp gần nhất và thời gian phù hợp. Sau đó, việc thanh toán và nhận vé điện tử sẽ được thực hiện một cách dễ dàng chỉ trong vài bước. Vé xem phim sẽ được gửi qua email hoặc hiển thị dưới dạng mã QR để quét tại quầy soát vé.</p>
+    <p>Đối với những ai muốn trải nghiệm sự tiện lợi tối đa, hãy thử ngay tính năng <b class="text-warning">Mua Vé Nhanh</b> tại mục <b>Trang Chủ</b>. Chỉ với một cú nhấp chuột, hệ thống sẽ tự động đề xuất suất chiếu phù hợp nhất dựa trên lựa chọn của bạn và gửi vé về trong chớp mắt.</p>
+    <p>Nếu bạn đang tìm kiếm phim mới ra mắt, hãy khám phá chuyên mục <b class="text-success">Phim Hot Trong Tuần</b> hoặc <b>Góc Điện Ảnh</b>, nơi cung cấp thông tin đánh giá, trailer, cũng như các bài viết phân tích từ đội ngũ biên tập của <b>StellarCine</b>.</p>
+    <p><b>StellarCine</b> cũng liên tục triển khai các chương trình <b>ưu đãi</b>, <b>vé đôi</b> hoặc các chương trình tặng quà đặc biệt dành riêng cho thành viên và khách hàng thân thiết.</p>
+    <p>Mục <b>Góc Điện Ảnh</b> trên website cũng là nơi cập nhật những xu hướng điện ảnh mới nhất, giới thiệu các thể loại phim nổi bật, phân tích kịch bản, diễn xuất và góc nhìn chuyên sâu từ các nhà phê bình uy tín.</p>
+    <p>Hiện nay, <b>StellarCine</b> không ngừng đổi mới để mang đến những siêu phẩm điện ảnh bom tấn, đa dạng thể loại từ hành động, tình cảm đến hoạt hình, phục vụ mọi đối tượng khán giả từ trẻ nhỏ đến người lớn. Hãy cùng đón chờ những trải nghiệm điện ảnh đỉnh cao cùng <b>StellarCine</b>!</p>
+</section>
+<style>
+.stellarcine-divider {
+    border: none;
+    border-top: 3px solid #1976d2;
+    width: 120px;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0.8;
+    border-radius: 2px;
+}
+</style>
+
+<!-- Modal Trailer -->
+<div class="modal fade" id="trailerModal" tabindex="-1" aria-labelledby="trailerModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content bg-dark">
+      <div class="modal-header border-0">
+        <h5 class="modal-title text-white" id="trailerModalLabel">Trailer</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close" onclick="closeTrailer()"></button>
+      </div>
+      <div class="modal-body p-0" id="trailerModalBody" style="height:400px;">
+        <!-- Video sẽ được nhúng ở đây -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function showTrailer(url) {
+    let embedUrl = url;
+    // Nếu là link YouTube, chuyển sang embed
+    if (url.includes("youtube.com") || url.includes("youtu.be")) {
+        const videoId = url.includes("youtu.be")
+            ? url.split("youtu.be/")[1]
+            : url.split("v=")[1].split("&")[0];
+        embedUrl = "https://www.youtube.com/embed/" + videoId + "?autoplay=1";
+    }
+    document.getElementById('trailerModalBody').innerHTML =
+        `<iframe width="100%" height="400" src="${embedUrl}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+    var myModal = new bootstrap.Modal(document.getElementById('trailerModal'));
+    myModal.show();
+}
+function closeTrailer() {
+    document.getElementById('trailerModalBody').innerHTML = "";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+document.addEventListener('DOMContentLoaded', function() {
+    const menuLinks = document.querySelectorAll('.menu-link');
+    const tabPanes = document.querySelectorAll('.tab-pane');
+    
+    menuLinks.forEach(link => {
+        link.addEventListener('mouseenter', function(e) {
+            e.preventDefault();
+            
+            // Remove active class from all links and add to current
+            menuLinks.forEach(l => l.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Hide all tab panes
+            tabPanes.forEach(pane => {
+                pane.classList.remove('show', 'active');
+            });
+            
+            // Show current tab pane
+            const targetId = this.getAttribute('href').substring(1);
+            const targetPane = document.getElementById(targetId);
+            targetPane.classList.add('show', 'active');
+        });
+    });
+});
+</script>

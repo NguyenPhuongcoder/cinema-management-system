@@ -19,5 +19,7 @@ public partial class MoviePerson
 
     public DateTime? UpdatedAt { get; set; }
 
+    public string? ImageUrl { get; set; }
+
     public virtual ICollection<MovieCast> MovieCasts { get; set; } = new List<MovieCast>();
 }

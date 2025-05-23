@@ -1,0 +1,85 @@
+@model QUANLYRAPCHIEUPHHIM.Models.User
+@{
+    ViewData["Title"] = "Register";
+    Layout = "_Layout";
+}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0 rounded-lg mt-5">
+                <div class="card-header">
+                    <h3 class="text-center font-weight-light my-4">Create Account</h3>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Register" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        
+                        <div class="form-floating mb-3">
+                            <input asp-for="Username" class="form-control" placeholder="Username" required />
+                            <label asp-for="Username">Username</label>
+                            <span asp-validation-for="Username" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="form-floating mb-3">
+                            <input asp-for="Email" class="form-control" type="email" placeholder="name@example.com" required />
+                            <label asp-for="Email">Email address</label>
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="form-floating mb-3">
+                            <input asp-for="FullName" class="form-control" placeholder="Full Name" required />
+                            <label asp-for="FullName">Full Name</label>
+                            <span asp-validation-for="FullName" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="form-floating mb-3">
+                            <input asp-for="Phone" class="form-control" placeholder="Phone Number" />
+                            <label asp-for="Phone">Phone Number</label>
+                            <span asp-validation-for="Phone" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="form-floating mb-3">
+                            <input asp-for="Password" class="form-control" type="password" placeholder="Password" required />
+                            <label asp-for="Password">Password</label>
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="form-floating mb-3">
+                            <input name="ConfirmPassword" class="form-control" type="password" placeholder="Confirm Password" required />
+                            <label>Confirm Password</label>
+                        </div>
+                        
+                        <div class="mt-4 mb-0">
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer text-center py-3">
+                    <div class="small">
+                        <a asp-action="Login">Have an account? Go to login</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    
+    <script>
+        $(document).ready(function() {
+            $('form').submit(function(e) {
+                var password = $('#Password').val();
+                var confirmPassword = $('input[name="ConfirmPassword"]').val();
+                
+                if (password !== confirmPassword) {
+                    e.preventDefault();
+                    alert('Passwords do not match!');
+                }
+            });
+        });
+    </script>
+} 

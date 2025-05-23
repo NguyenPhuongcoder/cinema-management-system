@@ -15,6 +15,7 @@ public partial class Booking
 
     public int? DiscountId { get; set; }
 
+
     public DateTime? PaymentDueDate { get; set; }
 
     public DateTime? CreatedAt { get; set; }

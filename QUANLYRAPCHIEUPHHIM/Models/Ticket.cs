@@ -19,6 +19,8 @@ public partial class Ticket
 
     public DateTime? ScanDatetime { get; set; }
 
+    public string? TicketStatus { get; set; }
+
     public DateTime? CreatedAt { get; set; }
 
     public DateTime? UpdatedAt { get; set; }
@@ -28,6 +30,4 @@ public partial class Ticket
     public virtual Seat Seat { get; set; } = null!;
 
     public virtual Showtime Showtime { get; set; } = null!;
-
-    public virtual ICollection<TicketTicketStatus> TicketTicketStatuses { get; set; } = new List<TicketTicketStatus>();
 }
