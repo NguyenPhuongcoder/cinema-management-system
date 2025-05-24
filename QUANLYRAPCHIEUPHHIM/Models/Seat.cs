@@ -7,31 +7,23 @@ namespace QUANLYRAPCHIEUPHHIM.Models;
 
 public class Seat
 {
-    [Key]
     public int SeatId { get; set; }
 
-    [Required]
     public int RoomId { get; set; }
 
-    [Required]
     public int SeatTypeId { get; set; }
 
-    [Required]
-    [StringLength(1)]
-    public string RowLetter { get; set; }
+    public string RowLetter { get; set; } = null!;
 
-    [Required]
     public int SeatNumber { get; set; }
 
-    public DateTime CreatedAt { get; set; }
-    public DateTime UpdatedAt { get; set; }
+    public DateTime? CreatedAt { get; set; }
 
-    // Navigation properties
-    [ForeignKey("RoomId")]
-    public virtual Room Room { get; set; }
+    public DateTime? UpdatedAt { get; set; }
 
-    [ForeignKey("SeatTypeId")]
-    public virtual SeatType SeatType { get; set; }
+    public virtual Room Room { get; set; } = null!;
+
+    public virtual SeatType SeatType { get; set; } = null!;
 
     public virtual ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();
 }

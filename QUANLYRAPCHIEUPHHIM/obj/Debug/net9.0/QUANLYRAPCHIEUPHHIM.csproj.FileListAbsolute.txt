@@ -482,4 +482,4 @@ E:\LaptrinhC#\Cuoi_ky\QUANLYRAPCHIEUPHHIM\obj\Debug\net9.0\QUANLYRAPCHIEUPHHIM.p
 E:\LaptrinhC#\Cuoi_ky\QUANLYRAPCHIEUPHHIM\obj\Debug\net9.0\QUANLYRAPCHIEUPHHIM.genruntimeconfig.cache
 E:\LaptrinhC#\Cuoi_ky\QUANLYRAPCHIEUPHHIM\obj\Debug\net9.0\ref\QUANLYRAPCHIEUPHHIM.dll
 E:\LaptrinhC#\Cuoi_ky\QUANLYRAPCHIEUPHHIM\obj\Debug\net9.0\compressed\wd29avs6lb-rm9ixw3p2k.gz
-E:\LaptrinhC#\Cuoi_ky\QUANLYRAPCHIEUPHHIM\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
+E:\LaptrinhC#\Cuoi_ky\QUANLYRAPCHIEUPHHIM\obj\Debug\net9.0\QUANLYRAPCHIEUPHHIM.MvcApplicationPartsAssemblyInfo.cs

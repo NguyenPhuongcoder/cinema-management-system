@@ -7,39 +7,27 @@ namespace QUANLYRAPCHIEUPHHIM.Models;
 
 public class Discount
 {
-    [Key]
     public int DiscountId { get; set; }
 
-    [Required]
-    [StringLength(50)]
-    public string CouponCode { get; set; }
+    public string DiscountName { get; set; } = null!;
 
-    [Required]
-    [StringLength(100)]
-    public string DiscountName { get; set; }
-
-    [Required]
-    [Column(TypeName = "decimal(5,2)")]
     public decimal DiscountValue { get; set; }
 
-    public DateTime StartDate { get; set; }
+    public DateOnly StartDate { get; set; }
 
-    public DateTime EndDate { get; set; }
+    public DateOnly EndDate { get; set; }
 
-    public bool IsActive { get; set; }
+    public string? CouponCode { get; set; }
 
-    public int UsageLimit { get; set; }
+    public bool? IsActive { get; set; }
 
-    [Required]
-    public DateTime CreatedAt { get; set; }
+    public int? UsageLimit { get; set; }
 
-    [Required]
-    public DateTime UpdatedAt { get; set; }
+    public DateTime? CreatedAt { get; set; }
 
-    // Navigation properties
+    public DateTime? UpdatedAt { get; set; }
+
     public virtual ICollection<Booking> Bookings { get; set; } = new List<Booking>();
 
     public virtual ICollection<DiscountDiscountType> DiscountDiscountTypes { get; set; } = new List<DiscountDiscountType>();
-
-    public virtual ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();
 }

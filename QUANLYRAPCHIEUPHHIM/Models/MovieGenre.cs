@@ -14,4 +14,5 @@ public partial class MovieGenre
     public virtual Genre Genre { get; set; } = null!;
 
     public virtual Movie Movie { get; set; } = null!;
+
 }

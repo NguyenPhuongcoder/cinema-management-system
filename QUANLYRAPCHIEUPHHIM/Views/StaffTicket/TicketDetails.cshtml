@@ -1,0 +1,88 @@
+@using QUANLYRAPCHIEUPHHIM.Models.ViewModels
+@model TicketConfirmationViewModel
+@{
+    ViewData["Title"] = "Chi tiết vé - Đặt vé";
+    Layout = "_Layout";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0 text-center"><i class="fas fa-ticket-alt me-2"></i> Chi tiết vé</h4>
+        </div>
+        <div class="card-body">
+            <div class="text-center mb-4">
+                <i class="fas fa-ticket-alt fa-5x text-primary mb-3"></i>
+                <h5>Mã đặt vé: <strong>@Model.TicketCode</strong></h5>
+                <p class="text-muted">Thông tin chi tiết về vé đã đặt</p>
+            </div>
+
+            <div class="ticket-details">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5>Thông tin vé</h5>
+                        <p><strong>Mã vé:</strong> @Model.TicketCode</p>
+                        <p><strong>Phim:</strong> @Model.Showtime?.Movie?.Title</p>
+                        <p><strong>Suất chiếu:</strong> @(Model.Showtime?.StartTime.ToString("dd/MM/yyyy HH:mm") ?? "N/A")</p>
+                        <p><strong>Phòng chiếu:</strong> @Model.Showtime?.Room?.RoomName</p>
+                    </div>
+                    <div class="col-md-6">
+                        <h5>Thông tin khách hàng</h5>
+                        <p><strong>Họ tên:</strong> @Model.Booking?.User?.FullName</p>
+                        <p><strong>Số điện thoại:</strong> @Model.Booking?.User?.Phone</p>
+                        <p><strong>Email:</strong> @Model.Booking?.User?.Email</p>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <h5>Thông tin ghế</h5>
+                        <p><strong>Ghế:</strong> @Model.Seat?.RowLetter@Model.Seat?.SeatNumber</p>
+                        <p><strong>Loại ghế:</strong> @Model.Seat?.SeatType?.Name</p>
+                    </div>
+                    <div class="col-md-6">
+                        <h5>Thông tin thanh toán</h5>
+                        <p><strong>Phương thức:</strong> @Model.Payment?.PaymentMethod</p>
+                        <p><strong>Số tiền:</strong> @Model.Payment?.Amount.ToString("N0") VND</p>
+                        <p><strong>Trạng thái:</strong> @Model.Payment?.Status</p>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <h5>Lịch sử trạng thái</h5>
+                        <div class="table-responsive">
+                            <table class="table table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>Trạng thái</th>
+                                        <th>Thời gian</th>
+                                        <th>Ghi chú</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var status in Model.TicketTicketStatuses.OrderByDescending(tts => tts.CreatedAt))
+                                    {
+                                        <tr>
+                                            <td>@status.TicketStatus?.Name</td>
+                                            <td>@status.CreatedAt.ToString("dd/MM/yyyy HH:mm")</td>
+                                            <td>@status.Note</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            // JavaScript cho trang chi tiết vé
+        });
+    </script>
+} 

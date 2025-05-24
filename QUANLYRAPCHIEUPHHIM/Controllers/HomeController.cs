@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using QUANLYRAPCHIEUPHHIM.Models;
 using QUANLYRAPCHIEUPHHIM.Data;
+using Microsoft.AspNetCore.Authorization;
+using QUANLYRAPCHIEUPHHIM.Services;
+using QUANLYRAPCHIEUPHHIM.Models.ViewModels;
 
 namespace QUANLYRAPCHIEUPHHIM.Controllers
 {
@@ -10,25 +13,64 @@ namespace QUANLYRAPCHIEUPHHIM.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly CinemaDbContext _context;
+        private readonly IMovieService _movieService;
+        private readonly ICinemaService _cinemaService;
 
-        public HomeController(ILogger<HomeController> logger, CinemaDbContext context)
+        public HomeController(
+            ILogger<HomeController> logger,
+            CinemaDbContext context,
+            IMovieService movieService,
+            ICinemaService cinemaService)
         {
             _logger = logger;
             _context = context;
+            _movieService = movieService;
+            _cinemaService = cinemaService;
         }
 
         public async Task<IActionResult> Index()
         {
-            var movies = await _context.Movies
-                .Include(m => m.MovieGenres)
-                    .ThenInclude(mg => mg.Genre)
-                .Include(m => m.MovieFormats)
-                    .ThenInclude(mf => mf.RoomFormat)
-                .Where(m => m.ReleaseDate <= DateTime.Now)
-                .OrderByDescending(m => m.ReleaseDate)
-                .ToListAsync();
+            try
+            {
+                // Lấy danh sách phim đang chiếu
+                var movies = await _movieService.GetMoviesAsync(
+                    page: 1,
+                    pageSize: 8
+                );
 
-            return View(movies);
+                // Lấy danh sách rạp chiếu
+                var cinemas = await _cinemaService.GetCinemasAsync(
+                    page: 1,
+                    pageSize: 6
+                );
+
+                ViewBag.Movies = movies;
+                ViewBag.Cinemas = cinemas;
+
+                return View();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Lỗi khi tải trang chủ");
+                return View("Error");
+            }
+        }
+
+        [Authorize]
+        public IActionResult Dashboard()
+        {
+            if (User.IsInRole("Admin"))
+            {
+                return RedirectToAction("Index", "Admin");
+            }
+            else if (User.IsInRole("Staff"))
+            {
+                return RedirectToAction("Index", "StaffTicket");
+            }
+            else
+            {
+                return RedirectToAction("Index", "Booking");
+            }
         }
 
         public IActionResult Privacy()

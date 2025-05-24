@@ -6,16 +6,9 @@ namespace QUANLYRAPCHIEUPHHIM.Models;
 
 public class DiscountType
 {
-    [Key]
     public int DiscountTypeId { get; set; }
 
-    [Required]
-    [StringLength(50)]
-    public string DiscountTypeName { get; set; }
+    public string DiscountTypeName { get; set; } = null!;
 
-    [StringLength(200)]
-    public string? Description { get; set; }
-
-    // Navigation properties
     public virtual ICollection<DiscountDiscountType> DiscountDiscountTypes { get; set; } = new List<DiscountDiscountType>();
 }

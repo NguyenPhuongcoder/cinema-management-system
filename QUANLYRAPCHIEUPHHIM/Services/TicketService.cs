@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using QUANLYRAPCHIEUPHHIM.Data;
 using QUANLYRAPCHIEUPHHIM.Models;
 using System;
@@ -11,181 +12,135 @@ namespace QUANLYRAPCHIEUPHHIM.Services
     public class TicketService : ITicketService
     {
         private readonly CinemaDbContext _context;
+        private readonly ILogger<TicketService> _logger;
 
-        public TicketService(CinemaDbContext context)
+        public TicketService(CinemaDbContext context, ILogger<TicketService> logger)
         {
             _context = context;
-        }
-
-        public IEnumerable<Ticket> GetAllTickets()
-        {
-            return _context.Tickets
-                .Include(t => t.Booking)
-                    .ThenInclude(b => b.User)
-                .Include(t => t.Showtime)
-                    .ThenInclude(s => s.Movie)
-                .Include(t => t.Seat)
-                .ToList();
-        }
-
-        public Ticket GetTicketById(int id)
-        {
-            return _context.Tickets
-                .Include(t => t.Booking)
-                    .ThenInclude(b => b.User)
-                .Include(t => t.Showtime)
-                    .ThenInclude(s => s.Movie)
-                .Include(t => t.Seat)
-                .FirstOrDefault(t => t.TicketId == id);
+            _logger = logger;
         }
 
         public async Task<Ticket> GetTicketByIdAsync(int id)
         {
-            return await _context.Tickets
-                .Include(t => t.Booking)
-                    .ThenInclude(b => b.User)
-                .Include(t => t.Showtime)
-                    .ThenInclude(s => s.Movie)
-                .Include(t => t.Seat)
-                .FirstOrDefaultAsync(t => t.TicketId == id);
-        }
-
-        public void CreateTicket(Ticket ticket)
-        {
-            _context.Tickets.Add(ticket);
-            _context.SaveChanges();
-        }
-
-        public void UpdateTicket(Ticket ticket)
-        {
-            _context.Tickets.Update(ticket);
-            _context.SaveChanges();
-        }
-
-        public async Task UpdateTicketAsync(Ticket ticket)
-        {
-            _context.Tickets.Update(ticket);
-            await _context.SaveChangesAsync();
-        }
-
-        public void DeleteTicket(int id)
-        {
-            var ticket = _context.Tickets.Find(id);
-            if (ticket != null)
+            try
             {
-                _context.Tickets.Remove(ticket);
-                _context.SaveChanges();
+                return await _context.Tickets
+                    .Include(t => t.Booking)
+                        .ThenInclude(b => b.User)
+                    .Include(t => t.Showtime)
+                        .ThenInclude(s => s.Movie)
+                    .Include(t => t.Seat)
+                    .FirstOrDefaultAsync(t => t.TicketId == id);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error getting ticket by id {TicketId}", id);
+                throw;
             }
         }
 
-        public IEnumerable<int> GetBookedSeats(int showtimeId)
+        public async Task<Ticket> GetTicketByCodeAsync(string ticketCode)
         {
-            return _context.Tickets
-                .Where(t => t.ShowtimeId == showtimeId && t.TicketStatus != "cancelled")
-                .Select(t => t.SeatId)
-                .ToList();
+            try
+            {
+                return await _context.Tickets
+                    .Include(t => t.Booking)
+                        .ThenInclude(b => b.User)
+                    .Include(t => t.Showtime)
+                        .ThenInclude(s => s.Movie)
+                    .Include(t => t.Seat)
+                    .FirstOrDefaultAsync(t => t.TicketCode == ticketCode);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error getting ticket by code {TicketCode}", ticketCode);
+                throw;
+            }
         }
 
-        public async Task<IEnumerable<Ticket>> GetTicketsAsync(
-            string ticketCode = null,
-            string customerPhone = null,
-            int? movieId = null,
-            string status = null,
-            DateTime? fromDate = null,
-            DateTime? toDate = null,
-            int page = 1,
-            int pageSize = 10)
+        public async Task<Ticket> ConfirmTicketAsync(int ticketId)
         {
-            var query = _context.Tickets
-                .Include(t => t.Booking)
-                    .ThenInclude(b => b.User)
-                .Include(t => t.Showtime)
-                    .ThenInclude(s => s.Movie)
-                .Include(t => t.Seat)
-                .AsQueryable();
-
-            if (!string.IsNullOrEmpty(ticketCode))
+            try
             {
-                query = query.Where(t => t.TicketCode.Contains(ticketCode));
-            }
+                var ticket = await _context.Tickets
+                    .FirstOrDefaultAsync(t => t.TicketId == ticketId);
 
-            if (!string.IsNullOrEmpty(customerPhone))
+                if (ticket == null)
+                    throw new ArgumentException("Ticket not found");
+
+                if (ticket.TicketStatus == "confirmed")
+                    throw new InvalidOperationException("Ticket is already confirmed");
+
+                if (ticket.TicketStatus == "cancelled")
+                    throw new InvalidOperationException("Cannot confirm a cancelled ticket");
+
+                ticket.TicketStatus = "confirmed";
+                ticket.UpdatedAt = DateTime.Now;
+
+                await _context.SaveChangesAsync();
+                return ticket;
+            }
+            catch (Exception ex)
             {
-                query = query.Where(t => t.Booking.User.Phone.Contains(customerPhone));
+                _logger.LogError(ex, "Error confirming ticket {TicketId}", ticketId);
+                throw;
             }
-
-            if (movieId.HasValue)
-            {
-                query = query.Where(t => t.Showtime.MovieId == movieId.Value);
-            }
-
-            if (!string.IsNullOrEmpty(status))
-            {
-                query = query.Where(t => t.TicketStatus == status);
-            }
-
-            if (fromDate.HasValue)
-            {
-                query = query.Where(t => t.CreatedAt >= fromDate.Value);
-            }
-
-            if (toDate.HasValue)
-            {
-                query = query.Where(t => t.CreatedAt <= toDate.Value);
-            }
-
-            return await query
-                .OrderByDescending(t => t.CreatedAt)
-                .Skip((page - 1) * pageSize)
-                .Take(pageSize)
-                .ToListAsync();
         }
 
-        public async Task<int> CountTicketsAsync(
-            string ticketCode = null,
-            string customerPhone = null,
-            int? movieId = null,
-            string status = null,
-            DateTime? fromDate = null,
-            DateTime? toDate = null)
+        public async Task<Ticket> CancelTicketAsync(int ticketId)
         {
-            var query = _context.Tickets
-                .Include(t => t.Booking)
-                    .ThenInclude(b => b.User)
-                .Include(t => t.Showtime)
-                .AsQueryable();
-
-            if (!string.IsNullOrEmpty(ticketCode))
+            try
             {
-                query = query.Where(t => t.TicketCode.Contains(ticketCode));
-            }
+                var ticket = await _context.Tickets
+                    .FirstOrDefaultAsync(t => t.TicketId == ticketId);
 
-            if (!string.IsNullOrEmpty(customerPhone))
+                if (ticket == null)
+                    throw new ArgumentException("Ticket not found");
+
+                if (ticket.TicketStatus == "cancelled")
+                    throw new InvalidOperationException("Ticket is already cancelled");
+
+                // Check if showtime has already started
+                var showtime = await _context.Showtimes
+                    .FirstOrDefaultAsync(s => s.ShowtimeId == ticket.ShowtimeId);
+
+                if (showtime == null)
+                    throw new ArgumentException("Showtime not found");
+
+                if (showtime.StartTime <= DateTime.Now)
+                    throw new InvalidOperationException("Cannot cancel ticket for a showtime that has already started");
+
+                ticket.TicketStatus = "cancelled";
+                ticket.UpdatedAt = DateTime.Now;
+
+                await _context.SaveChangesAsync();
+                return ticket;
+            }
+            catch (Exception ex)
             {
-                query = query.Where(t => t.Booking.User.Phone.Contains(customerPhone));
+                _logger.LogError(ex, "Error cancelling ticket {TicketId}", ticketId);
+                throw;
             }
+        }
 
-            if (movieId.HasValue)
+        public async Task<IEnumerable<Ticket>> GetTicketsByShowtimeAsync(int showtimeId)
+        {
+            try
             {
-                query = query.Where(t => t.Showtime.MovieId == movieId.Value);
+                return await _context.Tickets
+                    .Include(t => t.Booking)
+                        .ThenInclude(b => b.User)
+                    .Include(t => t.Seat)
+                    .Where(t => t.ShowtimeId == showtimeId)
+                    .OrderBy(t => t.Seat.RowLetter)
+                    .ThenBy(t => t.Seat.SeatNumber)
+                    .ToListAsync();
             }
-
-            if (!string.IsNullOrEmpty(status))
+            catch (Exception ex)
             {
-                query = query.Where(t => t.TicketStatus == status);
+                _logger.LogError(ex, "Error getting tickets by showtime {ShowtimeId}", showtimeId);
+                throw;
             }
-
-            if (fromDate.HasValue)
-            {
-                query = query.Where(t => t.CreatedAt >= fromDate.Value);
-            }
-
-            if (toDate.HasValue)
-            {
-                query = query.Where(t => t.CreatedAt <= toDate.Value);
-            }
-
-            return await query.CountAsync();
         }
     }
 } 

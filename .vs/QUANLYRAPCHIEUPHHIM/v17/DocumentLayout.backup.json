@@ -3,44 +3,8 @@
   "WorkspaceRootPath": "E:\\LaptrinhC#\\Cuoi_ky\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|e:\\laptrinhc#\\cuoi_ky\\quanlyrapchieuphhim\\views\\staffbooking\\_ticketdetails.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|solutionrelative:quanlyrapchieuphhim\\views\\staffbooking\\_ticketdetails.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|e:\\laptrinhc#\\cuoi_ky\\quanlyrapchieuphhim\\views\\staffbooking\\ticketdetails.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|solutionrelative:quanlyrapchieuphhim\\views\\staffbooking\\ticketdetails.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|e:\\laptrinhc#\\cuoi_ky\\quanlyrapchieuphhim\\views\\staffbooking\\selectshowtime.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|solutionrelative:quanlyrapchieuphhim\\views\\staffbooking\\selectshowtime.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|e:\\laptrinhc#\\cuoi_ky\\quanlyrapchieuphhim\\views\\staffbooking\\selectseats.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|solutionrelative:quanlyrapchieuphhim\\views\\staffbooking\\selectseats.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|e:\\laptrinhc#\\cuoi_ky\\quanlyrapchieuphhim\\views\\staffbooking\\selectmovie.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|solutionrelative:quanlyrapchieuphhim\\views\\staffbooking\\selectmovie.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|e:\\laptrinhc#\\cuoi_ky\\quanlyrapchieuphhim\\views\\staffbooking\\manageticket.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|solutionrelative:quanlyrapchieuphhim\\views\\staffbooking\\manageticket.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|e:\\laptrinhc#\\cuoi_ky\\quanlyrapchieuphhim\\views\\staffbooking\\checkout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|solutionrelative:quanlyrapchieuphhim\\views\\staffbooking\\checkout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|e:\\laptrinhc#\\cuoi_ky\\quanlyrapchieuphhim\\views\\staffbooking\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|solutionrelative:quanlyrapchieuphhim\\views\\staffbooking\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|e:\\laptrinhc#\\cuoi_ky\\quanlyrapchieuphhim\\views\\staffbooking\\confirmation.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|solutionrelative:quanlyrapchieuphhim\\views\\staffbooking\\confirmation.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|e:\\laptrinhc#\\cuoi_ky\\quanlyrapchieuphhim\\controllers\\staffbookingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|solutionrelative:quanlyrapchieuphhim\\controllers\\staffbookingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|e:\\laptrinhc#\\cuoi_ky\\quanlyrapchieuphhim\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|solutionrelative:quanlyrapchieuphhim\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|e:\\laptrinhc#\\cuoi_ky\\quanlyrapchieuphhim\\data\\cinemadbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -49,6 +13,46 @@
     {
       "AbsoluteMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|e:\\laptrinhc#\\cuoi_ky\\quanlyrapchieuphhim\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|solutionrelative:quanlyrapchieuphhim\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|e:\\laptrinhc#\\cuoi_ky\\quanlyrapchieuphhim\\services\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|solutionrelative:quanlyrapchieuphhim\\services\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|e:\\laptrinhc#\\cuoi_ky\\quanlyrapchieuphhim\\quanlyrapchieuphhim.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|solutionrelative:quanlyrapchieuphhim\\quanlyrapchieuphhim.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|e:\\laptrinhc#\\cuoi_ky\\quanlyrapchieuphhim\\services\\imovieservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|solutionrelative:quanlyrapchieuphhim\\services\\imovieservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|e:\\laptrinhc#\\cuoi_ky\\quanlyrapchieuphhim\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|solutionrelative:quanlyrapchieuphhim\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|e:\\laptrinhc#\\cuoi_ky\\quanlyrapchieuphhim\\models\\moviegenre.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|solutionrelative:quanlyrapchieuphhim\\models\\moviegenre.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|e:\\laptrinhc#\\cuoi_ky\\quanlyrapchieuphhim\\services\\bookingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|solutionrelative:quanlyrapchieuphhim\\services\\bookingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|e:\\laptrinhc#\\cuoi_ky\\quanlyrapchieuphhim\\viewmodel\\homepageviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|solutionrelative:quanlyrapchieuphhim\\viewmodel\\homepageviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|e:\\laptrinhc#\\cuoi_ky\\quanlyrapchieuphhim\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|solutionrelative:quanlyrapchieuphhim\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|e:\\laptrinhc#\\cuoi_ky\\quanlyrapchieuphhim\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|solutionrelative:quanlyrapchieuphhim\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|e:\\laptrinhc#\\cuoi_ky\\quanlyrapchieuphhim\\models\\genre.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|solutionrelative:quanlyrapchieuphhim\\models\\genre.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{89E11B15-2F46-4FDA-95BF-619416FFDA80}|QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj|e:\\laptrinhc#\\cuoi_ky\\quanlyrapchieuphhim\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -62,7 +66,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 9,
+          "SelectedChildIndex": 12,
           "Children": [
             {
               "$type": "Bookmark",
@@ -81,117 +85,155 @@
               "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Checkout.cshtml",
-              "DocumentMoniker": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\Views\\StaffBooking\\Checkout.cshtml",
-              "RelativeDocumentMoniker": "QUANLYRAPCHIEUPHHIM\\Views\\StaffBooking\\Checkout.cshtml",
-              "ToolTip": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\Views\\StaffBooking\\Checkout.cshtml",
-              "RelativeToolTip": "QUANLYRAPCHIEUPHHIM\\Views\\StaffBooking\\Checkout.cshtml",
-              "ViewState": "AgIAAI0AAAAA///////vv5UAAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-21T11:24:10.903Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "SelectShowtime.cshtml",
-              "DocumentMoniker": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\Views\\StaffBooking\\SelectShowtime.cshtml",
-              "RelativeDocumentMoniker": "QUANLYRAPCHIEUPHHIM\\Views\\StaffBooking\\SelectShowtime.cshtml",
-              "ToolTip": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\Views\\StaffBooking\\SelectShowtime.cshtml",
-              "RelativeToolTip": "QUANLYRAPCHIEUPHHIM\\Views\\StaffBooking\\SelectShowtime.cshtml",
-              "ViewState": "AgIAAE8AAAAgMzMzMzMtwD8AAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-21T11:28:35.98Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "TicketDetails.cshtml",
-              "DocumentMoniker": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\Views\\StaffBooking\\TicketDetails.cshtml",
-              "RelativeDocumentMoniker": "QUANLYRAPCHIEUPHHIM\\Views\\StaffBooking\\TicketDetails.cshtml",
-              "ToolTip": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\Views\\StaffBooking\\TicketDetails.cshtml",
-              "RelativeToolTip": "QUANLYRAPCHIEUPHHIM\\Views\\StaffBooking\\TicketDetails.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAABIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-21T11:28:27.697Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "SelectMovie.cshtml",
-              "DocumentMoniker": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\Views\\StaffBooking\\SelectMovie.cshtml",
-              "RelativeDocumentMoniker": "QUANLYRAPCHIEUPHHIM\\Views\\StaffBooking\\SelectMovie.cshtml",
-              "ToolTip": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\Views\\StaffBooking\\SelectMovie.cshtml",
-              "RelativeToolTip": "QUANLYRAPCHIEUPHHIM\\Views\\StaffBooking\\SelectMovie.cshtml",
-              "ViewState": "AgIAADkAAACAZmZmZmYkwEIAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-21T11:28:10.102Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "ManageTicket.cshtml",
-              "DocumentMoniker": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\Views\\StaffBooking\\ManageTicket.cshtml",
-              "RelativeDocumentMoniker": "QUANLYRAPCHIEUPHHIM\\Views\\StaffBooking\\ManageTicket.cshtml",
-              "ToolTip": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\Views\\StaffBooking\\ManageTicket.cshtml",
-              "RelativeToolTip": "QUANLYRAPCHIEUPHHIM\\Views\\StaffBooking\\ManageTicket.cshtml",
-              "ViewState": "AgIAANoAAAAAAAAAAAAAwO0AAAACAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-21T11:27:55.433Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "_TicketDetails.cshtml",
-              "DocumentMoniker": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\Views\\StaffBooking\\_TicketDetails.cshtml",
-              "RelativeDocumentMoniker": "QUANLYRAPCHIEUPHHIM\\Views\\StaffBooking\\_TicketDetails.cshtml",
-              "ToolTip": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\Views\\StaffBooking\\_TicketDetails.cshtml",
-              "RelativeToolTip": "QUANLYRAPCHIEUPHHIM\\Views\\StaffBooking\\_TicketDetails.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAA7AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-20T13:35:58.034Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{6d4078d1-5951-4ed1-ac0e-0a8099c1cce5}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "SelectSeats.cshtml",
-              "DocumentMoniker": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\Views\\StaffBooking\\SelectSeats.cshtml",
-              "RelativeDocumentMoniker": "QUANLYRAPCHIEUPHHIM\\Views\\StaffBooking\\SelectSeats.cshtml",
-              "ToolTip": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\Views\\StaffBooking\\SelectSeats.cshtml",
-              "RelativeToolTip": "QUANLYRAPCHIEUPHHIM\\Views\\StaffBooking\\SelectSeats.cshtml",
-              "ViewState": "AgIAAD8AAAAAAAAAAADwv08AAAAmAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-20T03:03:51.553Z"
+              "Title": "IUserService.cs",
+              "DocumentMoniker": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\Services\\IUserService.cs",
+              "RelativeDocumentMoniker": "QUANLYRAPCHIEUPHHIM\\Services\\IUserService.cs",
+              "ToolTip": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\Services\\IUserService.cs",
+              "RelativeToolTip": "QUANLYRAPCHIEUPHHIM\\Services\\IUserService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-23T23:28:19.754Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IMovieService.cs",
+              "DocumentMoniker": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\Services\\IMovieService.cs",
+              "RelativeDocumentMoniker": "QUANLYRAPCHIEUPHHIM\\Services\\IMovieService.cs",
+              "ToolTip": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\Services\\IMovieService.cs",
+              "RelativeToolTip": "QUANLYRAPCHIEUPHHIM\\Services\\IMovieService.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAgwBkAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-23T16:23:43.266Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\Views\\StaffBooking\\Index.cshtml",
-              "RelativeDocumentMoniker": "QUANLYRAPCHIEUPHHIM\\Views\\StaffBooking\\Index.cshtml",
-              "ToolTip": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\Views\\StaffBooking\\Index.cshtml",
-              "RelativeToolTip": "QUANLYRAPCHIEUPHHIM\\Views\\StaffBooking\\Index.cshtml",
-              "ViewState": "AgIAABoAAAAAMzMzMzMbwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-19T01:18:20.846Z"
+              "Title": "MovieGenre.cs",
+              "DocumentMoniker": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\Models\\MovieGenre.cs",
+              "RelativeDocumentMoniker": "QUANLYRAPCHIEUPHHIM\\Models\\MovieGenre.cs",
+              "ToolTip": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\Models\\MovieGenre.cs",
+              "RelativeToolTip": "QUANLYRAPCHIEUPHHIM\\Models\\MovieGenre.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAWwA0AAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-23T15:43:44.084Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "BookingService.cs",
+              "DocumentMoniker": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\Services\\BookingService.cs",
+              "RelativeDocumentMoniker": "QUANLYRAPCHIEUPHHIM\\Services\\BookingService.cs",
+              "ToolTip": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\Services\\BookingService.cs",
+              "RelativeToolTip": "QUANLYRAPCHIEUPHHIM\\Services\\BookingService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-23T15:19:15.252Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Dockerfile",
+              "DocumentMoniker": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\Dockerfile",
+              "RelativeDocumentMoniker": "QUANLYRAPCHIEUPHHIM\\Dockerfile",
+              "ToolTip": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\Dockerfile",
+              "RelativeToolTip": "QUANLYRAPCHIEUPHHIM\\Dockerfile",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-05-23T13:53:17.283Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 9,
-              "Title": "StaffBookingController.cs",
-              "DocumentMoniker": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\Controllers\\StaffBookingController.cs",
-              "RelativeDocumentMoniker": "QUANLYRAPCHIEUPHHIM\\Controllers\\StaffBookingController.cs",
-              "ToolTip": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\Controllers\\StaffBookingController.cs",
-              "RelativeToolTip": "QUANLYRAPCHIEUPHHIM\\Controllers\\StaffBookingController.cs",
-              "ViewState": "AgIAABsBAAAAAAAAAAAowCUBAAAgAAAAAAAAAA==",
+              "Title": "HomePageViewModel.cs",
+              "DocumentMoniker": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\ViewModel\\HomePageViewModel.cs",
+              "RelativeDocumentMoniker": "QUANLYRAPCHIEUPHHIM\\ViewModel\\HomePageViewModel.cs",
+              "ToolTip": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\ViewModel\\HomePageViewModel.cs",
+              "RelativeToolTip": "QUANLYRAPCHIEUPHHIM\\ViewModel\\HomePageViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-16T10:16:02.534Z"
+              "WhenOpened": "2025-05-23T13:44:08.538Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "QUANLYRAPCHIEUPHHIM.csproj",
+              "DocumentMoniker": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj",
+              "RelativeDocumentMoniker": "QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj",
+              "ToolTip": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj",
+              "RelativeToolTip": "QUANLYRAPCHIEUPHHIM\\QUANLYRAPCHIEUPHHIM.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-05-23T13:42:19.448Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\Program.cs",
+              "RelativeDocumentMoniker": "QUANLYRAPCHIEUPHHIM\\Program.cs",
+              "ToolTip": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\Program.cs",
+              "RelativeToolTip": "QUANLYRAPCHIEUPHHIM\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-23T13:36:41.34Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "QUANLYRAPCHIEUPHHIM\\Controllers\\HomeController.cs",
+              "ToolTip": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "QUANLYRAPCHIEUPHHIM\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAAA4AAABAZmZmZmYswA4AAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-23T13:31:10.574Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 12,
+              "Title": "Genre.cs",
+              "DocumentMoniker": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\Models\\Genre.cs",
+              "RelativeDocumentMoniker": "QUANLYRAPCHIEUPHHIM\\Models\\Genre.cs",
+              "ToolTip": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\Models\\Genre.cs",
+              "RelativeToolTip": "QUANLYRAPCHIEUPHHIM\\Models\\Genre.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAqwAcAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-23T13:29:49.957Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "QUANLYRAPCHIEUPHHIM\\appsettings.Development.json",
+              "ToolTip": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\appsettings.Development.json",
+              "RelativeToolTip": "QUANLYRAPCHIEUPHHIM\\appsettings.Development.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-05-22T05:28:18.098Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "QUANLYRAPCHIEUPHHIM\\Views\\Shared\\_Layout.cshtml",
@@ -199,43 +241,34 @@
               "RelativeToolTip": "QUANLYRAPCHIEUPHHIM\\Views\\Shared\\_Layout.cshtml",
               "ViewState": "AgIAABYAAAAAMzMzMzMLwB0AAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-15T14:32:06.292Z"
+              "WhenOpened": "2025-05-15T14:32:06.292Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 1,
               "Title": "CinemaDbContext.cs",
               "DocumentMoniker": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\Data\\CinemaDbContext.cs",
               "RelativeDocumentMoniker": "QUANLYRAPCHIEUPHHIM\\Data\\CinemaDbContext.cs",
               "ToolTip": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\Data\\CinemaDbContext.cs",
               "RelativeToolTip": "QUANLYRAPCHIEUPHHIM\\Data\\CinemaDbContext.cs",
-              "ViewState": "AgIAAIEAAAAAMzMzMzMtwGkAAAAnAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADABAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-10T01:21:40.89Z"
+              "WhenOpened": "2025-05-10T01:21:40.89Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 2,
               "Title": "appsettings.json",
               "DocumentMoniker": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\appsettings.json",
               "RelativeDocumentMoniker": "QUANLYRAPCHIEUPHHIM\\appsettings.json",
               "ToolTip": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\appsettings.json",
               "RelativeToolTip": "QUANLYRAPCHIEUPHHIM\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAA0AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAACBAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-05-10T01:10:41.57Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Confirmation.cshtml",
-              "DocumentMoniker": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\Views\\StaffBooking\\Confirmation.cshtml",
-              "RelativeDocumentMoniker": "QUANLYRAPCHIEUPHHIM\\Views\\StaffBooking\\Confirmation.cshtml",
-              "ToolTip": "E:\\LaptrinhC#\\Cuoi_ky\\QUANLYRAPCHIEUPHHIM\\Views\\StaffBooking\\Confirmation.cshtml",
-              "RelativeToolTip": "QUANLYRAPCHIEUPHHIM\\Views\\StaffBooking\\Confirmation.cshtml",
-              "ViewState": "AgIAABwAAAAAAAAAAAAYwCQAAABiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-21T05:08:06.565Z"
+              "WhenOpened": "2025-05-10T01:10:41.57Z",
+              "EditorCaption": ""
             }
           ]
         }

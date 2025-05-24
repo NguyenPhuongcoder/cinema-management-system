@@ -1,0 +1,210 @@
+@model QUANLYRAPCHIEUPHHIM.Models.Ticket
+
+@{
+    ViewData["Title"] = "Quản lý vé";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4">Quản lý vé</h2>
+
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="input-group">
+                <input type="text" id="ticketCode" class="form-control" placeholder="Nhập mã vé...">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" onclick="searchTicket()">Tìm kiếm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="ticketDetails" class="card mb-4" style="display: none;">
+        <div class="card-header">
+            <h5 class="mb-0">Thông tin vé</h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <p><strong>Mã vé:</strong> <span id="ticketCodeDisplay"></span></p>
+                    <p><strong>Phim:</strong> <span id="movieTitle"></span></p>
+                    <p><strong>Suất chiếu:</strong> <span id="showtime"></span></p>
+                    <p><strong>Phòng chiếu:</strong> <span id="roomName"></span></p>
+                </div>
+                <div class="col-md-6">
+                    <p><strong>Ghế:</strong> <span id="seatInfo"></span></p>
+                    <p><strong>Khách hàng:</strong> <span id="customerName"></span></p>
+                    <p><strong>Số điện thoại:</strong> <span id="customerPhone"></span></p>
+                    <p><strong>Trạng thái:</strong> <span id="ticketStatus"></span></p>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-12">
+                    <button id="confirmBtn" class="btn btn-success mr-2" onclick="confirmTicket()" style="display: none;">Xác nhận vé</button>
+                    <button id="cancelBtn" class="btn btn-danger" onclick="cancelTicket()" style="display: none;">Hủy vé</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="errorMessage" class="alert alert-danger" style="display: none;"></div>
+    <div id="successMessage" class="alert alert-success" style="display: none;"></div>
+</div>
+
+@section Scripts {
+    <script>
+        let currentTicketId = null;
+
+        function searchTicket() {
+            const ticketCode = document.getElementById('ticketCode').value;
+            if (!ticketCode) {
+                showError('Vui lòng nhập mã vé');
+                return;
+            }
+
+            fetch(`/StaffTicket/GetTicketByCode?code=${ticketCode}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Không tìm thấy vé');
+                    }
+                    return response.json();
+                })
+                .then(ticket => {
+                    currentTicketId = ticket.ticketId;
+                    displayTicketDetails(ticket);
+                })
+                .catch(error => {
+                    showError(error.message);
+                    hideTicketDetails();
+                });
+        }
+
+        function displayTicketDetails(ticket) {
+            document.getElementById('ticketCodeDisplay').textContent = ticket.ticketCode;
+            document.getElementById('movieTitle').textContent = ticket.showtime.movie.title;
+            document.getElementById('showtime').textContent = formatDateTime(ticket.showtime.startTime);
+            document.getElementById('roomName').textContent = ticket.showtime.room.roomName;
+            document.getElementById('seatInfo').textContent = `${ticket.seat.rowLetter}${ticket.seat.seatNumber}`;
+            document.getElementById('customerName').textContent = ticket.booking.user.fullName;
+            document.getElementById('customerPhone').textContent = ticket.booking.user.phone;
+            document.getElementById('ticketStatus').textContent = getStatusText(ticket.ticketStatus);
+
+            // Hiển thị/ẩn các nút dựa trên trạng thái vé
+            const confirmBtn = document.getElementById('confirmBtn');
+            const cancelBtn = document.getElementById('cancelBtn');
+
+            confirmBtn.style.display = ticket.ticketStatus === 'pending' ? 'inline-block' : 'none';
+            cancelBtn.style.display = ticket.ticketStatus === 'confirmed' ? 'inline-block' : 'none';
+
+            document.getElementById('ticketDetails').style.display = 'block';
+            hideMessages();
+        }
+
+        function confirmTicket() {
+            if (!currentTicketId) return;
+
+            fetch(`/StaffTicket/ConfirmTicket`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
+                },
+                body: JSON.stringify({ ticketId: currentTicketId })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Không thể xác nhận vé');
+                }
+                return response.json();
+            })
+            .then(result => {
+                if (result.success) {
+                    showSuccess('Xác nhận vé thành công');
+                    displayTicketDetails(result.ticket);
+                } else {
+                    throw new Error(result.message || 'Có lỗi xảy ra');
+                }
+            })
+            .catch(error => {
+                showError(error.message);
+            });
+        }
+
+        function cancelTicket() {
+            if (!currentTicketId) return;
+
+            if (!confirm('Bạn có chắc chắn muốn hủy vé này?')) {
+                return;
+            }
+
+            fetch(`/StaffTicket/CancelTicket`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
+                },
+                body: JSON.stringify({ ticketId: currentTicketId })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Không thể hủy vé');
+                }
+                return response.json();
+            })
+            .then(result => {
+                if (result.success) {
+                    showSuccess('Hủy vé thành công');
+                    displayTicketDetails(result.ticket);
+                } else {
+                    throw new Error(result.message || 'Có lỗi xảy ra');
+                }
+            })
+            .catch(error => {
+                showError(error.message);
+            });
+        }
+
+        function formatDateTime(dateTimeStr) {
+            const date = new Date(dateTimeStr);
+            return date.toLocaleString('vi-VN', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+
+        function getStatusText(status) {
+            switch (status) {
+                case 'pending': return 'Chờ xác nhận';
+                case 'confirmed': return 'Đã xác nhận';
+                case 'cancelled': return 'Đã hủy';
+                default: return status;
+            }
+        }
+
+        function showError(message) {
+            const errorDiv = document.getElementById('errorMessage');
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+            document.getElementById('successMessage').style.display = 'none';
+        }
+
+        function showSuccess(message) {
+            const successDiv = document.getElementById('successMessage');
+            successDiv.textContent = message;
+            successDiv.style.display = 'block';
+            document.getElementById('errorMessage').style.display = 'none';
+        }
+
+        function hideMessages() {
+            document.getElementById('errorMessage').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'none';
+        }
+
+        function hideTicketDetails() {
+            document.getElementById('ticketDetails').style.display = 'none';
+            currentTicketId = null;
+        }
+    </script>
+} 

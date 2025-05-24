@@ -7,13 +7,9 @@ namespace QUANLYRAPCHIEUPHHIM.Models;
 
 public class Role
 {
-    [Key]
     public int RoleId { get; set; }
 
-    [Required]
-    [StringLength(50)]
-    public string RoleName { get; set; }
+    public string RoleName { get; set; } = null!;
 
-    // Navigation properties
-    public ICollection<UserRole> UserRoles { get; set; } = new List<UserRole>();
+    public virtual ICollection<UserRole> UserRoles { get; set; } = new List<UserRole>();
 }

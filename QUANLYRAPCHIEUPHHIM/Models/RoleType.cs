@@ -7,15 +7,9 @@ namespace QUANLYRAPCHIEUPHHIM.Models;
 
 public class RoleType
 {
-    [Key]
     public int RoleTypeId { get; set; }
 
-    [Required]
-    [StringLength(50)]
-    public string RoleTypeName { get; set; }
+    public string RoleTypeName { get; set; } = null!;
 
-    public string? Description { get; set; }
-
-    // Navigation properties
     public virtual ICollection<MovieCastRoleType> MovieCastRoleTypes { get; set; } = new List<MovieCastRoleType>();
 }

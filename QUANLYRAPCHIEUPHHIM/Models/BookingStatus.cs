@@ -7,19 +7,9 @@ namespace QUANLYRAPCHIEUPHHIM.Models;
 
 public class BookingStatus
 {
-    [Key]
     public int BookingStatusId { get; set; }
 
-    [Required]
-    [StringLength(50)]
-    public string BookingStatusName { get; set; }
+    public string BookingStatusName { get; set; } = null!;
 
-    [StringLength(200)]
-    public string? Description { get; set; }
-
-    public DateTime CreatedAt { get; set; }
-    public DateTime? UpdatedAt { get; set; }
-
-    // Navigation properties
     public virtual ICollection<BookingBookingStatus> BookingBookingStatuses { get; set; } = new List<BookingBookingStatus>();
 }

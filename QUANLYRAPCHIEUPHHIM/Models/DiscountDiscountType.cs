@@ -5,18 +5,13 @@ namespace QUANLYRAPCHIEUPHHIM.Models;
 
 public class DiscountDiscountType
 {
-    [Key]
     public int DiscountDiscountTypeId { get; set; }
 
-    [Required]
-    [ForeignKey("Discount")]
     public int DiscountId { get; set; }
 
-    [Required]
-    [ForeignKey("DiscountType")]
     public int DiscountTypeId { get; set; }
 
-    // Navigation properties
-    public Discount Discount { get; set; }
-    public DiscountType DiscountType { get; set; }
+    public virtual Discount Discount { get; set; } = null!;
+
+    public virtual DiscountType DiscountType { get; set; } = null!;
 }

@@ -7,31 +7,25 @@ namespace QUANLYRAPCHIEUPHHIM.Models;
 
 public class Room
 {
-    [Key]
     public int RoomId { get; set; }
 
-    [Required]
     public int CinemaId { get; set; }
 
-    [Required]
-    [StringLength(50)]
-    public string RoomName { get; set; }
-
-    [Required]
     public int FormatId { get; set; }
+
+    public string RoomName { get; set; } = null!;
 
     public int Capacity { get; set; }
 
-    public DateTime CreatedAt { get; set; }
+    public DateTime? CreatedAt { get; set; }
+
     public DateTime? UpdatedAt { get; set; }
 
-    // Navigation properties
-    [ForeignKey("CinemaId")]
-    public virtual Cinema Cinema { get; set; }
+    public virtual Cinema Cinema { get; set; } = null!;
 
-    [ForeignKey("FormatId")]
-    public virtual RoomFormat Format { get; set; }
+    public virtual RoomFormat Format { get; set; } = null!;
 
     public virtual ICollection<Seat> Seats { get; set; } = new List<Seat>();
+
     public virtual ICollection<Showtime> Showtimes { get; set; } = new List<Showtime>();
 }

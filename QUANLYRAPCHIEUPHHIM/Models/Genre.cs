@@ -7,19 +7,13 @@ namespace QUANLYRAPCHIEUPHHIM.Models;
 
 public class Genre
 {
-    [Key]
     public int GenreId { get; set; }
 
-    [Required]
-    [StringLength(50)]
-    public string GenreName { get; set; }
+    public string GenreName { get; set; } = null!;
 
-    [StringLength(200)]
-    public string? Description { get; set; }
+    public DateTime? CreatedAt { get; set; }
 
-    public DateTime CreatedAt { get; set; }
     public DateTime? UpdatedAt { get; set; }
 
-    // Navigation properties
     public virtual ICollection<MovieGenre> MovieGenres { get; set; } = new List<MovieGenre>();
 }

@@ -1,21 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using QUANLYRAPCHIEUPHHIM.Models;
 
 namespace QUANLYRAPCHIEUPHHIM.Data;
 
-public partial class CinemaDbContext : DbContext
+public partial class CinemaDbContext : IdentityDbContext<ApplicationUser>
 {
-    private readonly IConfiguration _configuration;
-
-    public CinemaDbContext(DbContextOptions<CinemaDbContext> options, IConfiguration configuration)
-        : base(options)
-    {
-        _configuration = configuration;
-    }
-
     public CinemaDbContext(DbContextOptions<CinemaDbContext> options)
         : base(options)
     {
@@ -57,8 +49,6 @@ public partial class CinemaDbContext : DbContext
 
     public virtual DbSet<PaymentMethod> PaymentMethods { get; set; }
 
-
-
     public virtual DbSet<Province> Provinces { get; set; }
 
     public virtual DbSet<Role> Roles { get; set; }
@@ -85,51 +75,35 @@ public partial class CinemaDbContext : DbContext
     {
         if (!optionsBuilder.IsConfigured)
         {
-            optionsBuilder.UseSqlServer(_configuration.GetConnectionString("DefaultConnection"));
+            // This will only be used if no connection string is passed through constructor
+            optionsBuilder.UseSqlServer("Server=ADMIN-PC;Database=DbCinema;Trusted_Connection=True;TrustServerCertificate=True;");
         }
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
+
         modelBuilder.Entity<Address>(entity =>
         {
-            entity.HasKey(e => e.AddressId);
+            entity.HasKey(e => e.AddressId).HasName("PK__Address__CAA247C899E5234E");
+
             entity.ToTable("Address");
+
             entity.Property(e => e.AddressId).HasColumnName("address_id");
-            entity.Property(e => e.Street)
-                .IsRequired()
-                .HasMaxLength(200)
-                .HasColumnName("street");
-            entity.Property(e => e.City)
-                .IsRequired()
-                .HasMaxLength(100)
-                .HasColumnName("city");
-            entity.Property(e => e.State)
-                .IsRequired()
-                .HasMaxLength(100)
-                .HasColumnName("state");
-            entity.Property(e => e.ZipCode)
-                .IsRequired()
-                .HasMaxLength(20)
-                .HasColumnName("zip_code");
-            entity.Property(e => e.Country)
-                .IsRequired()
-                .HasMaxLength(100)
-                .HasColumnName("country");
             entity.Property(e => e.AddressDetail)
-                .HasMaxLength(500)
+                .HasMaxLength(200)
                 .HasColumnName("address_detail");
             entity.Property(e => e.CityId).HasColumnName("city_id");
 
-            entity.HasOne(d => d.CityEntity)
-                .WithMany(p => p.Addresses)
+            entity.HasOne(d => d.City).WithMany(p => p.Addresses)
                 .HasForeignKey(d => d.CityId)
                 .HasConstraintName("FK__Address__city_id__3D5E1FD2");
         });
 
         modelBuilder.Entity<Booking>(entity =>
         {
-            entity.HasKey(e => e.BookingId).HasName("PK__Booking__5DE3A5B1A5E3D2EC");
+            entity.HasKey(e => e.BookingId).HasName("PK__Booking__5DE3A5B1C0C00224");
 
             entity.ToTable("Booking");
 
@@ -162,17 +136,17 @@ public partial class CinemaDbContext : DbContext
             entity.HasOne(d => d.Discount).WithMany(p => p.Bookings)
                 .HasForeignKey(d => d.DiscountId)
                 .OnDelete(DeleteBehavior.SetNull)
-                .HasConstraintName("FK__Booking__discoun__31B762FC");
+                .HasConstraintName("FK__Booking__discoun__2EDAF651");
 
             entity.HasOne(d => d.User).WithMany(p => p.Bookings)
                 .HasForeignKey(d => d.UserId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Booking__user_id__30C33EC3");
+                .HasConstraintName("FK__Booking__user_id__2DE6D218");
         });
 
         modelBuilder.Entity<BookingBookingStatus>(entity =>
         {
-            entity.HasKey(e => e.BookingBookingStatusId).HasName("PK__BookingB__3880CD97EF93F379");
+            entity.HasKey(e => e.BookingBookingStatusId).HasName("PK__BookingB__3880CD97013DEAE3");
 
             entity.ToTable("BookingBookingStatus");
 
@@ -184,37 +158,30 @@ public partial class CinemaDbContext : DbContext
 
             entity.HasOne(d => d.Booking).WithMany(p => p.BookingBookingStatuses)
                 .HasForeignKey(d => d.BookingId)
-                .HasConstraintName("FK__BookingBo__booki__3587F3E0");
+                .HasConstraintName("FK__BookingBo__booki__32AB8735");
 
             entity.HasOne(d => d.BookingStatus).WithMany(p => p.BookingBookingStatuses)
                 .HasForeignKey(d => d.BookingStatusId)
-                .HasConstraintName("FK__BookingBo__booki__367C1819");
+                .HasConstraintName("FK__BookingBo__booki__339FAB6E");
         });
 
         modelBuilder.Entity<BookingStatus>(entity =>
         {
-            entity.HasKey(e => e.BookingStatusId);
+            entity.HasKey(e => e.BookingStatusId).HasName("PK__BookingS__B02F4E9EBBDED263");
+
             entity.ToTable("BookingStatus");
-            entity.HasIndex(e => e.BookingStatusName, "UQ__BookingS__0A422CD5112DB458").IsUnique();
+
+            entity.HasIndex(e => e.BookingStatusName, "UQ__BookingS__0A422CD5396FF74F").IsUnique();
+
             entity.Property(e => e.BookingStatusId).HasColumnName("booking_status_id");
             entity.Property(e => e.BookingStatusName)
-                .IsRequired()
                 .HasMaxLength(50)
                 .HasColumnName("booking_status_name");
-            entity.Property(e => e.Description)
-                .HasMaxLength(200)
-                .HasColumnName("description");
-            entity.Property(e => e.CreatedAt)
-                .HasColumnType("datetime")
-                .HasColumnName("created_at");
-            entity.Property(e => e.UpdatedAt)
-                .HasColumnType("datetime")
-                .HasColumnName("updated_at");
         });
 
         modelBuilder.Entity<Cinema>(entity =>
         {
-            entity.HasKey(e => e.CinemaId).HasName("PK__Cinema__566287788A357AD9");
+            entity.HasKey(e => e.CinemaId).HasName("PK__Cinema__5662877880FA2573");
 
             entity.ToTable("Cinema");
 
@@ -245,55 +212,60 @@ public partial class CinemaDbContext : DbContext
 
         modelBuilder.Entity<City>(entity =>
         {
-            entity.HasKey(e => e.CityId);
+            entity.HasKey(e => e.CityId).HasName("PK__City__031491A87F3C4E2E");
+
             entity.ToTable("City");
+
             entity.Property(e => e.CityId).HasColumnName("city_id");
             entity.Property(e => e.CityName)
-                .IsRequired()
                 .HasMaxLength(100)
                 .HasColumnName("city_name");
             entity.Property(e => e.ProvinceId).HasColumnName("province_id");
 
-            entity.HasOne(d => d.Province)
-                .WithMany(p => p.Cities)
+            entity.HasOne(d => d.Province).WithMany(p => p.Cities)
                 .HasForeignKey(d => d.ProvinceId)
                 .HasConstraintName("FK__City__province_i__3A81B327");
         });
 
         modelBuilder.Entity<Discount>(entity =>
         {
-            entity.HasKey(e => e.DiscountId);
+            entity.HasKey(e => e.DiscountId).HasName("PK__Discount__BDBE9EF90B197F50");
+
             entity.ToTable("Discount");
-            entity.HasIndex(e => e.CouponCode, "UQ__Discount__ADE5CBB73F5E2FCC").IsUnique();
+
+            entity.HasIndex(e => e.CouponCode, "UQ__Discount__ADE5CBB776BB8E6A").IsUnique();
+
             entity.Property(e => e.DiscountId).HasColumnName("discount_id");
             entity.Property(e => e.CouponCode)
-                .IsRequired()
-                .HasMaxLength(50)
+                .HasMaxLength(20)
                 .HasColumnName("coupon_code");
+            entity.Property(e => e.CreatedAt)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime")
+                .HasColumnName("created_at");
             entity.Property(e => e.DiscountName)
-                .IsRequired()
                 .HasMaxLength(100)
                 .HasColumnName("discount_name");
             entity.Property(e => e.DiscountValue)
-                .HasColumnType("decimal(5,2)")
+                .HasColumnType("decimal(8, 2)")
                 .HasColumnName("discount_value");
-            entity.Property(e => e.StartDate).HasColumnName("start_date");
             entity.Property(e => e.EndDate).HasColumnName("end_date");
-            entity.Property(e => e.IsActive).HasColumnName("is_active");
-            entity.Property(e => e.UsageLimit).HasColumnName("usage_limit");
-            entity.Property(e => e.CreatedAt)
-                .IsRequired()
-                .HasColumnType("datetime")
-                .HasColumnName("created_at");
+            entity.Property(e => e.IsActive)
+                .HasDefaultValue(true)
+                .HasColumnName("is_active");
+            entity.Property(e => e.StartDate).HasColumnName("start_date");
             entity.Property(e => e.UpdatedAt)
-                .IsRequired()
+                .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")
                 .HasColumnName("updated_at");
+            entity.Property(e => e.UsageLimit)
+                .HasDefaultValue(0)
+                .HasColumnName("usage_limit");
         });
 
         modelBuilder.Entity<DiscountDiscountType>(entity =>
         {
-            entity.HasKey(e => e.DiscountDiscountTypeId).HasName("PK__Discount__A43803541B6F2AA4");
+            entity.HasKey(e => e.DiscountDiscountTypeId).HasName("PK__Discount__A4380354AA9F4286");
 
             entity.ToTable("DiscountDiscountType");
 
@@ -314,43 +286,43 @@ public partial class CinemaDbContext : DbContext
 
         modelBuilder.Entity<DiscountType>(entity =>
         {
-            entity.HasKey(e => e.DiscountTypeId);
+            entity.HasKey(e => e.DiscountTypeId).HasName("PK__Discount__61DC13AA4708DE68");
+
             entity.ToTable("DiscountType");
-            entity.HasIndex(e => e.DiscountTypeName, "UQ__Discount__805CD7FE4AF03D10").IsUnique();
+
+            entity.HasIndex(e => e.DiscountTypeName, "UQ__Discount__805CD7FE0A6BE97C").IsUnique();
+
             entity.Property(e => e.DiscountTypeId).HasColumnName("discount_type_id");
             entity.Property(e => e.DiscountTypeName)
-                .IsRequired()
                 .HasMaxLength(50)
                 .HasColumnName("discount_type_name");
-            entity.Property(e => e.Description)
-                .HasMaxLength(200)
-                .HasColumnName("description");
         });
 
         modelBuilder.Entity<Genre>(entity =>
         {
-            entity.HasKey(e => e.GenreId);
+            entity.HasKey(e => e.GenreId).HasName("PK__Genre__18428D423DA4D0E0");
+
             entity.ToTable("Genre");
-            entity.HasIndex(e => e.GenreName, "UQ__Genre__1E98D151E2E0A1A9").IsUnique();
+
+            entity.HasIndex(e => e.GenreName, "UQ__Genre__1E98D15134FDBC71").IsUnique();
+
             entity.Property(e => e.GenreId).HasColumnName("genre_id");
-            entity.Property(e => e.GenreName)
-                .IsRequired()
-                .HasMaxLength(50)
-                .HasColumnName("genre_name");
-            entity.Property(e => e.Description)
-                .HasMaxLength(200)
-                .HasColumnName("description");
             entity.Property(e => e.CreatedAt)
+                .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")
                 .HasColumnName("created_at");
+            entity.Property(e => e.GenreName)
+                .HasMaxLength(50)
+                .HasColumnName("genre_name");
             entity.Property(e => e.UpdatedAt)
+                .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")
                 .HasColumnName("updated_at");
         });
 
         modelBuilder.Entity<Movie>(entity =>
         {
-            entity.HasKey(e => e.MovieId).HasName("PK__Movie__83CDF7497217B9EB");
+            entity.HasKey(e => e.MovieId).HasName("PK__Movie__83CDF749A1C50F9E");
 
             entity.ToTable("Movie");
 
@@ -372,6 +344,9 @@ public partial class CinemaDbContext : DbContext
             entity.Property(e => e.Language)
                 .HasMaxLength(50)
                 .HasColumnName("language");
+            entity.Property(e => e.PanelUrl)
+                .HasMaxLength(255)
+                .HasColumnName("panel_url");
             entity.Property(e => e.PosterUrl)
                 .HasMaxLength(255)
                 .HasColumnName("poster_url");
@@ -394,7 +369,7 @@ public partial class CinemaDbContext : DbContext
 
         modelBuilder.Entity<MovieCast>(entity =>
         {
-            entity.HasKey(e => e.MovieCastId).HasName("PK__MovieCas__00C3DA852B81A27F");
+            entity.HasKey(e => e.MovieCastId).HasName("PK__MovieCas__00C3DA8502C1C510");
 
             entity.ToTable("MovieCast");
 
@@ -416,7 +391,7 @@ public partial class CinemaDbContext : DbContext
 
         modelBuilder.Entity<MovieCastRoleType>(entity =>
         {
-            entity.HasKey(e => e.MovieCastRoleTypeId).HasName("PK__MovieCas__C7097E3A5CA1CD6F");
+            entity.HasKey(e => e.MovieCastRoleTypeId).HasName("PK__MovieCas__C7097E3A10D56D50");
 
             entity.ToTable("MovieCastRoleType");
 
@@ -437,36 +412,26 @@ public partial class CinemaDbContext : DbContext
 
         modelBuilder.Entity<MovieFormat>(entity =>
         {
-            entity.HasKey(e => e.MovieFormatId);
-            entity.ToTable("MovieFormat");
-            entity.Property(e => e.MovieFormatId).HasColumnName("movie_format_id");
-            entity.Property(e => e.MovieId)
-                .IsRequired()
-                .HasColumnName("movie_id");
-            entity.Property(e => e.RoomFormatId)
-                .IsRequired()
-                .HasColumnName("room_format_id");
-            entity.Property(e => e.PriceModifier)
-                .HasColumnType("decimal(8,2)")
-                .HasColumnName("price_modifier");
-            entity.Property(e => e.CreatedAt)
-                .HasColumnType("datetime")
-                .HasColumnName("created_at");
+            entity.HasKey(e => e.MovieFormatId).HasName("PK__MovieFor__E435C60BBD0DD678");
 
-            entity.HasOne(d => d.Movie)
-                .WithMany(p => p.MovieFormats)
+            entity.ToTable("MovieFormat");
+
+            entity.Property(e => e.MovieFormatId).HasColumnName("movie_format_id");
+            entity.Property(e => e.FormatId).HasColumnName("format_id");
+            entity.Property(e => e.MovieId).HasColumnName("movie_id");
+
+            entity.HasOne(d => d.Format).WithMany(p => p.MovieFormats)
+                .HasForeignKey(d => d.FormatId)
+                .HasConstraintName("FK__MovieForm__forma__7D439ABD");
+
+            entity.HasOne(d => d.Movie).WithMany(p => p.MovieFormats)
                 .HasForeignKey(d => d.MovieId)
                 .HasConstraintName("FK__MovieForm__movie__7C4F7684");
-
-            entity.HasOne(d => d.RoomFormat)
-                .WithMany(p => p.MovieFormats)
-                .HasForeignKey(d => d.RoomFormatId)
-                .HasConstraintName("FK__MovieForm__forma__7D439ABD");
         });
 
         modelBuilder.Entity<MovieGenre>(entity =>
         {
-            entity.HasKey(e => e.MovieGenreId).HasName("PK__MovieGen__FE9D0DC6CBBEF83F");
+            entity.HasKey(e => e.MovieGenreId).HasName("PK__MovieGen__FE9D0DC61BFDC743");
 
             entity.ToTable("MovieGenre");
 
@@ -485,7 +450,7 @@ public partial class CinemaDbContext : DbContext
 
         modelBuilder.Entity<MoviePerson>(entity =>
         {
-            entity.HasKey(e => e.PersonId).HasName("PK__MoviePer__543848DF67054CED");
+            entity.HasKey(e => e.PersonId).HasName("PK__MoviePer__543848DF0D2E81D4");
 
             entity.ToTable("MoviePerson");
 
@@ -499,6 +464,7 @@ public partial class CinemaDbContext : DbContext
             entity.Property(e => e.FullName)
                 .HasMaxLength(100)
                 .HasColumnName("full_name");
+            entity.Property(e => e.ImageUrl).HasMaxLength(255);
             entity.Property(e => e.Nationality)
                 .HasMaxLength(50)
                 .HasColumnName("nationality");
@@ -510,7 +476,7 @@ public partial class CinemaDbContext : DbContext
 
         modelBuilder.Entity<Payment>(entity =>
         {
-            entity.HasKey(e => e.PaymentId).HasName("PK__Payment__ED1FC9EA844B56AE");
+            entity.HasKey(e => e.PaymentId).HasName("PK__Payment__ED1FC9EA9281E88E");
 
             entity.ToTable("Payment");
 
@@ -527,12 +493,12 @@ public partial class CinemaDbContext : DbContext
                 .HasColumnType("datetime")
                 .HasColumnName("payment_date");
             entity.Property(e => e.PaymentMethodId).HasColumnName("payment_method_id");
+            entity.Property(e => e.PaymentStatus)
+                .HasMaxLength(20)
+                .HasColumnName("payment_status");
             entity.Property(e => e.TransactionId)
                 .HasMaxLength(100)
                 .HasColumnName("transaction_id");
-            entity.Property(e => e.PaymentStatus)
-                .HasMaxLength(100)
-                .HasColumnName("payment_status");
             entity.Property(e => e.UpdatedAt)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")
@@ -540,21 +506,21 @@ public partial class CinemaDbContext : DbContext
 
             entity.HasOne(d => d.Booking).WithMany(p => p.Payments)
                 .HasForeignKey(d => d.BookingId)
-                .HasConstraintName("FK__Payment__booking___395884C4");
+                .HasConstraintName("FK__Payment__booking__367C1819");
 
             entity.HasOne(d => d.PaymentMethod).WithMany(p => p.Payments)
                 .HasForeignKey(d => d.PaymentMethodId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Payment__payment__3A4CA8FD");
+                .HasConstraintName("FK__Payment__payment__37703C52");
         });
 
         modelBuilder.Entity<PaymentMethod>(entity =>
         {
-            entity.HasKey(e => e.PaymentMethodId).HasName("PK__PaymentM__8A3EA9EB13936CA6");
+            entity.HasKey(e => e.PaymentMethodId).HasName("PK__PaymentM__8A3EA9EB254402DF");
 
             entity.ToTable("PaymentMethod");
 
-            entity.HasIndex(e => e.MethodName, "UQ__PaymentM__2DA2FAEEFBA5B1F2").IsUnique();
+            entity.HasIndex(e => e.MethodName, "UQ__PaymentM__2DA2FAEE73397403").IsUnique();
 
             entity.Property(e => e.PaymentMethodId).HasColumnName("payment_method_id");
             entity.Property(e => e.CreatedAt)
@@ -570,17 +536,13 @@ public partial class CinemaDbContext : DbContext
                 .HasColumnName("updated_at");
         });
 
-
-
-       
-
         modelBuilder.Entity<Province>(entity =>
         {
-            entity.HasKey(e => e.ProvinceId).HasName("PK__Province__08DCB60F11E49023");
+            entity.HasKey(e => e.ProvinceId).HasName("PK__Province__08DCB60FC3C10165");
 
             entity.ToTable("Province");
 
-            entity.HasIndex(e => e.ProvinceName, "UQ__Province__D6FBADF94C712E4F").IsUnique();
+            entity.HasIndex(e => e.ProvinceName, "UQ__Province__D6FBADF9C7CDB56F").IsUnique();
 
             entity.Property(e => e.ProvinceId).HasColumnName("province_id");
             entity.Property(e => e.ProvinceName)
@@ -590,11 +552,11 @@ public partial class CinemaDbContext : DbContext
 
         modelBuilder.Entity<Role>(entity =>
         {
-            entity.HasKey(e => e.RoleId).HasName("PK__Role__760965CC980DC6CE");
+            entity.HasKey(e => e.RoleId).HasName("PK__Role__760965CC1234474A");
 
             entity.ToTable("Role");
 
-            entity.HasIndex(e => e.RoleName, "UQ__Role__783254B1FC110F3F").IsUnique();
+            entity.HasIndex(e => e.RoleName, "UQ__Role__783254B1D380F08E").IsUnique();
 
             entity.Property(e => e.RoleId).HasColumnName("role_id");
             entity.Property(e => e.RoleName)
@@ -604,11 +566,11 @@ public partial class CinemaDbContext : DbContext
 
         modelBuilder.Entity<RoleType>(entity =>
         {
-            entity.HasKey(e => e.RoleTypeId).HasName("PK__RoleType__58914784FB9C843B");
+            entity.HasKey(e => e.RoleTypeId).HasName("PK__RoleType__58914784B251A959");
 
             entity.ToTable("RoleType");
 
-            entity.HasIndex(e => e.RoleTypeName, "UQ__RoleType__DDC330EE0CFC3D5C").IsUnique();
+            entity.HasIndex(e => e.RoleTypeName, "UQ__RoleType__DDC330EE3629E291").IsUnique();
 
             entity.Property(e => e.RoleTypeId).HasColumnName("role_type_id");
             entity.Property(e => e.RoleTypeName)
@@ -618,62 +580,70 @@ public partial class CinemaDbContext : DbContext
 
         modelBuilder.Entity<Room>(entity =>
         {
-            entity.HasKey(e => e.RoomId);
+            entity.HasKey(e => e.RoomId).HasName("PK__Room__19675A8AE015982B");
+
             entity.ToTable("Room");
+
             entity.HasIndex(e => new { e.CinemaId, e.RoomName }, "UC_Room").IsUnique();
+
             entity.Property(e => e.RoomId).HasColumnName("room_id");
-            entity.Property(e => e.CinemaId).HasColumnName("cinema_id");
-            entity.Property(e => e.RoomName)
-                .IsRequired()
-                .HasMaxLength(50)
-                .HasColumnName("room_name");
-            entity.Property(e => e.FormatId).HasColumnName("format_id");
             entity.Property(e => e.Capacity).HasColumnName("capacity");
+            entity.Property(e => e.CinemaId).HasColumnName("cinema_id");
             entity.Property(e => e.CreatedAt)
+                .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")
                 .HasColumnName("created_at");
+            entity.Property(e => e.FormatId).HasColumnName("format_id");
+            entity.Property(e => e.RoomName)
+                .HasMaxLength(50)
+                .HasColumnName("room_name");
             entity.Property(e => e.UpdatedAt)
+                .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")
                 .HasColumnName("updated_at");
 
-            entity.HasOne(d => d.Cinema)
-                .WithMany(p => p.Rooms)
+            entity.HasOne(d => d.Cinema).WithMany(p => p.Rooms)
                 .HasForeignKey(d => d.CinemaId)
                 .HasConstraintName("FK__Room__cinema_id__59FA5E80");
 
-            entity.HasOne(d => d.Format)
-                .WithMany(p => p.Rooms)
+            entity.HasOne(d => d.Format).WithMany(p => p.Rooms)
                 .HasForeignKey(d => d.FormatId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Room__format_id__5AEE82B9");
         });
 
         modelBuilder.Entity<RoomFormat>(entity =>
         {
-            entity.HasKey(e => e.FormatId);
+            entity.HasKey(e => e.FormatId).HasName("PK__RoomForm__26B11DF134B7BF60");
+
             entity.ToTable("RoomFormat");
-            entity.HasIndex(e => e.FormatName, "UQ__RoomForm__8D68276DA120D04C").IsUnique();
+
+            entity.HasIndex(e => e.FormatName, "UQ__RoomForm__8D68276D7852F48E").IsUnique();
+
             entity.Property(e => e.FormatId).HasColumnName("format_id");
-            entity.Property(e => e.FormatName)
-                .IsRequired()
-                .HasMaxLength(50)
-                .HasColumnName("format_name");
+            entity.Property(e => e.AdditionalCharge)
+                .HasDefaultValue(0.00m)
+                .HasColumnType("decimal(8, 2)")
+                .HasColumnName("additional_charge");
+            entity.Property(e => e.CreatedAt)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime")
+                .HasColumnName("created_at");
             entity.Property(e => e.Description)
                 .HasMaxLength(200)
                 .HasColumnName("description");
-            entity.Property(e => e.AdditionalCharge)
-                .HasColumnType("decimal(8,2)")
-                .HasColumnName("additional_charge");
-            entity.Property(e => e.CreatedAt)
-                .HasColumnType("datetime")
-                .HasColumnName("created_at");
+            entity.Property(e => e.FormatName)
+                .HasMaxLength(50)
+                .HasColumnName("format_name");
             entity.Property(e => e.UpdatedAt)
+                .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")
                 .HasColumnName("updated_at");
         });
 
         modelBuilder.Entity<Seat>(entity =>
         {
-            entity.HasKey(e => e.SeatId).HasName("PK__Seat__906DED9C8ED0D9F4");
+            entity.HasKey(e => e.SeatId).HasName("PK__Seat__906DED9C93B811CF");
 
             entity.ToTable("Seat");
 
@@ -709,31 +679,36 @@ public partial class CinemaDbContext : DbContext
 
         modelBuilder.Entity<SeatType>(entity =>
         {
-            entity.HasKey(e => e.SeatTypeId);
+            entity.HasKey(e => e.SeatTypeId).HasName("PK__SeatType__5C2EB19760C83778");
+
             entity.ToTable("SeatType");
-            entity.HasIndex(e => e.TypeName, "UQ__SeatType__543C4FD9A6454C8C").IsUnique();
+
+            entity.HasIndex(e => e.TypeName, "UQ__SeatType__543C4FD920CE7E76").IsUnique();
+
             entity.Property(e => e.SeatTypeId).HasColumnName("seat_type_id");
-            entity.Property(e => e.TypeName)
-                .IsRequired()
-                .HasMaxLength(50)
-                .HasColumnName("type_name");
+            entity.Property(e => e.AdditionalCharge)
+                .HasDefaultValue(0.00m)
+                .HasColumnType("decimal(8, 2)")
+                .HasColumnName("additional_charge");
+            entity.Property(e => e.CreatedAt)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime")
+                .HasColumnName("created_at");
             entity.Property(e => e.Description)
                 .HasMaxLength(200)
                 .HasColumnName("description");
-            entity.Property(e => e.AdditionalCharge)
-                .HasColumnType("decimal(8,2)")
-                .HasColumnName("additional_charge");
-            entity.Property(e => e.CreatedAt)
-                .HasColumnType("datetime")
-                .HasColumnName("created_at");
+            entity.Property(e => e.TypeName)
+                .HasMaxLength(50)
+                .HasColumnName("type_name");
             entity.Property(e => e.UpdatedAt)
+                .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")
                 .HasColumnName("updated_at");
         });
 
         modelBuilder.Entity<Showtime>(entity =>
         {
-            entity.HasKey(e => e.ShowtimeId).HasName("PK__Showtime__A406B518DC62C059");
+            entity.HasKey(e => e.ShowtimeId).HasName("PK__Showtime__A406B518C4D6AA7E");
 
             entity.ToTable("Showtime");
 
@@ -750,7 +725,7 @@ public partial class CinemaDbContext : DbContext
             entity.Property(e => e.MovieId).HasColumnName("movie_id");
             entity.Property(e => e.PriceModifier)
                 .HasDefaultValue(0.00m)
-                .HasColumnType("decimal(8, 2)")
+                .HasColumnType("decimal(18, 2)")
                 .HasColumnName("price_modifier");
             entity.Property(e => e.RoomId).HasColumnName("room_id");
             entity.Property(e => e.StartTime)
@@ -772,69 +747,65 @@ public partial class CinemaDbContext : DbContext
 
         modelBuilder.Entity<Ticket>(entity =>
         {
-            entity.HasKey(e => e.TicketId);
+            entity.HasKey(e => e.TicketId).HasName("PK__Ticket__D596F96B7CBFCD39");
+
             entity.ToTable("Ticket");
-            entity.HasIndex(e => e.TicketCode, "UQ__Ticket__628DB75F11D491B6").IsUnique();
+
+            entity.HasIndex(e => new { e.ShowtimeId, e.SeatId }, "UC_Ticket").IsUnique();
+
+            entity.HasIndex(e => e.TicketCode, "UQ__Ticket__628DB75F81D384B2").IsUnique();
+
             entity.HasIndex(e => e.TicketCode, "idx_ticket_code");
 
             entity.Property(e => e.TicketId).HasColumnName("ticket_id");
-            entity.Property(e => e.TicketCode)
-                .IsRequired()
-                .HasMaxLength(20)
-                .HasColumnName("ticket_code");
+            entity.Property(e => e.BookingId).HasColumnName("booking_id");
             entity.Property(e => e.CreatedAt)
-                .IsRequired()
+                .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")
                 .HasColumnName("created_at");
-            entity.Property(e => e.UpdatedAt)
-                .IsRequired()
-                .HasColumnType("datetime")
-                .HasColumnName("updated_at");
-            entity.Property(e => e.TicketStatus)
-                .IsRequired()
-                .HasMaxLength(40)
-                .HasColumnName("ticket_status");
-            entity.Property(e => e.BookingId)
-                .IsRequired()
-                .HasColumnName("booking_id");
-            entity.Property(e => e.ShowtimeId)
-                .IsRequired()
-                .HasColumnName("showtime_id");
-            entity.Property(e => e.SeatId)
-                .IsRequired()
-                .HasColumnName("seat_id");
             entity.Property(e => e.Price)
-                .HasColumnType("decimal(8,2)")
+                .HasColumnType("decimal(18, 2)")
                 .HasColumnName("price");
             entity.Property(e => e.ScanDatetime)
                 .HasColumnType("datetime")
                 .HasColumnName("scan_datetime");
+            entity.Property(e => e.SeatId).HasColumnName("seat_id");
+            entity.Property(e => e.ShowtimeId).HasColumnName("showtime_id");
+            entity.Property(e => e.TicketCode)
+                .HasMaxLength(20)
+                .HasColumnName("ticket_code");
+            entity.Property(e => e.TicketStatus)
+                .HasMaxLength(20)
+                .HasColumnName("ticket_status");
+            entity.Property(e => e.UpdatedAt)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime")
+                .HasColumnName("updated_at");
 
-            entity.HasOne(d => d.Booking)
-                .WithMany(p => p.Tickets)
+            entity.HasOne(d => d.Booking).WithMany(p => p.Tickets)
                 .HasForeignKey(d => d.BookingId)
-                .HasConstraintName("FK__Ticket__booking__498EEC8D");
+                .HasConstraintName("FK__Ticket__TicketSt__3E1D39E1");
 
-            entity.HasOne(d => d.Showtime)
-                .WithMany(p => p.Tickets)
-                .HasForeignKey(d => d.ShowtimeId)
-                .HasConstraintName("FK__Ticket__showtime__4A8310C6");
-
-            entity.HasOne(d => d.Seat)
-                .WithMany(p => p.Tickets)
+            entity.HasOne(d => d.Seat).WithMany(p => p.Tickets)
                 .HasForeignKey(d => d.SeatId)
-                .HasConstraintName("FK__Ticket__seat_id__4B7734FF");
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__Ticket__seat_id__40058253");
+
+            entity.HasOne(d => d.Showtime).WithMany(p => p.Tickets)
+                .HasForeignKey(d => d.ShowtimeId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__Ticket__showtime__3F115E1A");
         });
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.UserId).HasName("PK__User__B9BE370F7A2ED9EC");
+            entity.HasKey(e => e.UserId).HasName("PK__User__B9BE370F07D83566");
 
             entity.ToTable("User");
 
-            entity.HasIndex(e => e.Email, "UQ__User__AB6E61643970E251").IsUnique();
+            entity.HasIndex(e => e.Email, "UQ__User__AB6E61642EF7F8C8").IsUnique();
 
-            entity.HasIndex(e => e.Username, "UQ__User__F3DBC5724E468EA5").IsUnique();
+            entity.HasIndex(e => e.Username, "UQ__User__F3DBC5729DB2EDAD").IsUnique();
 
             entity.HasIndex(e => e.Email, "idx_user_email");
 
@@ -870,7 +841,7 @@ public partial class CinemaDbContext : DbContext
 
         modelBuilder.Entity<UserRole>(entity =>
         {
-            entity.HasKey(e => e.UserRoleId).HasName("PK__UserRole__B8D9ABA2F095841E");
+            entity.HasKey(e => e.UserRoleId).HasName("PK__UserRole__B8D9ABA27171D89B");
 
             entity.ToTable("UserRole");
 

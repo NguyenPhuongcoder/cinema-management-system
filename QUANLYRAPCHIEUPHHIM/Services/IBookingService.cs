@@ -7,32 +7,17 @@ namespace QUANLYRAPCHIEUPHHIM.Services
 {
     public interface IBookingService
     {
-        Task<IEnumerable<Booking>> GetBookingsAsync(
-            string customerName = null,
-            string customerPhone = null,
-            int? movieId = null,
-            string status = null,
-            DateTime? fromDate = null,
-            DateTime? toDate = null,
-            int page = 1,
-            int pageSize = 10
-        );
-
-        Task<int> CountBookingsAsync(
-            string customerName = null,
-            string customerPhone = null,
-            int? movieId = null,
-            string status = null,
-            DateTime? fromDate = null,
-            DateTime? toDate = null
-        );
-
-        Task<Booking> GetBookingByIdAsync(int id);
+        
+        // Tạo đặt vé mới
         Task<Booking> CreateBookingAsync(Booking booking);
+        
+        // Cập nhật trạng thái đặt vé
+        Task<Booking> UpdateBookingStatusAsync(int bookingId, string status);
+
+        // Cập nhật thông tin đặt vé
         Task<Booking> UpdateBookingAsync(Booking booking);
-        Task<bool> CancelBookingAsync(int id);
-        Task<bool> UpdateBookingStatusAsync(int bookingId, string status);
-        Task<decimal> CalculateTotalAmountAsync(int bookingId);
-        Task<bool> ValidateBookingAsync(int bookingId);
+        
+        // Hủy đặt vé
+        Task<bool> CancelBookingAsync(int bookingId);
     }
 } 

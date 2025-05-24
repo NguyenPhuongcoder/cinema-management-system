@@ -7,41 +7,29 @@ namespace QUANLYRAPCHIEUPHHIM.Models;
 
 public class Ticket
 {
-    [Key]
     public int TicketId { get; set; }
 
-    [Required]
     public int BookingId { get; set; }
 
-    [Required]
     public int ShowtimeId { get; set; }
 
-    [Required]
     public int SeatId { get; set; }
 
-    [Required]
-    [Column(TypeName = "decimal(8,2)")]
     public decimal Price { get; set; }
 
-    [Required]
-    [StringLength(20)]
-    public string TicketCode { get; set; }
-
+    public string TicketCode { get; set; } = null!;
+    public string TicketStatus { get; set; } = null!;
     public DateTime? ScanDatetime { get; set; }
 
-    [StringLength(40)]
-    public string TicketStatus { get; set; }
+    //public string? TicketStatus { get; set; }
 
-    public DateTime CreatedAt { get; set; }
+    public DateTime? CreatedAt { get; set; }
+
     public DateTime? UpdatedAt { get; set; }
 
-    // Navigation properties
-    [ForeignKey("BookingId")]
-    public virtual Booking Booking { get; set; }
+    public virtual Booking Booking { get; set; } = null!;
 
-    [ForeignKey("ShowtimeId")]
-    public virtual Showtime Showtime { get; set; }
+    public virtual Seat Seat { get; set; } = null!;
 
-    [ForeignKey("SeatId")]
-    public virtual Seat Seat { get; set; }
+    public virtual Showtime Showtime { get; set; } = null!;
 }
