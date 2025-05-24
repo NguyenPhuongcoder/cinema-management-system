@@ -92,7 +92,7 @@
                                             <input type="hidden" name="SelectedDate" value="@Model.SelectedDate?.ToString("yyyy-MM-dd")" />
                                             <input type="hidden" name="SelectedCinemaId" value="@Model.SelectedCinemaId" />
                                             <input type="hidden" name="SelectedShowtimeId" value="@s.ShowtimeId" />
-                                            <button type="submit" class="btn btn-outline-secondary px-3 py-2 mb-2 @(Model.SelectedShowtimeId == s.ShowtimeId ? "active" : "")">@s.StartTime.ToString("HH:mm")</button>
+                                            <button type="submit" class="btn btn-outline-secondary px-3 py-2 mb-2">@s.StartTime.ToString("HH:mm")</button>
                                         </form>
                                     }
                                 }
@@ -132,19 +132,9 @@
                     <span class="fw-bold">Tổng cộng</span>
                     <span class="fw-bold text-primary">0 đ</span>
                 </div>
-                <div class="d-flex gap-2 mt-4">
+                <div class="d-flex gap-2">
                     <a href="#" class="btn btn-outline-secondary flex-fill">Quay lại</a>
-                    @if (Model.SelectedShowtimeId != null)
-                    {
-                        <form action="@Url.Action("SelectSeat", "Booking")" method="get" class="flex-fill">
-                            <input type="hidden" name="selectedShowtimeId" value="@Model.SelectedShowtimeId" />
-                            <button type="submit" class="btn btn-warning flex-fill text-white fw-bold w-100">Tiếp tục</button>
-                        </form>
-                        }
-                    else
-                    {
-                        <button class="btn btn-warning flex-fill text-white fw-bold w-100" disabled>Tiếp tục</button>
-                    }
+                    <a href="#" class="btn btn-warning flex-fill text-white fw-bold">Tiếp tục</a>
                 </div>
             </div>
         </div>

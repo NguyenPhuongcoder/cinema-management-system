@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using QUANLYRAPCHIEUPHHIM.Models;
 
 namespace QUANLYRAPCHIEUPHHIM.Data;
 
-public partial class CinemaDbcontext : IdentityDbContext<ApplicationUser>
+public partial class CinemaDbcontext : DbContext
 {
+    public CinemaDbcontext()
+    {
+    }
+
     public CinemaDbcontext(DbContextOptions<CinemaDbcontext> options)
         : base(options)
     {
@@ -72,18 +75,11 @@ public partial class CinemaDbcontext : IdentityDbContext<ApplicationUser>
     public virtual DbSet<UserRole> UserRoles { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        if (!optionsBuilder.IsConfigured)
-        {
-            // This will only be used if no connection string is passed through constructor
-            optionsBuilder.UseSqlServer("Server=localhost;Database=DbCinema;Trusted_Connection=True;TrustServerCertificate=True;");
-        }
-    }
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseSqlServer("Server=localhost;Database=DbCinema;Trusted_Connection=True;TrustServerCertificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        base.OnModelCreating(modelBuilder);
-
         modelBuilder.Entity<Address>(entity =>
         {
             entity.HasKey(e => e.AddressId).HasName("PK__Address__CAA247C899E5234E");
@@ -723,7 +719,7 @@ public partial class CinemaDbcontext : IdentityDbContext<ApplicationUser>
             entity.Property(e => e.MovieId).HasColumnName("movie_id");
             entity.Property(e => e.PriceModifier)
                 .HasDefaultValue(0.00m)
-                .HasColumnType("decimal(18, 2)")
+                .HasColumnType("decimal(8, 2)")
                 .HasColumnName("price_modifier");
             entity.Property(e => e.RoomId).HasColumnName("room_id");
             entity.Property(e => e.StartTime)
@@ -762,7 +758,7 @@ public partial class CinemaDbcontext : IdentityDbContext<ApplicationUser>
                 .HasColumnType("datetime")
                 .HasColumnName("created_at");
             entity.Property(e => e.Price)
-                .HasColumnType("decimal(18, 2)")
+                .HasColumnType("decimal(8, 2)")
                 .HasColumnName("price");
             entity.Property(e => e.ScanDatetime)
                 .HasColumnType("datetime")
@@ -772,7 +768,7 @@ public partial class CinemaDbcontext : IdentityDbContext<ApplicationUser>
             entity.Property(e => e.TicketCode)
                 .HasMaxLength(20)
                 .HasColumnName("ticket_code");
-            entity.Property(e => e.TicketStatus).HasMaxLength(40).HasColumnName("ticket_status");
+            entity.Property(e => e.TicketStatus).HasMaxLength(40);
             entity.Property(e => e.UpdatedAt)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")

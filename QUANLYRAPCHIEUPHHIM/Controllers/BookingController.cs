@@ -6,8 +6,6 @@ using QUANLYRAPCHIEUPHHIM.ViewModels;
 using System.Linq;
 using System.Collections.Generic;
 using System;
-using Microsoft.AspNetCore.Authorization;
-using System.Security.Claims;
 
 namespace QUANLYRAPCHIEUPHHIM.Controllers
 {
@@ -20,7 +18,7 @@ namespace QUANLYRAPCHIEUPHHIM.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index(int? provinceId, int? movieId, DateTime? selectedDate, int? selectedCinemaId, int? selectedShowtimeId)
+        public IActionResult Index(int? provinceId, int? movieId, DateTime? selectedDate, int? selectedCinemaId)
         {
             var provinces = _context.Provinces.ToList();
             var selectedProvinceId = provinceId ?? provinces.FirstOrDefault()?.ProvinceId;
@@ -95,13 +93,12 @@ namespace QUANLYRAPCHIEUPHHIM.Controllers
                 SelectedProvinceId = selectedProvinceId,
                 Movies = movies,
                 SelectedMovieId = selectedMovieId,
-                ShowtimeGroups = new List<ShowtimeGroupViewModel>(),
+                ShowtimeGroups = new List<ShowtimeGroupViewModel>(), // Không dùng nữa
                 AvailableDates = availableDates,
                 SelectedDate = selDate,
                 Cinemas = cinemas,
                 SelectedCinemaId = selCinemaId,
-                Showtimes = showtimes,
-                SelectedShowtimeId = selectedShowtimeId
+                Showtimes = showtimes
             };
             return View(vm);
         }
@@ -109,90 +106,8 @@ namespace QUANLYRAPCHIEUPHHIM.Controllers
         [HttpPost]
         public IActionResult Index(BookingPageViewModel model)
         {
-            return RedirectToAction("Index", new {
-                provinceId = model.SelectedProvinceId,
-                movieId = model.SelectedMovieId,
-                selectedDate = model.SelectedDate?.ToString("yyyy-MM-dd"),
-                selectedCinemaId = model.SelectedCinemaId,
-                selectedShowtimeId = model.SelectedShowtimeId
-            });
-        }
-
-        public IActionResult SelectSeat(int selectedShowtimeId)
-        {
-            var showtime = _context.Showtimes.FirstOrDefault(s => s.ShowtimeId == selectedShowtimeId);
-            if (showtime == null) return NotFound();
-            var movie = _context.Movies.FirstOrDefault(m => m.MovieId == showtime.MovieId);
-            var room = _context.Rooms.FirstOrDefault(r => r.RoomId == showtime.RoomId);
-            var cinema = room != null ? _context.Cinemas.FirstOrDefault(c => c.CinemaId == room.CinemaId) : null;
-            // Lấy danh sách ghế và trạng thái đã bán
-            var seats = _context.Seats.Where(s => s.RoomId == room.RoomId).ToList();
-            var soldSeatIds = _context.Tickets.Where(t => t.ShowtimeId == selectedShowtimeId).Select(t => t.SeatId).ToList();
-            var seatTypes = _context.SeatTypes.ToDictionary(st => st.SeatTypeId, st => st.TypeName);
-            var seatStatus = seats.Select(s => new SeatStatusViewModel
-            {
-                SeatId = s.SeatId,
-                Row = s.RowLetter,
-                Number = s.SeatNumber,
-                IsSold = soldSeatIds.Contains(s.SeatId),
-                Type = seatTypes.ContainsKey(s.SeatTypeId) ? seatTypes[s.SeatTypeId] : ""
-            }).ToList();
-            var vm = new BookingSeatViewModel
-            {
-                Movie = movie,
-                Cinema = cinema,
-                Showtime = showtime,
-                Room = room,
-                Seats = seatStatus
-            };
-            return View(vm);
-        }
-
-        [HttpPost]
-        [Authorize]
-        public IActionResult Payment(int selectedShowtimeId, List<int> selectedSeatIds, string selectedPaymentMethod, string promoCode)
-        {
-            int userId = 0;
-            if (User.Identity.IsAuthenticated)
-            {
-                int.TryParse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value, out userId);
-            }
-
-            var booking = new Booking
-            {
-                UserId = userId,
-                BookingDate = DateTime.Now,
-            };
-            _context.Bookings.Add(booking);
-            _context.SaveChanges();
-
-            // Lấy giá showtime
-            var showtime = _context.Showtimes.FirstOrDefault(s => s.ShowtimeId == selectedShowtimeId);
-            decimal ticketPrice = showtime?.PriceModifier ?? 0;
-
-            foreach (var seatId in selectedSeatIds)
-            {
-                var ticket = new Ticket
-                {
-                    BookingId = booking.BookingId,
-                    ShowtimeId = selectedShowtimeId,
-                    SeatId = seatId,
-                    Price = ticketPrice,
-                    TicketCode = Guid.NewGuid().ToString().Substring(0, 8).ToUpper(),
-                    CreatedAt = DateTime.Now
-                };
-                _context.Tickets.Add(ticket);
-            }
-            _context.SaveChanges();
-
-            TempData["BookingSuccess"] = "Đặt vé thành công!";
-            return RedirectToAction("Success");
-        }
-
-        public IActionResult Success()
-        {
-            ViewBag.Message = TempData["BookingSuccess"] ?? "Đặt vé thành công!";
-            return View();
+            // Chuyển hướng về GET với các lựa chọn đã chọn để load lại dữ liệu
+            return RedirectToAction("Index", new { provinceId = model.SelectedProvinceId, movieId = model.SelectedMovieId, selectedDate = model.SelectedDate?.ToString("yyyy-MM-dd"), selectedCinemaId = model.SelectedCinemaId });
         }
     }
 } 
