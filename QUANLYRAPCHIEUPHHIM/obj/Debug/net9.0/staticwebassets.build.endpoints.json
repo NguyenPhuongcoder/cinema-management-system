@@ -9428,6 +9428,304 @@
       ]
     },
     {
+      "Route": "css/manage-seats.css",
+      "AssetFile": "css/manage-seats.css.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000312402374"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3200"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"TV8RwNJc/M7aPR4wyJzb2InfqeKIuVyS+d6yG7nUnMc=\""
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"MbM4SqJQhETgHpDlprLugzKpOtcVUqHCJCm3Y1is+YY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 25 May 2025 12:18:40 GMT"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-MbM4SqJQhETgHpDlprLugzKpOtcVUqHCJCm3Y1is+YY="
+        }
+      ]
+    },
+    {
+      "Route": "css/manage-seats.css",
+      "AssetFile": "css/manage-seats.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "15564"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"MbM4SqJQhETgHpDlprLugzKpOtcVUqHCJCm3Y1is+YY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 25 May 2025 12:18:40 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-MbM4SqJQhETgHpDlprLugzKpOtcVUqHCJCm3Y1is+YY="
+        }
+      ]
+    },
+    {
+      "Route": "css/manage-seats.css.gz",
+      "AssetFile": "css/manage-seats.css.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3200"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"TV8RwNJc/M7aPR4wyJzb2InfqeKIuVyS+d6yG7nUnMc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 25 May 2025 12:18:40 GMT"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-TV8RwNJc/M7aPR4wyJzb2InfqeKIuVyS+d6yG7nUnMc="
+        }
+      ]
+    },
+    {
+      "Route": "css/manage-seats.r1dzw0kvn3.css",
+      "AssetFile": "css/manage-seats.css.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000312402374"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3200"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"TV8RwNJc/M7aPR4wyJzb2InfqeKIuVyS+d6yG7nUnMc=\""
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"MbM4SqJQhETgHpDlprLugzKpOtcVUqHCJCm3Y1is+YY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 25 May 2025 12:18:40 GMT"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "r1dzw0kvn3"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-MbM4SqJQhETgHpDlprLugzKpOtcVUqHCJCm3Y1is+YY="
+        },
+        {
+          "Name": "label",
+          "Value": "css/manage-seats.css"
+        }
+      ]
+    },
+    {
+      "Route": "css/manage-seats.r1dzw0kvn3.css",
+      "AssetFile": "css/manage-seats.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "15564"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"MbM4SqJQhETgHpDlprLugzKpOtcVUqHCJCm3Y1is+YY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 25 May 2025 12:18:40 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "r1dzw0kvn3"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-MbM4SqJQhETgHpDlprLugzKpOtcVUqHCJCm3Y1is+YY="
+        },
+        {
+          "Name": "label",
+          "Value": "css/manage-seats.css"
+        }
+      ]
+    },
+    {
+      "Route": "css/manage-seats.r1dzw0kvn3.css.gz",
+      "AssetFile": "css/manage-seats.css.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3200"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"TV8RwNJc/M7aPR4wyJzb2InfqeKIuVyS+d6yG7nUnMc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 25 May 2025 12:18:40 GMT"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "r1dzw0kvn3"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-TV8RwNJc/M7aPR4wyJzb2InfqeKIuVyS+d6yG7nUnMc="
+        },
+        {
+          "Name": "label",
+          "Value": "css/manage-seats.css.gz"
+        }
+      ]
+    },
+    {
       "Route": "css/movie-detail.css",
       "AssetFile": "css/movie-detail.css.gz",
       "Selectors": [

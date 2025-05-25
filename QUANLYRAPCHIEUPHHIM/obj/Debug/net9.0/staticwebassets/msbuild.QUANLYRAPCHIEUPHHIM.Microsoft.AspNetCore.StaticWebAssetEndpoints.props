@@ -36,6 +36,18 @@
       <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"i6os3s2d7l"},{"Name":"integrity","Value":"sha256-apydDK7pEa1eLisCgEYqr2Q6Ac4a91jMIQFDTNpX/Ig="},{"Name":"label","Value":"_content/QUANLYRAPCHIEUPHHIM/css/home-index.css"}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"3567"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022apydDK7pEa1eLisCgEYqr2Q6Ac4a91jMIQFDTNpX/Ig=\u0022"},{"Name":"Last-Modified","Value":"Fri, 23 May 2025 11:05:28 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/QUANLYRAPCHIEUPHHIM/css/manage-seats.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\manage-seats.css'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-MbM4SqJQhETgHpDlprLugzKpOtcVUqHCJCm3Y1is\u002BYY="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"15564"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022MbM4SqJQhETgHpDlprLugzKpOtcVUqHCJCm3Y1is\u002BYY=\u0022"},{"Name":"Last-Modified","Value":"Sun, 25 May 2025 12:18:40 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/QUANLYRAPCHIEUPHHIM/css/manage-seats.r1dzw0kvn3.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\manage-seats.css'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"r1dzw0kvn3"},{"Name":"integrity","Value":"sha256-MbM4SqJQhETgHpDlprLugzKpOtcVUqHCJCm3Y1is\u002BYY="},{"Name":"label","Value":"_content/QUANLYRAPCHIEUPHHIM/css/manage-seats.css"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"15564"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022MbM4SqJQhETgHpDlprLugzKpOtcVUqHCJCm3Y1is\u002BYY=\u0022"},{"Name":"Last-Modified","Value":"Sun, 25 May 2025 12:18:40 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/QUANLYRAPCHIEUPHHIM/css/movie-detail.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\movie-detail.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>

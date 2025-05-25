@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "GsRlty5RGT+cgKSS3YNAgnXzI3xuheshhIOEB9ybOFg=",
+  "Hash": "FtkXpUQ4+IDWRdak85nnhH1RkgcoHHOz4YvBye87Kp0=",
   "Source": "QUANLYRAPCHIEUPHHIM",
   "BasePath": "_content/QUANLYRAPCHIEUPHHIM",
   "Mode": "Default",
@@ -2138,6 +2138,27 @@
       "OriginalItemSpec": "E:\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
     },
     {
+      "Identity": "E:\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\obj\\Debug\\net9.0\\compressed\\cwyory5i2n-r1dzw0kvn3.gz",
+      "SourceId": "QUANLYRAPCHIEUPHHIM",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\obj\\Debug\\net9.0\\compressed\\",
+      "BasePath": "_content/QUANLYRAPCHIEUPHHIM",
+      "RelativePath": "css/manage-seats#[.{fingerprint=r1dzw0kvn3}]?.css.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "E:\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\wwwroot\\css\\manage-seats.css",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "77nlgmlz0f",
+      "Integrity": "TV8RwNJc/M7aPR4wyJzb2InfqeKIuVyS+d6yG7nUnMc=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "E:\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\wwwroot\\css\\manage-seats.css"
+    },
+    {
       "Identity": "E:\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\obj\\Debug\\net9.0\\compressed\\cynp17w084-c2oey78nd0.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
@@ -4089,6 +4110,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\home-index.css"
+    },
+    {
+      "Identity": "E:\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\wwwroot\\css\\manage-seats.css",
+      "SourceId": "QUANLYRAPCHIEUPHHIM",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\wwwroot\\",
+      "BasePath": "_content/QUANLYRAPCHIEUPHHIM",
+      "RelativePath": "css/manage-seats#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "r1dzw0kvn3",
+      "Integrity": "MbM4SqJQhETgHpDlprLugzKpOtcVUqHCJCm3Y1is+YY=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\manage-seats.css"
     },
     {
       "Identity": "E:\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\wwwroot\\css\\movie-detail.css",
@@ -6474,6 +6516,304 @@
         {
           "Name": "integrity",
           "Value": "sha256-+Njwc/dMOMfmpekQA+YWBZ8KZEjFC66ZFhqSHfgqUBk="
+        }
+      ]
+    },
+    {
+      "Route": "css/manage-seats.css",
+      "AssetFile": "E:\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\obj\\Debug\\net9.0\\compressed\\cwyory5i2n-r1dzw0kvn3.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000312402374"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3200"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"TV8RwNJc/M7aPR4wyJzb2InfqeKIuVyS+d6yG7nUnMc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 25 May 2025 12:18:40 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"MbM4SqJQhETgHpDlprLugzKpOtcVUqHCJCm3Y1is+YY=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-MbM4SqJQhETgHpDlprLugzKpOtcVUqHCJCm3Y1is+YY="
+        }
+      ]
+    },
+    {
+      "Route": "css/manage-seats.css",
+      "AssetFile": "E:\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\wwwroot\\css\\manage-seats.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "15564"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"MbM4SqJQhETgHpDlprLugzKpOtcVUqHCJCm3Y1is+YY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 25 May 2025 12:18:40 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-MbM4SqJQhETgHpDlprLugzKpOtcVUqHCJCm3Y1is+YY="
+        }
+      ]
+    },
+    {
+      "Route": "css/manage-seats.css.gz",
+      "AssetFile": "E:\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\obj\\Debug\\net9.0\\compressed\\cwyory5i2n-r1dzw0kvn3.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3200"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"TV8RwNJc/M7aPR4wyJzb2InfqeKIuVyS+d6yG7nUnMc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 25 May 2025 12:18:40 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-TV8RwNJc/M7aPR4wyJzb2InfqeKIuVyS+d6yG7nUnMc="
+        }
+      ]
+    },
+    {
+      "Route": "css/manage-seats.r1dzw0kvn3.css",
+      "AssetFile": "E:\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\obj\\Debug\\net9.0\\compressed\\cwyory5i2n-r1dzw0kvn3.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000312402374"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3200"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"TV8RwNJc/M7aPR4wyJzb2InfqeKIuVyS+d6yG7nUnMc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 25 May 2025 12:18:40 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"MbM4SqJQhETgHpDlprLugzKpOtcVUqHCJCm3Y1is+YY=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "r1dzw0kvn3"
+        },
+        {
+          "Name": "label",
+          "Value": "css/manage-seats.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-MbM4SqJQhETgHpDlprLugzKpOtcVUqHCJCm3Y1is+YY="
+        }
+      ]
+    },
+    {
+      "Route": "css/manage-seats.r1dzw0kvn3.css",
+      "AssetFile": "E:\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\wwwroot\\css\\manage-seats.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "15564"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"MbM4SqJQhETgHpDlprLugzKpOtcVUqHCJCm3Y1is+YY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 25 May 2025 12:18:40 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "r1dzw0kvn3"
+        },
+        {
+          "Name": "label",
+          "Value": "css/manage-seats.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-MbM4SqJQhETgHpDlprLugzKpOtcVUqHCJCm3Y1is+YY="
+        }
+      ]
+    },
+    {
+      "Route": "css/manage-seats.r1dzw0kvn3.css.gz",
+      "AssetFile": "E:\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\obj\\Debug\\net9.0\\compressed\\cwyory5i2n-r1dzw0kvn3.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3200"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"TV8RwNJc/M7aPR4wyJzb2InfqeKIuVyS+d6yG7nUnMc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 25 May 2025 12:18:40 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "r1dzw0kvn3"
+        },
+        {
+          "Name": "label",
+          "Value": "css/manage-seats.css.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-TV8RwNJc/M7aPR4wyJzb2InfqeKIuVyS+d6yG7nUnMc="
         }
       ]
     },

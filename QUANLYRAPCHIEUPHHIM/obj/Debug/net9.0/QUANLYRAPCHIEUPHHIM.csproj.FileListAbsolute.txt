@@ -1146,3 +1146,4 @@ E:\QuanLyRapChieuPhim\QUANLYRAPCHIEUPHHIM\obj\Debug\net9.0\compressed\53lwzljm30
 E:\QuanLyRapChieuPhim\QUANLYRAPCHIEUPHHIM\obj\Debug\net9.0\compressed\d8kgu4wocs-d53gwflwj5.gz
 E:\QuanLyRapChieuPhim\QUANLYRAPCHIEUPHHIM\obj\Debug\net9.0\compressed\hmt42xr84o-ivadwnpbto.gz
 E:\QuanLyRapChieuPhim\QUANLYRAPCHIEUPHHIM\obj\Debug\net9.0\compressed\osjxd9obo7-eh5ybbtxo8.gz
+E:\QuanLyRapChieuPhim\QUANLYRAPCHIEUPHHIM\obj\Debug\net9.0\compressed\cwyory5i2n-r1dzw0kvn3.gz

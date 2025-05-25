@@ -20,6 +20,7 @@ E:\QuanLyRapChieuPhim\QUANLYRAPCHIEUPHHIM\wwwroot\lib\bootstrap\dist\css\bootstr
 E:\QuanLyRapChieuPhim\QUANLYRAPCHIEUPHHIM\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js
 E:\QuanLyRapChieuPhim\QUANLYRAPCHIEUPHHIM\wwwroot\lib\bootstrap\dist\css\bootstrap.css
 E:\QuanLyRapChieuPhim\QUANLYRAPCHIEUPHHIM\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css.map
+E:\QuanLyRapChieuPhim\QUANLYRAPCHIEUPHHIM\wwwroot\css\manage-seats.css
 E:\QuanLyRapChieuPhim\QUANLYRAPCHIEUPHHIM\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css.map
 E:\QuanLyRapChieuPhim\QUANLYRAPCHIEUPHHIM\wwwroot\css\movie-detail.css
 E:\QuanLyRapChieuPhim\QUANLYRAPCHIEUPHHIM\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css
@@ -67,6 +68,7 @@ E:\QuanLyRapChieuPhim\QUANLYRAPCHIEUPHHIM\wwwroot\lib\jquery-validation-unobtrus
 wwwroot\css\booking.css
 wwwroot\css\header.css
 wwwroot\css\home-index.css
+wwwroot\css\manage-seats.css
 wwwroot\css\movie-detail.css
 wwwroot\css\movie-library.css
 wwwroot\css\movies.css

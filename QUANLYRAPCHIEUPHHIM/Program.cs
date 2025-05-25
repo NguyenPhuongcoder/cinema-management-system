@@ -18,6 +18,8 @@ builder.Services.AddDbContext<CinemaDbcontext>(options =>
 );
 // Add Cloudinary service
 builder.Services.AddScoped<ICloudinaryService, CloudinaryService>();
+// Add SeatService
+builder.Services.AddScoped<SeatService>();
 // Add Authentication
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>

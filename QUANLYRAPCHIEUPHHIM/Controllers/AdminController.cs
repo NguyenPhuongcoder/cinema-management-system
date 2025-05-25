@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using QUANLYRAPCHIEUPHHIM.Models;
 using QUANLYRAPCHIEUPHHIM.Data;
 using QUANLYRAPCHIEUPHHIM.Services;
+using QUANLYRAPCHIEUPHHIM.ViewModels;
 using System.Linq;
 using System.Security.Cryptography;
 using Microsoft.EntityFrameworkCore;
@@ -23,12 +24,14 @@ namespace QUANLYRAPCHIEUPHHIM.Controllers
     {
         private readonly CinemaDbcontext _context;
         private readonly ICloudinaryService _cloudinaryService;
-        private const int PageSize = 2; // Number of items per page
+        private readonly SeatService _seatService;
+        private const int PageSize = 10; // Number of items per page
 
-        public AdminController(CinemaDbcontext context, ICloudinaryService cloudinaryService)
+        public AdminController(CinemaDbcontext context, ICloudinaryService cloudinaryService, SeatService seatService)
         {
             _context = context;
             _cloudinaryService = cloudinaryService;
+            _seatService = seatService;
         }
 
         public IActionResult Dashboard()
@@ -919,6 +922,209 @@ namespace QUANLYRAPCHIEUPHHIM.Controllers
                 var hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
                 return Convert.ToBase64String(hashedBytes);
             }
+        }
+
+        // Seat Management
+        public async Task<IActionResult> ManageSeats(int roomId)
+        {
+            var room = await _context.Rooms
+                .Include(r => r.Seats)
+                .ThenInclude(s => s.SeatType)
+                .FirstOrDefaultAsync(r => r.RoomId == roomId);
+
+            if (room == null)
+            {
+                return NotFound();
+            }
+
+            var viewModel = new SeatViewModel
+            {
+                RoomId = room.RoomId,
+                RoomName = room.RoomName,
+                Capacity = room.Capacity,
+                Seats = room.Seats.ToList(),
+                AvailableSeatTypes = await _context.SeatTypes.ToListAsync()
+            };
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> GenerateSeats(int roomId)
+        {
+            var result = await _seatService.GenerateSeatsForRoom(roomId);
+            if (!result)
+            {
+                TempData["Error"] = "Không thể tạo ghế. Phòng có thể không tồn tại hoặc đã có ghế.";
+                return RedirectToAction(nameof(ManageSeats), new { roomId });
+            }
+
+            TempData["Success"] = "Đã tạo ghế thành công.";
+            return RedirectToAction(nameof(ManageSeats), new { roomId });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> UpdateSeatType(int seatId, int seatTypeId)
+        {
+            var result = await _seatService.UpdateSeatType(seatId, seatTypeId);
+            if (!result)
+            {
+                TempData["Error"] = "Không thể cập nhật loại ghế. Ghế hoặc loại ghế có thể không tồn tại.";
+                return RedirectToAction(nameof(ManageSeats), new { roomId = await GetRoomIdFromSeat(seatId) });
+            }
+
+            TempData["Success"] = "Đã cập nhật loại ghế thành công.";
+            return RedirectToAction(nameof(ManageSeats), new { roomId = await GetRoomIdFromSeat(seatId) });
+        }
+
+        private async Task<int> GetRoomIdFromSeat(int seatId)
+        {
+            var seat = await _context.Seats.FindAsync(seatId);
+            return seat?.RoomId ?? 0;
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> UpdateSeats(int roomId, string rowLetter, int seatsToAdd)
+        {
+            var room = await _context.Rooms
+                .Include(r => r.Seats)
+                .FirstOrDefaultAsync(r => r.RoomId == roomId);
+
+            if (room == null)
+            {
+                TempData["Error"] = "Không tìm thấy phòng.";
+                return RedirectToAction(nameof(Rooms));
+            }
+
+            // Validate input
+            if (string.IsNullOrEmpty(rowLetter) || rowLetter.Length != 1)
+            {
+                TempData["Error"] = "Hàng không hợp lệ.";
+                return RedirectToAction(nameof(ManageSeats), new { roomId });
+            }
+
+            if (seatsToAdd <= 0 || seatsToAdd > 10)
+            {
+                TempData["Error"] = "Số ghế phải từ 1 đến 10.";
+                return RedirectToAction(nameof(ManageSeats), new { roomId });
+            }
+
+            // Get default seat type
+            var defaultSeatType = await _context.SeatTypes.FirstOrDefaultAsync();
+            if (defaultSeatType == null)
+            {
+                TempData["Error"] = "Không tìm thấy loại ghế mặc định.";
+                return RedirectToAction(nameof(ManageSeats), new { roomId });
+            }
+
+            // Get current seat count
+            var currentSeatCount = room.Seats.Count;
+            if (currentSeatCount + seatsToAdd > room.Capacity)
+            {
+                TempData["Error"] = $"Không thể thêm {seatsToAdd} ghế mới. Phòng chỉ còn {room.Capacity - currentSeatCount} chỗ trống.";
+                return RedirectToAction(nameof(ManageSeats), new { roomId });
+            }
+
+            // Get existing seats in the selected row
+            var existingSeatsInRow = room.Seats
+                .Where(s => s.RowLetter == rowLetter)
+                .OrderBy(s => s.SeatNumber)
+                .ToList();
+
+            // Calculate the next seat number
+            int nextSeatNumber = 1;
+            if (existingSeatsInRow.Any())
+            {
+                nextSeatNumber = existingSeatsInRow.Max(s => s.SeatNumber) + 1;
+            }
+
+            var newSeats = new List<Seat>();
+            for (int i = 0; i < seatsToAdd; i++)
+            {
+                newSeats.Add(new Seat
+                {
+                    RoomId = roomId,
+                    SeatTypeId = defaultSeatType.SeatTypeId,
+                    RowLetter = rowLetter,
+                    SeatNumber = nextSeatNumber + i,
+                    CreatedAt = DateTime.UtcNow,
+                    UpdatedAt = DateTime.UtcNow
+                });
+            }
+
+            await _context.Seats.AddRangeAsync(newSeats);
+            await _context.SaveChangesAsync();
+
+            TempData["Success"] = $"Đã thêm {seatsToAdd} ghế mới vào hàng {rowLetter}.";
+            return RedirectToAction(nameof(ManageSeats), new { roomId });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteSeat(int seatId)
+        {
+            var seat = await _context.Seats
+                .Include(s => s.Tickets)
+                .FirstOrDefaultAsync(s => s.SeatId == seatId);
+
+            if (seat == null)
+            {
+                TempData["Error"] = "Không tìm thấy ghế.";
+                return RedirectToAction(nameof(ManageSeats), new { roomId = await GetRoomIdFromSeat(seatId) });
+            }
+
+            // Check if seat has any associated tickets
+            if (seat.Tickets.Any())
+            {
+                TempData["Error"] = "Không thể xóa ghế vì đã có vé được đặt.";
+                return RedirectToAction(nameof(ManageSeats), new { roomId = seat.RoomId });
+            }
+
+            _context.Seats.Remove(seat);
+            await _context.SaveChangesAsync();
+
+            TempData["Success"] = "Đã xóa ghế thành công.";
+            return RedirectToAction(nameof(ManageSeats), new { roomId = seat.RoomId });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteRow(int roomId, string rowLetter)
+        {
+            var room = await _context.Rooms
+                .Include(r => r.Seats)
+                .ThenInclude(s => s.Tickets)
+                .FirstOrDefaultAsync(r => r.RoomId == roomId);
+
+            if (room == null)
+            {
+                TempData["Error"] = "Không tìm thấy phòng.";
+                return RedirectToAction(nameof(Rooms));
+            }
+
+            var seatsInRow = room.Seats.Where(s => s.RowLetter == rowLetter).ToList();
+            if (!seatsInRow.Any())
+            {
+                TempData["Error"] = "Không tìm thấy hàng ghế.";
+                return RedirectToAction(nameof(ManageSeats), new { roomId });
+            }
+
+            // Check if any seat in the row has tickets
+            var hasTickets = seatsInRow.Any(s => s.Tickets.Any());
+            if (hasTickets)
+            {
+                TempData["Error"] = "Không thể xóa hàng vì có ghế đã được đặt vé.";
+                return RedirectToAction(nameof(ManageSeats), new { roomId });
+            }
+
+            _context.Seats.RemoveRange(seatsInRow);
+            await _context.SaveChangesAsync();
+
+            TempData["Success"] = $"Đã xóa toàn bộ hàng {rowLetter} thành công.";
+            return RedirectToAction(nameof(ManageSeats), new { roomId });
         }
     }
 } 

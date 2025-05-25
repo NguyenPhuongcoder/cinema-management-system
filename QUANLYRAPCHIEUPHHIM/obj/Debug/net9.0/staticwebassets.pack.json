@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\css\\home-index.css"
     },
     {
+      "Id": "E:\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\wwwroot\\css\\manage-seats.css",
+      "PackagePath": "staticwebassets\\css\\manage-seats.css"
+    },
+    {
       "Id": "E:\\QuanLyRapChieuPhim\\QUANLYRAPCHIEUPHHIM\\wwwroot\\css\\movie-detail.css",
       "PackagePath": "staticwebassets\\css\\movie-detail.css"
     },
