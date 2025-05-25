@@ -644,32 +644,36 @@ namespace QUANLYRAPCHIEUPHHIM.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult CreateRoom(Room room)
+        public IActionResult CreateRoom(CreateRoomViewModel viewModel)
         {
             if (ModelState.IsValid)
             {
-                // Validate capacity
-                if (room.Capacity <= 0)
+                // Validate room name uniqueness
+                if (_context.Rooms.Any(r => r.RoomName == viewModel.RoomName))
                 {
-                    ModelState.AddModelError("Capacity", "Capacity must be greater than 0");
+                    ModelState.AddModelError("RoomName", "Tên phòng đã tồn tại");
                     ViewBag.RoomFormats = _context.RoomFormats.ToList();
-                    return View(room);
+                    return View(viewModel);
                 }
 
-                // Validate room name uniqueness
-                if (_context.Rooms.Any(r => r.RoomName == room.RoomName))
+                // Map ViewModel to Room
+                var room = new Room
                 {
-                    ModelState.AddModelError("RoomName", "Room name already exists");
-                    ViewBag.RoomFormats = _context.RoomFormats.ToList();
-                    return View(room);
-                }
+                    RoomName = viewModel.RoomName,
+                    Capacity = viewModel.Capacity,
+                    CinemaId = viewModel.CinemaId,
+                    FormatId = viewModel.FormatId,
+                    CreatedAt = DateTime.Now,
+                    UpdatedAt = DateTime.Now
+                };
 
                 _context.Rooms.Add(room);
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Rooms));
             }
+
             ViewBag.RoomFormats = _context.RoomFormats.ToList();
-            return View(room);
+            return View(viewModel);
         }
 
         // Edit Room

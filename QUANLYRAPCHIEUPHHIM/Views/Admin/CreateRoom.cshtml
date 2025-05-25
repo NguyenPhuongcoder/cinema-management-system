@@ -33,11 +33,11 @@
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="Cinema">Cinema</label>
-                    <select asp-for="Cinema" class="form-control" asp-items="@(new SelectList(ViewBag.Cinema, "CinemaId", "CinemaName"))">
+                    <label asp-for="CinemaId">Cinema</label>
+                    <select asp-for="CinemaId" class="form-control" asp-items="@(new SelectList(ViewBag.Cinema, "CinemaId", "CinemaName"))">
                         <option value="">Select Cinema</option>
                     </select>
-                    <span asp-validation-for="Cinema" class="text-danger"></span>
+                    <span asp-validation-for="CinemaId" class="text-danger"></span>
                 </div>
 
      
