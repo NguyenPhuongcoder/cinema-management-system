@@ -1,0 +1,109 @@
+@model QUANLYRAPCHIEUPHHIM.Models.User
+@{
+    ViewData["Title"] = "Tài khoản của tôi";
+    Layout = "_Layout";
+    var bookings = ViewBag.Bookings as List<QUANLYRAPCHIEUPHHIM.Models.Booking>;
+}
+
+<div class="container my-4">
+    <div class="row">
+        <!-- Thông tin cá nhân -->
+        <div class="col-lg-4">
+            <div class="bg-white rounded shadow-sm p-4 mb-4">
+                <h5 class="fw-bold mb-3">Thông tin cá nhân</h5>
+                @if (TempData["Success"] != null)
+                {
+                    <div class="alert alert-success">
+                        @TempData["Success"]
+                    </div>
+                }
+                @if (TempData["Error"] != null)
+                {
+                    <div class="alert alert-danger">
+                        @TempData["Error"]
+                    </div>
+                }
+                <form asp-action="UpdateProfile" method="post">
+                    <div class="mb-3">
+                        <label class="form-label">Họ và tên</label>
+                        <input type="text" class="form-control" name="fullName" value="@Model.FullName" required />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" name="email" value="@Model.Email" required />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Số điện thoại</label>
+                        <input type="tel" class="form-control" name="phone" value="@Model.Phone" required />
+                    </div>
+                    <button type="submit" class="btn btn-primary">Cập nhật thông tin</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Lịch sử đặt vé -->
+        <div class="col-lg-8">
+            <div class="bg-white rounded shadow-sm p-4">
+                <h5 class="fw-bold mb-3">Lịch sử đặt vé</h5>
+                @if (bookings != null && bookings.Any())
+                {
+                    foreach (var booking in bookings)
+                    {
+                        var firstTicket = booking.Tickets.FirstOrDefault();
+                        if (firstTicket != null)
+                        {
+                            <div class="booking-item border rounded p-3 mb-3">
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <img src="@firstTicket.Showtime.Movie.PosterUrl" alt="@firstTicket.Showtime.Movie.Title" 
+                                             class="img-fluid rounded" style="width:100%;height:150px;object-fit:cover;" />
+                                    </div>
+                                    <div class="col-lg-9">
+                                        <h6 class="fw-bold mb-2">@firstTicket.Showtime.Movie.Title</h6>
+                                        <div class="mb-2">
+                                            <small class="text-muted">
+                                                @firstTicket.Showtime.Room.Cinema.CinemaName - @firstTicket.Showtime.Room.RoomName
+                                            </small>
+                                        </div>
+                                        <div class="mb-2">
+                                            <i class="fas fa-calendar-alt me-2"></i>
+                                            @firstTicket.Showtime.StartTime.ToString("HH:mm - dddd, dd/MM/yyyy")
+                                        </div>
+                                        <div class="mb-2">
+                                            <i class="fas fa-chair me-2"></i>
+                                            Ghế: @string.Join(", ", booking.Tickets.Select(t => t.Seat.RowLetter + t.Seat.SeatNumber))
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+	                                            @{
+		                                            var discountValue = booking.Discount?.DiscountValue ?? 0;
+		                                            var finalAmount = booking.TotalAmount - booking.TotalAmount * discountValue / 100;
+	                                            }
+	                                            <span class="fw-bold text-primary">@finalAmount.ToString("N0") đ</span>
+	                                            @if (booking.Discount != null)
+	                                            {
+		                                            <small class="text-success ms-2">(Giảm @booking.Discount.DiscountValue%)</small>
+	                                            }
+                                            </div>
+                                            <a href="@Url.Action("BookingDetails", new { id = booking.BookingId })" 
+                                               class="btn btn-outline-primary btn-sm">
+                                                Chi tiết
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                   
+                    }
+                }
+                else
+                {
+                    <div class="alert alert-info">
+                        Bạn chưa có lịch sử đặt vé nào.
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div> 

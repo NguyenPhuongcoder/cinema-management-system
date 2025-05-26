@@ -7,38 +7,53 @@
     <div class="row">
         <div class="col-lg-8">
             <div class="bg-white rounded shadow-sm p-4 mb-4">
+                @if (TempData["Error"] != null)
+                {
+                    <div class="alert alert-danger">
+                        @TempData["Error"]
+                    </div>
+                }
+                @if (TempData["Success"] != null)
+                {
+                    <div class="alert alert-success">
+                        @TempData["Success"]
+                    </div>
+                }
+
                 <h5 class="fw-bold mb-3">Khuyến mãi</h5>
-                <form method="post">
+                <form asp-action="ApplyDiscount" method="post">
                     <div class="row mb-3">
                         <div class="col-md-6">
-                            <input type="text" name="PromoCode" class="form-control form-control-lg" placeholder="Mã khuyến mãi" value="@Model.PromoCode" />
+                            <input type="text" name="promoCode" class="form-control form-control-lg" placeholder="Mã khuyến mãi" value="@Model.PromoCode"/>
                         </div>
                         <div class="col-md-3">
                             <button type="submit" class="btn btn-warning btn-lg w-100">Áp Dụng</button>
                         </div>
                     </div>
                 </form>
-                <div class="mb-4">
-                    <h5 class="fw-bold mb-3">Phương thức thanh toán</h5>
-                    <form method="post">
-                        @for (int i = 0; i < Model.PaymentMethods.Count; i++)
+
+                <h5 class="fw-bold mb-3">Phương thức thanh toán</h5>
+                <form asp-action="ProcessPayment" method="post" id="paymentForm">
+                    <div class="row">
+                        @foreach (var method in Model.PaymentMethods)
                         {
-                            var method = Model.PaymentMethods[i];
-                            <div class="form-check mb-2">
-                                <input class="form-check-input" type="radio" name="SelectedPaymentMethod" id="pay@i" value="@method" @(i == 0 ? "checked" : "") />
-                                <label class="form-check-label fw-bold" for="pay@i">
-                                    @method
-                                </label>
+                            <div class="col-md-6 mb-3">
+                                <div class="form-check payment-method">
+                                    <input class="form-check-input" type="radio" name="selectedPaymentMethod" value="@method" id="@method"
+                                        @(Model.SelectedPaymentMethod == method ? "checked" : "") required>
+                                    <label class="form-check-label" for="@method">
+                                        @method
+                                    </label>
+                                </div>
                             </div>
                         }
-                        <button type="submit" class="btn btn-warning btn-lg mt-3">Thanh toán</button>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
         <div class="col-lg-4">
             <div class="bg-white rounded shadow-sm p-4 mb-4">
-                <h5 class="fw-bold mb-3">Thông tin vé</h5>
+                <h5 class="fw-bold mb-3">Chi tiết đơn hàng</h5>
                 <div class="d-flex align-items-center mb-3">
                     <img src="@Model.Movie.PosterUrl" alt="@Model.Movie.Title" class="rounded-3 shadow-sm me-3" style="width:90px;height:130px;object-fit:cover;" />
                     <div>
@@ -49,11 +64,54 @@
                 <div class="mb-2">Suất: <b>@Model.Showtime.StartTime.ToString("HH:mm")</b> - @Model.Showtime.StartTime.ToString("dddd, dd/MM/yyyy")</div>
                 <div class="mb-2">Ghế: <b>@string.Join(", ", Model.SelectedSeats.Select(s => s.RowLetter + s.SeatNumber))</b></div>
                 <hr />
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <span class="fw-bold">Tổng cộng</span>
-                    <span class="fw-bold text-primary">@Model.TotalPrice.ToString("N0") đ</span>
+                <div class="d-flex justify-content-between mb-2">
+                    <span>Giá vé</span>
+                    <span>@Model.TotalPrice.ToString("N0") đ</span>
+                </div>
+                @if (TempData["DiscountValue"] != null)
+                {
+                    var discountValue = decimal.Parse(TempData["DiscountValue"].ToString());
+                    var discountAmount = Model.TotalPrice * (discountValue / 100);
+                    <div class="d-flex justify-content-between mb-2 text-success">
+                        <span>Giảm giá (@discountValue%)</span>
+                        <span>-@discountAmount.ToString("N0") đ</span>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="fw-bold">Tổng cộng</span>
+                        <span class="fw-bold text-primary">@((Model.TotalPrice - discountAmount).ToString("N0")) đ</span>
+                    </div>
+                }
+                else
+                {
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="fw-bold">Tổng cộng</span>
+                        <span class="fw-bold text-primary">@Model.TotalPrice.ToString("N0") đ</span>
+                    </div>
+                }
+                <div class="d-flex justify-content-end mt-4">
+                    <button type="submit" form="paymentForm" class="btn btn-warning px-5 py-2 text-white fw-bold">Thanh toán</button>
                 </div>
             </div>
         </div>
     </div>
-</div> 
+</div>
+
+<style>
+.payment-method {
+    padding: 1rem;
+    border: 1px solid #dee2e6;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.payment-method:hover {
+    border-color: #ffc107;
+    background-color: #fff8e1;
+}
+
+.form-check-input:checked ~ .form-check-label {
+    color: #ffc107;
+    font-weight: bold;
+}
+</style> 

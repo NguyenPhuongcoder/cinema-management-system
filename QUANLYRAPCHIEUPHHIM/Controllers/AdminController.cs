@@ -653,7 +653,7 @@ namespace QUANLYRAPCHIEUPHHIM.Controllers
                 {
                     ModelState.AddModelError("RoomName", "Tên phòng đã tồn tại");
                     ViewBag.RoomFormats = _context.RoomFormats.ToList();
-                    return View(viewModel);
+                    return View();
                 }
 
                 // Map ViewModel to Room
@@ -673,7 +673,7 @@ namespace QUANLYRAPCHIEUPHHIM.Controllers
             }
 
             ViewBag.RoomFormats = _context.RoomFormats.ToList();
-            return View(viewModel);
+            return View();
         }
 
         // Edit Room
@@ -1129,6 +1129,155 @@ namespace QUANLYRAPCHIEUPHHIM.Controllers
 
             TempData["Success"] = $"Đã xóa toàn bộ hàng {rowLetter} thành công.";
             return RedirectToAction(nameof(ManageSeats), new { roomId });
+        }
+
+        // Discount Management
+        public IActionResult Discounts()
+        {
+            var discounts = _context.Discounts
+                .OrderByDescending(d => d.CreatedAt)
+                .ToList();
+            return View(discounts);
+        }
+
+        public IActionResult CreateDiscount()
+        {
+            return View(new DiscountViewModel());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult CreateDiscount(DiscountViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                // Kiểm tra mã giảm giá đã tồn tại
+                if (_context.Discounts.Any(d => d.CouponCode == model.CouponCode))
+                {
+                    ModelState.AddModelError("CouponCode", "Mã giảm giá này đã tồn tại");
+                    return View(model);
+                }
+
+                // Kiểm tra ngày
+                if (model.EndDate <= model.StartDate)
+                {
+                    ModelState.AddModelError("EndDate", "Ngày kết thúc phải sau ngày bắt đầu");
+                    return View(model);
+                }
+
+                var discount = new Discount
+                {
+                    DiscountName = model.DiscountName,
+                    DiscountValue = model.DiscountValue,
+                    StartDate = model.StartDate,
+                    EndDate = model.EndDate,
+                    CouponCode = model.CouponCode,
+                    IsActive = model.IsActive,
+                    UsageLimit = model.UsageLimit,
+                    CreatedAt = DateTime.Now,
+                    UpdatedAt = DateTime.Now
+                };
+
+                _context.Discounts.Add(discount);
+                _context.SaveChanges();
+
+                TempData["Success"] = "Tạo mã giảm giá thành công!";
+                return RedirectToAction(nameof(Discounts));
+            }
+            return View(model);
+        }
+
+        public IActionResult EditDiscount(int id)
+        {
+            var discount = _context.Discounts.Find(id);
+            if (discount == null)
+            {
+                return NotFound();
+            }
+
+            var viewModel = new DiscountViewModel
+            {
+                DiscountId = discount.DiscountId,
+                DiscountName = discount.DiscountName,
+                DiscountValue = discount.DiscountValue,
+                StartDate = discount.StartDate,
+                EndDate = discount.EndDate,
+                CouponCode = discount.CouponCode,
+                IsActive = discount.IsActive ?? true,
+                UsageLimit = discount.UsageLimit,
+                CreatedAt = discount.CreatedAt,
+                UpdatedAt = discount.UpdatedAt
+            };
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult EditDiscount(DiscountViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var discount = _context.Discounts.Find(model.DiscountId);
+                if (discount == null)
+                {
+                    return NotFound();
+                }
+
+                // Kiểm tra mã giảm giá đã tồn tại (trừ mã hiện tại)
+                if (_context.Discounts.Any(d => d.CouponCode == model.CouponCode && d.DiscountId != model.DiscountId))
+                {
+                    ModelState.AddModelError("CouponCode", "Mã giảm giá này đã tồn tại");
+                    return View(model);
+                }
+
+                // Kiểm tra ngày
+                if (model.EndDate <= model.StartDate)
+                {
+                    ModelState.AddModelError("EndDate", "Ngày kết thúc phải sau ngày bắt đầu");
+                    return View(model);
+                }
+
+                discount.DiscountName = model.DiscountName;
+                discount.DiscountValue = model.DiscountValue;
+                discount.StartDate = model.StartDate;
+                discount.EndDate = model.EndDate;
+                discount.CouponCode = model.CouponCode;
+                discount.IsActive = model.IsActive;
+                discount.UsageLimit = model.UsageLimit;
+                discount.UpdatedAt = DateTime.Now;
+
+                _context.Update(discount);
+                _context.SaveChanges();
+
+                TempData["Success"] = "Cập nhật mã giảm giá thành công!";
+                return RedirectToAction(nameof(Discounts));
+            }
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteDiscount(int id)
+        {
+            var discount = _context.Discounts.Find(id);
+            if (discount == null)
+            {
+                return NotFound();
+            }
+
+            // Kiểm tra xem mã giảm giá đã được sử dụng chưa
+            if (_context.Bookings.Any(b => b.DiscountId == id))
+            {
+                TempData["Error"] = "Không thể xóa mã giảm giá đã được sử dụng!";
+                return RedirectToAction(nameof(Discounts));
+            }
+
+            _context.Discounts.Remove(discount);
+            _context.SaveChanges();
+
+            TempData["Success"] = "Xóa mã giảm giá thành công!";
+            return RedirectToAction(nameof(Discounts));
         }
     }
 } 

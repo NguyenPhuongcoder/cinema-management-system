@@ -1,0 +1,113 @@
+@model QUANLYRAPCHIEUPHHIM.Models.Booking
+@{
+    ViewData["Title"] = "Chi tiết đặt vé";
+    Layout = "_Layout";
+    var firstTicket = Model.Tickets.FirstOrDefault();
+}
+@{
+	var totalTicketPrice = Model.Tickets.Sum(t => t.Price);
+	var discountValue = Model.Discount?.DiscountValue ?? 0;
+	var discountAmount = totalTicketPrice * discountValue / 100;
+	var finalAmount = Model.TotalAmount - discountAmount;
+}
+
+<div class="container my-4">
+    <div class="bg-white rounded shadow-sm p-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h5 class="fw-bold mb-0">Chi tiết đặt vé</h5>
+            <a href="@Url.Action("Index")" class="btn btn-outline-secondary">
+                <i class="fas fa-arrow-left me-2"></i>Quay lại
+            </a>
+        </div>
+
+        @if (firstTicket != null)
+        {
+            <div class="row">
+                <div class="col-lg-4">
+                    <img src="@firstTicket.Showtime.Movie.PosterUrl" 
+                         alt="@firstTicket.Showtime.Movie.Title" 
+                         class="img-fluid rounded shadow-sm mb-4" 
+                         style="width:100%;object-fit:cover;" />
+                </div>
+                <div class="col-lg-8">
+                    <h4 class="fw-bold mb-3">@firstTicket.Showtime.Movie.Title</h4>
+                    
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h6 class="fw-bold mb-3">Thông tin suất chiếu</h6>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <div class="text-muted mb-1">Rạp chiếu</div>
+                                    <div class="fw-bold">@firstTicket.Showtime.Room.Cinema.CinemaName</div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="text-muted mb-1">Phòng chiếu</div>
+                                    <div class="fw-bold">@firstTicket.Showtime.Room.RoomName</div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="text-muted mb-1">Ngày chiếu</div>
+                                    <div class="fw-bold">@firstTicket.Showtime.StartTime.ToString("dddd, dd/MM/yyyy")</div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="text-muted mb-1">Giờ chiếu</div>
+                                    <div class="fw-bold">@firstTicket.Showtime.StartTime.ToString("HH:mm")</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h6 class="fw-bold mb-3">Chi tiết vé</h6>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Mã vé</th>
+                                            <th>Ghế</th>
+                                            <th class="text-end">Giá vé</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var ticket in Model.Tickets)
+                                        {
+                                            <tr>
+                                                <td>@ticket.TicketCode</td>
+                                                <td>@ticket.Seat.RowLetter@ticket.Seat.SeatNumber</td>
+                                                <td class="text-end">@ticket.Price.ToString("N0") đ</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h6 class="fw-bold mb-3">Thanh toán</h6>
+                            <div class="d-flex justify-content-between mb-2">
+	                            <span>Tổng tiền vé</span>
+	                            <span>@totalTicketPrice.ToString("N0") đ</span>
+                            </div>
+
+                            @if (Model.Discount != null)
+                            {
+	                            <div class="d-flex justify-content-between mb-2 text-success">
+		                            <span>Giảm giá (@discountValue%)</span>
+		                            <span>@discountAmount.ToString("N0") đ</span>
+	                            </div>
+                            }
+
+                            <div class="d-flex justify-content-between fw-bold">
+	                            <span>Tổng thanh toán</span>
+	                            <span class="text-primary">@finalAmount.ToString("N0") đ</span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div> 

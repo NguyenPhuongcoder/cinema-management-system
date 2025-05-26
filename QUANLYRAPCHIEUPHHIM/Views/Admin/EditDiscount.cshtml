@@ -1,0 +1,78 @@
+@model QUANLYRAPCHIEUPHHIM.ViewModels.DiscountViewModel
+@{
+    ViewData["Title"] = "Chỉnh sửa mã giảm giá";
+    Layout = "_AdminLayout";
+}
+
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Chỉnh sửa mã giảm giá</h6>
+        </div>
+        <div class="card-body">
+            <form asp-action="EditDiscount" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="DiscountId" />
+                <input type="hidden" asp-for="CreatedAt" />
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label asp-for="DiscountName" class="control-label"></label>
+                            <input asp-for="DiscountName" class="form-control" />
+                            <span asp-validation-for="DiscountName" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="DiscountValue" class="control-label"></label>
+                            <input asp-for="DiscountValue" class="form-control" type="number" min="0" max="100" step="0.01" />
+                            <span asp-validation-for="DiscountValue" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="CouponCode" class="control-label"></label>
+                            <input asp-for="CouponCode" class="form-control" />
+                            <span asp-validation-for="CouponCode" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label asp-for="StartDate" class="control-label"></label>
+                            <input asp-for="StartDate" class="form-control" type="date" />
+                            <span asp-validation-for="StartDate" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="EndDate" class="control-label"></label>
+                            <input asp-for="EndDate" class="form-control" type="date" />
+                            <span asp-validation-for="EndDate" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="UsageLimit" class="control-label"></label>
+                            <input asp-for="UsageLimit" class="form-control" type="number" min="0" />
+                            <span asp-validation-for="UsageLimit" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group mb-3">
+                    <div class="form-check">
+                        <input asp-for="IsActive" class="form-check-input" />
+                        <label asp-for="IsActive" class="form-check-label"></label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <a asp-action="Discounts" class="btn btn-secondary">Quay lại</a>
+                    <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+} 

@@ -9,46 +9,80 @@
         <!-- Cột trái: các bước chọn -->
         <div class="col-lg-8">
             <div class="bg-white rounded shadow-sm p-4 mb-4">
-                <form asp-action="Index" method="post">
+                <form asp-action="Index" method="post" id="bookingForm">
+                    <input type="hidden" name="SelectedProvinceId" value="@Model.SelectedProvinceId" />
+                    <input type="hidden" name="SelectedMovieId" value="@Model.SelectedMovieId" />
+                    <input type="hidden" name="SelectedDate" value="@Model.SelectedDate?.ToString("yyyy-MM-dd")" />
+                    <input type="hidden" name="SelectedCinemaId" value="@Model.SelectedCinemaId" />
+                    <input type="hidden" name="SelectedShowtimeId" value="@Model.SelectedShowtimeId" />
+
+                    <!-- Chọn vị trí -->
                     <div class="mb-4">
                         <label class="form-label fw-bold mb-2" style="font-size:1.15rem;">Chọn vị trí</label>
                         <div class="bg-white rounded shadow-sm p-3 mb-2 province-group d-flex flex-wrap gap-2">
                             @foreach (var p in Model.Provinces)
                             {
-                                <form asp-action="Index" method="post" class="d-inline">
-                                    <input type="hidden" name="SelectedProvinceId" value="@p.ProvinceId" />
-                                    <input type="hidden" name="SelectedMovieId" value="@Model.SelectedMovieId" />
-                                    <button type="submit" class="btn btn-lg fw-bold px-4 py-2 @(p.ProvinceId == Model.SelectedProvinceId ? "btn-primary text-white" : "btn-outline-primary")" style="min-width: 140px;">
-                                        @p.ProvinceName
-                                    </button>
-                                </form>
+                                <button type="submit" onclick="updateProvince(@p.ProvinceId)" class="btn btn-lg fw-bold px-4 py-2 @(p.ProvinceId == Model.SelectedProvinceId ? "btn-primary text-white" : "btn-outline-primary")" style="min-width: 140px;">
+                                    @p.ProvinceName
+                                </button>
                             }
                         </div>
                     </div>
+
+                    <!-- Chọn phim -->
                     <div class="mb-4">
                         <label class="form-label fw-bold mb-2" style="font-size:1.15rem;">Chọn phim</label>
                         <div class="movie-slider d-flex flex-nowrap gap-4 overflow-auto pb-2">
                             @foreach (var m in Model.Movies)
                             {
-                                <form asp-action="Index" method="post" class="d-inline">
-                                    <input type="hidden" name="SelectedProvinceId" value="@Model.SelectedProvinceId" />
-                                    <input type="hidden" name="SelectedMovieId" value="@m.MovieId" />
-                                    <input type="hidden" name="SelectedDate" value="@Model.SelectedDate?.ToString("yyyy-MM-dd")" />
-                                    <input type="hidden" name="SelectedCinemaId" value="@Model.SelectedCinemaId" />
-                                    <button type="submit" class="movie-card-select btn p-0 border-0 bg-transparent @(m.MovieId == Model.SelectedMovieId ? "selected" : "")" style="width:160px;min-width:160px;">
-                                        <div class="movie-poster position-relative rounded-3 shadow-sm mb-2" style="height:240px;overflow:hidden;">
-                                            <img src="@m.PosterUrl" alt="@m.Title" class="w-100 h-100" style="object-fit:cover;" />
-                                            @if (m.MovieId == Model.SelectedMovieId)
-                                            {
-                                                <span class="movie-selected-icon position-absolute top-0 end-0 m-2 bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width:32px;height:32px;"><i class="fa fa-check"></i></span>
-                                            }
-                                        </div>
-                                        <div class="fw-bold text-center small text-dark">@m.Title</div>
-                                    </button>
-                                </form>
+                                <button type="submit" onclick="updateMovie(@m.MovieId)" class="movie-card-select btn p-0 border-0 bg-transparent @(m.MovieId == Model.SelectedMovieId ? "selected" : "")" style="width:160px;min-width:160px;">
+                                    <div class="movie-poster position-relative rounded-3 shadow-sm mb-2" style="height:240px;overflow:hidden;">
+                                        <img src="@m.PosterUrl" alt="@m.Title" class="w-100 h-100" style="object-fit:cover;" />
+                                        @if (m.MovieId == Model.SelectedMovieId)
+                                        {
+                                            <span class="movie-selected-icon position-absolute top-0 end-0 m-2 bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width:32px;height:32px;"><i class="fa fa-check"></i></span>
+                                        }
+                                    </div>
+                                    <div class="fw-bold text-center small text-dark">@m.Title</div>
+                                </button>
                             }
                         </div>
                     </div>
+
+                    <!-- Chọn rạp -->
+                    <div class="mb-4">
+                        <label class="form-label fw-bold mb-2" style="font-size:1.15rem;">Chọn rạp</label>
+                        @if (Model.Cinemas != null && Model.Cinemas.Any())
+                        {
+                            <div class="row g-3">
+                                @foreach (var cinema in Model.Cinemas)
+                                {
+                                    <div class="col-md-6">
+                                        <div class="cinema-card @(cinema.CinemaId == Model.SelectedCinemaId ? "selected" : "")" 
+                                             onclick="updateCinema(@cinema.CinemaId)">
+                                            <div class="d-flex align-items-center p-3 rounded border h-100">
+                                                <div class="flex-shrink-0">
+                                                    <i class="fas fa-film fa-2x text-primary"></i>
+                                                </div>
+                                                <div class="ms-3">
+                                                    <h6 class="fw-bold mb-1">@cinema.CinemaName</h6>
+                                                    <small class="text-muted">@cinema.Address?.AddressDetail</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="alert alert-info">
+                                Không có rạp nào trong khu vực này.
+                            </div>
+                        }
+                    </div>
+
+                    <!-- Chọn suất -->
                     <div class="mb-4">
                         <label class="form-label fw-bold mb-2" style="font-size:1.15rem;">Chọn suất</label>
                         @if (Model.AvailableDates != null && Model.AvailableDates.Any())
@@ -56,49 +90,22 @@
                             <div class="d-flex gap-2 mb-3 flex-wrap">
                                 @foreach (var d in Model.AvailableDates)
                                 {
-                                    <form asp-action="Index" method="post" class="d-inline">
-                                        <input type="hidden" name="SelectedProvinceId" value="@Model.SelectedProvinceId" />
-                                        <input type="hidden" name="SelectedMovieId" value="@Model.SelectedMovieId" />
-                                        <input type="hidden" name="SelectedDate" value="@d.ToString("yyyy-MM-dd")" />
-                                        <input type="hidden" name="SelectedCinemaId" value="@Model.SelectedCinemaId" />
-                                        <button type="submit" class="btn btn-outline-primary px-4 py-2 fw-bold @(d == Model.SelectedDate ? "active" : "")">
-                                            @d.ToString("dddd dd/MM")
-                                        </button>
-                                    </form>
+                                    <button type="submit" onclick="updateDate('@d.ToString("yyyy-MM-dd")')" class="btn btn-outline-primary px-4 py-2 fw-bold @(d == Model.SelectedDate ? "active" : "")">
+                                        @d.ToString("dddd dd/MM")
+                                    </button>
                                 }
                             </div>
-                            @if (Model.Cinemas != null && Model.Cinemas.Count > 1)
-                            {
-                                <form asp-action="Index" method="post" class="mb-3 d-inline">
-                                    <input type="hidden" name="SelectedProvinceId" value="@Model.SelectedProvinceId" />
-                                    <input type="hidden" name="SelectedMovieId" value="@Model.SelectedMovieId" />
-                                    <input type="hidden" name="SelectedDate" value="@Model.SelectedDate?.ToString("yyyy-MM-dd")" />
-                                    <select name="SelectedCinemaId" class="form-select form-select-lg fw-bold" style="max-width:320px;display:inline-block;" onchange="this.form.submit()">
-                                        @foreach (var c in Model.Cinemas)
-                                        {
-                                            <option value="@c.CinemaId" selected="@(c.CinemaId == Model.SelectedCinemaId)">@c.CinemaName</option>
-                                        }
-                                    </select>
-                                </form>
-                            }
                             <div class="d-flex flex-wrap gap-2 mt-3">
                                 @if (Model.Showtimes != null && Model.Showtimes.Any())
                                 {
                                     @foreach (var s in Model.Showtimes)
                                     {
-                                        <form asp-action="Index" method="post" class="d-inline">
-                                            <input type="hidden" name="SelectedProvinceId" value="@Model.SelectedProvinceId" />
-                                            <input type="hidden" name="SelectedMovieId" value="@Model.SelectedMovieId" />
-                                            <input type="hidden" name="SelectedDate" value="@Model.SelectedDate?.ToString("yyyy-MM-dd")" />
-                                            <input type="hidden" name="SelectedCinemaId" value="@Model.SelectedCinemaId" />
-                                            <input type="hidden" name="SelectedShowtimeId" value="@s.ShowtimeId" />
-                                            <button type="submit" class="btn btn-outline-secondary px-3 py-2 mb-2">@s.StartTime.ToString("HH:mm")</button>
-                                        </form>
+                                        <button type="submit" onclick="updateShowtime(@s.ShowtimeId)" class="btn btn-outline-secondary px-3 py-2 mb-2 @(Model.SelectedShowtimeId == s.ShowtimeId ? "active" : "")">@s.StartTime.ToString("HH:mm")</button>
                                     }
                                 }
                                 else
                                 {
-                                    <span class="text-muted">Không có suất chiếu cho ngày và rạp này.</span>
+                                    <span class="text-muted">Không có suất chiếu cho ngày này.</span>
                                 }
                             </div>
                         }
@@ -110,36 +117,82 @@
                 </form>
             </div>
         </div>
+
         <!-- Cột phải: sidebar thông tin phim đã chọn -->
         <div class="col-lg-4">
             <div class="bg-white rounded shadow-sm p-4 mb-4">
-                <h5 class="fw-bold mb-3">Thông tin phim</h5>
+                <h5 class="fw-bold mb-3">Thông tin đặt vé</h5>
                 @if (selectedMovie != null)
                 {
                     <div class="d-flex align-items-center mb-3">
                         <img src="@selectedMovie.PosterUrl" alt="@selectedMovie.Title" class="rounded-3 shadow-sm me-3" style="width:90px;height:130px;object-fit:cover;" />
                         <div>
                             <div class="fw-bold" style="font-size:1.08rem;">@selectedMovie.Title</div>
+                            @if (Model.SelectedCinemaId.HasValue)
+                            {
+                                var selectedCinema = Model.Cinemas.FirstOrDefault(c => c.CinemaId == Model.SelectedCinemaId);
+                                if (selectedCinema != null)
+                                {
+                                    <div class="text-muted mt-2">
+                                        <i class="fas fa-film me-2"></i>@selectedCinema.CinemaName
+                                    </div>
+                                }
+                            }
                         </div>
                     </div>
                 }
                 else
                 {
-                    <div class="text-muted">Chưa chọn phim</div>
+                    <div class="text-muted">Vui lòng chọn phim</div>
                 }
                 <hr />
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <span class="fw-bold">Tổng cộng</span>
                     <span class="fw-bold text-primary">0 đ</span>
                 </div>
-                <div class="d-flex gap-2">
+                <div class="d-flex gap-2 mt-4">
                     <a href="#" class="btn btn-outline-secondary flex-fill">Quay lại</a>
-                    <a href="#" class="btn btn-warning flex-fill text-white fw-bold">Tiếp tục</a>
+                    @if (Model.SelectedShowtimeId != null)
+                    {
+                        <button type="submit" form="bookingForm" name="submitButton" value="continue" class="btn btn-warning flex-fill text-white fw-bold w-100">Tiếp tục</button>
+                    }
+                    else
+                    {
+                        <button class="btn btn-warning flex-fill text-white fw-bold w-100" disabled>Tiếp tục</button>
+                    }
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+function updateProvince(provinceId) {
+    document.querySelector('input[name="SelectedProvinceId"]').value = provinceId;
+    document.getElementById('bookingForm').submit();
+}
+
+function updateMovie(movieId) {
+    document.querySelector('input[name="SelectedMovieId"]').value = movieId;
+    document.getElementById('bookingForm').submit();
+}
+
+function updateDate(date) {
+    document.querySelector('input[name="SelectedDate"]').value = date;
+    document.getElementById('bookingForm').submit();
+}
+
+function updateShowtime(showtimeId) {
+    document.querySelector('input[name="SelectedShowtimeId"]').value = showtimeId;
+    document.getElementById('bookingForm').submit();
+}
+
+function updateCinema(cinemaId) {
+    document.querySelector('input[name="SelectedCinemaId"]').value = cinemaId;
+    document.getElementById('bookingForm').submit();
+}
+</script>
+
 <style>
 .movie-slider::-webkit-scrollbar { height: 8px; background: #eee; }
 .movie-slider::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
@@ -150,4 +203,18 @@
     overflow-x: auto;
     white-space: nowrap;
 }
-</style> 
+.cinema-card {
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.cinema-card:hover {
+    transform: translateY(-2px);
+}
+.cinema-card.selected {
+    border-color: #ff9800;
+    background-color: #fff8e1;
+}
+.cinema-card.selected .text-primary {
+    color: #ff9800 !important;
+}
+</style>

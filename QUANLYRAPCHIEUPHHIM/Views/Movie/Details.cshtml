@@ -1,6 +1,7 @@
 @model QUANLYRAPCHIEUPHHIM.Models.Movie
 @{
     ViewData["Title"] = Model.Title;
+    Layout = "_Layout";
 }
 <!-- Banner lớn với icon play, nền đen, hiệu ứng mờ hai bên -->
 @if (!string.IsNullOrEmpty(Model.PanelUrl))
@@ -69,7 +70,7 @@
                 }
             }
         </div>
-        <a href="/Booking/Quick?movieId=@Model.MovieId" class="btn btn-mua-ve">Mua vé</a>
+        <a href="@Url.Action("Index", "Booking")" class="btn btn-mua-ve">Mua vé</a>
     </div>
 </div>
 <!-- Nội dung phim nằm dưới -->

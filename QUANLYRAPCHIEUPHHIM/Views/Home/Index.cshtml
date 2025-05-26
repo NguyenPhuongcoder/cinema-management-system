@@ -61,7 +61,7 @@
                                 </a>
                                 <div class="movie-overlay-galaxy">
                                     <div class="w-100 d-flex flex-column align-items-center gap-2 px-3">
-                                        <a href="/Booking/Quick?movieId=@movie.MovieId" class="btn btn-galaxy-book w-100 mb-2">
+                                        <a href="@Url.Action("Index", "Booking")" class="btn btn-galaxy-book w-100 mb-2">
                                             <i class="fa-solid fa-ticket"></i> Mua vé
                                         </a>
                                         @if (!string.IsNullOrEmpty(movie.TrailerUrl))
@@ -105,7 +105,7 @@
 						        </a>
 						        <div class="movie-overlay-galaxy">
 							        <div class="w-100 d-flex flex-column align-items-center gap-2 px-3">
-								        <a href="/Booking/Quick?movieId=@movie.MovieId" class="btn btn-galaxy-book w-100 mb-2">
+								        <a href="@Url.Action("Index", "Booking")" class="btn btn-galaxy-book w-100 mb-2">
 									        <i class="fa-solid fa-ticket"></i> Mua vé
 								        </a>
 								        @if (!string.IsNullOrEmpty(movie.TrailerUrl))
@@ -121,6 +121,11 @@
 								        <span class="badge bg-orange-galaxy text-white fs-6 shadow px-2 py-1" style="font-size:1rem;">@movie.AgeLimit</span>
 							        </div>
 					        </div>
+                             <div class="card-body text-center p-2">
+	                            <a asp-controller="Movie" asp-action="Details" asp-route-id="@movie.MovieId" style="display:block;">
+                                    <h6 class="card-title fw-bold mb-1" style="min-height:40px;font-size:1.08rem;">@movie.Title</h6>
+                                </a>
+                            </div>
 				        </div>
 			        </div>
 		        }
@@ -144,7 +149,7 @@
                                 </a>
                                 <div class="movie-overlay-galaxy">
                                     <div class="w-100 d-flex flex-column align-items-center gap-2 px-3">
-                                        <a href="/Booking/Quick?movieId=@movie.MovieId" class="btn btn-galaxy-book w-100 mb-2">
+                                        <a href="@Url.Action("Index", "Booking")" class="btn btn-galaxy-book w-100 mb-2">
                                             <i class="fa-solid fa-ticket"></i> Mua vé
                                         </a>
                                         @if (!string.IsNullOrEmpty(movie.TrailerUrl))

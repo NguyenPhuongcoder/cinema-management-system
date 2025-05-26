@@ -8,17 +8,39 @@
     <h3 class="fw-bold mb-3" style="letter-spacing:1px;">ĐẠO DIỄN</h3>
 
     <div class="director-filter-bar d-flex gap-2 align-items-center pb-2 mb-3" style="border-bottom:3px solid #1976d2;">
-        <select class="form-select" name="nationality" style="width:160px">
-            <option value="">Quốc Gia</option>
-            @foreach (var nationality in Model.Nationalities)
-            {
-                <option value="@nationality" @(nationality == Model.SelectedNationality ? "selected" : "")>@nationality</option>
-            }
-        </select>
-        <select class="form-select" name="sort" style="width:220px">
-            <option value="popular" @(Model.SelectedSort=="popular"?"selected":"")>Xem Nhiều Nhất</option>
-            <option value="name" @(Model.SelectedSort=="name"?"selected":"")>Theo Tên A-Z</option>
-        </select>
+	    <select class="form-select" name="nationality" style="width:160px">
+		    <option value="">Quốc Gia</option>
+		    @foreach (var nationality in Model.Nationalities)
+		    {
+			    @if (nationality == Model.SelectedNationality)
+			    {
+				    <option value="@nationality" selected>@nationality</option>
+			    }
+			    else
+			    {
+				    <option value="@nationality">@nationality</option>
+			    }
+		    }
+	    </select>
+	    <select class="form-select" name="sort" style="width:220px">
+		    @if (Model.SelectedSort == "popular")
+		    {
+			    <option value="popular" selected>Xem Nhiều Nhất</option>
+		    }
+		    else
+		    {
+			    <option value="popular">Xem Nhiều Nhất</option>
+		    }
+        
+		    @if (Model.SelectedSort == "name")
+		    {
+			    <option value="name" selected>Theo Tên A-Z</option>
+		    }
+		    else
+		    {
+			    <option value="name">Theo Tên A-Z</option>
+		    }
+	    </select>
     </div>
 
     <div id="director-list-container">

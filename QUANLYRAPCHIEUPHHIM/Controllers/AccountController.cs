@@ -48,6 +48,7 @@ namespace QUANLYRAPCHIEUPHHIM.Controllers
             {
                 new Claim(ClaimTypes.Name, user.Username),
                 new Claim(ClaimTypes.Email, user.Email),
+                new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
                 new Claim("FullName", user.FullName)
             };
 
@@ -74,6 +75,10 @@ namespace QUANLYRAPCHIEUPHHIM.Controllers
             if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
             {
                 return Redirect(returnUrl);
+            }
+            if (userRoles.Contains("Admin"))
+            {
+                return RedirectToAction("dashboard", "Admin");
             }
 
             return RedirectToAction("Index", "Home");
@@ -115,7 +120,7 @@ namespace QUANLYRAPCHIEUPHHIM.Controllers
                 var userRole = new UserRole
                 {
                     UserId = model.UserId,
-                    RoleId = 1 // Assuming 1 is the ID for "User" role
+                    RoleId = 3 // Assuming 1 is the ID for "User" role
                 };
 
                 _context.UserRoles.Add(userRole);
@@ -124,10 +129,10 @@ namespace QUANLYRAPCHIEUPHHIM.Controllers
                 // Auto login after registration
             }
 
-            return View(model);
+            return RedirectToAction("Login", "Account");
         }
 
-        [HttpPost]
+        [HttpGet]
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);

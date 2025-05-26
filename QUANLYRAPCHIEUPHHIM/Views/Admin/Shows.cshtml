@@ -1,4 +1,4 @@
-@model IPagedList<QUANLYRAPCHIEUPHHIM.Models.Showtime>
+﻿@model IPagedList<QUANLYRAPCHIEUPHHIM.Models.Showtime>
 @using X.PagedList
 @using X.PagedList.Mvc.Core
 @{
@@ -39,7 +39,7 @@
                                 <td>@show.Room?.RoomName</td>
                                 <td>@show.StartTime.ToString("dd/MM/yyyy HH:mm")</td>
                                 <td>@show.EndTime?.ToString("dd/MM/yyyy HH:mm")</td>
-                                <td>@show.PriceModifier?.ToString("P")</td>
+                                <td>@(show.PriceModifier?.ToString("N0")) đ</td>
                                 <td>
                                     <a href="@Url.Action("EditShow", "Admin", new { id = show.ShowtimeId })" class="btn btn-primary btn-sm">
                                         <i class="bi bi-pencil"></i>

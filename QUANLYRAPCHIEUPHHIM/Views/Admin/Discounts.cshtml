@@ -1,0 +1,103 @@
+@model List<QUANLYRAPCHIEUPHHIM.Models.Discount>
+@{
+    ViewData["Title"] = "Quản lý mã giảm giá";
+    Layout = "_AdminLayout";
+}
+
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Quản lý mã giảm giá</h1>
+        <a href="@Url.Action("CreateDiscount")" class="btn btn-primary">
+            <i class="fas fa-plus"></i> Thêm mã giảm giá
+        </a>
+    </div>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["Success"]
+        </div>
+    }
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger">
+            @TempData["Error"]
+        </div>
+    }
+
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="discountsTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Tên</th>
+                            <th>Mã giảm giá</th>
+                            <th>Giá trị</th>
+                            <th>Ngày bắt đầu</th>
+                            <th>Ngày kết thúc</th>
+                            <th>Trạng thái</th>
+                            <th>Giới hạn</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var discount in Model)
+                        {
+                            <tr>
+                                <td>@discount.DiscountName</td>
+                                <td>@discount.CouponCode</td>
+                                <td>@discount.DiscountValue%</td>
+                                <td>@discount.StartDate.ToString("dd/MM/yyyy")</td>
+                                <td>@discount.EndDate.ToString("dd/MM/yyyy")</td>
+                                <td>
+                                    @if (discount.IsActive == true)
+                                    {
+                                        <span class="badge bg-success">Đang hoạt động</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-danger">Đã vô hiệu</span>
+                                    }
+                                </td>
+                                <td>
+                                    @if (discount.UsageLimit.HasValue)
+                               {
+                                        <span>@discount.UsageLimit</span>
+                                    }
+                                    else
+                                    {
+                                        <span>Không giới hạn</span>
+                                    }
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("EditDiscount", new { id = discount.DiscountId })" class="btn btn-warning btn-sm">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
+                                    <form method="post" action="@Url.Action("DeleteDiscount", new { id = discount.DiscountId })" style="display: inline;">
+                                        @Html.AntiForgeryToken()
+                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc muốn xóa mã giảm giá này?');">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            $('#discountsTable').DataTable({
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.10.24/i18n/Vietnamese.json'
+                }
+            });
+        });
+    </script>
+} 

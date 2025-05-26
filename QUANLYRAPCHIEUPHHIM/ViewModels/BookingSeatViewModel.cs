@@ -20,5 +20,6 @@ namespace QUANLYRAPCHIEUPHHIM.ViewModels
         public int Number { get; set; }
         public bool IsSold { get; set; }
         public string Type { get; set; } // VIP, Đơn, Đôi, Ba
+        public decimal Price { get; set; }
     }
 } 

@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = ViewBag.Title ?? "Danh sách phim";
     string type = (ViewBag.Type as string ?? "nowshowing").ToLower();
+    Layout = "_Layout";
 }
 <div class="container my-5">
     <h2 class="fw-bold text-primary mb-4" style="letter-spacing:1px;">PHIM</h2>

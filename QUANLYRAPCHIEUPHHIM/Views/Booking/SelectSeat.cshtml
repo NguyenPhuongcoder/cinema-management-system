@@ -34,10 +34,11 @@
                                                 }
                                                 else
                                                 {
-                                                    <label class="seat-checkbox-label">
+                                                    <label class="seat-checkbox-label" title="@seat.Type - @seat.Price.ToString("N0") đ">
                                                         <input type="checkbox" name="selectedSeatIds" value="@seat.SeatId" class="seat-checkbox d-none" autocomplete="off"
+                                                            data-price="@seat.Price"
                                                             @(Model.SelectedSeatIds != null && Model.SelectedSeatIds.Contains(seat.SeatId) ? "checked" : "") />
-                                                        <span class="btn btn-sm seat-btn seat-selectable">@seat.Number</span>
+                                                        <span class="btn btn-sm seat-btn seat-@seat.Type.ToLower()">@seat.Number</span>
                                                     </label>
                                                 }
                                             </td>
@@ -51,11 +52,9 @@
                         </div>
                         <div class="d-flex gap-3 flex-wrap mt-2">
                             <span><span class="seat-btn seat-sold"></span> Ghế đã bán</span>
-                            <span><span class="seat-btn seat-selectable" style="background:#ff9800;color:#fff;border-color:#ff9800;"></span> Ghế đang chọn</span>
+                            <span><span class="seat-btn seat-standard"></span> Ghế thường</span>
                             <span><span class="seat-btn seat-vip"></span> Ghế VIP</span>
-                            <span><span class="seat-btn seat-single"></span> Ghế đơn</span>
-                            <span><span class="seat-btn seat-double"></span> Ghế đôi</span>
-                            <span><span class="seat-btn seat-triple"></span> Ghế ba</span>
+                            <span><span class="seat-btn seat-couple"></span> Ghế đôi</span>
                         </div>
                     </div>
                 </div>
@@ -71,9 +70,14 @@
                     </div>
                     <div class="mb-2">@Model.Cinema.CinemaName - @Model.Room.RoomName</div>
                     <div class="mb-2">Suất: <b>@Model.Showtime.StartTime.ToString("HH:mm")</b> - @Model.Showtime.StartTime.ToString("dddd, dd/MM/yyyy")</div>
+                    <div class="mb-2">Ghế đã chọn: <b><span id="selectedSeatsText">Chưa chọn</span></b></div>
                     <hr />
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="fw-bold">Tổng cộng</span>
+                        <span class="fw-bold text-primary" id="totalPrice">0 đ</span>
+                    </div>
                     <div class="d-flex justify-content-end mt-4">
-                        <button type="submit" class="btn btn-warning px-5 py-2 text-white fw-bold">Tiếp tục</button>
+                        <button type="submit" id="continueButton" class="btn btn-warning px-5 py-2 text-white fw-bold" disabled>Tiếp tục</button>
                     </div>
                 </div>
             </div>
@@ -85,9 +89,46 @@
 .seat-checkbox:checked + .seat-btn { background: #ff9800 !important; color: #fff !important; border-color: #ff9800 !important; }
 .seat-btn { min-width: 32px; min-height: 32px; border-radius: 6px; margin: 2px; background: #fff; border: 1.5px solid #bbb; font-weight: 500; }
 .seat-sold { background: #ddd !important; color: #aaa !important; border-color: #ccc !important; }
-.seat-selectable { transition: background 0.2s, color 0.2s, border 0.2s; }
-.seat-vip { background: #fffbe6 !important; border-color: #ffe082 !important; }
-.seat-single { border-color: #bbb !important; }
-.seat-double { border-color: #2196f3 !important; }
-.seat-triple { border-color: #ff9800 !important; }
-</style> 
+.seat-standard { background: #fff; border-color: #bbb; }
+.seat-vip { background: #fffbe6; border-color: #ffd700; color: #b8860b; }
+.seat-couple { background: #e3f2fd; border-color: #2196f3; color: #1976d2; }
+
+/* Thêm style cho nút disabled */
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+</style>
+<script>
+$(document).ready(function() {
+    function updateSelectedSeats() {
+        const selectedSeats = [];
+        let totalPrice = 0;
+        
+        $('.seat-checkbox:checked').each(function() {
+            const seatId = $(this).val();
+            const price = parseFloat($(this).data('price'));
+            const seatLabel = $(this).closest('label').find('.seat-btn').text();
+            const rowLetter = $(this).closest('tr').find('td:first').text();
+            
+            selectedSeats.push(rowLetter + seatLabel);
+            totalPrice += price;
+        });
+        
+        $('#selectedSeatsText').text(selectedSeats.length > 0 ? selectedSeats.join(', ') : 'Chưa chọn');
+        $('#totalPrice').text(totalPrice.toLocaleString('vi-VN') + ' đ');
+
+        // Cập nhật trạng thái nút Tiếp tục
+        const continueButton = $('#continueButton');
+        if (selectedSeats.length > 0) {
+            continueButton.prop('disabled', false);
+        } else {
+            continueButton.prop('disabled', true);
+        }
+    }
+    
+    $('.seat-checkbox').change(updateSelectedSeats);
+    console.log("check")
+    updateSelectedSeats(); // Cập nhật ban đầu
+});
+</script> 
