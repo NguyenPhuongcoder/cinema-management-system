@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace QUANLYRAPCHIEUPHHIM.Controllers
 {
-    [Authorize(Roles = "Staff")]
+    // [Authorize(Roles = "Staff")]
     public class StaffTicketController : Controller
     {
         private readonly ITicketService _ticketService;
@@ -91,6 +91,11 @@ namespace QUANLYRAPCHIEUPHHIM.Controllers
                 _logger.LogError(ex, "Lỗi khi tìm vé theo mã");
                 return StatusCode(500, "Có lỗi xảy ra khi tìm vé");
             }
+        }
+
+        public IActionResult ManageTicket()
+        {
+            return View();
         }
     }
 } 

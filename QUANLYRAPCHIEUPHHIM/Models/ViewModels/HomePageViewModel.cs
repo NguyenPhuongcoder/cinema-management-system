@@ -1,6 +1,6 @@
 ﻿using QUANLYRAPCHIEUPHHIM.Models;
 
-namespace QUANLYRAPCHIEUPHHIM.ViewModel
+namespace QUANLYRAPCHIEUPHHIM.Models.ViewModels
 {
     public class HomePageViewModel
     {

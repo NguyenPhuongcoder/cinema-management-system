@@ -58,7 +58,7 @@ namespace QUANLYRAPCHIEUPHHIM.Services
             }
         }
 
-        public async Task<Ticket> ConfirmTicketAsync(int ticketId)
+        public async Task<bool> ConfirmTicketAsync(int ticketId)
         {
             try
             {
@@ -66,19 +66,25 @@ namespace QUANLYRAPCHIEUPHHIM.Services
                     .FirstOrDefaultAsync(t => t.TicketId == ticketId);
 
                 if (ticket == null)
-                    throw new ArgumentException("Ticket not found");
+                {
+                    return false;
+                }
 
                 if (ticket.TicketStatus == "confirmed")
+                {
                     throw new InvalidOperationException("Ticket is already confirmed");
+                }
 
                 if (ticket.TicketStatus == "cancelled")
+                {
                     throw new InvalidOperationException("Cannot confirm a cancelled ticket");
+                }
 
                 ticket.TicketStatus = "confirmed";
                 ticket.UpdatedAt = DateTime.Now;
 
                 await _context.SaveChangesAsync();
-                return ticket;
+                return true;
             }
             catch (Exception ex)
             {
@@ -87,34 +93,35 @@ namespace QUANLYRAPCHIEUPHHIM.Services
             }
         }
 
-        public async Task<Ticket> CancelTicketAsync(int ticketId)
+        public async Task<bool> CancelTicketAsync(int ticketId)
         {
             try
             {
                 var ticket = await _context.Tickets
+                    .Include(t => t.Showtime)
                     .FirstOrDefaultAsync(t => t.TicketId == ticketId);
 
                 if (ticket == null)
-                    throw new ArgumentException("Ticket not found");
+                {
+                    return false;
+                }
 
                 if (ticket.TicketStatus == "cancelled")
+                {
                     throw new InvalidOperationException("Ticket is already cancelled");
+                }
 
                 // Check if showtime has already started
-                var showtime = await _context.Showtimes
-                    .FirstOrDefaultAsync(s => s.ShowtimeId == ticket.ShowtimeId);
-
-                if (showtime == null)
-                    throw new ArgumentException("Showtime not found");
-
-                if (showtime.StartTime <= DateTime.Now)
+                if (ticket.Showtime.StartTime <= DateTime.Now)
+                {
                     throw new InvalidOperationException("Cannot cancel ticket for a showtime that has already started");
+                }
 
                 ticket.TicketStatus = "cancelled";
                 ticket.UpdatedAt = DateTime.Now;
 
                 await _context.SaveChangesAsync();
-                return ticket;
+                return true;
             }
             catch (Exception ex)
             {
@@ -141,6 +148,173 @@ namespace QUANLYRAPCHIEUPHHIM.Services
                 _logger.LogError(ex, "Error getting tickets by showtime {ShowtimeId}", showtimeId);
                 throw;
             }
+        }
+
+        public async Task<IEnumerable<Ticket>> GetAllTicketsAsync()
+        {
+            try
+            {
+                return await _context.Tickets
+                    .Include(t => t.Showtime)
+                        .ThenInclude(s => s.Movie)
+                    .Include(t => t.Showtime)
+                        .ThenInclude(s => s.Room)
+                            .ThenInclude(r => r.Cinema)
+                    .Include(t => t.Seat)
+                    .Include(t => t.Booking)
+                    .OrderByDescending(t => t.CreatedAt)
+                    .ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error occurred while getting all tickets");
+                throw;
+            }
+        }
+
+        public async Task<IEnumerable<Ticket>> GetTicketsByStatusAsync(string status)
+        {
+            try
+            {
+                return await _context.Tickets
+                    .Include(t => t.Showtime)
+                        .ThenInclude(s => s.Movie)
+                    .Include(t => t.Showtime)
+                        .ThenInclude(s => s.Room)
+                            .ThenInclude(r => r.Cinema)
+                    .Include(t => t.Seat)
+                    .Include(t => t.Booking)
+                    .Where(t => t.TicketStatus == status)
+                    .OrderByDescending(t => t.CreatedAt)
+                    .ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Error occurred while getting tickets with status {status}");
+                throw;
+            }
+        }
+
+        public async Task<IEnumerable<Ticket>> GetTicketsByUserAsync(int userId)
+        {
+            try
+            {
+                return await _context.Tickets
+                    .Include(t => t.Showtime)
+                        .ThenInclude(s => s.Movie)
+                    .Include(t => t.Showtime)
+                        .ThenInclude(s => s.Room)
+                            .ThenInclude(r => r.Cinema)
+                    .Include(t => t.Seat)
+                    .Include(t => t.Booking)
+                    .Where(t => t.Booking.UserId == userId)
+                    .OrderByDescending(t => t.CreatedAt)
+                    .ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Error occurred while getting tickets for user {userId}");
+                throw;
+            }
+        }
+
+        public async Task<IEnumerable<Ticket>> GetTicketsByBookingAsync(int bookingId)
+        {
+            try
+            {
+                return await _context.Tickets
+                    .Include(t => t.Showtime)
+                        .ThenInclude(s => s.Movie)
+                    .Include(t => t.Showtime)
+                        .ThenInclude(s => s.Room)
+                            .ThenInclude(r => r.Cinema)
+                    .Include(t => t.Seat)
+                    .Include(t => t.Booking)
+                    .Where(t => t.BookingId == bookingId)
+                    .OrderBy(t => t.Seat.SeatNumber)
+                    .ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Error occurred while getting tickets for booking {bookingId}");
+                throw;
+            }
+        }
+
+        public async Task<Ticket> CreateTicketAsync(Ticket ticket)
+        {
+            try
+            {
+                // Kiểm tra xem ghế đã được đặt chưa
+                var existingTicket = await _context.Tickets
+                    .AnyAsync(t => t.ShowtimeId == ticket.ShowtimeId && 
+                                 t.SeatId == ticket.SeatId);
+
+                if (existingTicket)
+                {
+                    throw new InvalidOperationException("Seat is already booked for this showtime");
+                }
+
+                ticket.CreatedAt = DateTime.Now;
+                ticket.TicketStatus = "pending";
+                _context.Tickets.Add(ticket);
+                await _context.SaveChangesAsync();
+                return ticket;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error occurred while creating ticket");
+                throw;
+            }
+        }
+
+        public async Task<Ticket> UpdateTicketStatusAsync(int ticketId, string status)
+        {
+            try
+            {
+                var ticket = await _context.Tickets.FindAsync(ticketId);
+                if (ticket == null)
+                {
+                    throw new KeyNotFoundException($"Ticket with ID {ticketId} not found");
+                }
+
+                ticket.TicketStatus = status;
+                ticket.UpdatedAt = DateTime.Now;
+                await _context.SaveChangesAsync();
+                return ticket;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Error occurred while updating ticket status for ticket {ticketId}");
+                throw;
+            }
+        }
+
+        public async Task<Ticket> UpdateScanDatetimeAsync(int ticketId, DateTime scanDatetime)
+        {
+            try
+            {
+                var ticket = await _context.Tickets.FindAsync(ticketId);
+                if (ticket == null)
+                {
+                    throw new KeyNotFoundException($"Ticket with ID {ticketId} not found");
+                }
+
+                ticket.ScanDatetime = scanDatetime;
+                ticket.UpdatedAt = DateTime.Now;
+                await _context.SaveChangesAsync();
+                return ticket;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Error occurred while updating scan datetime for ticket {ticketId}");
+                throw;
+            }
+        }
+
+        public async Task<bool> TicketExistsAsync(int id)
+        {
+            return await _context.Tickets.AnyAsync(t => t.TicketId == id);
         }
     }
 } 

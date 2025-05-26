@@ -1,5 +1,4 @@
-@using QUANLYRAPCHIEUPHHIM.Models.ViewModels
-@model TicketConfirmationViewModel
+@model QUANLYRAPCHIEUPHHIM.Models.ViewModels.TicketConfirmationViewModel
 @{
     ViewData["Title"] = "Chi tiết vé - Đặt vé";
     Layout = "_Layout";
@@ -22,67 +21,54 @@
                     <div class="col-md-6">
                         <h5>Thông tin vé</h5>
                         <p><strong>Mã vé:</strong> @Model.TicketCode</p>
-                        <p><strong>Phim:</strong> @Model.Showtime?.Movie?.Title</p>
-                        <p><strong>Suất chiếu:</strong> @(Model.Showtime?.StartTime.ToString("dd/MM/yyyy HH:mm") ?? "N/A")</p>
-                        <p><strong>Phòng chiếu:</strong> @Model.Showtime?.Room?.RoomName</p>
+                        <p><strong>Phim:</strong> @Model.MovieTitle</p>
+                        <p><strong>Suất chiếu:</strong> @Model.Showtime.ToString("dd/MM/yyyy HH:mm")</p>
+                        <p><strong>Phòng chiếu:</strong> @Model.RoomName</p>
                     </div>
                     <div class="col-md-6">
                         <h5>Thông tin khách hàng</h5>
-                        <p><strong>Họ tên:</strong> @Model.Booking?.User?.FullName</p>
-                        <p><strong>Số điện thoại:</strong> @Model.Booking?.User?.Phone</p>
-                        <p><strong>Email:</strong> @Model.Booking?.User?.Email</p>
+                        <p><strong>Họ tên:</strong> @Model.CustomerName</p>
+                        <p><strong>Số điện thoại:</strong> @Model.CustomerPhone</p>
+                        <p><strong>Email:</strong> @Model.CustomerEmail</p>
                     </div>
                 </div>
 
                 <div class="row mt-3">
                     <div class="col-md-6">
                         <h5>Thông tin ghế</h5>
-                        <p><strong>Ghế:</strong> @Model.Seat?.RowLetter@Model.Seat?.SeatNumber</p>
-                        <p><strong>Loại ghế:</strong> @Model.Seat?.SeatType?.Name</p>
+                        @if (Model.Seats != null && Model.Seats.Any())
+                        {
+                            foreach (var seat in Model.Seats)
+                            {
+                                <p><strong>Ghế:</strong> @seat.SeatCode</p>
+                                <p><strong>Loại ghế:</strong> @seat.SeatType</p>
+                                <p><strong>Giá:</strong> @seat.Price.ToString("N0") VND</p>
+                            }
+                        }
                     </div>
                     <div class="col-md-6">
                         <h5>Thông tin thanh toán</h5>
-                        <p><strong>Phương thức:</strong> @Model.Payment?.PaymentMethod</p>
-                        <p><strong>Số tiền:</strong> @Model.Payment?.Amount.ToString("N0") VND</p>
-                        <p><strong>Trạng thái:</strong> @Model.Payment?.Status</p>
+                        <p><strong>Phương thức:</strong> @Model.PaymentMethod</p>
+                        <p><strong>Số tiền:</strong> @Model.TotalAmount.ToString("N0") VND</p>
+                        <p><strong>Trạng thái:</strong> 
+                            <partial name="_TicketStatusBadge" model="Model.Status" />
+                        </p>
+                        @if (Model.DiscountValue.HasValue)
+                        {
+                            <p><strong>Giảm giá:</strong> @Model.DiscountValue.Value%</p>
+                        }
                     </div>
                 </div>
 
                 <div class="row mt-3">
                     <div class="col-12">
-                        <h5>Lịch sử trạng thái</h5>
-                        <div class="table-responsive">
-                            <table class="table table-sm">
-                                <thead>
-                                    <tr>
-                                        <th>Trạng thái</th>
-                                        <th>Thời gian</th>
-                                        <th>Ghi chú</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var status in Model.TicketTicketStatuses.OrderByDescending(tts => tts.CreatedAt))
-                                    {
-                                        <tr>
-                                            <td>@status.TicketStatus?.Name</td>
-                                            <td>@status.CreatedAt.ToString("dd/MM/yyyy HH:mm")</td>
-                                            <td>@status.Note</td>
-                                        </tr>
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
+                        <h5>Thông tin bổ sung</h5>
+                        <p><strong>Ngày đặt:</strong> @Model.CreatedAt.ToString("dd/MM/yyyy HH:mm")</p>
+                        <p><strong>Định dạng:</strong> @Model.FormatName</p>
+                        <p><strong>Rạp chiếu:</strong> @Model.CinemaName</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-@section Scripts {
-    <script>
-        $(document).ready(function() {
-            // JavaScript cho trang chi tiết vé
-        });
-    </script>
-} 

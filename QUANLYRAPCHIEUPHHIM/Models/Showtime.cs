@@ -15,7 +15,7 @@ public class Showtime
 
     public DateTime StartTime { get; set; }
 
-    public DateTime? EndTime { get; set; }
+    public DateTime EndTime { get; set; }
 
     public decimal? PriceModifier { get; set; }
 

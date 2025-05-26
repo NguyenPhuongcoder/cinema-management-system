@@ -6,10 +6,13 @@ using QUANLYRAPCHIEUPHHIM.Models;
 
 namespace QUANLYRAPCHIEUPHHIM.Data;
 
-public partial class CinemaDbContext : IdentityDbContext<ApplicationUser>
+public partial class CinemaDbContext : IdentityDbContext<
+    User, AppRole, int,
+    AppUserClaim, AppUserRole, AppUserLogin,
+    AppRoleClaim, AppUserToken>
 {
     public CinemaDbContext(DbContextOptions<CinemaDbContext> options)
-        : base(options)
+         : base(options)
     {
     }
 
@@ -799,17 +802,17 @@ public partial class CinemaDbContext : IdentityDbContext<ApplicationUser>
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.UserId).HasName("PK__User__B9BE370F07D83566");
+            entity.HasKey(e => e.Id).HasName("PK__User__B9BE370F07D83566");
 
             entity.ToTable("User");
 
             entity.HasIndex(e => e.Email, "UQ__User__AB6E61642EF7F8C8").IsUnique();
 
-            entity.HasIndex(e => e.Username, "UQ__User__F3DBC5729DB2EDAD").IsUnique();
+            entity.HasIndex(e => e.UserName, "UQ__User__F3DBC5729DB2EDAD").IsUnique();
 
             entity.HasIndex(e => e.Email, "idx_user_email");
 
-            entity.Property(e => e.UserId).HasColumnName("user_id");
+            entity.Property(e => e.Id).HasColumnName("user_id");
             entity.Property(e => e.CreatedAt)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")
@@ -834,7 +837,7 @@ public partial class CinemaDbContext : IdentityDbContext<ApplicationUser>
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")
                 .HasColumnName("updated_at");
-            entity.Property(e => e.Username)
+            entity.Property(e => e.UserName)
                 .HasMaxLength(50)
                 .HasColumnName("username");
         });

@@ -9,29 +9,6 @@ namespace QUANLYRAPCHIEUPHHIM.Services
     {
         Discount GetDiscountByCode(string couponCode);
         Discount GetDiscountById(int id);
-        Task<IEnumerable<Discount>> GetDiscountsAsync(
-            string discountName = null,
-            string couponCode = null,
-            string discountType = null,
-            bool? isActive = null,
-            DateTime? fromDate = null,
-            DateTime? toDate = null,
-            decimal? minValue = null,
-            decimal? maxValue = null,
-            int page = 1,
-            int pageSize = 10
-        );
-
-        Task<int> CountDiscountsAsync(
-            string discountName = null,
-            string couponCode = null,
-            string discountType = null,
-            bool? isActive = null,
-            DateTime? fromDate = null,
-            DateTime? toDate = null,
-            decimal? minValue = null,
-            decimal? maxValue = null
-        );
 
         Task<Discount> GetDiscountByIdAsync(int id);
         Task<Discount> GetDiscountByCouponCodeAsync(string couponCode);

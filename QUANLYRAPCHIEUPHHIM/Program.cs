@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore;
+using Microsoft.AspNetCore.Diagnostics;
 using QUANLYRAPCHIEUPHHIM.Data;
 using QUANLYRAPCHIEUPHHIM.Models;
 using QUANLYRAPCHIEUPHHIM.Services;
@@ -16,7 +17,6 @@ builder.Services.AddDbContext<CinemaDbContext>(options =>
 // Thêm Developer Exception Page và Database Error Page
 if (builder.Environment.IsDevelopment())
 {
-    builder.Services.AddDeveloperExceptionPage();
     builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 }
 
@@ -28,7 +28,7 @@ builder.Services.AddDefaultIdentity<User>(options => {
     options.Password.RequireNonAlphanumeric = true;
     options.Password.RequiredLength = 6;
 })
-.AddRoles<IdentityRole>()
+.AddRoles<AppRole>()
 .AddEntityFrameworkStores<CinemaDbContext>();
 
 builder.Services.AddControllersWithViews();

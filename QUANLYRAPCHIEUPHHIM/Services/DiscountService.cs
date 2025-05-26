@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using QUANLYRAPCHIEUPHHIM.Data;
 using QUANLYRAPCHIEUPHHIM.Models;
@@ -25,8 +25,8 @@ namespace QUANLYRAPCHIEUPHHIM.Services
             string couponCode = null,
             string discountType = null,
             bool? isActive = null,
-            DateTime? fromDate = null,
-            DateTime? toDate = null,
+            DateOnly? fromDate = null,
+            DateOnly? toDate = null,
             decimal? minValue = null,
             decimal? maxValue = null,
             int page = 1,
@@ -97,8 +97,8 @@ namespace QUANLYRAPCHIEUPHHIM.Services
             string couponCode = null,
             string discountType = null,
             bool? isActive = null,
-            DateTime? fromDate = null,
-            DateTime? toDate = null,
+            DateOnly? fromDate = null,
+            DateOnly? toDate = null,
             decimal? minValue = null,
             decimal? maxValue = null)
         {
@@ -316,8 +316,8 @@ namespace QUANLYRAPCHIEUPHHIM.Services
                 if (discount == null)
                     return false;
 
-                var now = DateTime.Now;
-                return discount.IsActive && 
+                var now = DateOnly.FromDateTime(DateTime.Now);
+                return discount.IsActive == true && 
                        discount.StartDate <= now && 
                        discount.EndDate >= now;
             }

@@ -28,7 +28,7 @@ namespace QUANLYRAPCHIEUPHHIM.Services
         {
             try
             {
-                var query = _context.MoviePersons
+                var query = _context.MoviePeople
                     .Include(p => p.MovieCasts)
                     .AsQueryable();
 
@@ -61,7 +61,7 @@ namespace QUANLYRAPCHIEUPHHIM.Services
         {
             try
             {
-                var query = _context.MoviePersons.AsQueryable();
+                var query = _context.MoviePeople.AsQueryable();
 
                 if (!string.IsNullOrEmpty(fullName))
                 {
@@ -86,7 +86,7 @@ namespace QUANLYRAPCHIEUPHHIM.Services
         {
             try
             {
-                return await _context.MoviePersons
+                return await _context.MoviePeople
                     .Include(p => p.MovieCasts)
                     .FirstOrDefaultAsync(p => p.PersonId == id);
             }
@@ -106,7 +106,7 @@ namespace QUANLYRAPCHIEUPHHIM.Services
                     throw new ArgumentException("Full name is required");
 
                 // Check if person name is unique
-                var existingPerson = await _context.MoviePersons
+                var existingPerson = await _context.MoviePeople
                     .FirstOrDefaultAsync(p => p.FullName == person.FullName);
 
                 if (existingPerson != null)
@@ -115,7 +115,7 @@ namespace QUANLYRAPCHIEUPHHIM.Services
                 person.CreatedAt = DateTime.Now;
                 person.UpdatedAt = DateTime.Now;
 
-                _context.MoviePersons.Add(person);
+                _context.MoviePeople.Add(person);
                 await _context.SaveChangesAsync();
                 return person;
             }
@@ -135,14 +135,14 @@ namespace QUANLYRAPCHIEUPHHIM.Services
                     throw new ArgumentException("Full name is required");
 
                 // Check if person exists
-                var existingPerson = await _context.MoviePersons
+                var existingPerson = await _context.MoviePeople
                     .FirstOrDefaultAsync(p => p.PersonId == person.PersonId);
 
                 if (existingPerson == null)
                     throw new ArgumentException("Person not found");
 
                 // Check if person name is unique
-                var duplicatePerson = await _context.MoviePersons
+                var duplicatePerson = await _context.MoviePeople
                     .FirstOrDefaultAsync(p => p.FullName == person.FullName && 
                                             p.PersonId != person.PersonId);
 
@@ -170,7 +170,7 @@ namespace QUANLYRAPCHIEUPHHIM.Services
         {
             try
             {
-                var person = await _context.MoviePersons
+                var person = await _context.MoviePeople
                     .Include(p => p.MovieCasts)
                     .FirstOrDefaultAsync(p => p.PersonId == id);
 
@@ -181,7 +181,7 @@ namespace QUANLYRAPCHIEUPHHIM.Services
                 if (person.MovieCasts.Any())
                     throw new InvalidOperationException("Cannot delete person that is used by movies");
 
-                _context.MoviePersons.Remove(person);
+                _context.MoviePeople.Remove(person);
                 await _context.SaveChangesAsync();
                 return true;
             }

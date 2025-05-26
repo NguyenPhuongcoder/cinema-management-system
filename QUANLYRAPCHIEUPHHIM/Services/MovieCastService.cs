@@ -133,7 +133,7 @@ namespace QUANLYRAPCHIEUPHHIM.Services
                     throw new ArgumentException("Movie not found");
 
                 // Check if person exists
-                var person = await _context.MoviePersons.FindAsync(movieCast.PersonId);
+                var person = await _context.MoviePeople.FindAsync(movieCast.PersonId);
                 if (person == null)
                     throw new ArgumentException("Person not found");
 
@@ -181,7 +181,7 @@ namespace QUANLYRAPCHIEUPHHIM.Services
                     throw new ArgumentException("Movie not found");
 
                 // Check if person exists
-                var person = await _context.MoviePersons.FindAsync(movieCast.PersonId);
+                var person = await _context.MoviePeople.FindAsync(movieCast.PersonId);
                 if (person == null)
                     throw new ArgumentException("Person not found");
 

@@ -37,7 +37,7 @@ namespace QUANLYRAPCHIEUPHHIM.Services
                     .Include(s => s.Room)
                         .ThenInclude(r => r.Cinema)
                     .Include(s => s.Room)
-                        .ThenInclude(r => r.RoomFormat)
+                        .ThenInclude(r => r.RoomName)
                     .AsQueryable();
 
                 if (movieId.HasValue)
@@ -116,57 +116,37 @@ namespace QUANLYRAPCHIEUPHHIM.Services
 
         public async Task<Showtime> GetShowtimeByIdAsync(int id)
         {
-            return await _context.Showtimes
-                .Include(s => s.Movie)
-                .Include(s => s.Room)
-                    .ThenInclude(r => r.Cinema)
-                .FirstOrDefaultAsync(s => s.ShowtimeId == id);
+            try
+            {
+                var showtime = await _context.Showtimes
+                    .Include(s => s.Movie)
+                    .Include(s => s.Room)
+                        .ThenInclude(r => r.Cinema)
+                    .FirstOrDefaultAsync(s => s.ShowtimeId == id);
+
+                if (showtime == null)
+                {
+                    throw new KeyNotFoundException($"Showtime with ID {id} not found");
+                }
+
+                return showtime;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Error occurred while getting showtime with ID {id}");
+                throw;
+            }
         }
 
         public async Task<Showtime> CreateShowtimeAsync(Showtime showtime)
         {
             try
             {
-                // Validate showtime data
-                if (showtime.StartTime >= showtime.EndTime)
-                    throw new ArgumentException("End time must be after start time");
-
-                if (showtime.PriceModifier < 0)
-                    throw new ArgumentException("Price modifier cannot be negative");
-
-                // Check if movie exists and is active
-                var movie = await _context.Movies.FindAsync(showtime.MovieId);
-                if (movie == null)
-                    throw new ArgumentException("Movie not found");
-                if (movie.ReleaseDate > DateTime.Now)
-                    throw new ArgumentException("Cannot create showtime for unreleased movie");
-
-                // Check if room exists and is available
-                var room = await _context.Rooms
-                    .Include(r => r.RoomFormat)
-                    .FirstOrDefaultAsync(r => r.RoomId == showtime.RoomId);
-                if (room == null)
-                    throw new ArgumentException("Room not found");
-
-                // Check if movie format matches room format
-                var movieFormat = await _context.MovieFormats
-                    .FirstOrDefaultAsync(mf => mf.MovieId == showtime.MovieId && 
-                                             mf.RoomFormatId == room.RoomFormatId);
-                if (movieFormat == null)
-                    throw new ArgumentException("Movie format does not match room format");
-
-                // Check for overlapping showtimes
-                var overlappingShowtime = await _context.Showtimes
-                    .AnyAsync(s => s.RoomId == showtime.RoomId &&
-                                 ((s.StartTime <= showtime.StartTime && s.EndTime > showtime.StartTime) ||
-                                  (s.StartTime < showtime.EndTime && s.EndTime >= showtime.EndTime) ||
-                                  (s.StartTime >= showtime.StartTime && s.EndTime <= showtime.EndTime)));
-
-                if (overlappingShowtime)
-                    throw new InvalidOperationException("Showtime overlaps with existing showtime");
-
-                showtime.CreatedAt = DateTime.Now;
-                showtime.UpdatedAt = DateTime.Now;
+                // Kiểm tra xem phòng có sẵn sàng không
+                if (!await IsRoomAvailableAsync(showtime.RoomId, showtime.StartTime, showtime.EndTime))
+                {
+                    throw new InvalidOperationException("Room is not available for the selected time slot");
+                }
 
                 _context.Showtimes.Add(showtime);
                 await _context.SaveChangesAsync();
@@ -174,7 +154,7 @@ namespace QUANLYRAPCHIEUPHHIM.Services
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error creating showtime");
+                _logger.LogError(ex, "Error occurred while creating showtime");
                 throw;
             }
         }
@@ -183,50 +163,29 @@ namespace QUANLYRAPCHIEUPHHIM.Services
         {
             try
             {
-                var existingShowtime = await _context.Showtimes
-                    .Include(s => s.Movie)
-                    .Include(s => s.Room)
-                    .FirstOrDefaultAsync(s => s.ShowtimeId == showtime.ShowtimeId);
-
+                var existingShowtime = await _context.Showtimes.FindAsync(showtime.ShowtimeId);
                 if (existingShowtime == null)
-                    throw new ArgumentException("Showtime not found");
+                {
+                    throw new KeyNotFoundException($"Showtime with ID {showtime.ShowtimeId} not found");
+                }
 
-                // Check if showtime has any tickets
-                var hasTickets = await _context.Tickets
-                    .AnyAsync(t => t.ShowtimeId == showtime.ShowtimeId);
-                if (hasTickets)
-                    throw new InvalidOperationException("Cannot update showtime with existing tickets");
+                // Kiểm tra xem phòng có sẵn sàng không (nếu thời gian đã thay đổi)
+                if (showtime.StartTime != existingShowtime.StartTime || 
+                    showtime.EndTime != existingShowtime.EndTime)
+                {
+                    if (!await IsRoomAvailableAsync(showtime.RoomId, showtime.StartTime, showtime.EndTime))
+                    {
+                        throw new InvalidOperationException("Room is not available for the selected time slot");
+                    }
+                }
 
-                // Validate new showtime data
-                if (showtime.StartTime >= showtime.EndTime)
-                    throw new ArgumentException("End time must be after start time");
-
-                if (showtime.PriceModifier < 0)
-                    throw new ArgumentException("Price modifier cannot be negative");
-
-                // Check for overlapping showtimes (excluding current showtime)
-                var overlappingShowtime = await _context.Showtimes
-                    .AnyAsync(s => s.RoomId == showtime.RoomId &&
-                                 s.ShowtimeId != showtime.ShowtimeId &&
-                                 ((s.StartTime <= showtime.StartTime && s.EndTime > showtime.StartTime) ||
-                                  (s.StartTime < showtime.EndTime && s.EndTime >= showtime.EndTime) ||
-                                  (s.StartTime >= showtime.StartTime && s.EndTime <= showtime.EndTime)));
-
-                if (overlappingShowtime)
-                    throw new InvalidOperationException("Showtime overlaps with existing showtime");
-
-                // Update showtime properties
-                existingShowtime.StartTime = showtime.StartTime;
-                existingShowtime.EndTime = showtime.EndTime;
-                existingShowtime.PriceModifier = showtime.PriceModifier;
-                existingShowtime.UpdatedAt = DateTime.Now;
-
+                _context.Entry(existingShowtime).CurrentValues.SetValues(showtime);
                 await _context.SaveChangesAsync();
-                return existingShowtime;
+                return showtime;
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error updating showtime");
+                _logger.LogError(ex, $"Error occurred while updating showtime with ID {showtime.ShowtimeId}");
                 throw;
             }
         }
@@ -240,11 +199,15 @@ namespace QUANLYRAPCHIEUPHHIM.Services
                     .FirstOrDefaultAsync(s => s.ShowtimeId == id);
 
                 if (showtime == null)
+                {
                     return false;
+                }
 
-                // Check if showtime has any tickets
+                // Kiểm tra xem có vé nào đã được bán chưa
                 if (showtime.Tickets.Any())
+                {
                     throw new InvalidOperationException("Cannot delete showtime with existing tickets");
+                }
 
                 _context.Showtimes.Remove(showtime);
                 await _context.SaveChangesAsync();
@@ -252,7 +215,7 @@ namespace QUANLYRAPCHIEUPHHIM.Services
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error deleting showtime");
+                _logger.LogError(ex, $"Error occurred while deleting showtime with ID {id}");
                 throw;
             }
         }
@@ -302,8 +265,8 @@ namespace QUANLYRAPCHIEUPHHIM.Services
                     throw new ArgumentException("Seat not found");
 
                 var basePrice = showtime.Movie.BasePrice;
-                var seatTypeModifier = seat.SeatType.AdditionalCharge;
-                var showtimeModifier = showtime.PriceModifier;
+                var seatTypeModifier = seat.SeatType.AdditionalCharge ?? 0m;
+                var showtimeModifier = showtime.PriceModifier ?? 0m;
 
                 return basePrice + seatTypeModifier + showtimeModifier;
             }
@@ -405,8 +368,6 @@ namespace QUANLYRAPCHIEUPHHIM.Services
             return _context.Movies
                 .Include(m => m.MovieGenres)
                     .ThenInclude(mg => mg.Genre)
-                .Include(m => m.MovieFormats)
-                    .ThenInclude(mf => mf.RoomFormat)
                 .OrderByDescending(m => m.ReleaseDate)
                 .ToList();
         }
@@ -428,8 +389,6 @@ namespace QUANLYRAPCHIEUPHHIM.Services
             return _context.Movies
                 .Include(m => m.MovieGenres)
                     .ThenInclude(mg => mg.Genre)
-                .Include(m => m.MovieFormats)
-                    .ThenInclude(mf => mf.RoomFormat)
                 .FirstOrDefault(m => m.MovieId == movieId);
         }
 
@@ -440,6 +399,71 @@ namespace QUANLYRAPCHIEUPHHIM.Services
                 .Include(s => s.Room)
                     .ThenInclude(r => r.Cinema)
                 .FirstOrDefault(s => s.ShowtimeId == showtimeId);
+        }
+
+        public async Task<bool> ShowtimeExistsAsync(int id)
+        {
+            return await _context.Showtimes.AnyAsync(s => s.ShowtimeId == id);
+        }
+
+        public async Task<bool> IsRoomAvailableAsync(int roomId, DateTime startTime, DateTime endTime)
+        {
+            try
+            {
+                // Kiểm tra xem có suất chiếu nào trùng lịch không
+                var conflictingShowtime = await _context.Showtimes
+                    .Where(s => s.RoomId == roomId &&
+                               ((s.StartTime <= startTime && s.EndTime > startTime) ||
+                                (s.StartTime < endTime && s.EndTime >= endTime) ||
+                                (s.StartTime >= startTime && s.EndTime <= endTime)))
+                    .FirstOrDefaultAsync();
+
+                return conflictingShowtime == null;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Error occurred while checking room availability for room {roomId}");
+                throw;
+            }
+        }
+
+        public async Task<Showtime> UpdatePriceModifierAsync(int showtimeId, decimal priceModifier)
+        {
+            try
+            {
+                var showtime = await _context.Showtimes.FindAsync(showtimeId);
+                if (showtime == null)
+                {
+                    throw new KeyNotFoundException($"Showtime with ID {showtimeId} not found");
+                }
+
+                showtime.PriceModifier = priceModifier;
+                await _context.SaveChangesAsync();
+                return showtime;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Error occurred while updating price modifier for showtime {showtimeId}");
+                throw;
+            }
+        }
+
+        public async Task<IEnumerable<Showtime>> GetAllShowtimesAsync()
+        {
+            try
+            {
+                return await _context.Showtimes
+                    .Include(s => s.Movie)
+                    .Include(s => s.Room)
+                        .ThenInclude(r => r.Cinema)
+                    .OrderByDescending(s => s.StartTime)
+                    .ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error occurred while getting all showtimes");
+                throw;
+            }
         }
     }
 } 
