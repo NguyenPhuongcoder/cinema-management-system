@@ -13,7 +13,7 @@ public partial class Showtime
 
     public DateTime StartTime { get; set; }
 
-    public DateTime? EndTime{ get; set; }
+    public DateTime EndTime { get; set; }
 
     public decimal? PriceModifier { get; set; }
 
@@ -21,9 +21,9 @@ public partial class Showtime
 
     public DateTime? UpdatedAt { get; set; }
 
-    public virtual Movie? Movie { get; set; } = null!;
+    public virtual Movie Movie { get; set; } = null!;
 
-    public virtual Room? Room { get; set; } = null!;
+    public virtual Room Room { get; set; } = null!;
 
-    public virtual ICollection<Ticket>? Tickets { get; set; } = new List<Ticket>();
+    public virtual ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();
 }

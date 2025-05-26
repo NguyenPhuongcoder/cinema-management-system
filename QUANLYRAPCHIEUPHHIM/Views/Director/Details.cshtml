@@ -1,0 +1,97 @@
+@model QUANLYRAPCHIEUPHHIM.Models.MoviePerson
+@{
+    ViewData["Title"] = Model.FullName;
+    var directedMovies = Model.MovieCasts
+        .Where(mc => mc.MovieCastRoleTypes.Any(rt => rt.RoleType.RoleTypeName == "Director"))
+        .OrderByDescending(mc => mc.Movie.ReleaseDate)
+        .ToList();
+}
+
+<div class="container my-4">
+    <div class="row">
+        <div class="col-md-3">
+            <img src="@Model.ImageUrl" alt="@Model.FullName" class="img-fluid rounded-3 mb-3">
+            <h4 class="fw-bold mb-3">@Model.FullName</h4>
+            @if (!string.IsNullOrEmpty(Model.Nationality))
+            {
+                <div class="mb-2"><b>Quốc tịch:</b> @Model.Nationality</div>
+            }
+            @if (Model.BirthDate != null)
+            {
+                <div class="mb-2"><b>Ngày sinh:</b> @Model.BirthDate.Value.ToString("dd/MM/yyyy")</div>
+            }
+            @if (!string.IsNullOrEmpty(Model.Biography))
+            {
+                <div class="mb-3">
+                    <b>Tiểu sử:</b>
+                    <p class="mt-2">@Model.Biography</p>
+                </div>
+            }
+        </div>
+        <div class="col-md-9">
+            <h5 class="fw-bold mb-3">Phim đã đạo diễn (@directedMovies.Count)</h5>
+            <div class="row g-4">
+                @foreach (var movieCast in directedMovies)
+                {
+                    var movie = movieCast.Movie;
+                    <div class="col-md-3">
+                        <div class="movie-card" onclick="window.location.href='/Movie/Details/@movie.MovieId'">
+                            <img src="@movie.PosterUrl" alt="@movie.Title" class="movie-poster w-100">
+                            <div class="movie-info p-2">
+                                <div class="movie-title fw-bold">@movie.Title</div>
+                                <div class="movie-year text-muted">@((movie.ReleaseDate?.Year != null) ? movie.ReleaseDate?.Year.ToString() : "N/A")
+                                </div>
+                                @if (movie.Rating.HasValue)
+                                {
+                                    <div class="movie-rating">
+                                        <i class="fas fa-star text-warning"></i>
+                                        <span>@movie.Rating.Value.ToString("0.0")</span>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Styles {
+<style>
+.movie-card {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+    cursor: pointer;
+}
+.movie-card:hover {
+    transform: translateY(-4px);
+}
+.movie-poster {
+    aspect-ratio: 2/3;
+    object-fit: cover;
+}
+.movie-title {
+    font-size: 0.9rem;
+    margin-bottom: 4px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.movie-year {
+    font-size: 0.8rem;
+}
+.movie-rating {
+    font-size: 0.85rem;
+    color: #666;
+}
+.movie-rating i {
+    font-size: 0.8rem;
+    margin-right: 2px;
+}
+</style>
+} 

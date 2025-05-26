@@ -6,8 +6,6 @@ using QUANLYRAPCHIEUPHHIM.ViewModels;
 using System.Linq;
 using System.Collections.Generic;
 using System;
-using Microsoft.AspNetCore.Authorization;
-using System.Security.Claims;
 
 namespace QUANLYRAPCHIEUPHHIM.Controllers
 {
@@ -20,7 +18,7 @@ namespace QUANLYRAPCHIEUPHHIM.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index(int? provinceId, int? movieId, DateTime? selectedDate, int? selectedCinemaId, int? selectedShowtimeId)
+        public IActionResult Index(int? provinceId, int? movieId, DateTime? selectedDate, int? selectedCinemaId)
         {
             var provinces = _context.Provinces.ToList();
             var selectedProvinceId = provinceId ?? provinces.FirstOrDefault()?.ProvinceId;
@@ -95,13 +93,12 @@ namespace QUANLYRAPCHIEUPHHIM.Controllers
                 SelectedProvinceId = selectedProvinceId,
                 Movies = movies,
                 SelectedMovieId = selectedMovieId,
-                ShowtimeGroups = new List<ShowtimeGroupViewModel>(),
+                ShowtimeGroups = new List<ShowtimeGroupViewModel>(), // Không dùng nữa
                 AvailableDates = availableDates,
                 SelectedDate = selDate,
                 Cinemas = cinemas,
                 SelectedCinemaId = selCinemaId,
-                Showtimes = showtimes,
-                SelectedShowtimeId = selectedShowtimeId
+                Showtimes = showtimes
             };
             return View("Booking", vm);
         }
@@ -109,6 +106,7 @@ namespace QUANLYRAPCHIEUPHHIM.Controllers
         [HttpPost]
         public IActionResult Index(BookingPageViewModel model)
         {
+<<<<<<< HEAD
             return RedirectToAction("Index", new {
                 provinceId = model.SelectedProvinceId,
                 movieId = model.SelectedMovieId,
@@ -201,6 +199,10 @@ namespace QUANLYRAPCHIEUPHHIM.Controllers
         {
             ViewBag.Message = TempData["BookingSuccess"] ?? "Đặt vé thành công!";
             return View();
+=======
+            // Chuyển hướng về GET với các lựa chọn đã chọn để load lại dữ liệu
+            return RedirectToAction("Index", new { provinceId = model.SelectedProvinceId, movieId = model.SelectedMovieId, selectedDate = model.SelectedDate?.ToString("yyyy-MM-dd"), selectedCinemaId = model.SelectedCinemaId });
+>>>>>>> Customer
         }
     }
 } 
