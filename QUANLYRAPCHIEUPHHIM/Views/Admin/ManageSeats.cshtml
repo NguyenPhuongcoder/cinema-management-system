@@ -1,0 +1,396 @@
+@model QUANLYRAPCHIEUPHHIM.ViewModels.SeatViewModel
+@{
+    ViewData["Title"] = "Quản lý ghế - " + (Model?.RoomName ?? "Phòng chiếu");
+    Layout = "_AdminLayout";
+}
+
+
+<div class="container-fluid px-4">
+    <!-- Header Section -->
+    <div class="header-section">
+        <div class="d-flex align-items-center mb-4">
+            <div class="icon-wrapper me-3">
+                <i class="fas fa-chair"></i>
+            </div>
+            <div>
+                <h1 class="gradient-text mb-1">Quản lý ghế - Phòng @(Model?.RoomName ?? "Không xác định")</h1>
+                <p class="text-muted mb-0">Cấu hình và quản lý ghế ngồi trong phòng chiếu</p>
+            </div>
+        </div>
+
+        <nav class="modern-breadcrumb mb-4" aria-label="breadcrumb">
+            <div class="breadcrumb-item">
+                <a asp-action="Dashboard" aria-label="Dashboard">
+                    <i class="fas fa-home"></i> Dashboard
+                </a>
+            </div>
+            <div class="breadcrumb-separator">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="breadcrumb-item">
+                <a asp-action="Rooms" aria-label="Phòng chiếu">
+                    <i class="fas fa-door-open"></i> Phòng chiếu
+                </a>
+            </div>
+            <div class="breadcrumb-separator">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="breadcrumb-item active" aria-current="page">
+                <i class="fas fa-chair"></i> Quản lý ghế
+            </div>
+        </nav>
+    </div>
+
+    <!-- Room Info Card -->
+    <div class="modern-card info-card mb-4">
+        <div class="card-glow"></div>
+        <div class="card-content">
+            <div class="d-flex align-items-center justify-content-between">
+                <div class="d-flex align-items-center">
+                    <div class="info-icon">
+                        <i class="fas fa-info-circle"></i>
+                    </div>
+                    <div class="ms-3">
+                        <h5 class="mb-1">Thông tin phòng</h5>
+                        <p class="capacity-text mb-0">
+                            <i class="fas fa-users me-2"></i>
+                            Sức chứa: <span class="highlight">@Model.Capacity</span> ghế
+                        </p>
+                    </div>
+                </div>
+                <div class="room-visual">
+                    <div class="screen-representation">
+                        <div class="screen-text">MÀN HÌNH</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Alert Messages -->
+    @if (TempData["Success"] != null)
+    {
+        <div class="modern-alert success-alert" role="alert">
+            <div class="alert-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="alert-content">
+                @TempData["Success"]
+            </div>
+            <button type="button" class="alert-close" aria-label="Đóng thông báo">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    }
+
+    @if (TempData["Error"] != null)
+    {
+        <div class="modern-alert error-alert" role="alert">
+            <div class="alert-icon">
+                <i class="fas fa-exclamation-circle"></i>
+            </div>
+            <div class="alert-content">
+                @TempData["Error"]
+            </div>
+            <button type="button" class="alert-close" aria-label="Đóng thông báo">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    }
+
+    <!-- Action Cards -->
+    <div class="row mb-4">
+        @if (!(Model.Seats?.Any() ?? false))
+        {
+            <div class="col-12">
+                <div class="modern-card action-card">
+                    <div class="card-glow"></div>
+                    <div class="card-content text-center">
+                        <div class="empty-state">
+                            <div class="empty-icon">
+                                <i class="fas fa-chair"></i>
+                            </div>
+                            <h4 class="mb-3">Chưa có ghế nào</h4>
+                            <p class="text-muted mb-4">Tạo ghế tự động để bắt đầu thiết lập phòng chiếu</p>
+                            <form asp-action="GenerateSeats" method="post" data-loading-text="Đang tạo ghế...">
+                                <input type="hidden" name="roomId" value="@Model.RoomId" />
+                                <button type="submit" class="btn-modern btn-primary" data-tooltip="Tạo ghế tự động cho phòng">
+                                    <i class="fas fa-magic me-2"></i>
+                                    Tạo ghế tự động
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="col-12">
+                <div class="modern-card add-seat-card">
+                    <div class="card-header-modern">
+                        <div class="d-flex align-items-center">
+                            <div class="header-icon">
+                                <i class="fas fa-plus"></i>
+                            </div>
+                            <h5 class="mb-0 ms-2">Thêm ghế mới</h5>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <form asp-action="UpdateSeats" method="post" data-loading-text="Đang thêm ghế...">
+                            <input type="hidden" name="roomId" value="@Model.RoomId" />
+                            <div class="row g-4">
+                                <div class="col-md-6">
+                                    <div class="form-group-modern">
+                                        <label class="form-label-modern" for="rowLetter">Chọn hàng</label>
+                                        <div class="select-wrapper">
+                                            <select name="rowLetter" id="rowLetter" class="form-select-modern" required aria-describedby="rowLetterHelp">
+                                                @{
+                                                    var existingRows = Model.Seats.Select(s => s.RowLetter).Distinct().OrderBy(r => r).ToList();
+                                                    var lastRow = existingRows.LastOrDefault() ?? "A";
+                                                    var nextRow = ((char)(lastRow[0] + 1)).ToString();
+                                                }
+                                                <option value="@nextRow">Hàng @nextRow (Hàng mới)</option>
+                                                @foreach (var row in existingRows)
+                                                {
+                                                    <option value="@row">Hàng @row</option>
+                                                }
+                                            </select>
+                                            <i class="fas fa-chevron-down select-arrow"></i>
+                                        </div>
+                                        <small id="rowLetterHelp" class="form-text text-muted">Chọn hàng hiện có hoặc tạo hàng mới</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group-modern">
+                                        <label class="form-label-modern" for="seatsToAdd">Số ghế muốn thêm</label>
+                                        <div class="input-wrapper">
+                                            <input type="number" name="seatsToAdd" id="seatsToAdd" class="form-control-modern" min="1" max="20" value="5" required aria-describedby="seatsToAddHelp" />
+                                            <small id="seatsToAddHelp" class="input-hint">Tối đa 20 ghế mỗi lần thêm</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <button type="submit" class="btn-modern btn-warning" data-tooltip="Thêm ghế mới vào phòng">
+                                    <i class="fas fa-plus me-2"></i>
+                                    Thêm ghế mới
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <!-- Seat Types Info -->
+    @if (Model.AvailableSeatTypes?.Any() ?? false)
+    {
+        <div class="modern-card seat-types-card mb-4">
+            <div class="card-header-modern">
+                <div class="d-flex align-items-center">
+                    <div class="header-icon">
+                        <i class="fas fa-tags"></i>
+                    </div>
+                    <h5 class="mb-0 ms-2">Loại ghế có sẵn</h5>
+                </div>
+            </div>
+            <div class="card-content">
+                <div class="seat-types-grid">
+                    @foreach (var seatType in Model.AvailableSeatTypes)
+                    {
+                        <div class="seat-type-item" data-tooltip="@seatType.TypeName - Hệ số: @(seatType.AdditionalCharge?.ToString("F2") ?? "1.0")">
+                            <div class="seat-type-icon @(seatType.SeatTypeId == 2 ? "vip-seat-type" : "standard-seat-type")">
+                                <i class="fas fa-chair"></i>
+                            </div>
+                            <div class="seat-type-info">
+                                <h6 class="seat-type-name">@seatType.TypeName</h6>
+                                <div class="seat-type-price">
+                                    <i class="fas fa-tag me-1"></i>
+                                    Hệ số: @(seatType.AdditionalCharge?.ToString("F2") ?? "1.0")
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="modern-alert warning-alert" role="alert">
+            <div class="alert-icon">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <div class="alert-content">
+                Không có loại ghế nào được định nghĩa. Vui lòng thêm loại ghế trước khi quản lý ghế.
+            </div>
+            <button type="button" class="alert-close" aria-label="Đóng thông báo">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    }
+
+    <!-- Seat Layout -->
+    @if (Model.Seats?.Any() ?? false)
+    {
+        <div class="modern-card seat-layout-card">
+            <div class="card-header-modern">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div class="d-flex align-items-center">
+                        <div class="header-icon">
+                            <i class="fas fa-th"></i>
+                        </div>
+                        <h5 class="mb-0 ms-2">Sơ đồ ghế ngồi</h5>
+                    </div>
+                    <div class="legend">
+                        <div class="legend-item">
+                            <div class="legend-color standard"></div>
+                            <span>Ghế thường</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color vip"></div>
+                            <span>Ghế VIP</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-content">
+                <div class="cinema-screen">
+                    <div class="screen-glow"></div>
+                    <div class="screen-text">MÀN HÌNH CHIẾU</div>
+                </div>
+
+                <div class="seat-layout">
+                    @{
+                        var groupedSeats = Model.Seats
+                            .OrderBy(s => s.RowLetter)
+                            .ThenBy(s => s.SeatNumber)
+                            .GroupBy(s => s.RowLetter);
+                    }
+                    @foreach (var rowGroup in groupedSeats)
+                    {
+                        <div class="seat-row">
+                            <div class="row-header">
+                                <div class="row-label">
+                                    <span class="row-letter">@rowGroup.Key</span>
+                                    <span class="row-text">Hàng</span>
+                                </div>
+                                <form asp-action="DeleteRow" method="post" class="delete-row-form" onsubmit="return confirm('Bạn có chắc muốn xóa toàn bộ hàng @rowGroup.Key?');">
+                                    <input type="hidden" name="roomId" value="@Model.RoomId" />
+                                    <input type="hidden" name="rowLetter" value="@rowGroup.Key" />
+                                    <button type="submit" class="btn-delete-row" data-tooltip="Xóa toàn bộ hàng @rowGroup.Key" aria-label="Xóa hàng">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </form>
+                            </div>
+                            <div class="seats-container">
+                                @foreach (var seat in rowGroup)
+                                {
+                                    var seatType = Model.AvailableSeatTypes?.FirstOrDefault(st => st.SeatTypeId == seat.SeatTypeId);
+                                    <div class="seat-wrapper" data-tooltip="Ghế @seat.RowLetter@seat.SeatNumber - @(seatType?.TypeName ?? "Chưa xác định")">
+                                        <div class="seat-item @(seat.SeatTypeId == 2 ? "vip-seat" : "standard-seat")">
+                                            <div class="seat-actions">
+                                                <form asp-action="DeleteSeat" method="post" onsubmit="return confirm('Bạn có chắc muốn xóa ghế @seat.RowLetter@seat.SeatNumber?');">
+                                                    <input type="hidden" name="seatId" value="@seat.SeatId" />
+                                                    <button type="submit" class="btn-delete-seat" data-tooltip="Xóa ghế @seat.RowLetter@seat.SeatNumber" aria-label="Xóa ghế">
+                                                        <i class="fas fa-times"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                            <div class="seat-visual">
+                                                <div class="seat-back"></div>
+                                                <div class="seat-cushion"></div>
+                                            </div>
+                                            <div class="seat-number">@seat.SeatNumber</div>
+                                            <form asp-action="UpdateSeatType" method="post" class="seat-type-form" data-loading-text="Đang cập nhật...">
+                                                <input type="hidden" name="seatId" value="@seat.SeatId" />
+                                                <div class="select-wrapper-small">
+                                                    <select name="seatTypeId" class="form-select form-select-sm" onchange="this.form.submit()">
+                                                        @foreach (var seatType in Model.AvailableSeatTypes)
+                                                        {
+                                                            @if (seatType.SeatTypeId == seat.SeatTypeId)
+                                                            {
+                                                                <option value="@seatType.SeatTypeId" selected>@seatType.TypeName</option>
+                                                            }
+                                                            else
+                                                            {
+                                                                <option value="@seatType.SeatTypeId">@seatType.TypeName</option>
+                                                            }
+                                                        }
+                                                    </select>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script>
+        // Close alert buttons
+        document.querySelectorAll('.alert-close').forEach(button => {
+            button.addEventListener('click', () => {
+                button.parentElement.style.opacity = '0';
+                setTimeout(() => button.parentElement.remove(), 300);
+            });
+        });
+
+        // Form loading states
+        document.querySelectorAll('form[data-loading-text]').forEach(form => {
+            form.addEventListener('submit', function () {
+                const button = this.querySelector('button[type="submit"]');
+                button.disabled = true;
+                button.innerHTML = `<i class="fas fa-spinner fa-spin me-2"></i>${this.dataset.loadingText}`;
+            });
+        });
+
+        // Tooltips
+        document.querySelectorAll('[data-tooltip]').forEach(element => {
+            element.addEventListener('mouseenter', function () {
+                const tooltip = document.createElement('div');
+                tooltip.className = 'tooltip';
+                tooltip.textContent = this.dataset.tooltip;
+                document.body.appendChild(tooltip);
+
+                const rect = this.getBoundingClientRect();
+                tooltip.style.top = `${rect.top - tooltip.offsetHeight - 10}px`;
+                tooltip.style.left = `${rect.left + rect.width / 2 - tooltip.offsetWidth / 2}px`;
+            });
+
+            element.addEventListener('mouseleave', function () {
+                document.querySelectorAll('.tooltip').forEach(tooltip => tooltip.remove());
+            });
+        });
+    </script>
+}
+@section Styles {
+    <link rel="stylesheet" href="~/css/manage-seats.css" asp-append-version="true" />
+}
+
+    <style >
+    :root {
+        --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --success-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%) ;
+        --warning-gradient: linear-gradient(135deg, #fa709a 0%, #fee140 100%) ;
+        --danger-gradient: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%) ;
+        --glass-bg: rgba(255, 255, 255, 0.1);
+        --glass-border: rgba(255, 255, 255, 0.2);
+        --shadow-soft: 0 8px 32px rgba(0, 0, 0, 0.1);
+        --shadow-glow: 0 0 30px rgba(102, 126, 234, 0.3);
+        --standard-color: #6b7280;
+        --vip-color: #f59e0b;
+    }
+
+    
+</style>
+
+

@@ -1,26 +1,54 @@
 @model QUANLYRAPCHIEUPHHIM.Models.Room
+@{
+    ViewData["Title"] = "Edit Room";
+    Layout = "_AdminLayout";
+}
 
-<h2>Edit Room</h2>
+<div class="container-fluid">
+    <h1 class="h3 mb-4 text-gray-800">Edit Room</h1>
 
-<form asp-action="EditRoom">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <input type="hidden" asp-for="RoomId" />
-    
-    <div class="form-group">
-        <label asp-for="RoomName">Room Name</label>
-        <input asp-for="RoomName" class="form-control" />
-        <span asp-validation-for="RoomName" class="text-danger"></span>
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <form asp-action="EditRoom" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="RoomId" />
+
+                <div class="form-group">
+                    <label asp-for="RoomName">Room Name</label>
+                    <input asp-for="RoomName" class="form-control" />
+                    <span asp-validation-for="RoomName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Capacity">Capacity</label>
+                    <input asp-for="Capacity" class="form-control" type="number" min="1" />
+                    <span asp-validation-for="Capacity" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="FormatId">Room Format</label>
+                    <select asp-for="FormatId" class="form-control" asp-items="@(new SelectList(ViewBag.RoomFormats, "FormatId", "FormatName"))">
+                        <option value="">Select Format</option>
+                    </select>
+                    <span asp-validation-for="FormatId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="CinemaId">Cinema</label>
+                    <select asp-for="CinemaId" class="form-control" asp-items="@(new SelectList(ViewBag.Cinema, "CinemaId", "CinemaName"))">
+                        <option value="">Select Cinema</option>
+                    </select>
+                    <span asp-validation-for="CinemaId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mt-4">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <a asp-action="Rooms" class="btn btn-secondary">Back to List</a>
+                </div>
+            </form>
+        </div>
     </div>
-
-    <div class="form-group">
-        <label asp-for="Capacity">Capacity</label>
-        <input asp-for="Capacity" class="form-control" type="number" min="1" />
-        <span asp-validation-for="Capacity" class="text-danger"></span>
-    </div>
-
-    <button type="submit" class="btn btn-primary">Save</button>
-    <a asp-action="Rooms" class="btn btn-secondary">Back to List</a>
-</form>
+</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

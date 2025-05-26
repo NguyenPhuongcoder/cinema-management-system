@@ -11,20 +11,21 @@
             <option value="">Thể Loại</option>
             @foreach (var g in Model.Genres)
             {
-                <option value="@g.GenreName" @(g.GenreName == Model.SelectedGenre ? "selected" : "")>@g.GenreName</option>
+                    <option value="@g.GenreName" selected="@(g.GenreName == Model.SelectedGenre)">@g.GenreName</option>
+
             }
         </select>
         <select class="form-select" name="year" style="width:110px">
             <option value="">Năm</option>
             @foreach (var y in Model.Years)
             {
-                <option value="@y" @(y == Model.SelectedYear ? "selected" : "")>@y</option>
+                <option value="@y" selected="@(y == Model.SelectedYear)">@y</option>
             }
         </select>
         <select class="form-select" name="status" style="width:200px">
             <option value="">Đang Chiếu/Sắp</option>
-            <option value="nowshowing" @(Model.SelectedStatus=="nowshowing"?"selected":"")>Đang Chiếu</option>
-            <option value="comingsoon" @(Model.SelectedStatus=="comingsoon"?"selected":"")>Sắp Chiếu</option>
+            <option value="nowshowing" selected="@(Model.SelectedStatus == "nowshowing")">Đang Chiếu</option>
+            <option value="comingsoon" selected="@(Model.SelectedStatus == "comingsoon")">Sắp Chiếu</option>
         </select>
     </div>
 

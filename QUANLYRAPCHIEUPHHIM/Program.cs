@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using QUANLYRAPCHIEUPHHIM.Data;
+using QUANLYRAPCHIEUPHHIM.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +16,10 @@ builder.Services.AddDbContext<CinemaDbcontext>(options =>
         sqlOptions.CommandTimeout(150);
     })
 );
-
+// Add Cloudinary service
+builder.Services.AddScoped<ICloudinaryService, CloudinaryService>();
+// Add SeatService
+builder.Services.AddScoped<SeatService>();
 // Add Authentication
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>

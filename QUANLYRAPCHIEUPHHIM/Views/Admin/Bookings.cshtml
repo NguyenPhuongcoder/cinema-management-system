@@ -1,4 +1,7 @@
-﻿@model IEnumerable<QUANLYRAPCHIEUPHHIM.Models.Booking>
+﻿@model IPagedList<QUANLYRAPCHIEUPHHIM.Models.Booking>
+@using QUANLYRAPCHIEUPHHIM.Models
+@using X.PagedList
+@using X.PagedList.Mvc.Core
 @{
     ViewData["Title"] = "Bookings Management";
     Layout = "_AdminLayout";
@@ -8,9 +11,8 @@
     <h1 class="h3 mb-4 text-gray-800">Bookings Management</h1>
 
     <div class="card shadow mb-4">
-        <div class="card-header py-3 d-flex justify-content-between align-items-center">
+        <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">All Bookings</h6>
-          
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -21,8 +23,6 @@
                             <th>User</th>
                             <th>Booking Date</th>
                             <th>Total Amount</th>
-                            <th>Discount</th>
-                            <th>Payment Due Date</th>
                             <th>Status</th>
                             <th>Actions</th>
                         </tr>
@@ -30,31 +30,16 @@
                     <tbody>
                         @foreach (var booking in Model)
                         {
+                            var username = ViewBag.Usernames[booking.UserId];
+                            var bookingStatuses = ViewBag.BookingStatuses as List<BookingBookingStatus>; // hoặc kiểu tương ứng
+                            var status = bookingStatuses?.FirstOrDefault(s => s.BookingId == booking.BookingId)?.BookingStatus.BookingStatusName;
                             <tr>
                                 <td>@booking.BookingId</td>
-                                <td>
-                                    @if (ViewBag.Usernames.ContainsKey(booking.UserId))
-                                    {
-                                        @ViewBag.Usernames[booking.UserId]
-                                    }
-                                    else
-                                    {
-                                        <span>Không xác định</span>
-                                    }
-                                </td>
+                                <td>@username</td>
                                 <td>@booking.BookingDate.ToString("dd/MM/yyyy HH:mm")</td>
-                                <td>@booking.TotalAmount.ToString("N0") VND</td>
-                                <td>@(booking.Discount?.DiscountName ?? "None")</td>
-                                <td>@(booking.PaymentDueDate?.ToString("dd/MM/yyyy HH:mm") ?? "N/A")</td>
+                                <td>@booking.TotalAmount.ToString("C")</td>
+                                <td>@status</td>
                                 <td>
-                                    @{
-                                        var statuses = ViewBag.BookingStatuses as List<BookingBookingStatus>;
-                                        var status = statuses?.FirstOrDefault(s => s.BookingId == booking.BookingId)?.BookingStatus?.BookingStatusName ?? "N/A";
-                                    }
-                                    @status
-                                </td>
-                                <td>
-                                 
                                     <a href="@Url.Action("EditBooking", "Admin", new { id = booking.BookingId })" class="btn btn-primary btn-sm">
                                         <i class="bi bi-pencil"></i>
                                     </a>
@@ -67,6 +52,13 @@
                     </tbody>
                 </table>
             </div>
+            <div class="d-flex justify-content-center mt-4">
+                @Html.PagedListPager(Model, page => Url.Action("Bookings", new { page }), 
+                    new PagedListRenderOptions {
+                        LiElementClasses = new string[] { "page-item" },
+                        PageClasses = new string[] { "page-link" }
+                    })
+            </div>
         </div>
     </div>
 </div>
@@ -74,7 +66,11 @@
 @section Scripts {
     <script>
         $(document).ready(function() {
-            $('#dataTable').DataTable();
+            $('#dataTable').DataTable({
+                "paging": false,
+                "ordering": true,
+                "info": false
+            });
         });
     </script>
 } 

@@ -1,56 +1,338 @@
-@model QUANLYRAPCHIEUPHHIM.Models.User
+﻿@model QUANLYRAPCHIEUPHHIM.Models.User
 
-<h2>Edit User</h2>
+@{
+    ViewData["Title"] = "Edit User";
 
-<form asp-action="EditUser">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <input type="hidden" asp-for="UserId" />
-    
-    <div class="form-group">
-        <label asp-for="Username">Username</label>
-        <input asp-for="Username" class="form-control" />
-        <span asp-validation-for="Username" class="text-danger"></span>
-    </div>
+}
 
-    <div class="form-group">
-        <label asp-for="Email">Email</label>
-        <input asp-for="Email" class="form-control" type="email" />
-        <span asp-validation-for="Email" class="text-danger"></span>
-    </div>
+<head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background:"fff"
+            min-height: 100vh;
+        }
 
-    <div class="form-group">
-        <label asp-for="FullName">Full Name</label>
-        <input asp-for="FullName" class="form-control" />
-        <span asp-validation-for="FullName" class="text-danger"></span>
-    </div>
+        .main-content {
+            padding: 30px 0;
+        }
 
-    <div class="form-group">
-        <label asp-for="Phone">Phone</label>
-        <input asp-for="Phone" class="form-control" />
-        <span asp-validation-for="Phone" class="text-danger"></span>
-    </div>
+        .card {
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            border: none;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95);
+        }
 
-    <div class="form-group">
-        <label>New Password (leave blank to keep current)</label>
-        <input name="NewPassword" class="form-control" type="password" />
-    </div>
+        .card-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px 20px 0 0 !important;
+            border: none;
+            padding: 25px 30px;
+        }
 
-    <div class="form-group">
-        <label>Role</label>
-        <select name="RoleId" class="form-control">
-            @foreach (var role in ViewBag.Roles)
-            {
-                <option value="@role.RoleId" selected="@(Model.UserRoles.Any(ur => ur.RoleId == role.RoleId))">
-                    @role.RoleName
-                </option>
+        .card-title {
+            color: white;
+            font-weight: 600;
+            font-size: 1.5rem;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .form-floating {
+            margin-bottom: 1.5rem;
+        }
+
+            .form-floating > .form-control:focus ~ label,
+            .form-floating > .form-control:not(:placeholder-shown) ~ label,
+            .form-floating > .form-select ~ label {
+                color: #667eea;
+                font-weight: 500;
             }
-        </select>
-    </div>
 
-    <button type="submit" class="btn btn-primary">Save</button>
-    <a asp-action="Users" class="btn btn-secondary">Back to List</a>
-</form>
+        .form-control:focus,
+        .form-select:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 0.25rem rgba(102, 126, 234, 0.15);
+        }
+
+        .form-control,
+        .form-select {
+            border-radius: 12px;
+            border: 2px solid #e9ecef;
+            padding: 12px 16px;
+            transition: all 0.3s ease;
+        }
+
+            .form-control:hover,
+            .form-select:hover {
+                border-color: #667eea;
+            }
+
+        .btn {
+            border-radius: 12px;
+            padding: 12px 24px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            border: none;
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+        }
+
+            .btn-success:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 8px 25px rgba(40, 167, 69, 0.3);
+                background: linear-gradient(135deg, #218838 0%, #1ea97c 100%);
+            }
+
+        .btn-outline-secondary {
+            border: 2px solid #6c757d;
+            color: #6c757d;
+            background: transparent;
+        }
+
+            .btn-outline-secondary:hover {
+                background: #6c757d;
+                color: white;
+                transform: translateY(-2px);
+                box-shadow: 0 8px 25px rgba(108, 117, 125, 0.3);
+            }
+
+        .password-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 1.5rem;
+            border: 1px solid #dee2e6;
+        }
+
+        .section-title {
+            color: #495057;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .password-hint {
+            font-size: 0.875rem;
+            color: #6c757d;
+            font-style: italic;
+            margin-top: 5px;
+        }
+
+        .form-section {
+            margin-bottom: 2rem;
+        }
+
+        .alert {
+            border-radius: 12px;
+            border: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .text-danger {
+            font-size: 0.875rem;
+            margin-top: 5px;
+            display: block;
+        }
+
+        .user-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .form-text {
+            font-size: 0.875rem;
+            color: #6c757d;
+            margin-top: 5px;
+        }
+
+        .required-field {
+            color: #dc3545;
+        }
+    </style>
+</head>
+
+<div class="main-content">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 col-xl-8">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="d-flex align-items-center">
+                            <div class="user-icon me-3">
+                                <i class="fas fa-user-edit"></i>
+                            </div>
+                            <h2 class="card-title">Edit User</h2>
+                        </div>
+                    </div>
+
+                    <div class="card-body p-4">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert">
+                            <i class="fas fa-exclamation-triangle me-2"></i>
+                            Please correct the following errors:
+                        </div>
+
+                        <form asp-action="EditUser" method="post" id="editUserForm">
+                            <input type="hidden" asp-for="UserId" />
+
+                            <div class="row">
+                                <!-- Left Column - Basic Information -->
+                                <div class="col-md-6">
+                                    <div class="form-section">
+                                        <h5 class="section-title">
+                                            <i class="fas fa-user"></i>
+                                            Basic Information
+                                        </h5>
+
+                                        <div class="form-floating">
+                                            <input asp-for="Username" class="form-control" placeholder="Username" />
+                                            <label asp-for="Username">
+                                                <i class="fas fa-at me-2"></i>Username
+                                            </label>
+                                            <span asp-validation-for="Username" class="text-danger small"></span>
+                                        </div>
+
+                                        <div class="form-floating">
+                                            <input asp-for="Email" type="email" class="form-control" placeholder="Email" />
+                                            <label asp-for="Email">
+                                                <i class="fas fa-envelope me-2"></i>Email
+                                            </label>
+                                            <span asp-validation-for="Email" class="text-danger small"></span>
+                                        </div>
+
+                                        <div class="form-floating">
+                                            <input asp-for="FullName" class="form-control" placeholder="Full Name" />
+                                            <label asp-for="FullName">
+                                                <i class="fas fa-id-card me-2"></i>Full Name
+                                            </label>
+                                            <span asp-validation-for="FullName" class="text-danger small"></span>
+                                        </div>
+
+                                        <div class="form-floating">
+                                            <input asp-for="Phone" class="form-control" placeholder="Phone" />
+                                            <label asp-for="Phone">
+                                                <i class="fas fa-phone me-2"></i>Phone
+                                            </label>
+                                            <span asp-validation-for="Phone" class="text-danger small"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Right Column - Security & Role -->
+                                <div class="col-md-6">
+                                    <!-- Password Section -->
+                                    <div class="password-section">
+                                        <h6 class="section-title">
+                                            <i class="fas fa-lock"></i>
+                                            Change Password
+                                        </h6>
+
+                                        <div class="form-floating">
+                                            <input name="NewPassword" type="password" class="form-control" placeholder="New Password" />
+                                            <label for="NewPassword">
+                                                <i class="fas fa-key me-2"></i>New Password
+                                            </label>
+                                            <div class="password-hint">
+                                                <small class="text-muted">(leave blank to keep current)</small>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Role Section -->
+                                    <div class="form-section">
+                                        <h6 class="section-title">
+                                            <i class="fas fa-user-shield"></i>
+                                            Role
+                                        </h6>
+
+                                        <div class="form-floating">
+                                            <select name="RoleId" class="form-select">
+                                                @foreach (var role in ViewBag.Roles)
+                                                {
+                                                    <option value="@role.RoleId" selected = "@(Model.UserRoles.FirstOrDefault()?.RoleId == role.RoleId ? "selected" : "")">@role.RoleName</option>
+                                                }
+                                            </select>
+                                            <label for="RoleId">
+                                                <i class="fas fa-users-cog me-2"></i>Role
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Action Buttons -->
+                            <div class="d-flex justify-content-between mt-4">
+                                <button type="submit" class="btn btn-success" id="submitBtn">
+                                    💾 Save
+                                </button>
+                                <a href="#" class="btn btn-outline-secondary" onclick="event.preventDefault(); history.back();">
+                                    ← Back to List
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-} 
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('editUserForm');
+            const submitBtn = document.getElementById('submitBtn');
+
+            // Form submission with loading state
+            form.addEventListener('submit', function(e) {
+                const originalText = submitBtn.innerHTML;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Saving...';
+                submitBtn.disabled = true;
+
+                // Re-enable if there are validation errors
+                setTimeout(() => {
+                    if (document.querySelector('.field-validation-error')) {
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+                    }
+                }, 100);
+            });
+
+            // Floating label enhancement
+            const inputs = form.querySelectorAll('input, select');
+            inputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.parentElement.classList.add('focused');
+                });
+
+                input.addEventListener('blur', function() {
+                    if (!this.value) {
+                        this.parentElement.classList.remove('focused');
+                    }
+                });
+            });
+        });
+    </script>
+}

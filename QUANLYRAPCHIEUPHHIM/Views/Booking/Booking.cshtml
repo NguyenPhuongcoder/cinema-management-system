@@ -76,7 +76,7 @@
                                     <select name="SelectedCinemaId" class="form-select form-select-lg fw-bold" style="max-width:320px;display:inline-block;" onchange="this.form.submit()">
                                         @foreach (var c in Model.Cinemas)
                                         {
-                                            <option value="@c.CinemaId" @(c.CinemaId == Model.SelectedCinemaId ? "selected" : "")>@c.CinemaName</option>
+                                            <option value="@c.CinemaId" selected="@(c.CinemaId == Model.SelectedCinemaId)">@c.CinemaName</option>
                                         }
                                     </select>
                                 </form>

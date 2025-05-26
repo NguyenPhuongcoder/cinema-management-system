@@ -1,4 +1,6 @@
-@model IEnumerable<QUANLYRAPCHIEUPHHIM.Models.Showtime>
+@model IPagedList<QUANLYRAPCHIEUPHHIM.Models.Showtime>
+@using X.PagedList
+@using X.PagedList.Mvc.Core
 @{
     ViewData["Title"] = "Shows Management";
     Layout = "_AdminLayout";
@@ -37,7 +39,7 @@
                                 <td>@show.Room?.RoomName</td>
                                 <td>@show.StartTime.ToString("dd/MM/yyyy HH:mm")</td>
                                 <td>@show.EndTime?.ToString("dd/MM/yyyy HH:mm")</td>
-                                <td>@(show.PriceModifier?.ToString("N0") ?? "0") VND</td>
+                                <td>@show.PriceModifier?.ToString("P")</td>
                                 <td>
                                     <a href="@Url.Action("EditShow", "Admin", new { id = show.ShowtimeId })" class="btn btn-primary btn-sm">
                                         <i class="bi bi-pencil"></i>
@@ -51,6 +53,13 @@
                     </tbody>
                 </table>
             </div>
+            <div class="d-flex justify-content-center mt-4">
+                @Html.PagedListPager(Model, page => Url.Action("Shows", new { page }), 
+                    new PagedListRenderOptions {
+                        LiElementClasses = new string[] { "page-item" },
+                        PageClasses = new string[] { "page-link" }
+                    })
+            </div>
         </div>
     </div>
 </div>
@@ -58,7 +67,11 @@
 @section Scripts {
     <script>
         $(document).ready(function() {
-            $('#dataTable').DataTable();
+            $('#dataTable').DataTable({
+                "paging": false,
+                "ordering": true,
+                "info": false
+            });
         });
     </script>
 } 

@@ -16,10 +16,9 @@ public partial class Ticket
     public decimal Price { get; set; }
 
     public string TicketCode { get; set; } = null!;
-
+    public string TicketStatus { get; set; } = null!;
     public DateTime? ScanDatetime { get; set; }
 
-    public string? TicketStatus { get; set; }
 
     public DateTime? CreatedAt { get; set; }
 

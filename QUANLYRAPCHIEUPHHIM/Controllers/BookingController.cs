@@ -103,7 +103,7 @@ namespace QUANLYRAPCHIEUPHHIM.Controllers
                 Showtimes = showtimes,
                 SelectedShowtimeId = selectedShowtimeId
             };
-            return View(vm);
+            return View("Booking", vm);
         }
 
         [HttpPost]
@@ -158,17 +158,22 @@ namespace QUANLYRAPCHIEUPHHIM.Controllers
                 int.TryParse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value, out userId);
             }
 
+            // Lấy giá showtime
+            var showtime = _context.Showtimes.FirstOrDefault(s => s.ShowtimeId == selectedShowtimeId);
+            decimal ticketPrice = showtime?.PriceModifier ?? 0;
+
+            // Tính tổng tiền vé
+            decimal totalAmount = ticketPrice * selectedSeatIds.Count;
+
+            // Tạo booking trước với totalAmount đã biết
             var booking = new Booking
             {
                 UserId = userId,
                 BookingDate = DateTime.Now,
+                TotalAmount = totalAmount
             };
             _context.Bookings.Add(booking);
-            _context.SaveChanges();
-
-            // Lấy giá showtime
-            var showtime = _context.Showtimes.FirstOrDefault(s => s.ShowtimeId == selectedShowtimeId);
-            decimal ticketPrice = showtime?.PriceModifier ?? 0;
+            _context.SaveChanges(); // Để lấy BookingId
 
             foreach (var seatId in selectedSeatIds)
             {
@@ -178,16 +183,19 @@ namespace QUANLYRAPCHIEUPHHIM.Controllers
                     ShowtimeId = selectedShowtimeId,
                     SeatId = seatId,
                     Price = ticketPrice,
+                    TicketStatus = "Đã đặt",
                     TicketCode = Guid.NewGuid().ToString().Substring(0, 8).ToUpper(),
                     CreatedAt = DateTime.Now
                 };
                 _context.Tickets.Add(ticket);
             }
+
             _context.SaveChanges();
 
             TempData["BookingSuccess"] = "Đặt vé thành công!";
             return RedirectToAction("Success");
         }
+
 
         public IActionResult Success()
         {

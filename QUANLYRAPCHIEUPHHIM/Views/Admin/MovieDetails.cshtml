@@ -1,0 +1,87 @@
+@model QUANLYRAPCHIEUPHHIM.Models.Movie
+@{
+    ViewData["Title"] = "Movie Details";
+    Layout = "_AdminLayout";
+}
+
+<div class="container-fluid">
+    <h1 class="h3 mb-4 text-gray-800">Movie Details</h1>
+
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4">
+                    @if (!string.IsNullOrEmpty(Model.PosterUrl))
+                    {
+                        <img src="@Model.PosterUrl" alt="@Model.Title" class="img-fluid rounded shadow" style="width: 100%;  max-width: 300px;height:100%;object-fit: cover;" />
+                    }
+                    else
+                    {
+                        <div class="bg-light rounded p-5 text-center" style="width: 100%; max-width: 300px;">
+                            <i class="fas fa-film fa-3x text-gray-300"></i>
+                            <p class="mt-2 text-gray-500">No poster available</p>
+                        </div>
+                    }
+                </div>
+                <div class="col-md-8">
+                    <h2 class="mb-4">@Model.Title</h2>
+                    
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <dl class="row">
+                                <dt class="col-sm-4">Duration</dt>
+                                <dd class="col-sm-8">@Model.Duration minutes</dd>
+
+                                <dt class="col-sm-4">Release Date</dt>
+                                <dd class="col-sm-8">@Model.ReleaseDate?.ToString("dd/MM/yyyy")</dd>
+
+                                <dt class="col-sm-4">Age Limit</dt>
+                                <dd class="col-sm-8">@Model.AgeLimit+</dd>
+
+                                <dt class="col-sm-4">Base Price</dt>
+                                <dd class="col-sm-8">@Model.BasePrice.ToString("N0") VND</dd>
+                            </dl>
+                        </div>
+                        <div class="col-md-6">
+                            <dl class="row">
+                                <dt class="col-sm-4">Language</dt>
+                                <dd class="col-sm-8">@Model.Language</dd>
+
+                                <dt class="col-sm-4">Subtitles</dt>
+                                <dd class="col-sm-8">@Model.Subtitles</dd>
+
+                                <dt class="col-sm-4">Trailer</dt>
+                                <dd class="col-sm-8">
+                                    @if (!string.IsNullOrEmpty(Model.TrailerUrl))
+                                    {
+                                        <a href="@Model.TrailerUrl" target="_blank" class="btn btn-sm btn-outline-primary">
+                                            <i class="fas fa-play"></i> Watch Trailer
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">Not available</span>
+                                    }
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <h5>Description</h5>
+                        <p class="text-justify">@Model.Description</p>
+                    </div>
+
+                    <div class="mt-4">
+                        <a href="@Url.Action("EditMovie", "Admin", new { id = Model.MovieId })" class="btn btn-primary">
+                            <i class="fas fa-edit"></i> Edit Movie
+                        </a>
+                        <a href="@Url.Action("Movies", "Admin")" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left"></i> Back to List
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
