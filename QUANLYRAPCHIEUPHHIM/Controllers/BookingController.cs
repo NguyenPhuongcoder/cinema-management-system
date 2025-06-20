@@ -13,6 +13,8 @@ using System.Text.Json;
 
 namespace QUANLYRAPCHIEUPHHIM.Controllers
 {
+
+    [Authorize(Roles = "customer")]
     public class BookingController : Controller
     {
         private readonly CinemaDbcontext _context;

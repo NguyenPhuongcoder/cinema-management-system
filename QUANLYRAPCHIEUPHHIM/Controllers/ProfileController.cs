@@ -3,7 +3,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using QUANLYRAPCHIEUPHHIM.Data;
 using QUANLYRAPCHIEUPHHIM.Models;
+using QUANLYRAPCHIEUPHHIM.ViewModels;
 using System.Security.Claims;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace QUANLYRAPCHIEUPHHIM.Controllers
 {
@@ -101,6 +104,64 @@ namespace QUANLYRAPCHIEUPHHIM.Controllers
             }
 
             return View(booking);
+        }
+
+        // GET: Profile/ChangePassword
+        public IActionResult ChangePassword()
+        {
+            return View();
+        }
+
+        // POST: Profile/ChangePassword
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = await _context.Users.FindAsync(int.Parse(userId));
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            // Verify current password
+            var currentPasswordHash = HashPassword(model.CurrentPassword);
+            if (user.Password != currentPasswordHash)
+            {
+                ModelState.AddModelError("CurrentPassword", "Mật khẩu hiện tại không đúng");
+                return View(model);
+            }
+
+            // Update password
+            user.Password = HashPassword(model.NewPassword);
+            user.UpdatedAt = DateTime.Now;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+                TempData["SuccessMessage"] = "Đổi mật khẩu thành công!";
+                return RedirectToAction(nameof(Index));
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                TempData["ErrorMessage"] = "Có lỗi xảy ra. Vui lòng thử lại sau.";
+                return View(model);
+            }
+        }
+
+        private string HashPassword(string password)
+        {
+            using (var sha256 = SHA256.Create())
+            {
+                var hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+                return Convert.ToBase64String(hashedBytes);
+            }
         }
     }
 } 

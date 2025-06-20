@@ -5,105 +5,136 @@
     var bookings = ViewBag.Bookings as List<QUANLYRAPCHIEUPHHIM.Models.Booking>;
 }
 
-<div class="container my-4">
+<div class="container py-5">
     <div class="row">
-        <!-- Thông tin cá nhân -->
-        <div class="col-lg-4">
-            <div class="bg-white rounded shadow-sm p-4 mb-4">
-                <h5 class="fw-bold mb-3">Thông tin cá nhân</h5>
-                @if (TempData["Success"] != null)
-                {
-                    <div class="alert alert-success">
-                        @TempData["Success"]
+        <!-- Profile Information Card -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <div class="text-center mb-4">
+                        <div class="avatar-circle mb-3">
+                            <span class="avatar-text">@Model.FullName.Substring(0, 1).ToUpper()</span>
+                        </div>
+                        <h4 class="card-title">@Model.FullName</h4>
+                        <p class="text-muted mb-0">@Model.Username</p>
                     </div>
-                }
-                @if (TempData["Error"] != null)
-                {
-                    <div class="alert alert-danger">
-                        @TempData["Error"]
-                    </div>
-                }
-                <form asp-action="UpdateProfile" method="post">
-                    <div class="mb-3">
-                        <label class="form-label">Họ và tên</label>
-                        <input type="text" class="form-control" name="fullName" value="@Model.FullName" required />
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Email</label>
-                        <input type="email" class="form-control" name="email" value="@Model.Email" required />
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Số điện thoại</label>
-                        <input type="tel" class="form-control" name="phone" value="@Model.Phone" required />
-                    </div>
-                    <button type="submit" class="btn btn-primary">Cập nhật thông tin</button>
-                </form>
+
+                    @if (TempData["Success"] != null)
+                    {
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            @TempData["Success"]
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    }
+
+                    @if (TempData["Error"] != null)
+                    {
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            @TempData["Error"]
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    }
+
+                    <form asp-action="UpdateProfile" method="post">
+                        <div class="mb-3">
+                            <label class="form-label">Họ và tên</label>
+                            <input type="text" class="form-control" name="fullName" value="@Model.FullName" required />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control" name="email" value="@Model.Email" required />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Số điện thoại</label>
+                            <input type="tel" class="form-control" name="phone" value="@Model.Phone" />
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fa-solid fa-save me-2"></i>Lưu thay đổi
+                            </button>
+                            <a asp-action="ChangePassword" class="btn btn-outline-primary">
+                                <i class="fa-solid fa-key me-2"></i>Đổi mật khẩu
+                            </a>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
 
-        <!-- Lịch sử đặt vé -->
-        <div class="col-lg-8">
-            <div class="bg-white rounded shadow-sm p-4">
-                <h5 class="fw-bold mb-3">Lịch sử đặt vé</h5>
-                @if (bookings != null && bookings.Any())
-                {
-                    foreach (var booking in bookings)
+        <!-- Booking History Card -->
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title mb-4">
+                        <i class="fa-solid fa-ticket me-2"></i>Lịch sử đặt vé
+                    </h5>
+                    @if (ViewBag.Bookings != null && ViewBag.Bookings.Count > 0)
                     {
-                        var firstTicket = booking.Tickets.FirstOrDefault();
-                        if (firstTicket != null)
-                        {
-                            <div class="booking-item border rounded p-3 mb-3">
-                                <div class="row">
-                                    <div class="col-lg-3">
-                                        <img src="@firstTicket.Showtime.Movie.PosterUrl" alt="@firstTicket.Showtime.Movie.Title" 
-                                             class="img-fluid rounded" style="width:100%;height:150px;object-fit:cover;" />
-                                    </div>
-                                    <div class="col-lg-9">
-                                        <h6 class="fw-bold mb-2">@firstTicket.Showtime.Movie.Title</h6>
-                                        <div class="mb-2">
-                                            <small class="text-muted">
-                                                @firstTicket.Showtime.Room.Cinema.CinemaName - @firstTicket.Showtime.Room.RoomName
-                                            </small>
-                                        </div>
-                                        <div class="mb-2">
-                                            <i class="fas fa-calendar-alt me-2"></i>
-                                            @firstTicket.Showtime.StartTime.ToString("HH:mm - dddd, dd/MM/yyyy")
-                                        </div>
-                                        <div class="mb-2">
-                                            <i class="fas fa-chair me-2"></i>
-                                            Ghế: @string.Join(", ", booking.Tickets.Select(t => t.Seat.RowLetter + t.Seat.SeatNumber))
-                                        </div>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div>
-	                                            @{
-		                                            var discountValue = booking.Discount?.DiscountValue ?? 0;
-		                                            var finalAmount = booking.TotalAmount - booking.TotalAmount * discountValue / 100;
-	                                            }
-	                                            <span class="fw-bold text-primary">@finalAmount.ToString("N0") đ</span>
-	                                            @if (booking.Discount != null)
-	                                            {
-		                                            <small class="text-success ms-2">(Giảm @booking.Discount.DiscountValue%)</small>
-	                                            }
-                                            </div>
-                                            <a href="@Url.Action("BookingDetails", new { id = booking.BookingId })" 
-                                               class="btn btn-outline-primary btn-sm">
-                                                Chi tiết
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        }
-                   
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Mã đặt vé</th>
+                                        <th>Phim</th>
+                                        <th>Rạp</th>
+                                        <th>Ngày chiếu</th>
+                                        <th>Tổng tiền</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var booking in ViewBag.Bookings)
+                                    {
+                                        <tr>
+                                            <td>#@booking.BookingId</td>
+                                            <td>@booking.Tickets[0].Showtime.Movie.Title</td>
+                                            <td>@booking.Tickets[0].Showtime.Room.Cinema.CinemaName</td>
+                                            <td>@booking.Tickets[0].Showtime.StartTime.ToString("dd/MM/yyyy HH:mm")</td>
+                                            <td>@booking.TotalAmount.ToString("N0") đ</td>
+                                            <td>
+                                                <a asp-action="BookingDetails" asp-route-id="@booking.BookingId" 
+                                                   class="btn btn-sm btn-outline-primary">
+                                                    <i class="fa-solid fa-eye"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
                     }
-                }
-                else
-                {
-                    <div class="alert alert-info">
-                        Bạn chưa có lịch sử đặt vé nào.
-                    </div>
-                }
+                    else
+                    {
+                        <div class="text-center text-muted py-5">
+                            <i class="fa-solid fa-ticket-simple fa-3x mb-3"></i>
+                            <p>Bạn chưa có lịch sử đặt vé nào.</p>
+                        </div>
+                    }
+                </div>
             </div>
         </div>
     </div>
-</div> 
+</div>
+
+<style>
+.avatar-circle {
+    width: 100px;
+    height: 100px;
+    background-color: #007bff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.avatar-text {
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.table > :not(caption) > * > * {
+    padding: 1rem;
+}
+</style> 

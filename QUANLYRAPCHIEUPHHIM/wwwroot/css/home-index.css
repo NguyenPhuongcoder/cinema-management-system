@@ -152,4 +152,47 @@
     background: #fff;
     color: #ff6d2d;
     border: 2px solid #ff6d2d;
+}
+
+/* Override movie title styles - Thêm mới */
+.movie-card-galaxy .card-body {
+    padding: 1rem;
+}
+
+.movie-card-galaxy .card-title,
+.movie-card-galaxy .card-title a,
+.movie-title-link {
+    color: #333 !important;
+    text-decoration: none !important;
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    transition: color 0.2s;
+}
+
+.movie-card-galaxy .card-title:hover,
+.movie-card-galaxy .card-title a:hover,
+.movie-title-link:hover {
+    color: #ff6d2d !important;
+    text-decoration: none !important;
+}
+
+/* Đảm bảo không có style mặc định của link */
+.card-body a,
+.card-body a:link,
+.card-body a:visited {
+    color: inherit !important;
+    text-decoration: none !important;
+}
+
+/* Override Bootstrap link colors */
+a[href*="Movie/Details"],
+a[href*="Booking"] {
+    color: #333 !important;
+    text-decoration: none !important;
+}
+
+a[href*="Movie/Details"]:hover,
+a[href*="Booking"]:hover {
+    color: #ff6d2d !important;
 } 

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 using QUANLYRAPCHIEUPHHIM.Models;
 
@@ -39,4 +39,4 @@ namespace QUANLYRAPCHIEUPHHIM.ViewModels
         public DateTime? CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
     }
-} 
+}

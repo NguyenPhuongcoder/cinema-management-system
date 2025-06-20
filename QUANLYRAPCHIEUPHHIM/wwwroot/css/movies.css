@@ -144,4 +144,43 @@
 .nav-tabs .nav-link:hover:after,
 .nav-tabs .nav-link.active:after {
     transform: scaleX(1);
+}
+
+/* Override movie title link styles */
+.movie-card-galaxy .card-title a,
+.movie-card-galaxy .card-title,
+.movie-title-link {
+    color: #333 !important;
+    text-decoration: none !important;
+    transition: color 0.2s;
+}
+
+.movie-card-galaxy .card-title a:hover,
+.movie-card-galaxy .card-title:hover,
+.movie-title-link:hover {
+    color: #ff6d2d !important;
+    text-decoration: none !important;
+}
+
+/* Additional styles to ensure no blue links */
+.card-body a {
+    color: inherit !important;
+    text-decoration: none !important;
+}
+
+.card-body a:hover {
+    color: #ff6d2d !important;
+}
+
+/* Override any Bootstrap link colors */
+a.movie-title-link,
+.card-title a {
+    color: #333 !important;
+    text-decoration: none !important;
+}
+
+a.movie-title-link:hover,
+.card-title a:hover {
+    color: #ff6d2d !important;
+    text-decoration: none !important;
 } 
