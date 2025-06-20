@@ -1,9 +1,11 @@
 # 🎬 Cinema Management System
 
-[![ASP.NET Core](https://img.shields.io/badge/ASP.NET%20Core-6.0-blue)](https://dotnet.microsoft.com/apps/aspnet)
-[![Entity Framework](https://img.shields.io/badge/Entity%20Framework-Core-green)](https://docs.microsoft.com/en-us/ef/)
+[![ASP.NET Core](https://img.shields.io/badge/ASP.NET%20Core-9.0-blue)](https://dotnet.microsoft.com/apps/aspnet)
+[![Entity Framework](https://img.shields.io/badge/Entity%20Framework-Core%209.0-green)](https://docs.microsoft.com/en-us/ef/)
 [![SQL Server](https://img.shields.io/badge/SQL%20Server-2019+-red)](https://www.microsoft.com/en-us/sql-server)
 [![Bootstrap](https://img.shields.io/badge/Bootstrap-5.0-purple)](https://getbootstrap.com/)
+[![Cloudinary](https://img.shields.io/badge/Cloudinary-Image%20Upload-orange)](https://cloudinary.com/)
+[![Docker](https://img.shields.io/badge/Docker-Containerized-blue)](https://www.docker.com/)
 
 A comprehensive web application built with ASP.NET Core MVC for managing cinema operations and providing seamless online ticket booking experiences.
 
@@ -13,7 +15,7 @@ A comprehensive web application built with ASP.NET Core MVC for managing cinema 
 |-----------|------------|
 | Nguyễn Phương | 23115053122232 |
 | Lê Viết Hoàng Thắng | 23115053122237 |
-| Nguyễn Hữu Phước | 23115053122232 |
+| Nguyễn Hữu Phước | 23115053122242 |
 
 ## 📌 Introduction
 
@@ -21,12 +23,19 @@ The Cinema Management System is a modern web application designed to streamline 
 
 ## 🛠 Technologies Used
 
-- **Framework**: ASP.NET Core MVC
-- **ORM**: Entity Framework Core
+- **Framework**: ASP.NET Core 9.0 MVC
+- **Runtime**: .NET 9.0
+- **ORM**: Entity Framework Core 9.0
 - **Database**: SQL Server
 - **Frontend**: Bootstrap 5, jQuery
 - **Icons**: Font Awesome
-- **Architecture**: Model-View-Controller (MVC)
+- **Architecture**: Model-View-Controller (MVC) with Areas
+- **Image Storage**: Cloudinary
+- **Pagination**: X.PagedList
+- **Authentication**: Cookie-based Authentication
+- **Monitoring**: Application Insights
+- **Containerization**: Docker
+- **Development**: Hot Reload with Razor Runtime Compilation
 
 ## 🚀 Core Features
 
@@ -110,10 +119,15 @@ The Cinema Management System is a modern web application designed to streamline 
 - 💾 Automated backup and recovery
 
 ### 4. Standout Features
-- 🧠 Intelligent seat recommendation
-- 🏢 Multi-location cinema support
+- 🧠 Intelligent seat recommendation system
+- 🏢 Multi-location cinema support with province/city management
 - 💳 Multiple payment gateway integration
-- 🎁 Flexible promotional system
+- 🎁 Flexible promotional system with discount codes
+- ☁️ Cloud-based image storage with Cloudinary
+- 📄 Advanced pagination for large datasets
+- 🔄 Hot reload development environment
+- 🐳 Docker containerization support
+- 📊 Real-time monitoring with Application Insights
 
 ## 🔮 Future Development Roadmap
 
@@ -129,16 +143,17 @@ The Cinema Management System is a modern web application designed to streamline 
 ## ⚙️ Installation & Setup
 
 ### Prerequisites
-- .NET 6.0 SDK or later
+- .NET 9.0 SDK or later
 - SQL Server 2019+ or SQL Server Express
 - Visual Studio 2022 or VS Code
+- Docker (optional, for containerized deployment)
 
 ### Installation Steps
 
 1. **Clone the Repository**
    ```bash
    git clone [repository-url]
-   cd cinema-management-system
+   cd QUANLYRAPCHIEUPHHIM
    ```
 
 2. **Install Dependencies**
@@ -151,7 +166,12 @@ The Cinema Management System is a modern web application designed to streamline 
    ```json
    {
      "ConnectionStrings": {
-       "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=CinemaDB;Trusted_Connection=true;"
+       "DefaultConnection": "Server=localhost;Database=CinemaDB;Trusted_Connection=True;TrustServerCertificate=True;"
+     },
+     "Cloudinary": {
+       "CloudName": "your-cloud-name",
+       "ApiKey": "your-api-key",
+       "ApiSecret": "your-api-secret"
      }
    }
    ```
@@ -167,22 +187,37 @@ The Cinema Management System is a modern web application designed to streamline 
    ```
 
 6. **Access the Application**
-   - Navigate to `https://localhost:5001` or `http://localhost:5000`
+   - Navigate to `https://localhost:7277` or `http://localhost:5052`
    - Default admin credentials (change immediately):
      - Username: `admin@cinema.com`
      - Password: `Admin@123`
 
+### Docker Deployment (Optional)
+
+1. **Build Docker Image**
+   ```bash
+   docker build -t cinema-management .
+   ```
+
+2. **Run Container**
+   ```bash
+   docker run -p 8080:8080 -p 8081:8081 cinema-management
+   ```
+
 ## 📁 Project Structure
 
 ```
-CinemaManagementSystem/
+QUANLYRAPCHIEUPHHIM/
 ├── Controllers/          # MVC Controllers
-├── Models/              # Data models and ViewModels
+├── Models/              # Entity Framework models
+├── ViewModels/          # View models for UI
 ├── Views/               # Razor views
 ├── Data/                # Entity Framework context
 ├── Services/            # Business logic services
+├── ViewComponents/      # Reusable view components
 ├── wwwroot/             # Static files (CSS, JS, images)
-├── Migrations/          # EF Core migrations
+├── Properties/          # Launch settings and dependencies
+├── Dockerfile           # Docker configuration
 └── appsettings.json     # Configuration file
 ```
 
@@ -224,9 +259,13 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 Acknowledgments
 
-- ASP.NET Core team for the excellent framework
+- Microsoft ASP.NET Core team for the excellent framework
+- Entity Framework Core team for the powerful ORM
 - Bootstrap team for the responsive UI components
 - Font Awesome for the beautiful icons
+- Cloudinary for reliable image storage solutions
+- X.PagedList contributors for pagination functionality
+- Docker team for containerization technology
 - Our university instructors for guidance and support
 
 ---
