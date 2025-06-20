@@ -1,106 +1,176 @@
-Hệ thống Quản lý Rạp Chiếu Phim
-Thông tin nhóm
-Họ và tên	Mã sinh viên
-[Nguyễn Phương]	[23115053122232]
-[Lê Viết Hoàng Thắng]	[23115053122237]
-[Nguyễn Hữu Phước]	[23115053122232]
-Giới thiệu
-Hệ thống Quản lý Rạp Chiếu Phim là một ứng dụng web được phát triển bằng ASP.NET Core MVC, cho phép quản lý toàn diện hoạt động của chuỗi rạp chiếu phim và cung cấp nền tảng đặt vé trực tuyến cho khách hàng.
+🎬 Cinema Management System
+👥 Team Information
+Full Name	Student ID
+Nguyễn Phương	23115053122232
+Lê Viết Hoàng Thắng	23115053122237
+Nguyễn Hữu Phước	23115053122232
 
-Công nghệ sử dụng
+📌 Introduction
+The Cinema Management System is a web application built with ASP.NET Core MVC, designed to comprehensively manage cinema operations and provide a convenient online ticket booking platform for customers.
+
+🛠 Technologies Used
 ASP.NET Core MVC
+
 Entity Framework Core
+
 SQL Server
+
 Bootstrap 5
+
 jQuery
+
 Font Awesome
-Tính năng dự kiến
-Quản lý hệ thống (Admin)
-[x] Quản lý phim
 
-Thêm, sửa, xóa thông tin phim
-Quản lý thể loại phim
-Upload poster và trailer
-Phân loại độ tuổi
-[x] Quản lý rạp chiếu
+🚀 Core Features
+🎛 System Management (Admin Panel)
+Movie Management
 
-Quản lý chuỗi rạp theo tỉnh/thành phố
-Quản lý phòng chiếu và sơ đồ ghế
-Cấu hình giá vé theo rạp/phòng
-[x] Quản lý suất chiếu
+Add, update, delete movies
 
-Lập lịch chiếu cho từng phim
-Quản lý thời gian chiếu
-Theo dõi tình trạng đặt vé
-[x] Quản lý khuyến mãi
+Manage movie genres and age ratings
 
-Tạo và quản lý mã giảm giá
-Thiết lập chương trình khuyến mãi
-Áp dụng cho nhóm khách hàng
-[x] Báo cáo thống kê
+Upload posters and trailers
 
-Doanh thu theo thời gian/rạp
-Thống kê lượt xem phim
-Báo cáo đặt vé
-Người dùng
-[x] Đăng ký/Đăng nhập
+Cinema Management
 
-Đăng ký tài khoản mới
-Đăng nhập bằng email
-Quản lý thông tin cá nhân
-[x] Trang chủ và danh sách phim
+Manage cinema chains by location (province/city)
 
-Hiển thị phim đang chiếu/sắp chiếu
-Tìm kiếm và lọc phim
-Xem thông tin chi tiết phim
-Xem trailer
-[x] Đặt vé trực tuyến
+Manage screening rooms and seating layouts
 
-Chọn phim, rạp, suất chiếu
-Chọn ghế theo sơ đồ
-Áp dụng mã giảm giá
-Thanh toán trực tuyến
-[x] Quản lý đặt vé
+Configure ticket pricing by room/cinema
 
-Xem lịch sử đặt vé
-In vé điện tử
-Kết quả đạt được
-1. Giao diện người dùng
-Thiết kế hiện đại, thân thiện với người dùng
-Tương thích với các thiết bị di động
-Tối ưu hóa trải nghiệm đặt vé
-Tích hợp thanh toán trực tuyến an toàn
-2. Quản lý hệ thống
-Xây dựng hệ thống quản trị toàn diện
-Báo cáo và thống kê chi tiết
-Quản lý suất chiếu linh hoạt
-Hệ thống mã giảm giá đa dạng
-3. Hiệu suất và bảo mật
-Tối ưu hóa tốc độ tải trang
-Bảo mật thông tin người dùng
-Xử lý đồng thời nhiều giao dịch
-Sao lưu dữ liệu tự động
-4. Tính năng nổi bật
-Hệ thống đặt vé thông minh
-Quản lý rạp chiếu phim linh hoạt
-Tích hợp nhiều phương thức thanh toán
-Hệ thống khuyến mãi đa dạng
-Hướng phát triển tương lai
-Tích hợp trí tuệ nhân tạo để gợi ý phim
-Phát triển ứng dụng di động
-Mở rộng phương thức thanh toán
-Tích hợp hệ thống đánh giá và xếp hạng
-Phát triển tính năng bán đồ ăn trực tuyến
-Cài đặt và sử dụng
-Clone repository
+Showtime Management
+
+Schedule movie showtimes
+
+Manage showtime availability
+
+Monitor booking status
+
+Promotion Management
+
+Create and manage discount codes
+
+Launch promotional campaigns
+
+Apply offers to customer groups
+
+Reporting & Analytics
+
+Revenue tracking by time and cinema
+
+Viewership statistics
+
+Booking activity reports
+
+👤 User-Side Functionality
+Account Management
+
+User registration & login
+
+Personal profile management
+
+Homepage & Movie Listings
+
+Display currently showing and upcoming movies
+
+Search and filter movies
+
+View movie details and trailers
+
+Online Ticket Booking
+
+Select movie, cinema, and showtime
+
+Interactive seat selection
+
+Apply discount codes
+
+Secure online payment
+
+Booking History
+
+View past bookings
+
+Access and print e-tickets
+
+📈 Achievements
+1. User Interface
+Modern and user-friendly design
+
+Responsive across mobile and desktop devices
+
+Streamlined booking experience
+
+Secure online payment integration
+
+2. System Management
+Fully functional admin dashboard
+
+Detailed reporting and analytics
+
+Flexible showtime scheduling
+
+Dynamic promotion system
+
+3. Performance & Security
+Optimized page loading speed
+
+Secure handling of user data
+
+Supports concurrent transactions
+
+Automatic data backup system
+
+4. Highlight Features
+Smart ticket booking process
+
+Flexible cinema and room management
+
+Multiple payment options
+
+Rich promotional features
+
+🔮 Future Development
+Integrate AI for personalized movie recommendations
+
+Develop cross-platform mobile applications
+
+Expand available payment methods
+
+Add movie rating and review system
+
+Implement online food ordering for cinemas
+
+⚙️ Installation & Usage
+Clone the repository
+
+bash
+Copy
+Edit
 git clone [repository-url]
-Cài đặt dependencies
+Install dependencies
+
+bash
+Copy
+Edit
 dotnet restore
-Cấu hình database
-Cập nhật connection string trong appsettings.json
-Chạy migration
+Configure the database
+
+Update the connection string in appsettings.json
+
+Apply migrations:
+
+bash
+Copy
+Edit
 dotnet ef database update
-Chạy ứng dụng
+Run the application
+
+bash
+Copy
+Edit
 dotnet run
-Đóng góp
-Mọi đóng góp và góp ý xin vui lòng tạo issue hoặc pull request.
+🤝 Contribution
+We welcome contributions!
+Feel free to create an issue or submit a pull request for suggestions and improvements.
